@@ -1,17 +1,24 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>PhoneGap</title>
+  <meta charset="utf-8" /> 
+  <title>Health Care</title>
 </head>
-<body>
-  <h1>Welcome to PhoneGap</h1>
-  <h2>Edit assets/www/index.html</h2>
 
-  <script type="text/javascript" charset="utf-8" src="phonegap-0.9.3.js"></script>      
-  <script type="text/javascript" charset="utf-8">
-    document.addEventListener("deviceready", function() {
-      alert('initialized');
-    }, true);
-  </script>
+<body>
+  <link href="css/jquery.mobile-1.0a3.min.css" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  
+  <script type="text/javascript" charset="utf-8" src="js/phonegap-0.9.3.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery-1.4.4.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a3.min.js"></script>
+  
+  <div data-role="page" data-theme="b" id="jqm-home" style="height: 100%;">
+    <ul data-role="listview" data-theme="b">
+      <li><a href="first.html">First Item</a></li>
+      <li><a href="second.html">Second Item</a></li>
+    </ul>
+  </div>
+  
 </body>
 </html>
