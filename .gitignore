@@ -1,4 +1,4 @@
-/.settings
-/bin
-/gen
-
+/android/.settings
+/android/bin
+/android/gen
+/www/phonegap*.js
