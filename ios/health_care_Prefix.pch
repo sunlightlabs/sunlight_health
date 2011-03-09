@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'health_care' target in the 'health_care' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
