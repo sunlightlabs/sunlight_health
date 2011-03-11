@@ -13,10 +13,23 @@
   <script type="text/javascript" charset="utf-8" src="js/jquery-1.4.4.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a3.min.js"></script>
   
+  <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      
+      Api.key = "sunlight9";
+      Api.get("facilities", {}, function(facilities) {
+        $("li.third").html(facilities[0].name);
+      });
+      
+    });
+  </script>
+  
   <div data-role="page" data-theme="b" id="jqm-home" class="page">
     <ul data-role="listview" data-theme="b">
       <li><a href="first.html">First Item</a></li>
       <li><a href="second.html">Second Item</a></li>
+      <li class="third">Third Item</li>
     </ul>
   </div>
   
