@@ -14,10 +14,9 @@
   <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a3.min.js"></script>
   
   <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/keys.js"></script>
   <script type="text/javascript">
     $(function() {
-      
-      Api.key = "sunlight9";
       Api.get("facilities", {}, function(facilities) {
         $("li.third").html(facilities[0].name);
       });
@@ -25,12 +24,26 @@
     });
   </script>
   
-  <div data-role="page" data-theme="b" id="jqm-home" class="page">
-    <ul data-role="listview" data-theme="b">
-      <li><a href="first.html">First Item</a></li>
-      <li><a href="second.html">Second Item</a></li>
-      <li class="third">Third Item</li>
-    </ul>
+  <div data-role="page" data-theme="c" id="jqm-home" class="page">
+    <div data-role="header">
+      <h1>Health In Hand</h1>
+    </div><!-- /header -->
+
+    <div data-role="content">
+    
+      <ul data-role="listview">
+        <li><a href="facilities.html">Facilities</a></li>
+        <li><a href="suppliers.html">Suppliers</a></li>
+        <li><a href="drugs.html">Drugs</a></li>
+      </ul>
+    
+    </div><!-- /content -->
+
+    <div data-role="footer">
+      <h4>
+        Made by the <a href="http://sunlightfoundation.com">Sunlight Foundation</a>
+      </h4>
+    </div><!-- /footer -->
   </div>
   
 </body>

@@ -2,3 +2,4 @@
 /android/bin
 /android/gen
 /www/phonegap*.js
+/www/js/keys.js
