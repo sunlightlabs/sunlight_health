@@ -9,29 +9,33 @@
   <link href="css/jquery.mobile-1.0a3.min.css" rel="stylesheet" />
   <link href="css/main.css" rel="stylesheet" />
   
+  <!-- Phonegap and JQM init -->
   <script type="text/javascript" charset="utf-8" src="js/phonegap-0.9.4.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery-1.4.4.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a3.min.js"></script>
   
+  <!-- Utilities -->
+  <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
+  
+  <!-- API communication -->
   <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/keys.js"></script>
+
+  <!-- Page-specific code -->
   <script type="text/javascript">
     $(function() {
-      Api.get("facilities", {}, function(facilities) {
-        $("li.third").html(facilities[0].name);
-      });
-      
+
     });
   </script>
   
-  <div data-role="page" data-theme="c" id="jqm-home" class="page">
-    <div data-role="header">
+  <div data-role="page" id="jqm-home" class="page" data-theme="a">
+    <div data-role="header" data-backbtn="false">
       <h1>Health In Hand</h1>
     </div><!-- /header -->
 
-    <div data-role="content">
+    <div data-role="content" class="content">
     
-      <ul data-role="listview">
+      <ul data-role="listview" data-theme="c">
         <li><a href="facilities.html">Facilities</a></li>
         <li><a href="suppliers.html">Suppliers</a></li>
         <li><a href="drugs.html">Drugs</a></li>
@@ -39,10 +43,8 @@
     
     </div><!-- /content -->
 
-    <div data-role="footer">
-      <h4>
-        Made by the <a href="http://sunlightfoundation.com">Sunlight Foundation</a>
-      </h4>
+    <div data-role="footer" class="footer" data-theme="a">
+      <h4>by <a href="http://sunlightfoundation.com">Sunlight</a></h4>
     </div><!-- /footer -->
   </div>
   

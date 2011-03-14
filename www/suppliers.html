@@ -7,15 +7,20 @@
   <link href="css/jquery.mobile-1.0a3.min.css" rel="stylesheet" />
   <link href="css/main.css" rel="stylesheet" />
   
+  <!-- Phonegap and JQM init -->
   <script type="text/javascript" charset="utf-8" src="js/phonegap-0.9.4.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery-1.4.4.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a3.min.js"></script>
   
-  <!-- if the page uses the API -->
+  <!-- Utilities -->
+  <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
+  
+  <!-- API communication -->
   <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/keys.js"></script>
+  
+  <!-- Page-specific code -->
   <script type="text/javascript">
-    // all page-specific JS code goes here
     $(function() {
     
     });
@@ -24,10 +29,11 @@
 </head> 
 <body> 
 
-<div data-role="page" data-theme="c">
+<div data-role="page" class="page">
 
   <div data-role="header">
     <h1>Suppliers</h1>
+    <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
   </div><!-- /header -->
 
   <div data-role="content"> 
