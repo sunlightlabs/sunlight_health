@@ -19,31 +19,38 @@
   <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/keys.js"></script>
   
+</head> 
+<body>
+
+<div data-role="page" class="page" id="suppliers">
+
   <!-- Page-specific code -->
   <script type="text/javascript">
-    $(function() {
+    Utils.show("#suppliers", function() {
     
+      $("button.search.suppliers").click(function() {
+        $.mobile.changePage({
+          url: "suppliers_list.html",
+          data: {lat: 250, lng: 200},
+          type: "get"
+        });
+      });
+      
     });
   </script>
   
-</head> 
-<body> 
-
-<div data-role="page" class="page">
-
   <div data-role="header">
-    <h1>Suppliers</h1>
+    <h1>Find Medical Supplies</h1>
     <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <p>Page content goes here.</p>    
+    <p>Both welcoming and instructional.</p>
+    
+    <button class="search suppliers">Search</button>
   </div><!-- /content -->
-
-  <div data-role="footer">
-    <h4>Page Footer</h4>
-  </div><!-- /footer -->
 </div><!-- /page -->
+
 
 </body>
 </html>

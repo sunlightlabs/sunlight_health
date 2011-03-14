@@ -22,26 +22,28 @@
 </head> 
 <body> 
 
-<div data-role="page" class="page" id="page_id">
+<div data-role="page" class="page" id="suppliers_list">
 
   <!-- Page-specific code -->
   <script type="text/javascript">
-    Utils.show("#page_id", function() {
-    
+    Utils.show("#suppliers_list", function() {
+      
     });
   </script>
 
   <div data-role="header">
-    <h1>Health in Hand</h1>
+    <h1>Suppliers Near You</h1>
     <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <p>Page content goes here.</p>    
+    <ul data-role="listview" data-theme="c">
+      <li><a href="supplier">First supplier</a></li>
+    </ul>
   </div><!-- /content -->
 
   <div data-role="footer">
-    <h4>Page Footer</h4>
+    
   </div><!-- /footer -->
 </div><!-- /page -->
 
