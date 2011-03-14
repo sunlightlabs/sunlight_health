@@ -1,3 +1,9 @@
+// Example code:
+//
+// Api.get("facilities", {}, function(facilities) {
+//   $("li").html(facilities[0].name);
+// });
+
 var Api = {
   key: null,
   
