@@ -27,6 +27,30 @@
   <!-- Page-specific code -->
   <script type="text/javascript">
     Utils.show("#suppliers_list", function() {
+    
+      var lat = Utils.param("lat");
+      var lng = Utils.param("lng");
+      
+      $.mobile.pageLoading();
+      Api.Supplier.search(lat, lng, function(suppliers) {
+        $.mobile.pageLoading(true);
+        
+        if (suppliers.length > 0) {
+          $("p.loading.suppliers").hide();
+          
+          for (var i=0; i<suppliers.length; i++) {
+            var supplier = suppliers[i];
+            
+            // template: <li><a href="supplier_detail.html?row=[row]">[name]</a></li>
+            $("ul.suppliers.list").append(
+              "<li><a href=\"supplier_detail.html?row=" + supplier.row +
+              "\">" + supplier.name + "</a></li>"
+            );
+          }
+          $("ul.suppliers.list").listview("refresh");
+        } else
+          $("p.loading.suppliers").html("No suppliers found for this location.");
+      });
       
     });
   </script>
@@ -37,8 +61,10 @@
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <ul data-role="listview" data-theme="c">
-      <li><a href="supplier">First supplier</a></li>
+    <p class="loading suppliers">Loading suppliers...</p>
+    
+    <ul data-role="listview" data-theme="c" class="suppliers list">
+      <!-- fill in suppliers here -->
     </ul>
   </div><!-- /content -->
 

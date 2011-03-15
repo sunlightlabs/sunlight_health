@@ -1,23 +1,27 @@
-// Example code:
-//
-// Api.get("facilities", {}, function(facilities) {
-//   $("li").html(facilities[0].name);
-// });
-
 var Api = {
   key: null,
   
   get: function(method, params, callback) {
     params = params || {};
     params.apikey = Api.key;
-    $.getJSON(Api.url(method), params, function(data) {
-      if (data) {
+      
+    $.ajax({
+      url: Api.url(method), 
+      data: params, 
+      success: function(data) {
         callback(data[method]);
-      }
+      },
+      dataType: "jsonp"
     });
   },
   
-  url: function(method, params) {
-    return "http://health.sunlightlabs.com/api/v1/" + method + ".json?per_page=1";
+  url: function(method) {
+    return "http://health.sunlightlabs.com/api/v1/" + method + ".json";
+  },
+  
+  Supplier: {
+    search: function(lat, lng, callback) {
+      Api.get("suppliers", {location: lat + "," + lng}, callback);
+    }
   }
 }
