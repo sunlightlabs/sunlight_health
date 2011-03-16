@@ -26,7 +26,7 @@
 
   <!-- Page-specific code -->
   <script type="text/javascript">
-    Utils.show("#suppliers_list", function() {
+    Utils.show("suppliers_list", function() {
     
       var lat = Utils.param("lat");
       var lng = Utils.param("lng");
@@ -51,9 +51,9 @@
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <p class="loading suppliers">Loading suppliers...</p>
+    <p class="loading empty suppliers">Loading suppliers...</p>
     
-    <ul data-role="listview" data-theme="c" class="suppliers list">
+    <ul data-role="listview" data-theme="c" class="list suppliers">
       <!-- fill in suppliers here -->
     </ul>
   </div><!-- /content -->

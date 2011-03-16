@@ -26,26 +26,47 @@
 
   <!-- Page-specific code -->
   <script type="text/javascript">
-    Utils.show("#supplier_detail", function() {
+  
+    Utils.show("supplier_detail", function() {
       
       var row = Utils.param("row");
+      Utils.log("row: " + row);
       
       $.mobile.pageLoading();
       Api.Supplier.find(row, function(supplier) {
         $.mobile.pageLoading(true);
         
         if (supplier) {
-          $(".supplier.name").html(supplier.name);
           $(".supplier.reveal").show();
+          populateSupplier(supplier);
         }
       });
       
     });
+    
+    function populateSupplier(supplier) {
+      $(".supplier.name").html(supplier.name);
+      $(".supplier.map").click(function() {
+        $.mobile.changePage({
+          url: "supplier_map.html",
+          data: {
+            address: supplier.address,
+            address_2: supplier.address_2,
+            zip: supplier.zip,
+            zip_plus_4: supplier.zip_plus_4,
+            state: supplier.state,
+            name: supplier.name,
+            phone: supplier.phone
+          },
+          type: "get"
+        });
+      });
+    }
   </script>
 
   <div data-role="header">
     <h1>Supplier Details</h1>
-    <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
+    <a data-role="button" class="ui-btn-right map supplier reveal">Map</a>
   </div><!-- /header -->
 
   <div data-role="content"> 

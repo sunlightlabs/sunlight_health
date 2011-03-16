@@ -3,12 +3,12 @@ Utils = {
   // if running in Android, the command to see log messages in a terminal is:
   // adb logcat PhoneGapLog:V *:S
   log: function(msg) {
-    console.log("\n\n" + msg);
+    console.log(msg);
   },
   
   // depends on jQuery and JQM being loaded, will run a function on page load
-  show: function (selector, callback) {
-    $(selector).live("pageshow", callback);
+  show: function (page, callback) {
+    $("#" + page).live("pageshow", callback);
   },
   
   // adapted from http://stackoverflow.com/questions/901115/get-querystring-values-with-jquery

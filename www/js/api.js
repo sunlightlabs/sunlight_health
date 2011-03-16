@@ -14,7 +14,7 @@ var Api = {
       success: function(data) {
         callback(data[method]);
       },
-      dataType: "jsonp"
+      dataType: "jsonp" //TODO: Turn this off (to regular JSON) when on a device
     });
   },
   
@@ -41,7 +41,7 @@ var Api = {
     },
     
     find: function(row, callback) {
-      Api.getOne("suppliers", [], {row: row}, callback);
+      Api.getOne("suppliers", ["basic", "row"], {row: row}, callback);
     }
   }
 }
