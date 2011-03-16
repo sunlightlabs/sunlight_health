@@ -34,6 +34,20 @@ Utils = {
     } else
       $(".empty." + name).html(empty || "No results found.");
       
+  },
+  
+  loading: function(done) {
+    if (done) {
+      if (navigator.notification && navigator.notification.activityStop) 
+        navigator.notification.activityStop();
+      else
+        $.mobile.pageLoading(true);
+    } else {
+      if (navigator.notification && navigator.notification.activityStart) 
+        navigator.notification.activityStart();
+      else
+        $.mobile.pageLoading();
+    }
   }
 
 };

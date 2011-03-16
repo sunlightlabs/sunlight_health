@@ -32,9 +32,9 @@
       var row = Utils.param("row");
       Utils.log("row: " + row);
       
-      $.mobile.pageLoading();
+      Utils.loading();
       Api.Supplier.find(row, function(supplier) {
-        $.mobile.pageLoading(true);
+        Utils.loading(true);
         
         if (supplier) {
           $(".supplier.reveal").show();

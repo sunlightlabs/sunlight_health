@@ -29,14 +29,31 @@
     Utils.show("suppliers", function() {
     
       $("button.search.suppliers").click(function() {
-        $.mobile.changePage({
-          url: "suppliers_list.html",
-          data: {lat: 250, lng: 200},
-          type: "get"
-        });
+        Utils.loading();
+        
+        navigator.geolocation.getCurrentPosition(
+          function(point) {
+            Utils.loading(true);
+            located(point.coords.latitude, point.coords.longitude);
+          },
+          function(error) {
+            Utils.loading(true);
+            console.log("Error: " + error);
+          }
+        );
       });
       
     });
+    
+    function located(lat, lng) {
+      console.log("Located user at " + lat + "," + lng);
+      
+      $.mobile.changePage({
+        url: "suppliers_list.html",
+        data: {lat: lat, lng: lng},
+        type: "get"
+      });
+    }
   </script>
   
   <div data-role="header">
