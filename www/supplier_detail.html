@@ -28,16 +28,30 @@
   <script type="text/javascript">
     Utils.show("#supplier_detail", function() {
       
+      var row = Utils.param("row");
+      
+      $.mobile.pageLoading();
+      Api.Supplier.find(row, function(supplier) {
+        $.mobile.pageLoading(true);
+        
+        if (supplier) {
+          $(".supplier.name").html(supplier.name);
+          $(".supplier.reveal").show();
+        }
+      });
+      
     });
   </script>
 
   <div data-role="header">
-    <h1>Supplier</h1>
+    <h1>Supplier Details</h1>
     <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <p>Loading supplier...</p>
+    <div class="supplier reveal">
+      <h2 class="supplier name"></h2>
+    </div>
   </div><!-- /content -->
 </div><!-- /page -->
 

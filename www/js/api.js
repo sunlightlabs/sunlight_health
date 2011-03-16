@@ -15,13 +15,30 @@ var Api = {
     });
   },
   
+  getOne: function(method, params, callback) {
+    Api.get(method, params, function(results) {
+      if (results && results.length > 0)
+        callback(results[0]);
+      else
+        callback(null);
+    });
+  },
+  
   url: function(method) {
     return "http://health.sunlightlabs.com/api/v1/" + method + ".json";
   },
   
   Supplier: {
+    // returns all suppliers by a given location search
     search: function(lat, lng, callback) {
-      Api.get("suppliers", {location: lat + "," + lng}, callback);
+      Api.get("suppliers", {
+        location: lat + "," + lng
+        // , sections: "basic"
+      }, callback);
+    },
+    
+    find: function(row, callback) {
+      Api.getOne("suppliers", {row: row}, callback);
     }
   }
 }
