@@ -1,9 +1,12 @@
 var Api = {
   key: null,
   
-  get: function(method, params, callback) {
+  get: function(method, sections, params, callback) {
     params = params || {};
     params.apikey = Api.key;
+    
+    if (sections && sections.length > 0)
+      params.sections = sections.join(",");
       
     $.ajax({
       url: Api.url(method), 
@@ -15,8 +18,8 @@ var Api = {
     });
   },
   
-  getOne: function(method, params, callback) {
-    Api.get(method, params, function(results) {
+  getOne: function(method, sections, params, callback) {
+    Api.get(method, sections, params, function(results) {
       if (results && results.length > 0)
         callback(results[0]);
       else
@@ -31,14 +34,14 @@ var Api = {
   Supplier: {
     // returns all suppliers by a given location search
     search: function(lat, lng, callback) {
-      Api.get("suppliers", {
+      Api.get("suppliers", ["basic", "row"], {
         location: lat + "," + lng
         // , sections: "basic"
       }, callback);
     },
     
     find: function(row, callback) {
-      Api.getOne("suppliers", {row: row}, callback);
+      Api.getOne("suppliers", [], {row: row}, callback);
     }
   }
 }

@@ -35,21 +35,11 @@
       Api.Supplier.search(lat, lng, function(suppliers) {
         $.mobile.pageLoading(true);
         
-        if (suppliers.length > 0) {
-          $("p.loading.suppliers").hide();
-          
-          for (var i=0; i<suppliers.length; i++) {
-            var supplier = suppliers[i];
-            
-            // template: <li><a href="supplier_detail.html?row=[row]">[name]</a></li>
-            $("ul.suppliers.list").append(
-              "<li><a href=\"supplier_detail.html?row=" + supplier.row +
-              "\">" + supplier.name + "</a></li>"
-            );
-          }
-          $("ul.suppliers.list").listview("refresh");
-        } else
-          $("p.loading.suppliers").html("No suppliers found for this location.");
+        Utils.loadList("suppliers", suppliers, function(supplier) {
+          return "<a href=\"supplier_detail.html?row=" + supplier.row + 
+                 "\">" + supplier.name + "</a>";
+        }, "No suppliers found for this location.");
+        
       });
       
     });

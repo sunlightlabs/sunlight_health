@@ -21,6 +21,19 @@ Utils = {
       return "";
     else
       return decodeURIComponent(results[1].replace(/\+/g, " "));
+  },
+  
+  loadList: function(name, array, assemble, empty) {
+    if (array.length > 0) {
+      $(".loading." + name).hide();
+      
+      for (var i=0; i<array.length; i++)
+        $(".list." + name).append("<li>" + assemble(array[i]) + "</li>");
+      
+      $(".list." + name).listview("refresh");
+    } else
+      $(".empty." + name).html(empty || "No results found.");
+      
   }
 
 };
