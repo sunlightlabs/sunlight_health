@@ -48,6 +48,53 @@ Utils = {
       else
         $.mobile.pageLoading();
     }
+  },
+  
+  popup: function(title, message) {
+    var dialog = '<div data-role="dialog" data-url="dialog" class="page" id="dialog">' +
+      '<div data-role="header" data-backbtn="false">' +
+        '<h1>' + title + '</h1>' +
+      '</div>' +
+      '<div data-role="content">' +
+        '<p class="message">' + message + '</p>' +
+        '<a href="index.html" data-role="button" data-rel="back">Close</a>' +
+      '</div>' +
+    '</div>';
+    $.mobile.pageContainer.append(dialog);
+    //TODO: Add an event handler to get rid of the dialog from the DOM tree entirely
+    // $("#dialog").live("pagehide", function() {
+      
+    
+    $.mobile.changePage("#dialog", "pop");
+    
+  },
+  
+  // get location and feed the lat/lng to a callback,
+  // and in case of error, use some predefined popups
+  location: function(success) {
+    navigator.geolocation.getCurrentPosition(
+      function(point) {
+        Utils.loading(true);
+        console.log("Located user at " + point.coords.latitude + "," + point.coords.longitude);
+        
+        success(point.coords.latitude, point.coords.longitude);
+      },
+      function(error) {
+        Utils.loading(true);
+        console.log("Error " + error.code + ": " + error.message);
+        
+        // from phonegap's JS:
+        //   PositionError.PERMISSION_DENIED = 1;
+        //   PositionError.POSITION_UNAVAILABLE = 2;
+        //   PositionError.TIMEOUT = 3;
+        
+        if (error.code == 1)
+          Utils.popup("Your Location", "You'll need to enable sharing of your location on your phone first.");
+        else if (error.code == 2)
+          Utils.popup("Your Location", "We couldn't locate you right now. Try again later or in a different place, or search by zip code.");
+        else
+          Utils.popup("Your Location", "There was an error while finding your location.");
+      }
+    );
   }
-
 };
