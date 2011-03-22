@@ -27,7 +27,6 @@
   <!-- Page-specific code -->
   <script type="text/javascript">
     var supplier;
-    var address;
     
     var geocoder;
     var map;
@@ -44,8 +43,6 @@
         phone: Utils.param("phone"),
         state: Utils.param("state")
       };
-      
-      address = supplier.address + ", " + supplier.city + ", " + supplier.state + ", " + supplier.zip;
       
       loadMap();
     });
@@ -73,7 +70,7 @@
       });
     
       geocoder = new google.maps.Geocoder();
-      geocoder.geocode({address: address}, function(results, status) {
+      geocoder.geocode({address: Utils.address(supplier)}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           var location = results[0].geometry.location;
           
@@ -90,16 +87,15 @@
           showButtons(lat, lng);
           
           console.log("Geocoded supplier address to lat: " + lat + ", lng: " + lng);
-        } else {
+        } else
           console.log("Geocode was not successful for the following reason: " + status);
-        }
       });
     }
     
     function showButtons(lat, lng) {
       $(".map.buttons").show();
       $("a.call").attr("href", "tel://" + supplier.phone);
-      $("a.directions").attr("href", "http://maps.google.com/maps?" + $.param({daddr: address}));
+      $("a.directions").attr("href", Utils.directions(Utils.address(supplier));
     }
   </script>
 

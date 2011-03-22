@@ -96,5 +96,27 @@ Utils = {
           Utils.popup("Your Location", "There was an error while finding your location.");
       }
     );
+  },
+  
+  address: function(object, options) {
+    var addr = object.address;
+    
+    if (options && options.break)
+      addr += "<br/>";
+    else
+      addr += ", ";
+    
+    addr += object.city + ", " + object.state + " " + object.zip;
+    
+    return addr;
+  },
+  
+  directions: function(address) {
+    return "http://maps.google.com/maps?" + $.param({daddr: address})
+  },
+  
+  phone: function(string) {
+    var digits = string.replace(/[^\d]/g, '').replace(/^1/, ''); // remove optional starting 1
+    return "(" + digits.substr(0,3) + ") " + digits.substr(3,3) + "-" + digits.substr(6,4);
   }
 };

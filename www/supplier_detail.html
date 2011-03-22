@@ -26,26 +26,33 @@
 
   <!-- Page-specific code -->
   <script type="text/javascript">
-  
+    var supplier;
+    
     Utils.show("supplier_detail", function() {
       
       var row = Utils.param("row");
       Utils.log("row: " + row);
       
       Utils.loading();
-      Api.Supplier.find(row, function(supplier) {
+      Api.Supplier.find(row, function(s) {
+        supplier = s;
         Utils.loading(true);
         
         if (supplier) {
           $(".supplier.reveal").show();
-          populateSupplier(supplier);
+          populateSupplier();
         }
       });
       
     });
     
-    function populateSupplier(supplier) {
-      $(".supplier.name").html(supplier.name);
+    function populateSupplier() {
+      $(".supplier .name").html(supplier.name);
+      $(".supplier .address").html(Utils.address(supplier, {break: true}));
+      $(".supplier .phone").html(Utils.phone(supplier.phone));
+      $(".supplier a.call").attr("href", "tel://" + supplier.phone);
+      $(".supplier a.directions").attr("href", Utils.directions(Utils.address(supplier)));
+      
       $(".supplier.map").click(function() {
         $.mobile.changePage({
           url: "supplier_map.html",
@@ -72,7 +79,19 @@
 
   <div data-role="content"> 
     <div class="supplier reveal">
-      <h2 class="supplier name"></h2>
+      <div class="top">
+        <h3 class="name"></h3>
+        <p class="address"></p>
+        <p class="phone"></p>
+      </div>
+      <div class="buttons ui-grid-a">
+        <div class="ui-block-a">
+          <a href="#" data-role="button" class="call">Call</a>
+        </div>
+        <div class="ui-block-b">
+          <a href="#" data-role="button" class="directions">Directions</a>
+        </div>
+      </div>
     </div>
   </div><!-- /content -->
 </div><!-- /page -->
