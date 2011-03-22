@@ -27,6 +27,7 @@
   <!-- Page-specific code -->
   <script type="text/javascript">
     var supplier;
+    var address;
     
     var geocoder;
     var map;
@@ -40,8 +41,11 @@
         address_2: Utils.param("address_2"),
         zip: Utils.param("zip"),
         zip_plus_4: Utils.param("zip_plus_4"),
-        phone: Utils.param("phone")
+        phone: Utils.param("phone"),
+        state: Utils.param("state")
       };
+      
+      address = supplier.address + ", " + supplier.city + ", " + supplier.state + ", " + supplier.zip;
       
       loadMap();
     });
@@ -54,8 +58,6 @@
     }
     
     function doneLoadingMap() {
-      var address = supplier.address + ", " + supplier.city + ", " + supplier.state + ", " + supplier.zip;
-      
       var elem = document.getElementById("supplier_map_canvas");
       map = new google.maps.Map(elem, {
         zoom: 12,
@@ -82,20 +84,39 @@
           });
           map.panTo(location);
           
-          console.log("Geocoded supplier address to lat: " + location.lat() + ", lng: " + location.lng());
+          var lat = location.lat();
+          var lng = location.lng();
+          
+          showButtons(lat, lng);
+          
+          console.log("Geocoded supplier address to lat: " + lat + ", lng: " + lng);
         } else {
           console.log("Geocode was not successful for the following reason: " + status);
         }
       });
     }
     
+    function showButtons(lat, lng) {
+      $(".map.buttons").show();
+      $("a.call").attr("href", "tel://" + supplier.phone);
+      $("a.directions").attr("href", "http://maps.google.com/maps?" + $.param({daddr: address}));
+    }
   </script>
 
   <div data-role="header">
-    <h1>Location</h1>
+    <h1>Facility Location</h1>
   </div><!-- /header -->
 
   <div data-role="content" class="map container">
+    <div class="map buttons hidden ui-grid-a">
+      <div class="ui-block-a">
+        <a href="#" data-role="button" class="call">Call</a>
+      </div>
+      <div class="ui-block-b">
+        <a href="#" data-role="button" class="directions">Directions</a>
+      </div>
+    </div>
+    
     <div id="supplier_map_canvas" class="map_canvas" ></div>
   </div><!-- /content -->
 </div><!-- /page -->
