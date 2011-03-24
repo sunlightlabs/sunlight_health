@@ -8,8 +8,3 @@ div.map.buttons {
   position: absolute; z-index: 9; opacity: 0.9 !important;
   width: 100%; bottom: 0;
 }
-
-table.data {width: 100%;}
-table.data thead th {}
-table.data tbody th {font-weight: normal;}
-table.data tbody td {}
