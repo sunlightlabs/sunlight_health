@@ -61,7 +61,7 @@
             address_2: supplier.address_2,
             zip: supplier.zip,
             zip_plus_4: supplier.zip_plus_4,
-            city: supplier.city,
+            city: supplier.city,  
             state: supplier.state,
             name: supplier.name,
             phone: supplier.phone
@@ -84,6 +84,7 @@
         <p class="address"></p>
         <p class="phone"></p>
       </div>
+      
       <div class="buttons ui-grid-a">
         <div class="ui-block-a">
           <a href="#" data-role="button" class="call">Call</a>
@@ -92,6 +93,41 @@
           <a href="#" data-role="button" class="directions">Directions</a>
         </div>
       </div>
+      
+      <div data-role="collapsible" class="survey-experience">
+        <h1>Patient Experience</h1>
+        
+        <table class="data">
+          <tbody>
+            <tr>
+              <th scope="row">Nurses communicated well</th>
+              <td>23%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div data-role="collapsible" class="medicare-payments">
+        <h1>Average Medicare Payments</h1>
+        
+        <table class="data">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">$ Hosp</th>
+              <th scope="col">$ State</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Craniotomy</th>
+              <td>23%</td>
+              <td>83%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
     </div>
   </div><!-- /content -->
 </div><!-- /page -->
