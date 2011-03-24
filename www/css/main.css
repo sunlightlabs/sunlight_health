@@ -1,10 +1,18 @@
-div.page {height: 100%;}
+/** many of these class names are depended on in JavaScript **/
 
 .reveal {display: none;} /* used as a hook in common JS functions */
 .hidden {display: none;} /* must be shown manually */
+
+
+div.page {height: 100%;}
 
 div.map.container, div.map_canvas {width: 100%; height: 100%; padding: 0px;}
 div.map.buttons {
   position: absolute; z-index: 9; opacity: 0.9 !important;
   width: 100%; bottom: 0;
 }
+
+table.data {width: 100%;}
+table.data thead th {}
+table.data tbody th {font-weight: normal;}
+table.data tbody td {}
