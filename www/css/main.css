@@ -19,7 +19,12 @@ table.data tbody td {}
 
 
 
-
+h1{
+	text-transform: uppercase;
+	color: #aeaeae;
+	text-shadow: none;
+	font-weight: 400;
+}
 
 .ui-bar-a .ui-header{
 	text-transform: capitalize;
@@ -52,7 +57,6 @@ table.data tbody td {}
 
 #stickey_footer { /* This will make your footer stay where it is */
  bottom: 0;
-
  position: fixed;
 
 }

@@ -44,9 +44,15 @@ li.ui-btn:hover, li.ui-btn-icon-right:hover, li.ui-li:hover, li.ui-btn-up-c:hove
 	background: url('images/bg_footer.jpg') top center repeat-x;
 	height: 60px;
 }
+.ui-icon{
+	background-image:url('images/search_arrow.png');
+	background-position:0 0;
+	background-color:rgba(0, 0, 0, 0);
+}
 .ui-icon-arrow-r{
-	background-image:url('images/search_arrow.jpg') top center no-repeat;
-
+	background-image:url('images/search_arrow.png') top center no-repeat;
+	background-position:0 0;
+	background-color: none;
 }
 .ui-content .ui-listview{
 	margin-top: 0;
@@ -58,7 +64,7 @@ li.ui-btn:hover, li.ui-btn-icon-right:hover, li.ui-li:hover, li.ui-btn-up-c:hove
 	font-style: normal;
 	color: #282828;
 }
-.ui-btn-up-c, a.ui-link-inherit{
+.ui-btn-up-c a.ui-link-inherit{
 	color: #282828;
 }
 
@@ -66,9 +72,12 @@ li.ui-btn:hover, li.ui-btn-icon-right:hover, li.ui-li:hover, li.ui-btn-up-c:hove
 	text-shadow: none;
 	
 }
+
+.ui-btn-hover-c a.ui-link-inherit{
+	color: #282828;
+}
 .ui-btn-hover-c{
 	text-shadow: none;
-	
 }
 .ui-listview{
 	padding-bottom: 60px;
@@ -76,4 +85,48 @@ li.ui-btn:hover, li.ui-btn-icon-right:hover, li.ui-li:hover, li.ui-btn-up-c:hove
 element.style {
 top: none;
 }
+.ui-btn-corner-all{
+	-moz-border-radius-bottomleft:0.5em;
+	-moz-border-radius-bottomright:0.5em;
+	-moz-border-radius-topleft:0.5em;
+	-moz-border-radius-topright:0.5em;
+}
+.ui-btn-up-a{
+	background: url('images/button_texture.jpg');
+}
+
+.ui-btn-up-a {
+border:4px solid #363636 ;
+}
+
+.ui-bar-a .ui-shadow, .ui-bar-b .ui-shadow, .ui-bar-c .ui-shadow {
+-moz-box-shadow:0 0 0 rgba(255, 255, 255, 0.3);
+}
+
+.ui-header .ui-title{
+	font-size: 20px;
+	margin-left: 0;
+	margin-right: 0;
+}
+.ui-btn-text{
+	height: 65px;
+}
+.ui-li-desc{
+	position: absolute;
+	bottom: 0;
+}
+	
+.ui-li-heading{
+	overflow: hidden;
+	white-space: normal;
+	margin-top: 0;
+}
+
+#stickey_footer .ui-navbar, #stickey_footer .ui-grid-b, #stickey_footer .ui-block-a, #stickey_footer .ui-btn-active, #stickey_footer .ui-btn, #stickey_footer .ui-btn-up-a, #stickey_footer .ui-btn-inner{
+	height: 60px;
+}
+
+
+
+
 
