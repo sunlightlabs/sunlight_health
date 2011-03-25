@@ -16,3 +16,34 @@ table.data {width: 100%;}
 table.data thead th {}
 table.data tbody th {font-weight: normal;}
 table.data tbody td {}
+
+
+
+
+
+
+
+
+.content-banner p{
+	text-align: center;
+	line-height: 1.5;
+}
+
+#suppliers h1{
+	background: url('images/logo_placeholder.png') top center no-repeat;
+	width: 100px;
+	height: 98px;
+	text-indent: -9999em;
+	margin: auto;
+}
+
+#suppliers{
+    background: url('images/bg_grid.jpg') center top repeat;
+}
+
+#suppliers .content-banner{
+	background: url('images/content-banner-suppliers.png') top center repeat-x;
+	height: 237px;
+	padding: 7px;	
+}
+

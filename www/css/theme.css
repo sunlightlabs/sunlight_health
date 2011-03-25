@@ -1,0 +1,28 @@
+.ui-body-c {
+color:#fff;
+text-shadow:none;
+}
+
+.ui-content{
+	padding-top: 0;
+	padding-right: 0;
+	padding-left: 0;
+}
+
+#suppliers .ui-btn, #suppliers .ui-btn-corner-all, #suppliers .ui-shadow, #suppliers .ui-btn-up-c{
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#suppliers .ui-btn-inner{
+	width: 90%;
+}
+
+.ui-btn, .ui-btn-icon-right, .ui-li, .ui-btn-up-c
+{
+	padding-left: 10px;
+	padding-right: 10px;
+}
