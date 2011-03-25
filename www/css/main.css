@@ -52,8 +52,7 @@ table.data tbody td {}
 
 #stickey_footer { /* This will make your footer stay where it is */
  bottom: 0;
- left: 50%;
- margin: auto -480px;
+
  position: fixed;
- width: 960px;
+
 }

@@ -70,4 +70,10 @@ li.ui-btn:hover, li.ui-btn-icon-right:hover, li.ui-li:hover, li.ui-btn-up-c:hove
 	text-shadow: none;
 	
 }
+.ui-listview{
+	padding-bottom: 60px;
+}
+element.style {
+top: none;
+}
 
