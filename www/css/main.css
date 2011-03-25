@@ -21,7 +21,9 @@ table.data tbody td {}
 
 
 
-
+.ui-bar-a .ui-header{
+	text-transform: capitalize;
+}
 
 
 .content-banner p{
@@ -37,13 +39,21 @@ table.data tbody td {}
 	margin: auto;
 }
 
-#suppliers{
+#suppliers, #supplier_detail{
     background: url('images/bg_grid.jpg') center top repeat;
 }
 
 #suppliers .content-banner{
 	background: url('images/content-banner-suppliers.png') top center repeat-x;
 	height: 237px;
-	padding: 7px;	
+	padding: 7px;
 }
 
+
+#stickey_footer { /* This will make your footer stay where it is */
+ bottom: 0;
+ left: 50%;
+ margin: auto -480px;
+ position: fixed;
+ width: 960px;
+}
