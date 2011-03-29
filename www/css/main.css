@@ -22,7 +22,6 @@ table.data tbody td {}
 h1{
 	text-transform: uppercase;
 	color: #aeaeae;
-	text-shadow: none;
 	font-weight: 400;
 }
 
@@ -31,7 +30,7 @@ h1{
 }
 
 
-.content-banner p{
+#suppliers .content-banner p{
 	text-align: center;
 	line-height: 1.5;
 }
@@ -60,3 +59,56 @@ h1{
  position: fixed;
 
 }
+
+#supplier_detail .content-banner{
+	background: -moz-linear-gradient(top, #007592 0%, #5190AA 50%, #007592 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#007592), color-stop(50%,#5190AA), color-stop(100%,#007592)); /* webkit */
+	padding: 7px;
+}
+.scallop{
+	background: url('images/bg_header_scallop.png') bottom center repeat-x;
+	height: 29px;
+	width: 100%;
+	margin-bottom: 10px;
+	
+}
+h3.name{
+	text-shadow: none;
+	font-weight: 400;
+	font-style: normal;
+	color: #ffffff;
+}
+.top{
+	color: #353535;
+	font-size: 14px;
+	font-weight: 400;
+	font-style: normal;
+}
+.phone{
+	font-weight: bold;
+}
+
+#supplier_detail .ui-content{
+	color: #353535;
+}
+
+thead>tr>#col-head{
+	float: right;
+	font-size: 12px;
+}
+	
+tbody>tr>th{
+	float: left;
+	padding-right: 5px;
+}	
+tbody>tr>td{
+	float: right;
+}
+
+.hosp, .state{
+	width: 50px;
+	padding-left: 15px;
+	text-align: left;
+	text-transform: uppercase;	
+}
+

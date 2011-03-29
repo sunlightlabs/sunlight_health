@@ -78,11 +78,15 @@
 
   <div data-role="content"> 
     <div class="supplier reveal">
-      <div class="top">
-        <h3 class="name"></h3>
-        <p class="address"></p>
-        <p class="phone"></p>
-      </div>
+		<div class="content-banner">
+	      <div class="top">
+	        <h3 class="name"></h3>
+	        <p class="address"></p>
+	        <p class="phone"></p>
+	      </div>
+		</div>
+		<div class="scallop">
+		</div>
       
       <div class="buttons ui-grid-a">
         <div class="ui-block-a">
@@ -112,16 +116,16 @@
         <table class="data">
           <thead>
             <tr>
-              <th scope="col"></th>
-              <th scope="col">$ Hosp</th>
-              <th scope="col">$ State</th>
+              <th id="col-head" scope="col"></th>
+              <th id="col-head" class="hosp" scope="col">$ Hosp</th>
+              <th id="col-head" class="state" scope="col">$ State</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">Craniotomy</th>
-              <td>23%</td>
-              <td>83%</td>
+              <td class="hosp">23%</td>
+              <td class="state">83%</td>
             </tr>
           </tbody>
         </table>
