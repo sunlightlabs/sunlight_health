@@ -1,0 +1,82 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+  <meta charset="utf-8" /> 
+  <title>Health in Hand</title>
+  
+  <link href="css/jquery.mobile-1.0a4pre.css" rel="stylesheet" />
+  <link href="css/theme.css" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  
+  <!-- Phonegap and JQM init -->
+  <script type="text/javascript" charset="utf-8" src="js/phonegap-0.9.4.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery-1.5.1.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a4pre.min.js"></script>
+  
+  <!-- Utilities -->
+  <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
+  
+  <!-- API communication -->
+  <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/keys.js"></script>
+  
+</head> 
+<body> 
+
+<div data-role="page" class="page" id="drugs">
+
+  <!-- Page-specific code -->
+  <script type="text/javascript">
+    Utils.show("drugs", function() {
+      
+      $("input.search.drugs").keyup(function() {
+        var query = $("input.search.drugs").val();
+        console.log("fire");
+        
+        Api.Drug.terms(query, function(terms) {
+          Utils.loadList("drug_terms", terms, function(term) {
+            var link;
+            if (term.term_type == "drug_class")
+              link = "drug_class.html?drug_class=" + term.drug_class;
+            else if (term.term_type == "drug")
+              link = "drug_chemical.html?drug=" + term.drug + "&chemical=" + term.chemical + "&drug_class=" + term.drug_class + "&subdivision=" + term.subdivision;
+            else // term.term_type == "chemical"
+              link = "drug_chemical.html?chemical=" + term.chemical + "&drug_class=" + term.drug_class + "&subdivision=" + term.subdivision;
+              
+            return "<h3>" +
+                "<a href=\"" + link + "\">" +
+                  term.term +
+                "</a>" +
+              "</h3>";
+          }, "Start typing to see a list of terms.");
+        });
+        
+      });
+    });
+  </script>
+
+  <div data-role="header">
+    <h1>Health in Hand</h1>
+    <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
+  </div><!-- /header -->
+
+  <div data-role="content">
+    <div class="content-banner">
+      <h1>Sunlight Health</h1>
+      <p>
+        This is the intro text about what you can find by searching for a drug. It's both welcoming and instructional.
+      </p>
+    </div>
+    
+    <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
+    <input class="search drugs text" type="text" name="query" placeholder="Start typing a class, chemical, or drug" />
+    
+    <ul data-role="listview" data-theme="e" class="list drug_terms">
+      <!-- term list goes here, template specified in JavaScript above -->
+    </ul>
+    <p class="loading empty drug_terms">Start typing to see a list of terms.</p>
+  </div><!-- /content -->
+</div><!-- /page -->
+
+</body>
+</html>

@@ -25,12 +25,14 @@ Utils = {
   
   loadList: function(name, array, assemble, empty) {
     if (array.length > 0) {
+      var list = $(".list." + name);
+      list.html("");
       $(".loading." + name).hide();
       
       for (var i=0; i<array.length; i++)
-        $(".list." + name).append("<li>" + assemble(array[i]) + "</li>");
+        list.append("<li>" + assemble(array[i]) + "</li>");
       
-      $(".list." + name).listview("refresh");
+      list.listview("refresh");
     } else
       $(".empty." + name).html(empty || "No results found.");
       
