@@ -51,11 +51,11 @@ var Api = {
       Api.get("drug_terms", [], {term__start: query}, callback);
     },
     
-    chemicals: function(drug_class, callback) {
-      Api.get("drug_chemicals", [], {drug_class: drug_class}, callback);
+    class: function(drug_class, callback) {
+      Api.get("drug_chemicals", [], {drug_class: drug_class, order: "drug_class", sort: "asc"}, callback);
     },
     
-    find: function(name, chemical, drug_class, subdivision, callback) {
+    chemical: function(chemical, drug_class, subdivision, callback) {
       Api.getOne("drugs", [], {
         name: name,
         chemical: chemical,

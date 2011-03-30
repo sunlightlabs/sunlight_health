@@ -22,28 +22,35 @@
 </head>
 <body> 
 
-<div data-role="page" class="page" id="suppliers_list">
+<div data-role="page" class="page" id="drugs_list">
 
   <!-- Page-specific code -->
   <script type="text/javascript">
-    Utils.show("suppliers_list", function() {
+    Utils.show("drugs_list", function() {
     
-      var lat = Utils.param("lat");
-      var lng = Utils.param("lng");
+      var drug_class = Utils.param("drug_class");
+      $(".drug_class.name").html(drug_class);
       
       Utils.loading();
-      Api.Supplier.search(lat, lng, function(suppliers) {
+      Api.Drug.class(drug_class, function(chemicals) {
         Utils.loading(true);
         
-        Utils.loadList("suppliers", suppliers, function(supplier) {
-          return "<h3>" +
-              "<a href=\"supplier_detail.html?row=" + supplier.row + "\">" + supplier.name + "</a>" +
-            "</h3>" +
-            "<p>" + 
-              supplier.address + "<br/>" +
-              supplier.city + ", " + supplier.state + " " + supplier.zip +
-            "</p>";
-        }, {empty: "No suppliers found for this location."});
+        Utils.loadList("chemicals", chemicals, function(chemical) {
+          var q = $.param({
+            name: chemical.name,
+            drug_class: chemical.drug_class,
+            subdivision: chemical.subdivision
+          });
+          
+          return "<h3>" + 
+              "<a href=\"drug_chemical.html?" + q + "\">" +
+                chemical.name + 
+              "</a>" +
+            "</h3>";
+        }, {
+          empty: "No drugs found in this drug class.",
+          divider: "subdivision"
+        });
         
       });
       
@@ -51,14 +58,14 @@
   </script>
 
   <div data-role="header">
-    <h1>Suppliers Near You</h1>
+    <h1 class="drug_class name"></h1>
     <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <p class="loading empty suppliers">Loading suppliers...</p>
+    <p class="loading empty chemicals">Loading chemicals...</p>
     
-    <ul data-role="listview" data-theme="c" class="list suppliers">
+    <ul data-role="listview" data-theme="c" class="list chemicals">
       <!-- fill in suppliers here -->
     </ul>
   </div><!-- /content -->
@@ -67,8 +74,8 @@
 		<div data-role="navbar">
 			<ul>
 				<li><a href="facilities.html">Facilities</a></li>
-				<li><a href="suppliers.html" class="ui-btn-active">Suppliers</a></li>
-				<li><a href="drugs.html">Drugs</a></li>
+				<li><a href="suppliers.html">Suppliers</a></li>
+				<li><a href="drugs.html" class="ui-btn-active">Drugs</a></li>
 			</ul>
 		</div><!-- /navbar -->
 		

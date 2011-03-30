@@ -1,0 +1,118 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+  <meta charset="utf-8" /> 
+  <title>Health in Hand</title>
+  
+  <link href="css/jquery.mobile-1.0a4pre.css" rel="stylesheet" />
+  <link href="css/theme.css" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  
+  <!-- Phonegap and JQM init -->
+  <script type="text/javascript" charset="utf-8" src="js/phonegap-0.9.4.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery-1.5.1.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a4pre.min.js"></script>
+  
+  <!-- Utilities -->
+  <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
+  
+  <!-- API communication -->
+  <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/keys.js"></script>
+</head>
+
+<div data-role="page" class="page" id="drug_chemical">
+
+  <!-- Page-specific code -->
+  <script type="text/javascript">
+    var supplier;
+    
+    Utils.show("drug_chemical", function() {
+      
+      var name = Utils.param("name");
+      var drug_name = Utils.param("drug_name");
+      var drug_class = Utils.param("drug_class");
+      var subdivision = Utils.param("subdivision");
+      
+      Utils.loading();
+      Api.Drug.chemical(name, drug_class, subdivision, function(chemical) {
+        Utils.loading(true);
+        
+        if (chemical)
+          populateChemical();
+      });
+      
+    });
+    
+    function populateChemical() {
+      $(".chemical .name").html(chemical.name);
+      $(".chemical.reveal").show();
+    }
+  </script>
+
+  <div data-role="header">
+    <h1 class="chemical name"></h1>
+    <a data-role="button" class="ui-btn-right map supplier reveal">Map</a>
+  </div><!-- /header -->
+
+  <div data-role="content"> 
+    <div class="supplier reveal">
+		<div class="content-banner">
+	      <div class="top">
+	        <h3 class="name"></h3>
+	        <p class="address"></p>
+	        <p class="phone"></p>
+	      </div>
+		</div>
+		<div class="scallop">
+		</div>
+      
+      <div class="buttons ui-grid-a">
+        <div class="ui-block-a">
+          <a href="#" data-role="button" class="call">Call</a>
+        </div>
+        <div class="ui-block-b">
+          <a href="#" data-role="button" class="directions">Directions</a>
+        </div>
+      </div>
+      
+      <div data-role="collapsible" class="survey-experience">
+        <h1>Patient Experience</h1>
+        
+        <table class="data">
+          <tbody>
+            <tr>
+              <th scope="row">Nurses communicated well</th>
+              <td>23%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div data-role="collapsible" class="medicare-payments">
+        <h1>Average Medicare Payments</h1>
+        
+        <table class="data">
+          <thead>
+            <tr>
+              <th id="col-head" scope="col"></th>
+              <th id="col-head" class="hosp" scope="col">$ Hosp</th>
+              <th id="col-head" class="state" scope="col">$ State</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Craniotomy</th>
+              <td class="hosp">23%</td>
+              <td class="state">83%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div><!-- /content -->
+</div><!-- /page -->
+
+</body>
+</html>

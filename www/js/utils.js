@@ -23,18 +23,32 @@ Utils = {
       return decodeURIComponent(results[1].replace(/\+/g, " "));
   },
   
-  loadList: function(name, array, assemble, empty) {
+  loadList: function(name, array, assemble, options) {
+    if (!options) options = {};
+    
     if (array.length > 0) {
       var list = $(".list." + name);
       list.html("");
       $(".loading." + name).hide();
       
-      for (var i=0; i<array.length; i++)
+      var divider;
+      
+      for (var i=0; i<array.length; i++) {
+        var curr = array[i][options.divider];
+        if (options.divider && (curr != divider)) {;
+          list.append(
+            "<li data-role=\"list-divider\">" +
+              curr +
+            "</li>");
+          divider = curr;
+        }
+        
         list.append("<li>" + assemble(array[i]) + "</li>");
+      }
       
       list.listview("refresh");
     } else
-      $(".empty." + name).html(empty || "No results found.");
+      $(".empty." + name).html(options.empty || "No results found.");
       
   },
   
