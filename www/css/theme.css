@@ -118,6 +118,9 @@ h3.ui-li-heading .ui-link-inherit{
 .ui-btn-text{
 	height: 65px;
 }
+.ui-collapsible-heading .ui-btn-text{
+	text-shadow:0 1px 1px #cecece;
+}
 .ui-li-desc{
 	position: absolute;
 	bottom: 0;
@@ -156,7 +159,9 @@ h3.ui-li-heading .ui-link-inherit{
 }
 
 .ui-collapsible-content{
-	padding-right: 10px;
+	padding-right: 0;
+	padding-left: 0;
+	
 }	
 
 .ui-collapsible-heading .ui-btn-up-c{

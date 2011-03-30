@@ -102,9 +102,19 @@
         
         <table class="data">
           <tbody>
-            <tr>
+	          <thead>
+	            <tr>
+	              <th id="col-head" scope="col"></th>
+	              <th id="col-head" class="hosp" scope="col">Usually or Always</th>
+	            </tr>
+	          </thead>
+            <tr class="odd">
               <th scope="row">Nurses communicated well</th>
-              <td>23%</td>
+              <td class="hosp">23%</td>
+            </tr>
+            <tr class="even">
+              <th scope="row">Nurses communicated well</th>
+              <td class="hosp">23%</td>
             </tr>
           </tbody>
         </table>
@@ -117,12 +127,17 @@
           <thead>
             <tr>
               <th id="col-head" scope="col"></th>
-              <th id="col-head" class="hosp" scope="col">$ Hosp</th>
               <th id="col-head" class="state" scope="col">$ State</th>
+              <th id="col-head" class="hosp" scope="col">$ Hosp</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="odd">
+              <th scope="row">Craniotomy</th>
+              <td class="hosp">23%</td>
+              <td class="state">83%</td>
+            </tr>
+            <tr class="even">
               <th scope="row">Craniotomy</th>
               <td class="hosp">23%</td>
               <td class="state">83%</td>
