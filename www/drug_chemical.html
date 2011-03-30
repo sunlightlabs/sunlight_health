@@ -39,13 +39,13 @@
         Utils.loading(true);
         
         if (chemical)
-          populateChemical();
+          populateChemical(chemical);
       });
       
     });
     
-    function populateChemical() {
-      $(".chemical .name").html(chemical.name);
+    function populateChemical(chemical) {
+      $(".chemical.name").html(chemical.name);
       $(".chemical.reveal").show();
     }
   </script>

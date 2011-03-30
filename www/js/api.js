@@ -56,9 +56,8 @@ var Api = {
     },
     
     chemical: function(chemical, drug_class, subdivision, callback) {
-      Api.getOne("drugs", [], {
-        name: name,
-        chemical: chemical,
+      Api.getOne("drug_chemicals", [], {
+        name: chemical,
         drug_class: drug_class,
         subdivision: subdivision
       }, callback);
