@@ -43,5 +43,25 @@ var Api = {
     find: function(row, callback) {
       Api.getOne("suppliers", ["basic", "row"], {row: row}, callback);
     }
+  },
+  
+  Drug: {
+    // returns all drugs by a given query string
+    terms: function(query, callback) {
+      Api.get("drug_terms", [], {term__start: query}, callback);
+    },
+    
+    chemicals: function(drug_class, callback) {
+      Api.get("drug_chemicals", [], {drug_class: drug_class}, callback);
+    },
+    
+    find: function(name, chemical, drug_class, subdivision, callback) {
+      Api.getOne("drugs", [], {
+        name: name,
+        chemical: chemical,
+        drug_class: drug_class,
+        subdivision: subdivision
+      }, callback);
+    }
   }
 }
