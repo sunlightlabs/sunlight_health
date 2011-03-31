@@ -101,20 +101,20 @@ h3.name{
 	color: #4c4c4c;
 }
 
-thead>tr>#col-head{
+.data thead>tr>th{
 	float: right;
 	font-size: 12px;
 }
 	
-tbody>tr>th{
+.data tbody>tr>th{
 	float: left;
 	padding-right: 5px;
 }	
-tbody>tr>td{
+.data tbody>tr>td{
 	float: right;
 }
 
-.data td.hosp, .data td.state, .data th.hosp, .data th.state{
+table.data td.hosp, table.data th.hosp, table.data td.state, table.data th.state{
 	width: 50px;
 	padding-right: 8px;
 	padding-left: 8px;
