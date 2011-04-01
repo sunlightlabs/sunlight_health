@@ -35,82 +35,194 @@
       var subdivision = Utils.param("subdivision");
       
       Utils.loading();
-      Api.Drug.chemical(name, drug_class, subdivision, function(chemical) {
+      Api.Drug.chemical(name, drug_class, subdivision, ["basic", "drugs"], function(chemical) {
         Utils.loading(true);
         
-        if (chemical)
-          populateChemical(chemical);
+        if (!chemical)
+          return; // TODO: dialog
+        
+        populateChemical(chemical);
+        populateDrugs(chemical.drugs);
+        
+        Api.Drug.chemical(name, drug_class, subdivision, ["class_description"], function(chemical) {
+          if (!chemical)
+            return;
+          
+          populateDescription(chemical.class_description);
+          
+          Api.Drug.classExcept(drug_class, name, function(chemicals) {
+            populateChemicals(chemicals);
+          });
+          
+        });
+        
       });
       
     });
     
     function populateChemical(chemical) {
       $(".chemical.name").html(chemical.name);
-      $(".chemical.reveal").show();
+      $(".chemical.class").html(
+        chemical.drug_class + ", " + chemical.subdivision
+      );
+      $(".chemical.drug_names").html(chemical.drug_names.join(", "));
+      
+      $(".chemical.content-banner").show();
     }
+    
+    function populateDrugs(drugs) {
+      
+      for (var i=0; i<drugs.length; i++) {
+        var drug = drugs[i];
+        
+        var html = "" +
+          "<div class=\"chemical drug\">" +
+            "<h2 class=\"drug name\">" + drug.name + "</h2>" +
+            "<table class=\"data\">" +
+              "<tbody>";
+        
+        for (var j=0; j<drug.doses.length; j++) {
+          var dose = drug.doses[j];
+          html += "" +
+                "<tr class=\"" + (j % 2 == 0 ? "even" : "odd") + "\">" +
+                  "<th scope=\"row\" class=\"drug dosage\">" +
+                    "<h3 class=\"drug dosage name" + (dose.best_buy ? " best-buy" : "") +"\">" +
+                      dose.dosage +
+                    "</h3>" +
+                    "<div class=\"drug notes\">";
+          
+          for (var k=0; k<dose.notes.length; k++) {
+            var note = dose.notes[k];
+            html += "" +
+                      "<dt>" +
+                        note.name +
+                      "</dt>" +
+                      "<dd>" +
+                        note.value +
+                      "</dd>";
+          }
+                    
+          html += "" +
+                    "</div>" +
+                  "</th>" +
+                  "<td class=\"drug cost\">" +
+                    dose.cost +
+                  "</td>" +
+                "</tr>";
+        }
+        
+        html += "" +
+              "</tbody>" +
+            "</table>";
+            
+        $(".chemical.drugs").append(html);
+      }
+      
+      $(".cost-comparison").show();
+    }
+    
+    function populateDescription(description) {
+      if (description.length > 400)
+        description = description.substring(0,400) + "...";
+      $("p.drug_class.description").html(description);
+    }
+    
+    function populateChemicals(chemicals) {
+      Utils.loadList("chemicals", chemicals, function(chemical) {
+        return Utils.chemicalItem(chemical);
+      }, {
+        empty: "No other drugs found in this drug class.",
+        divider: "subdivision"
+      });
+    }
+    
   </script>
 
   <div data-role="header">
-    <h1 class="chemical name"></h1>
-    <a data-role="button" class="ui-btn-right map supplier reveal">Map</a>
+    <h1 class="chemical name">
+      <!-- chemical name -->
+    </h1>
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <div class="supplier reveal">
-		<div class="content-banner">
-	      <div class="top">
-	        <h3 class="name"></h3>
-	        <p class="address"></p>
-	        <p class="phone"></p>
-	      </div>
-		</div>
-		<div class="scallop">
-		</div>
-      
-      <div class="buttons ui-grid-a">
-        <div class="ui-block-a">
-          <a href="#" data-role="button" class="call">Call</a>
-        </div>
-        <div class="ui-block-b">
-          <a href="#" data-role="button" class="directions">Directions</a>
-        </div>
+    
+    <div class="chemical content-banner hidden">
+      <div class="top">
+        <dt>Class</dt>
+        <dd class="chemical class">
+          <!-- chemical class and subdivision names -->
+        </dd>
+        <dt>Chemical</dt>
+        <dd class="chemical name">
+          <!-- chemical name -->
+        </dd>
+        <dt>Includes</dt>
+        <dd class="chemical drug_names">
+          <!-- drug names associated with this chemical -->
+        </dd>
       </div>
+    </div>
+    
+    <div class="scallop"></div>
+    
+    <div data-role="collapsible" data-collapsed="true" class="cost-comparison hidden">
+      <h1>Cost Comparison</h1>
       
-      <div data-role="collapsible" class="survey-experience">
-        <h1>Patient Experience</h1>
-        
-        <table class="data">
-          <tbody>
-            <tr>
-              <th scope="row">Nurses communicated well</th>
-              <td>23%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="chemical drugs">
       
-      <div data-role="collapsible" class="medicare-payments">
-        <h1>Average Medicare Payments</h1>
+        <!-- example drug, this whole block will get repeated for each drug
+        <div class="chemical drug">
+          <h2 class="drug name">Generic</h2>
+          <table class="data">
+            <tbody>
+            
+              <!-- a tr row for each dosage --><!--
+              <tr class="odd"> 
+                <th scope="row" class="drug dosage">
+                  <h3 class="drug dosage name best-buy">
+                    75 mg tablet
+                  </h3>
+                  <div class="drug notes">
+                    <!-- a dt/dd pair for each note --><!--
+                    
+                    <dt>Frequency of use per day</dt>
+                    <dd>Two</dd>
+                    <dt>Total daily dose</dt>
+                    <dd>150mg</dd>
+                    <dt>Best buy indication</dt>
+                    <dd>High blood pressure, for people with kidney disease</dd>
+                  </div>
+                </th>
+                <td class="drug cost">
+                  $132
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        -->
         
-        <table class="data">
-          <thead>
-            <tr>
-              <th id="col-head" scope="col"></th>
-              <th id="col-head" class="hosp" scope="col">$ Hosp</th>
-              <th id="col-head" class="state" scope="col">$ State</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Craniotomy</th>
-              <td class="hosp">23%</td>
-              <td class="state">83%</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
       
     </div>
+    
+    <div data-role="collapsible" data-collapsed="true" class="drug_class about">
+      <h1>About this Drug Class</h1>
+      <p class="drug_class description">
+        <!-- example text
+          Antidepressants can improve the symptoms of depression, but they can also have serious side effects. So you don't want to take one if you don't have to. The information in this report can help you decide--with your doctor or mental-health professional--whether an antidepressant might be right for you, and if so, which one...
+        -->
+      </p>
+    </div>
+    
+    <div data-role="collapsible" data-collapsed="true" class="other chemicals">
+      <h1>Other Chemicals in this Class</h1>
+      
+      <ul data-role="listview" data-theme="c" class="list chemicals">
+        <!-- gets filled in identically to the list of chemicals in drug_class.html -->
+      </ul>
+    </div>
+      
   </div><!-- /content -->
 </div><!-- /page -->
 

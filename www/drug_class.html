@@ -36,17 +36,7 @@
         Utils.loading(true);
         
         Utils.loadList("chemicals", chemicals, function(chemical) {
-          var q = $.param({
-            name: chemical.name,
-            drug_class: chemical.drug_class,
-            subdivision: chemical.subdivision
-          });
-          
-          return "<h3>" + 
-              "<a href=\"drug_chemical.html?" + q + "\">" +
-                chemical.name + 
-              "</a>" +
-            "</h3>";
+          return Utils.chemicalItem(chemical);
         }, {
           empty: "No drugs found in this drug class.",
           divider: "subdivision"

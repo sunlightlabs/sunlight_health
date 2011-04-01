@@ -134,5 +134,23 @@ Utils = {
   phone: function(string) {
     var digits = string.replace(/[^\d]/g, '').replace(/^1/, ''); // remove optional starting 1
     return "(" + digits.substr(0,3) + ") " + digits.substr(3,3) + "-" + digits.substr(6,4);
+  },
+  
+  chemicalItem: function(chemical) {
+    var q = $.param({
+      name: chemical.name,
+      drug_class: chemical.drug_class,
+      subdivision: chemical.subdivision
+    });
+    
+    return "" +
+      "<h3>" + 
+        "<a href=\"drug_chemical.html?" + q + "\">" +
+          chemical.name + 
+        "</a>" +
+      "</h3>" +
+      "<p>" +
+        chemical.drug_names.join(", ") +
+      "</p>";
   }
 };

@@ -51,12 +51,24 @@ var Api = {
       Api.get("drug_terms", [], {term__start: query}, callback);
     },
     
+    // all chemicals in a given drug class
     class: function(drug_class, callback) {
-      Api.get("drug_chemicals", [], {drug_class: drug_class, order: "drug_class", sort: "asc"}, callback);
+      Api.get("drug_chemicals", ["basic"], {drug_class: drug_class, order: "subdivision", sort: "asc"}, callback);
     },
     
-    chemical: function(chemical, drug_class, subdivision, callback) {
-      Api.getOne("drug_chemicals", [], {
+    // all chemicals in a given drug class...except for one
+    classExcept: function(drug_class, chemical, callback) {
+      Api.get("drug_chemicals", ["basic"], {
+        drug_class: drug_class, 
+        order: "subdivision",
+        sort: "asc",
+        name__ne: chemical
+      }, callback);
+    },
+    
+    // any piece of info about a single chemical
+    chemical: function(chemical, drug_class, subdivision, sections, callback) {
+      Api.getOne("drug_chemicals", sections, {
         name: chemical,
         drug_class: drug_class,
         subdivision: subdivision
