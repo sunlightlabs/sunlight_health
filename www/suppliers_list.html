@@ -36,13 +36,16 @@
         Utils.loading(true);
         
         Utils.loadList("suppliers", suppliers, function(supplier) {
-          return "<h3>" +
-              "<a href=\"supplier_detail.html?row=" + supplier.row + "\">" + supplier.name + "</a>" +
-            "</h3>" +
-            "<p>" + 
-              supplier.address + "<br/>" +
-              supplier.city + ", " + supplier.state + " " + supplier.zip +
-            "</p>";
+          return "" +
+            "<a href=\"supplier_detail.html?row=" + supplier.row + "\">" +
+              "<h3>" +
+                supplier.name +
+              "</h3>" +
+              "<p>" + 
+                supplier.address + "<br/>" +
+                supplier.city + ", " + supplier.state + " " + supplier.zip +
+              "</p>" +
+            "</a>";
         }, {empty: "No suppliers found for this location."});
         
       });

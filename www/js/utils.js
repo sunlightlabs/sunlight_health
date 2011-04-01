@@ -144,13 +144,13 @@ Utils = {
     });
     
     return "" +
-      "<h3>" + 
-        "<a href=\"drug_chemical.html?" + q + "\">" +
+      "<a href=\"drug_chemical.html?" + q + "\">" +
+        "<h3>" + 
           chemical.name + 
-        "</a>" +
-      "</h3>" +
-      "<p>" +
-        chemical.drug_names.join(", ") +
-      "</p>";
+        "</h3>" +
+        "<p>" +
+          chemical.drug_names.join(", ") +
+        "</p>" +
+      "</a>";
   }
 };
