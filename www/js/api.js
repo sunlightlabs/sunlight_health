@@ -42,7 +42,11 @@ var Api = {
     
     find: function(row, sections, callback) {
       Api.getOne("suppliers", sections, {row: row}, callback);
-    }
+    },
+    
+    terms: function(query, callback) {
+      Api.get("supplier_terms", [], {term__start: query}, callback);
+    },
   },
   
   Drug: {
