@@ -139,8 +139,8 @@
   </script>
 
   <div data-role="header">
-    <h1 class="chemical name">
-      <!-- chemical name -->
+    <h1>
+      Drug Details
     </h1>
   </div><!-- /header -->
 
@@ -148,18 +148,23 @@
     
     <div class="chemical content-banner hidden">
       <div class="top">
+		<h3 class="chemical name">
+	      <!-- chemical name -->
+	    </h3>
+		<dl>
         <dt>Class</dt>
         <dd class="chemical class">
           <!-- chemical class and subdivision names -->
         </dd>
-        <dt>Chemical</dt>
+        <dt class="clear">Chemical</dt>
         <dd class="chemical name">
           <!-- chemical name -->
         </dd>
-        <dt>Includes</dt>
+        <dt class="clear">Includes</dt>
         <dd class="chemical drug_names">
           <!-- drug names associated with this chemical -->
         </dd>
+		</dl>
       </div>
     </div>
     
@@ -224,6 +229,16 @@
     </div>
       
   </div><!-- /content -->
+  	<div data-role="footer" id="stickey_footer">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="facilities.html">Facilities</a></li>
+				<li><a href="suppliers.html" class="ui-btn-active">Suppliers</a></li>
+				<li><a href="drugs.html">Drugs</a></li>
+			</ul>
+		</div><!-- /navbar -->
+
+  </div><!-- /footer -->
 </div><!-- /page -->
 
 </body>

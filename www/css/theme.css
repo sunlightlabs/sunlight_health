@@ -9,14 +9,21 @@ text-shadow:none;
 	padding-left: 0;
 }
 
-#suppliers .ui-btn, #suppliers .ui-btn-corner-all, #suppliers .ui-shadow, #suppliers .ui-btn-up-c{
+#suppliers .ui-btn-corner-all {
 	width: 50%;
 	margin-left: auto;
 	margin-right: auto;
 	padding-left: 10px;
 	padding-right: 10px;
 }
-
+#drugs .ui-corner-all {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	display: block;
+}
 #suppliers .ui-btn-inner{
 	width: 90%;
 }
@@ -169,15 +176,37 @@ h3.ui-li-heading .ui-link-inherit{
 	font-weight: 400;
 		
 }
-
-
-
-	
-.ui-shadow {
-	-moz-box-shadow: 0px 1px 4px 			rgba(0,0,0,.3);
-	-webkit-box-shadow: 0px 1px 4px 		rgba(0,0,0,.3);
-	box-shadow: 0px 1px 4px 				rgba(0,0,0,.3);
+input.ui-input-text{
+	color: 	#4C4C4C;
+}
+.loading{
+	color: #4C4C4C;
+	height: 100%;
+}
+.drug_terms{
+	background-color: #898989;
 }
 
+input.ui-input-text, textarea.ui-input-text{
+	background-color: #ffffff;
+}
+.autosearch_results{
+	height: 100%;
+	background-color: #898989;
+}
+.autosearch_results p{
+	margin-bottom: 0;
+	padding: 10px;
+}
+
+#drugs li.ui-btn, #drugs li.ui-btn-icon-right, #drugs li.ui-li, #drugs li.ui-btn-up-c{
+	background: url('images/bg_search.jpg') top center repeat-x;
+	border-top: solid 1px #8f8d8d;
+	border-bottom: solid 1px #4f4f4f;	
+}
+
+#drugs .ui-btn-text{
+	height: 40px;
+}
 
 

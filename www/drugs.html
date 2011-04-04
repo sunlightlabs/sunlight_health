@@ -69,27 +69,40 @@
     });
   </script>
 
-  <div data-role="header">
+  <!--<div data-role="header">
     <h1>Health in Hand</h1>
     <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
-  </div><!-- /header -->
+  </div>--> <!--/header -->
 
   <div data-role="content">
     <div class="content-banner">
       <h1>Sunlight Health</h1>
       <p>
-        This is the intro text about what you can find by searching for a drug. It's both welcoming and instructional.
+        Have a prescription to fill? See what your options are.
       </p>
     </div>
     
     <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
     <input class="search drugs text" type="text" name="query" placeholder="Start typing a class, chemical, or drug" />
-    
-    <ul data-role="listview" data-theme="e" class="list drug_terms">
-      <!-- term list goes here, template specified in JavaScript above -->
-    </ul>
-    <p class="loading empty drug_terms">Start typing to see a list of terms.</p>
+    <div class="autosearch_results">
+		<p>Start typing a class, chemical, or drug</p>
+	    <ul data-role="listview" data-theme="e" class="list drug_terms">
+	      <!-- term list goes here, template specified in JavaScript above -->
+	    </ul>
+	    <p class="loading empty drug_terms">Start typing to see a list of terms.</p>
+	</div>
+
   </div><!-- /content -->
+  	<div data-role="footer" id="stickey_footer">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="facilities.html">Facilities</a></li>
+				<li><a href="suppliers.html" class="ui-btn-active">Suppliers</a></li>
+				<li><a href="drugs.html">Drugs</a></li>
+			</ul>
+		</div><!-- /navbar -->
+
+  </div><!-- /footer -->
 </div><!-- /page -->
 
 </body>

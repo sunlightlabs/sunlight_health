@@ -27,7 +27,7 @@ h1{
 }
 
 
-#suppliers .content-banner p{
+#suppliers .content-banner p, #drugs .content-banner p{
 	text-align: center;
 	line-height: 1.5;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -35,7 +35,7 @@ h1{
 	
 }
 
-#suppliers h1{
+#suppliers h1, #drugs h1{
 	background: url('images/SunlightHealth_logo.png') top center no-repeat;
 	width: 189px;
 	height: 129px;
@@ -43,11 +43,11 @@ h1{
 	margin: auto;
 }
 
-#suppliers, #supplier_detail{
+#suppliers, #supplier_detail, #drugs, #drug_chemical{
     background: url('images/bg_grid.jpg') center top repeat;
 }
 
-#suppliers .content-banner{
+#suppliers .content-banner, #drugs .content-banner{
 	background: url('images/content-banner-suppliers.png') top center repeat-x;
 	height: 237px;
 	padding: 7px;
@@ -60,7 +60,7 @@ h1{
 
 }
 
-#supplier_detail .content-banner{
+#supplier_detail .content-banner, #drug_chemical .content-banner{
 	background: -moz-linear-gradient(top, #007592 0%, #5190AA 50%, #007592 100%); /* firefox */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#007592), color-stop(50%,#5190AA), color-stop(100%,#007592)); /* webkit */
 	padding: 7px;
@@ -80,6 +80,7 @@ h3.name{
 	font-size: 19px;
 	letter-spacing: 1.5px;
 	color: #ffffff;
+	text-transform: uppercase;
 }
 .address{
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -160,3 +161,27 @@ tr.odd{
 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 font-weight: 300;
 }
+.top dt{
+	display: block;
+	float: left;
+	text-transform: uppercase;
+	font-weight: 700;
+	padding-right: 15px;
+	text-align: right;
+	width: 70px;
+	line-height: 1.5;
+}
+
+.top dd{
+	line-height: 1.5;
+}
+
+.clear{
+	clear: both;
+}
+
+
+
+
+
+
