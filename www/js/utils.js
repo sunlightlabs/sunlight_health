@@ -66,6 +66,14 @@ Utils = {
     }
   },
   
+  // on iOS, show the loading spinner, but don't throw up a giant dialog in any other context
+  bgLoading: function(done) {
+    if (done && navigator.notification && navigator.notification.activityStop) 
+      navigator.notification.activityStop();
+    else if (!done && navigator.notification && navigator.notification.activityStart) 
+        navigator.notification.activityStart();
+  },
+  
   popup: function(title, message) {
     var dialog = '<div data-role="dialog" data-url="dialog" class="page" id="dialog">' +
       '<div data-role="header" data-backbtn="false">' +

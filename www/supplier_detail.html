@@ -25,7 +25,6 @@
 
   <!-- Page-specific code -->
   <script type="text/javascript">
-    var supplier;
     
     Utils.show("supplier_detail", function() {
       
@@ -33,19 +32,25 @@
       Utils.log("row: " + row);
       
       Utils.loading();
-      Api.Supplier.find(row, function(s) {
-        supplier = s;
+      Api.Supplier.find(row, ["basic", "row"], function(supplier) {
         Utils.loading(true);
+        if (!supplier) return;
         
-        if (supplier) {
-          $(".supplier.reveal").show();
-          populateSupplier();
-        }
+        populateSupplier(supplier);
+        
+        Utils.bgLoading();
+        Api.Supplier.find(row, ["supplies"], function(supplier) {
+          Utils.bgLoading(true);
+          if (!supplier) return;
+          
+          populateList(supplier.supplies);
+        });
+        
       });
       
     });
     
-    function populateSupplier() {
+    function populateSupplier(supplier) {
       $(".supplier .name").html(supplier.name);
       $(".supplier .address").html(Utils.address(supplier, {break: true}));
       $(".supplier .phone").html(Utils.phone(supplier.phone));
@@ -68,6 +73,24 @@
           type: "get"
         });
       });
+      
+      $(".supplier.reveal").show();
+    }
+    
+    function populateList(supplies) {
+      var html = "";
+      var i = 0;
+      $.each(supplies, function(name, whether) {
+        if (whether) {
+          html += "" +
+            "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
+              "<th scope=\"row\">" + name + "</th>" +
+            "</tr>";
+          i += 1;
+        }        
+      });
+      
+      $(".supplier.supplies table.data tbody").html(html);
     }
   </script>
 
@@ -97,51 +120,16 @@
         </div>
       </div>
       
-      <div data-role="collapsible" class="survey-experience">
-        <h1>Patient Experience</h1>
+      <div data-role="collapsible" class="supplier supplies">
+        <h1>Supplies</h1>
         
         <table class="data">
           <tbody>
-	          <thead>
-	            <tr>
-	              <th scope="col"></th>
-	              <th class="hosp" scope="col">Usually or Always</th>
-	            </tr>
-	          </thead>
+            <!-- supply rows go here, example:
             <tr class="odd">
-              <th scope="row">Nurses communicated well</th>
-              <td class="hosp">23%</td>
+              <th scope="row">Transcutaneous Electrical Nerve Stimulators (TENS) Units</th>
             </tr>
-            <tr class="even">
-              <th scope="row">Nurses communicated well</th>
-              <td class="hosp">23%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
-      <div data-role="collapsible" class="medicare-payments">
-        <h1>Average Medicare Payments</h1>
-        
-        <table class="data">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th class="state" scope="col">$ State</th>
-              <th class="hosp" scope="col">$ Hosp</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="odd">
-              <th scope="row">Craniotomy</th>
-              <td class="hosp">23%</td>
-              <td class="state">83%</td>
-            </tr>
-            <tr class="even">
-              <th scope="row">Craniotomy</th>
-              <td class="hosp">23%</td>
-              <td class="state">83%</td>
-            </tr>
+            -->
           </tbody>
         </table>
       </div>
