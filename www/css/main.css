@@ -142,8 +142,7 @@ table.data{
 	padding-bottom: 15px;
 }
 tr.odd{
-	background-color: #d9d9d9;
-	padding-top: 5px;
+
 }
 
 .data th, .data td{
@@ -154,8 +153,9 @@ tr.odd{
 	overflow:hidden;
 	display: block;
 }
-.even{
-	
+tr.even{
+	background-color: #e1e2e3;
+	padding-top: 5px;	
 }
 #suppliers, #suppliers_list, #suppliers_detail{
 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -176,12 +176,73 @@ font-weight: 300;
 	line-height: 1.5;
 }
 
+td.cost{
+	color: #4c4c4c;
+	font-weight: 700;
+	padding-right: 10px;
+}
+
+.notes{
+	color: #4c4c4c;
+}
+
+
+.notes dt{
+	float: left;
+	font-weight: 700;
+	padding-right: 15px;
+	line-height: 1.5;
+}
+
+.notes dd{
+	line-height: 1.5;
+	text-align: left;
+	margin: 0;
+	float: left;
+}
+
 .clear{
 	clear: both;
 }
 
+h2.drug{
+	color: #4c4c4c;
+	text-transform: uppercase;
+	font-size: 110%;
+	padding-left: 10px;
+	margin-bottom: 10px;
+}
+h3.dosage{
+	color: #006f8b;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 110%;
+	text-align: left;
+	margin-top: 0;
+	padding-top: 4px;
+	padding-top: 4px;
+	margin-bottom: 0;
+	letter-spacing: normal;
+	
+}
 
+.best-buy{
+	background: url('images/bestbuy_star.png') left top no-repeat;
+	padding-left: 27px;
+}
+.description{
+	color: #4c4c4c;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 	14px;
+}
+.chemicals li.ui-li-divider{
+	padding-left: 25px;
+	background: none;
+	background-color: #898989;
+}
 
-
-
+#drug_chemical{
+	padding-bottom: 50px;
+}
 

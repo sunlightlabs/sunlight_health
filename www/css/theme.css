@@ -209,4 +209,7 @@ input.ui-input-text, textarea.ui-input-text{
 	height: 40px;
 }
 
+.ui-collapsible-contain{
+	margin: 0;
+}
 
