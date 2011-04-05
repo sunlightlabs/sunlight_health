@@ -28,8 +28,8 @@
   <!-- Page-specific code -->
   <script type="text/javascript">
     Utils.show("suppliers", function() {
-    
-      $("button.search.suppliers").click(function() {
+      
+      $("button.search.suppliers.nearby").click(function() {
         Utils.loading();
         
         Utils.location(function (lat, lng) {
@@ -41,7 +41,33 @@
         });
       });
       
+      
+      $("input.search.supplies.text").change(function() {
+        var query = $(this).val().trim();
+        if (!query) {
+          $("ul.list.supplies").html("");
+          return;
+        }
+        
+        console.log("filter: " + query);
+        
+        Api.Supplier.terms(query, function(supplies) {
+          populateSupplies(supplies);
+        });
+      }).keyup(function() { $(this).change(); });
     });
+    
+    function populateSupplies(supplies) {
+      Utils.loadList("supplies", supplies, function(supply) {
+        console.log(supply.term);
+        //var url = "suppliers_list.html?" + $.param({supply: supply.term});
+        var url = "#";
+        return "" + 
+          "<a href=\"" + url + "\">" +
+            supply.term + 
+          "</a>";
+      }, {empty: "No supplies found.",});
+    }
   </script>
 
   <div data-role="content">
@@ -52,7 +78,19 @@
       </p>
     </div>
 
-    <button class="search suppliers">Search by Location</button>
+	<div data-role="controlgroup" data-type="horizontal">
+	  <button class="search suppliers nearby">Nearby</button>
+	  <button class="search suppliers zip">Zipcode</button>
+	</div>
+
+	<script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
+	<input class="supplies search text" type="text" name="query" placeholder="Start typing what you're looking for..." />
+
+	<ul data-role="listview" data-theme="e" class="list supplies">
+	  <!-- supply list goes here, template specified in JavaScript above -->
+	</ul>
+	
+  </div><!-- /content -->
 
 	<div data-role="footer" id="stickey_footer">
 		<div data-role="navbar">
@@ -64,7 +102,7 @@
 		</div><!-- /navbar -->
 
   </div><!-- /footer -->
-  </div><!-- /content -->
+
 </div><!-- /page -->
 
 </body>

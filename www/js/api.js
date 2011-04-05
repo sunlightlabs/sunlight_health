@@ -40,9 +40,13 @@ var Api = {
       }, callback);
     },
     
-    find: function(row, callback) {
-      Api.getOne("suppliers", ["basic", "row"], {row: row}, callback);
-    }
+    find: function(row, sections, callback) {
+      Api.getOne("suppliers", sections, {row: row}, callback);
+    },
+    
+    terms: function(query, callback) {
+      Api.get("supplier_terms", [], {term__start: query}, callback);
+    },
   },
   
   Drug: {
