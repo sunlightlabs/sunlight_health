@@ -4,3 +4,4 @@
 /www/phonegap*.js
 /www/js/keys.js
 .DS_Store
+.metadata
