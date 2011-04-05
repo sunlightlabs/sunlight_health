@@ -246,3 +246,20 @@ h3.dosage{
 	padding-bottom: 50px;
 }
 
+.more{
+	background:url('images/bg_more.png') center top repeat-x;
+	height: 30px;
+	padding: 10px 10px 0 10px;
+	margin: 0;
+}
+
+.more a{
+	background:url('images/more_arrows.png') right top no-repeat;
+	padding-right: 30px;
+	font-style: oblique;
+	color: #818181;
+	font-size: 14px;
+}
+
+
+

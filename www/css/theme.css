@@ -168,6 +168,7 @@ h3.ui-li-heading .ui-link-inherit{
 .ui-collapsible-content{
 	padding-right: 0;
 	padding-left: 0;
+	padding-bottom: 0;
 	
 }	
 
@@ -212,4 +213,9 @@ input.ui-input-text, textarea.ui-input-text{
 .ui-collapsible-contain{
 	margin: 0;
 }
+
+.ui-body-c .ui-link{
+	color: #818181;
+}
+
 
