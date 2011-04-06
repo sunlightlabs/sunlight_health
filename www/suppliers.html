@@ -31,7 +31,7 @@
     
     Utils.show("suppliers", function() {
       $("ul.list.supplies li a").live("click", function() {
-        var term = $(this).html();
+        var term = $(this).data("value");
         var search_type = $('input:radio[name=search_type]:checked').val();
         
         if (search_type == "nearby")
@@ -79,33 +79,33 @@
         
         // link won't be used, live click handler will be used instead
         return "" + 
-          "<a href=\"#\">" +
+          "<a href=\"#\" data-value=\"" + supply.term.replace(/\"/g, "\\\"") + "\">" +
             supply.term + 
           "</a>";
       }, {empty: "No supplies found.",});
     }
     
-    function searchNearby(term) {
+    function searchNearby(supply) {
       Utils.loading();
         
       Utils.location(function (lat, lng) {
         Utils.loading(true);
         $.mobile.changePage({
           url: "suppliers_list.html",
-          data: {lat: lat, lng: lng, term: term},
+          data: {lat: lat, lng: lng, supply: supply},
           type: "get"
         });
       });
     }
     
-    function searchZip(term) {
+    function searchZip(supply) {
       var zip = $("input.supplies.zipcode").val().trim();
       if (!zip)
         Utils.popup("Searching by zip code", "If you want to limit results to a zip code, enter one before selecting a supplier.");
       else {
         $.mobile.changePage({
           url: "suppliers_list.html",
-          data: {zip: zip, term: term},
+          data: {zip: zip, supply: supply},
           type: "get"
         });
       }

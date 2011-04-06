@@ -28,29 +28,36 @@
   <script type="text/javascript">
     Utils.show("suppliers_list", function() {
     
+      var supply = Utils.param("supply");
+      
       var lat = Utils.param("lat");
       var lng = Utils.param("lng");
+      var zip = Utils.param("zip");
       
       Utils.loading();
-      Api.Supplier.search(lat, lng, function(suppliers) {
-        Utils.loading(true);
-        
-        Utils.loadList("suppliers", suppliers, function(supplier) {
-          return "" +
-            "<a href=\"supplier_detail.html?row=" + supplier.row + "\">" +
-              "<h3>" +
-                supplier.name +
-              "</h3>" +
-              "<p>" + 
-                supplier.address + "<br/>" +
-                supplier.city + ", " + supplier.state + " " + supplier.zip +
-              "</p>" +
-            "</a>";
-        }, {empty: "No suppliers found for this location."});
-        
-      });
       
+      if (zip)
+        Api.Supplier.searchZip(supply, zip, loadSuppliers);
+      else
+        Api.Supplier.searchNearby(supply, lat, lng, loadSuppliers);
     });
+    
+    function loadSuppliers(suppliers) {
+      Utils.loading(true);
+      
+      Utils.loadList("suppliers", suppliers, function(supplier) {
+        return "" +
+          "<a href=\"supplier_detail.html?row=" + supplier.row + "\">" +
+            "<h3>" +
+              supplier.name +
+            "</h3>" +
+            "<p>" + 
+              supplier.address + "<br/>" +
+              supplier.city + ", " + supplier.state + " " + supplier.zip +
+            "</p>" +
+          "</a>";
+      }, {empty: "No suppliers found for this location."});
+    }
   </script>
 
   <div data-role="header">

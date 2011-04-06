@@ -33,11 +33,16 @@ var Api = {
   
   Supplier: {
     // returns all suppliers by a given location search
-    search: function(lat, lng, callback) {
-      Api.get("suppliers", ["basic", "row"], {
-        location: lat + "," + lng
-        // , sections: "basic"
-      }, callback);
+    searchNearby: function(supply, lat, lng, callback) {
+      var params = {location: lat + "," + lng};
+      params["supplies." + supply] = true;
+      Api.get("suppliers", ["basic", "row"], params, callback);
+    },
+    
+    searchZip: function(supply, zip, callback) {
+      var params = {zip: zip};
+      params["supplies." + supply] = true;
+      Api.get("suppliers", ["basic", "row"], params, callback);
     },
     
     find: function(row, sections, callback) {
