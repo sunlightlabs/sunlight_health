@@ -27,20 +27,28 @@
 
   <!-- Page-specific code -->
   <script type="text/javascript">
+    var currentQuery = "";
+    
     Utils.show("suppliers", function() {
-      
-      $("button.search.suppliers.nearby").click(function() {
-        Utils.loading();
+      $("ul.list.supplies li a").live("click", function() {
+        var term = $(this).html();
+        var search_type = $('input:radio[name=search_type]:checked').val();
         
-        Utils.location(function (lat, lng) {
-          $.mobile.changePage({
-            url: "suppliers_list.html",
-            data: {lat: lat, lng: lng},
-            type: "get"
-          });
-        });
+        if (search_type == "nearby")
+          searchNearby(term);
+        else
+          searchZip(term);
+        
+        return false;
       });
       
+      $("input.supplies.radio").change(function() {
+        var search_type = $('input:radio[name=search_type]:checked').val();
+        if (search_type == "zip")
+          $("input.supplies.search.zipcode").attr("disabled", "");
+        else
+          $("input.supplies.search.zipcode").attr("disabled", "disabled");
+      });
       
       $("input.search.supplies.text").change(function() {
         var query = $(this).val().trim();
@@ -49,25 +57,60 @@
           return;
         }
         
-        console.log("filter: " + query);
+        if (currentQuery == query)
+          return;
+        
+        currentQuery = query;
+        
+        Utils.log("filter: " + query);
         
         Api.Supplier.terms(query, function(supplies) {
-          populateSupplies(supplies);
+          if (supplies) {
+            Utils.log("got back " + supplies.length + " results");
+            populateSupplies(supplies);
+          }
         });
       }).keyup(function() { $(this).change(); });
+      
     });
     
     function populateSupplies(supplies) {
       Utils.loadList("supplies", supplies, function(supply) {
-        console.log(supply.term);
-        //var url = "suppliers_list.html?" + $.param({supply: supply.term});
-        var url = "#";
+        
+        // link won't be used, live click handler will be used instead
         return "" + 
-          "<a href=\"" + url + "\">" +
+          "<a href=\"#\">" +
             supply.term + 
           "</a>";
       }, {empty: "No supplies found.",});
     }
+    
+    function searchNearby(term) {
+      Utils.loading();
+        
+      Utils.location(function (lat, lng) {
+        Utils.loading(true);
+        $.mobile.changePage({
+          url: "suppliers_list.html",
+          data: {lat: lat, lng: lng, term: term},
+          type: "get"
+        });
+      });
+    }
+    
+    function searchZip(term) {
+      var zip = $("input.supplies.zipcode").val().trim();
+      if (!zip)
+        Utils.popup("Searching by zip code", "If you want to limit results to a zip code, enter one before selecting a supplier.");
+      else {
+        $.mobile.changePage({
+          url: "suppliers_list.html",
+          data: {zip: zip, term: term},
+          type: "get"
+        });
+      }
+    }
+    
   </script>
 
   <div data-role="content">
@@ -78,13 +121,19 @@
       </p>
     </div>
 
-	<div data-role="controlgroup" data-type="horizontal">
-	  <button class="search suppliers nearby">Nearby</button>
-	  <button class="search suppliers zip">Zipcode</button>
-	</div>
+  <div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+      <input type="radio" name="search_type" value="nearby" class="radio supplies nearby" id="search_type-nearby" checked="checked" />
+      <label for="search_type-nearby">Nearby</label>
+      <input type="radio" name="search_type" value="zip" class="radio supplies zip" id="search_type-zip" />
+      <label for="search_type-zip">Zipcode</label>
+    </fieldset>
+  </div>
 
 	<script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
-	<input class="supplies search text" type="text" name="query" placeholder="Start typing what you're looking for..." />
+	
+	<input class="search supplies zipcode" type="text" name="zip" placeholder="Enter a zipcode..." disabled="disabled" />
+	<input class="search supplies text" type="text" name="query" placeholder="Start typing what you're looking for..." />
 
 	<ul data-role="listview" data-theme="e" class="list supplies">
 	  <!-- supply list goes here, template specified in JavaScript above -->
