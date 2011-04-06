@@ -261,5 +261,13 @@ h3.dosage{
 	font-size: 14px;
 }
 
-
+.info{
+	text-indent: -9999em;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: url('images/info_icon.png') center top no-repeat;
+	width: 22px;
+	height: 22px;
+}
 
