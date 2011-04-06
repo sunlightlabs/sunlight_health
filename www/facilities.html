@@ -31,7 +31,7 @@
     
     Utils.show("facilities", function() {
       $("button.search.facilities").click(function() {
-        var facility_type = $(this).data("value");
+        var facility_type = $("select#facility_type").val();
         
         var search_type = $('input:radio[name=search_type]:checked').val();
         
