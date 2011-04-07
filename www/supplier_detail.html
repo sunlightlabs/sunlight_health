@@ -68,7 +68,7 @@
             city: supplier.city,  
             state: supplier.state,
             name: supplier.name,
-            phone: supplier.phone
+            phone: supplier.phone.replace(/[\(\)]/g, '')
           },
           type: "get"
         });
