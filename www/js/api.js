@@ -31,6 +31,21 @@ var Api = {
     return "http://health.sunlightlabs.com/api/v1/" + method + ".json";
   },
   
+  Facility: {
+    // returns all suppliers by a given location search
+    searchNearby: function(facility_type, lat, lng, callback) {
+      Api.get("facilities", ["basic"], {location: lat + "," + lng, facility_type: facility_type}, callback);
+    },
+    
+    searchZip: function(facility_type, zip, callback) {
+      Api.get("facilities", ["basic"], {zip: zip, facility_type: facility_type}, callback);
+    },
+    
+    find: function(provider_number, sections, callback) {
+      Api.getOne("facilities", sections, {provider_number: provider_number}, callback);
+    },
+  },
+  
   Supplier: {
     // returns all suppliers by a given location search
     searchNearby: function(supply, lat, lng, callback) {

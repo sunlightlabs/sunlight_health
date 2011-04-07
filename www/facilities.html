@@ -38,7 +38,7 @@
         if (search_type == "nearby")
           searchNearby(facility_type);
         else
-          searchZip(term);
+          searchZip(facility_type);
         
         return false;
       });
@@ -98,43 +98,45 @@
       </p>
     </div>
 
-  <div data-role="fieldcontain">
-    <fieldset data-role="controlgroup" data-type="horizontal">
-      <input type="radio" name="search_type" value="nearby" class="radio facilities nearby" id="search_type-nearby" checked="checked" />
-      <label for="search_type-nearby">Nearby</label>
-      <input type="radio" name="search_type" value="zip" class="radio facilities zip" id="search_type-zip" />
-      <label for="search_type-zip">Zipcode</label>
-    </fieldset>
-  </div>
+    <div data-role="fieldcontain">
+      <fieldset data-role="controlgroup" data-type="horizontal">
+        <input type="radio" name="search_type" value="nearby" class="radio facilities nearby" id="search_type-nearby" checked="checked" />
+        <label for="search_type-nearby">Nearby</label>
+        <input type="radio" name="search_type" value="zip" class="radio facilities zip" id="search_type-zip" />
+        <label for="search_type-zip">Zipcode</label>
+      </fieldset>
+    </div>
 
-	<script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
-	
-	<input class="search facilities zipcode" type="text" name="zip" placeholder="Enter a zipcode..." disabled="disabled" />
-	
-	
-  <select name="facility_type" id="facility_type">
-    <option value="placeholder" data-placeholder="true" class="placeholder">Select a Facility Type</option>
-    <option value="hospital">Hospital</option>
-    <option value="dialysis">Dialysis Clinic</option>
-    <option value="nursing_home">Nursing Home</option>
-    <option value="home_health">Home Health</option>
-  </select>
+    <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
+    
+    <input class="search facilities zipcode" type="text" name="zip" placeholder="Enter a zipcode..." disabled="disabled" />
+    
+    
+    <select name="facility_type" id="facility_type">
+      <option value="placeholder" data-placeholder="true" class="placeholder">Select a Facility Type</option>
+      <option value="hospital">Hospital</option>
+      <option value="dialysis">Dialysis Clinic</option>
+      <option value="nursing_home">Nursing Home</option>
+      <option value="home_health">Home Health</option>
+    </select>
 
-	
-	<br/> <!-- needed to make sure the button goes below the fields, but doesn't stretch -->
-	<button data-inline="true" disabled="disabled" class="search facilities">Search</button>
+    <br/> <!-- needed to make sure the button goes below the fields, but doesn't stretch -->
+    <button data-inline="true" disabled="disabled" class="search facilities">Search</button>
+    
+    <div class="emergency">
+      <button data-inline="true" class="facilities emergency">Emergency Care</button>
+    </div>
 	
   </div><!-- /content -->
 
-	<div data-role="footer" id="stickey_footer">
-		<div data-role="navbar">
-			<ul>
-				<li><a href="facilities.html">Facilities</a></li>
-				<li><a href="suppliers.html" class="ui-btn-active">Suppliers</a></li>
-				<li><a href="drugs.html">Drugs</a></li>
-			</ul>
-		</div><!-- /navbar -->
-
+  <div data-role="footer" id="stickey_footer">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="facilities.html" class="ui-btn-active">Facilities</a></li>
+        <li><a href="suppliers.html">Suppliers</a></li>
+        <li><a href="drugs.html">Drugs</a></li>
+      </ul>
+    </div><!-- /navbar -->
   </div><!-- /footer -->
 
 </div><!-- /page -->
