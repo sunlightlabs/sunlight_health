@@ -1,0 +1,109 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+  <meta charset="utf-8" /> 
+  <title>Health in Hand</title>
+  
+  <link href="css/jquery.mobile-1.0a4.css" rel="stylesheet" />
+  <link href="css/theme.css" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  
+  <!-- Phonegap and JQM init -->
+  <script type="text/javascript" charset="utf-8" src="js/phonegap-0.9.4.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery-1.5.1.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a4.js"></script>
+  
+  <!-- Utilities -->
+  <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
+  
+  <!-- API communication -->
+  <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/keys.js"></script>
+</head>
+<body> 
+
+<div data-role="page" class="page" id="facilities_list">
+
+  <!-- Page-specific code -->
+  <script type="text/javascript">
+    Utils.show("facilities_list", function() {
+    
+      var facility_type = Utils.param("facility_type");
+      
+      var emergency = Utils.param("emergency") == "true";
+      
+      var lat = Utils.param("lat");
+      var lng = Utils.param("lng");
+      var zip = Utils.param("zip");
+      
+      Utils.loading();
+      
+      var params = {};
+      if (emergency)
+        params = {emergency_services: true, facility_type: "hospital"};
+      else
+        params = {facility_type: facility_type};
+      
+      if (zip)
+        Api.Facility.searchZip(zip, params, loadFacilities);
+      else
+        Api.Facility.searchNearby(lat, lng, params, loadFacilities);
+    });
+    
+    function loadFacilities(facilities) {
+      Utils.loading(true);
+      window.facilities = facilities;
+      Utils.loadList("facilities", facilities, function(facility) {
+        var url = $.param({
+          provider_number: facility.provider_number,
+          address: facility.address,
+          address_2: facility.address_2,
+          zip: facility.zip,
+          zip_plus_4: facility.zip_plus_4,
+          city: facility.city,  
+          state: facility.state,
+          name: facility.name,
+          phone: facility.phone.replace(/[\(\)]/g, '')
+        });
+          
+        return "" +
+          "<a href=\"facility_detail.html?" + url + "\">" +
+            "<h3>" +
+              facility.name +
+            "</h3>" +
+            "<p>" + 
+              facility.address + "<br/>" +
+              facility.city + ", " + facility.state + " " + facility.zip +
+            "</p>" +
+          "</a>";
+      }, {empty: "No facilities found for this location."});
+    }
+  </script>
+
+  <div data-role="header">
+    <h1>Facilities Near You</h1>
+    <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
+  </div><!-- /header -->
+
+  <div data-role="content"> 
+    <p class="loading empty facilities">Loading facilities...</p>
+    
+    <ul data-role="listview" data-theme="c" class="list facilities">
+      <!-- fill in facilities here -->
+    </ul>
+  </div><!-- /content -->
+
+  <div data-role="footer" id="stickey_footer">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="facilities.html" class="ui-btn-active">Facilities</a></li>
+				<li><a href="suppliers.html">Suppliers</a></li>
+				<li><a href="drugs.html">Drugs</a></li>
+			</ul>
+		</div><!-- /navbar -->
+		
+  </div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>
