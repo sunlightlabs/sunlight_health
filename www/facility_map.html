@@ -21,17 +21,18 @@
   <script type="text/javascript" charset="utf-8" src="js/keys.js"></script>
 </head>
 
-<div data-role="page" class="page" id="supplier_map">
+<div data-role="page" class="page" id="facility_map">
 
   <!-- Page-specific code -->
   <script type="text/javascript">
-    var supplier;
+    var facility;
     
     var geocoder;
     var map;
     
-    Utils.show("supplier_map", function() {
-      supplier = {
+    Utils.show("facility_map", function() {
+      facility = {
+        provider_number: Utils.param("provider_number"),
         name: Utils.param("name"),
         city: Utils.param("city"),
         address: Utils.param("address"),
@@ -53,7 +54,7 @@
     }
     
     function doneLoadingMap() {
-      var elem = document.getElementById("supplier_map_canvas");
+      var elem = document.getElementById("facility_map_canvas");
       map = new google.maps.Map(elem, {
         zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -68,7 +69,7 @@
       });
     
       geocoder = new google.maps.Geocoder();
-      geocoder.geocode({address: Utils.address(supplier)}, function(results, status) {
+      geocoder.geocode({address: Utils.address(facility)}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           var location = results[0].geometry.location;
           
@@ -84,7 +85,7 @@
           
           showButtons(lat, lng);
           
-          console.log("Geocoded supplier address to lat: " + lat + ", lng: " + lng);
+          console.log("Geocoded facility address to lat: " + lat + ", lng: " + lng);
         } else
           console.log("Geocode was not successful for the following reason: " + status);
       });
@@ -92,8 +93,8 @@
     
     function showButtons(lat, lng) {
       $(".map.buttons").show();
-      $("a.call").attr("href", "tel://" + supplier.phone);
-      $("a.directions").attr("href", Utils.directions(Utils.address(supplier)));
+      $("a.call").attr("href", "tel://" + facility.phone);
+      $("a.directions").attr("href", Utils.directions(Utils.address(facility)));
     }
   </script>
 
@@ -101,7 +102,7 @@
 
   <div data-role="content" class="map container">
 	  <div data-role="header">
-	    <h1>Supplier Location</h1>
+	    <h1>Facility Location</h1>
 	  </div><!-- /header -->
 
     <div class="map buttons hidden ui-grid-a">
@@ -113,7 +114,7 @@
       </div>
     </div>
     
-    <div id="supplier_map_canvas" class="map_canvas" ></div>
+    <div id="facility_map_canvas" class="map_canvas" ></div>
   </div><!-- /content -->
 </div><!-- /page -->
 
