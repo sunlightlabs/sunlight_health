@@ -39,7 +39,7 @@ li.ui-btn, li.ui-btn-icon-right, li.ui-li, li.ui-btn-up-c{
 	border-top: solid 1px #8f8d8d;
 	border-bottom: solid 1px #4f4f4f;	
 }
-li.ui-btn:hover, li.ui-btn-icon-right:hover, li.ui-li:hover, li.ui-btn-up-c:hover{
+li.ui-btn-hover-e, li.ui-btn-hover-c{
 	background: url('images/bg_search_hover.png') top center repeat-x;
 }
 
@@ -165,18 +165,94 @@ h3.ui-li-heading .ui-link-inherit{
 	border-radius: 	2em;
 }
 
+	
+/* Begin - Collapsible Header Styling*/
+.ui-btn-up-c{
+	background: url('images/bg_search.jpg') center center repeat-x;
+	font-weight: 400;		
+}
+.ui-btn-up-d{
+	background-color: #464646 ;
+	border: none;
+}
+.ui-btn-hover-d{
+	background-color: #464646 ;
+	border: none;
+}
+
+.ui-btn-hover-c{
+	background: url('images/bg_search_hover.png') center center repeat-x;
+	font-weight: 400;		
+}
+
+.ui-collapsible-heading .ui-icon-shadow{
+	box-shadow: none;
+}
+
+.ui-collapsible-heading-toggle .ui-corner-all{
+	border-radius: 0;
+}
+
+.ui-collapsible-heading .ui-icon-plus {
+    background-position: 0 0;
+}
+
+.ui-collapsible-heading .ui-icon-minus {
+    background-position: 0 0;
+}
+.ui-collapsible-heading .ui-icon {
+	background: url('images/collabsible_minus.png') 2px 7px no-repeat;
+	width: 21px;
+	height: 21px;
+	border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+	box-shadow: inset -1px -1px 1px rgba(0, 0, 0, 0.3);
+    
+}
+.ui-collapsible-heading a span.ui-btn .ui-icon {
+    left: 0;
+    margin-top: -10px;
+}
+
+.ui-collapsible-heading a span.ui-btn{
+	width: 22px;
+	height: 22px;
+}
+
+.ui-collapsible-heading .ui-shadow {
+    box-shadow: 1px 1px 2px rgba(245, 245, 245, 0.7);
+}
+
+.ui-collapsible-heading .ui-btn-inner{
+	border: none;
+}
+
+/* End - Collapsible Header Styling*/
+
+
+
+
+/* Begin - Collapsible Content Styling*/
 .ui-collapsible-content{
 	padding-right: 0;
 	padding-left: 0;
 	padding-bottom: 0;
 	
-}	
-
-.ui-collapsible-heading .ui-btn-up-c{
-	background: url('images/bg_search_hover.png') center center repeat-x;
-	font-weight: 400;
-		
 }
+.ui-collapsible-contain{
+	margin: 0;
+}
+.ui-collapsible-content{
+	padding-top: 0;
+	border: none;
+}
+/* Begin - Collapsible Content Styling*/
+
+
+
+
 input.ui-input-text{
 	color: 	#4C4C4C;
 }
@@ -210,9 +286,7 @@ input.ui-input-text, textarea.ui-input-text{
 	height: 40px;
 }
 
-.ui-collapsible-contain{
-	margin: 0;
-}
+
 
 .ui-body-c .ui-link{
 	color: #818181;
