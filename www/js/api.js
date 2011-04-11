@@ -47,8 +47,14 @@ var Api = {
               callback);
     },
     
-    find: function(provider_number, sections, callback) {
-      Api.getOne("facilities", sections, {provider_number: provider_number}, callback);
+    find: function(provider_number, facility_type, sections, callback) {
+      Api.getOne("facilities", 
+                 sections, 
+                 {
+                  provider_number: provider_number, 
+                  facility_type: facility_type
+                 }, 
+                 callback);
     },
   },
   
