@@ -1,1 +1,3 @@
+/* Full screen - Removing padding from content area */
 
+.ui-content { padding: 0; }
