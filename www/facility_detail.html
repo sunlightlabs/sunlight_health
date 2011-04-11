@@ -49,7 +49,7 @@
         
         else if (facility_type == "home_health") {
             Utils.bgLoading();
-            Api.Facility.find(provider_number, facility_type, ["services"], function(facility) {
+            Api.Facility.find(provider_number, facility_type, ["extended.services"], function(facility) {
               Utils.bgLoading(true);
               if (!facility) return;
               
