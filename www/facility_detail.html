@@ -44,16 +44,19 @@
         
         populateFacility(facility);
         
-        if (facility.facility_type == "nursing_home")
+        if (facility_type == "nursing_home")
           populateNursingHome(facility.ratings);
-          
-//         Utils.bgLoading();
-//         Api.Supplier.find(row, ["supplies"], function(supplier) {
-//           Utils.bgLoading(true);
-//           if (!supplier) return;
-//           
-//           populateList(supplier.supplies);
-//         });
+        
+        else if (facility_type == "home_health") {
+            Utils.bgLoading();
+            Api.Facility.find(provider_number, facility_type, ["services"], function(facility) {
+              Utils.bgLoading(true);
+              if (!facility) return;
+              
+              populateHomeHealth(facility.services);
+            });
+        }
+        
         
       });
       
@@ -107,10 +110,41 @@
           "<td class=\"rating-" + ratings.rn_only + "\"></td>" +
         "</tr>";
     
-      $(".facility.loading").hide();
-      $(".facility.nursing_home_ratings table.data tbody").html(html);
+      $(".facility.nursing_home .ratings table.data tbody").html(html);
       
-      $(".facility.hidden").show();
+      $(".facility.loading").hide();
+      $(".facility.nursing_home.hidden").show();
+    }
+    
+    function populateHomeHealth(services) {
+      var names = {
+        nursing_care: "Nursing Care",
+        home_health_aide: "Home Health Aide",
+        physical_therapy: "Physical Therapy",
+        occupational_therapy: "Occupational Therapy",
+        medical_social: "Medical Social Services",
+        speech_pathology: "Occupation Speech Pathology"
+      };
+    
+      var html = "";
+      var i = 0;
+      $.each(names, function(key, value) {
+        html += booleanRow(i, names[key], value);
+        i += 1;
+      });
+      
+      $(".facility.home_health .services table.data tbody").html(html);
+      
+      $(".facility.loading").hide();
+      $(".facility.home_health.hidden").show();
+    }
+    
+    function booleanRow(i, name, value) {
+      return "" +
+        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
+          "<th scope=\"row\">" + name + "</th>" +
+          "<td>" + (value ? "Yes" : "No") + "</td>" +
+        "</tr>";
     }
     
   </script>
@@ -145,9 +179,9 @@
         Loading data about this facility...
       </p>
       
-      <div class="facility hidden">
+      <div class="facility nursing_home hidden">
       
-        <div data-role="collapsible" class="facility nursing_home_ratings">
+        <div data-role="collapsible" class="ratings">
           <h1>Ratings</h1>
           
           <table class="data">
@@ -167,7 +201,31 @@
           </table>
         </div>
         
-      </div><!-- end container of additional sections -->
+      </div><!-- end nursing home container -->
+      
+      <div class="facility home_health hidden">
+        
+        <div data-role="collapsible" class="services">
+          <h1>Services</h1>
+          
+          <table class="data">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th class="hosp" scope="col">Offered?</th>
+              </tr>
+            <tbody>
+              <!-- example
+                <tr class="odd">
+                  <th scope="row">Nursing Care</th>
+                  <td>Yes</td>
+                </tr>
+              -->
+            </tbody>
+          </table>
+        </div>
+      
+      </div>
       
     </div>
   </div><!-- /content -->
