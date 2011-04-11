@@ -29,14 +29,24 @@
     Utils.show("facility_detail", function() {
       
       var provider_number = Utils.param("provider_number");
+      var facility_type = Utils.param("facility_type");
+      
+      var sections;
+      if (facility_type == "nursing_home")
+        sections = ["basic", "ratings"]; // ratings section is small enough to just fetch it now
+      else
+        sections = ["basic"];
       
       Utils.loading();
-      Api.Facility.find(provider_number, ["basic"], function(facility) {
+      Api.Facility.find(provider_number, facility_type, sections, function(facility) {
         Utils.loading(true);
         if (!facility) return;
         
         populateFacility(facility);
         
+        if (facility.facility_type == "nursing_home")
+          populateNursingHome(facility.ratings);
+          
 //         Utils.bgLoading();
 //         Api.Supplier.find(row, ["supplies"], function(supplier) {
 //           Utils.bgLoading(true);
@@ -77,11 +87,32 @@
       $(".facility.reveal").show();
     }
     
-    function populateList(supplies) {
+    function populateNursingHome(ratings) {
       var html = "";
+      html += "" +
+        "<tr class=\"odd\">" +
+          "<th scope=\"row\">Overall</td>" +
+          "<td class=\"rating-" + ratings.overall + "\"></td>" +
+        "</tr>" +
+        "<tr class=\"even\">" +
+          "<th scope=\"row\">Health Inspections</td>" +
+          "<td class=\"rating-" + ratings.health_inspections + "\"></td>" +
+        "</tr>" +
+        "<tr class=\"odd\">" +
+          "<th scope=\"row\">Nurse Staffing</td>" +
+          "<td class=\"rating-" + ratings.nurse_staffing + "\"></td>" +
+        "</tr>" +
+        "<tr class=\"even\">" +
+          "<th scope=\"row\">RN Only</td>" +
+          "<td class=\"rating-" + ratings.rn_only + "\"></td>" +
+        "</tr>";
+    
+      $(".facility.loading").hide();
+      $(".facility.nursing_home_ratings table.data tbody").html(html);
       
-      $(".supplier.supplies table.data tbody").html(html);
+      $(".facility.hidden").show();
     }
+    
   </script>
 
   <div data-role="header">
@@ -110,19 +141,33 @@
         </div>
       </div>
       
-      <!--<div data-role="collapsible" class="facility ____">
-        <h1>____</h1>
+      <p class="facility loading">
+        Loading data about this facility...
+      </p>
+      
+      <div class="facility hidden">
+      
+        <div data-role="collapsible" class="facility nursing_home_ratings">
+          <h1>Ratings</h1>
+          
+          <table class="data">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th class="hosp" scope="col">Rating</th>
+              </tr>
+            <tbody>
+              <!-- example
+                <tr class="odd">
+                  <th scope="row">Overall</th>
+                  <td class="ratings-5"></td>
+                </tr>
+              -->
+            </tbody>
+          </table>
+        </div>
         
-        <table class="data">
-          <tbody>
-            <!-- supply rows go here, example:
-            <tr class="odd">
-              <th scope="row">Transcutaneous Electrical Nerve Stimulators (TENS) Units</th>
-            </tr>
-            ->
-          </tbody>
-        </table>
-      </div>-->
+      </div><!-- end container of additional sections -->
       
     </div>
   </div><!-- /content -->

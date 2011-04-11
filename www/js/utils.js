@@ -160,5 +160,13 @@ Utils = {
           chemical.drug_names.join(", ") +
         "</p>" +
       "</a>";
+  },
+  
+  collapsible: function(parent, class, header) {
+    $(parent).append("" +
+      "<div data-role=\"collapsible\" class=\"" + class + "\">" +
+        "<h1>" + header + "</h1>" +
+      "</div>"
+    );
   }
 };
