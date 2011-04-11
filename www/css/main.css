@@ -34,8 +34,10 @@ h1{
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight: 300;
 	border: none;
+	margin: 0;
 	
 }
+
 
 #suppliers h1, #drugs h1{
 	background: url('images/SunlightHealth_logo.png') top center no-repeat;
@@ -67,12 +69,14 @@ h1{
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#007592), color-stop(50%,#5190AA), color-stop(100%,#007592)); /* webkit */
 	padding: 7px;
 	border: none;
+	margin: 0;
 }
 .scallop{
 	background: url('images/bg_header_scallop.png') top center repeat-x;
 	height: 35px;
 	width: 100%;
-	margin-bottom: 10px;
+	margin-top: -1px; /* This hides that wacky blue border that shows up on Android devices under pngs and CSS3 gradients. */
+	margin-bottom: 0;
 	border: none;	
 }
 h3.name{
