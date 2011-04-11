@@ -171,6 +171,10 @@ h3.ui-li-heading .ui-link-inherit{
 	background: url('images/bg_search.jpg') center center repeat-x;
 	font-weight: 400;		
 }
+.ui-btn-hover-c{
+	background: url('images/bg_search.jpg') center center repeat-x;
+	font-weight: 400;		
+}
 .ui-btn-up-d{
 	background-color: #464646 ;
 	border: none;
@@ -180,7 +184,7 @@ h3.ui-li-heading .ui-link-inherit{
 	border: none;
 }
 
-.ui-btn-hover-c{
+.ui-btn-hover-d{
 	background: url('images/bg_search_hover.png') center center repeat-x;
 	font-weight: 400;		
 }
@@ -200,7 +204,7 @@ h3.ui-li-heading .ui-link-inherit{
 .ui-collapsible-heading .ui-icon-minus {
     background-position: 0 0;
 }
-.ui-collapsible-heading .ui-icon {
+.supplier>.ui-collapsible-heading>.ui-collapsible-heading-toggle>.ui-btn-inner>.ui-icon {
 	background: url('images/collabsible_minus.png') 2px 7px no-repeat;
 	width: 21px;
 	height: 21px;
