@@ -18,7 +18,7 @@
 }
 
 
-/* Radio Button styling */
+/* -------- Radio Button styling -------- */
 
 .ui-corner-left{
 	border-bottom-left-radius: 0.9em;
@@ -32,22 +32,39 @@
 
 .ui-radio .ui-btn-active{
 	background: #908f8f;
-	text-shadow: 0 0 10px #404041;
+	text-shadow: 0 0 10px #bfbfbf;
 	border-color: #908f8f;
     border-style: solid;
     border-width: 1px;
     color: #006c87;
-	text-transform: uppercase;
 	font-weight: 400;
 } 	/* Styles background, basic exterior border, and text  */
+
+.ui-btn-up-c{
+	background: #bfbfbf;
+	text-shadow: 0 0 10px #908f8f;
+	font-size: 75%;
+	text-transform: uppercase;
+	font-weight: 400;
+	
+} 	/* Styles background, basic exterior border, and text  */
+
+
+.ui-controlgroup .ui-radio label{
+	font-size: 75%;
+	text-transform: uppercase;
+}
 
 .ui-radio .ui-btn-inner{
 	border-top-color: rgba(255, 255, 255, 0.3);
     border-top-style: solid;
     border-top-width: 1px;
-}/* Styles thatt really faint border at top of button. Causes a beveled effect.  */
+	padding-left: 15px;
+	padding-right: 15px;
+	
+}/* Styles that really faint border at top of button. Causes a beveled effect.  */
 
 .ui-radio .ui-btn-active .ui-btn-text{
-	padding-left: 25px;
-	background: url('images/icons-36-white.png') -728px -10px;
+	padding-left: 17px;
+	background: url('images/icons-18-white.png') -363px -4px;
 }/* Adding GPS icon ... or other image to button text  */
