@@ -40,16 +40,6 @@
 	font-weight: 400;
 } 	/* Styles background, basic exterior border, and text  */
 
-.ui-btn-up-c{
-	background: #bfbfbf;
-	text-shadow: 0 0 10px #908f8f;
-	font-size: 75%;
-	text-transform: uppercase;
-	font-weight: 400;
-	
-} 	/* Styles background, basic exterior border, and text  */
-
-
 .ui-controlgroup .ui-radio label{
 	font-size: 75%;
 	text-transform: uppercase;
@@ -61,6 +51,8 @@
     border-top-width: 1px;
 	padding-left: 15px;
 	padding-right: 15px;
+	width: 70px;
+	text-align: center;
 	
 }/* Styles that really faint border at top of button. Causes a beveled effect.  */
 
@@ -68,3 +60,24 @@
 	padding-left: 17px;
 	background: url('images/icons-18-white.png') -363px -4px;
 }/* Adding GPS icon ... or other image to button text  */
+
+
+/* -------- Button styling -------- */
+
+.ui-btn-up-c{
+	background: #bfbfbf;
+	text-shadow: 0 0 10px #908f8f;
+	font-size: 75%;
+	text-transform: uppercase;
+	font-weight: 400;
+	
+} 	/* General Button Styling, applies to all buttons...but maybe not the radio buttons?  */
+
+.ui-btn-hover-c{
+	background: #bfbfbf;
+	text-shadow: 0 0 10px #908f8f;
+	font-size: 75%;
+	text-transform: uppercase;
+	font-weight: 400;
+	
+} 	/* General Button Styling, applies to all buttons...but maybe not the radio buttons?  */
