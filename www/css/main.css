@@ -16,6 +16,12 @@ table.data tbody th {font-weight: normal;}
 table.data tbody td {}
 
 
+#stickey_footer { /* This will make your footer stay where it is */
+ bottom: 0;
+ position: fixed;
+
+}
+
 
 h1{
 	text-transform: uppercase;
@@ -60,11 +66,7 @@ h1{
 }*/
 
 
-#stickey_footer { /* This will make your footer stay where it is */
- bottom: 0;
- position: fixed;
 
-}
 
 .content-banner {
 	background-image: -moz-linear-gradient(top, #007592 0%, #5190AA 50%, #007592 100%); /* firefox */

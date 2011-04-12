@@ -1,7 +1,7 @@
 /* Full screen - Removing padding from content area */
 
 .ui-content { 
-	padding: 0; 
+	padding: 0;
 }
 
 .ui-bar-a, .ui-footer, .stickey_footer {
@@ -19,6 +19,9 @@
 
 
 /* -------- Radio Button styling -------- */
+.ui-controlgroup, fieldset.ui-controlgroup, .min-width-480px .ui-field-contain{
+	margin-top: 0;
+}
 
 .ui-corner-left{
 	border-bottom-left-radius: 0.9em;
@@ -61,6 +64,10 @@
 	background: url('images/icons-18-white.png') -363px -4px;
 }/* Adding GPS icon ... or other image to button text  */
 
+fieldset.ui-controlgroup{
+	text-align: center;
+}
+
 
 /* -------- Button styling -------- */
 
@@ -81,3 +88,20 @@
 	font-weight: 400;
 	
 } 	/* General Button Styling, applies to all buttons...but maybe not the radio buttons?  */
+
+.ui-br {
+	border-bottom: none;
+} 	/* Removes strange border that shows up just above the search field ... related to the div that's above it.  */
+
+.min-width-480px input.ui-input-text, .min-width-480px textarea.ui-input-text, .min-width-480px .ui-input-search {
+	width: none;
+}
+
+.ui-icon-arrow-d {
+background-position: -216px 50% ;
+}
+
+.max-width-480px .ui-icon-arrow-d{
+	background-position: -269px 50% ;
+} /* Fixes icon positioning for mobile devices. The rule is the same. Still doesn't explain where those 40 pixels are coming from.  */
+
