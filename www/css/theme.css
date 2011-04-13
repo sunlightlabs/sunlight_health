@@ -182,7 +182,7 @@ input.ui-input-text, textarea.ui-input-text {
 	padding-top: 39px;
 } /* Moves text below icon */
 
-.ui-btn-active.ui-state-persist{
+#suppliers_nav.ui-btn-active.ui-state-persist, #facilities_nav.ui-btn-active.ui-state-persist, #drugs_nav.ui-btn-active.ui-state-persist{
 	border: none;
 }
 #suppliers_nav .ui-btn-inner{
@@ -197,3 +197,29 @@ input.ui-input-text, textarea.ui-input-text {
 #drugs_nav .ui-btn-inner{
 	border-left: 2px solid #1e1e1e;
 }
+
+
+/* -------- Auto Search Result List Styling -------- */
+
+.list .ui-btn-up-e, .list .ui-btn-up-c{
+	background: url('images/bg_search.jpg') center center repeat-x;
+	border-top-color: #4f4f4f;
+	border-bottom-color: #8f8d8d;
+	border-width: 1px;
+}
+
+.list .ui-btn-hover-e, .list .ui-btn-hover-c{
+	background: url('images/bg_search_hover.png') center center repeat-x;
+	border-top-color: #4f4f4f;
+	border-bottom-color: #8f8d8d;
+	border-width: 1px;
+}
+
+.ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
+    padding-left: 25px;
+}
+
+
+
+
+
