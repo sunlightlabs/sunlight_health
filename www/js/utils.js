@@ -125,7 +125,7 @@ Utils = {
   address: function(object, options) {
     var addr = object.address;
     
-    if (options && options.break)
+    if (options && options['break'])
       addr += "<br/>";
     else
       addr += ", ";
