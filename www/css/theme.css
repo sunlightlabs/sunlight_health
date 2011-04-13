@@ -1,7 +1,7 @@
 /* Full screen - Removing padding from content area */
 
 .ui-content { 
-	padding: 0; 
+	padding: 0;
 }
 
 .ui-bar-a, .ui-footer, .stickey_footer {
@@ -18,7 +18,10 @@
 }
 
 
-/* Radio Button styling */
+/* -------- Radio Button styling -------- */
+.ui-controlgroup, fieldset.ui-controlgroup, .min-width-480px .ui-field-contain{
+	margin-top: 0;
+}
 
 .ui-corner-left{
 	border-bottom-left-radius: 0.9em;
@@ -32,22 +35,73 @@
 
 .ui-radio .ui-btn-active{
 	background: #908f8f;
-	text-shadow: 0 0 10px #404041;
+	text-shadow: 0 0 10px #bfbfbf;
 	border-color: #908f8f;
     border-style: solid;
     border-width: 1px;
     color: #006c87;
-	text-transform: uppercase;
 	font-weight: 400;
 } 	/* Styles background, basic exterior border, and text  */
+
+.ui-controlgroup .ui-radio label{
+	font-size: 75%;
+	text-transform: uppercase;
+}
 
 .ui-radio .ui-btn-inner{
 	border-top-color: rgba(255, 255, 255, 0.3);
     border-top-style: solid;
     border-top-width: 1px;
-}/* Styles thatt really faint border at top of button. Causes a beveled effect.  */
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 70px;
+	text-align: center;
+	
+}/* Styles that really faint border at top of button. Causes a beveled effect.  */
 
 .ui-radio .ui-btn-active .ui-btn-text{
-	padding-left: 25px;
-	background: url('images/icons-36-white.png') -728px -10px;
+	padding-left: 17px;
+	background: url('images/icons-18-white.png') -363px -4px;
 }/* Adding GPS icon ... or other image to button text  */
+
+fieldset.ui-controlgroup{
+	text-align: center;
+}
+
+
+/* -------- Button styling -------- */
+
+.ui-btn-up-c{
+	background: #bfbfbf;
+	text-shadow: 0 0 10px #908f8f;
+	font-size: 75%;
+	text-transform: uppercase;
+	font-weight: 400;
+	
+} 	/* General Button Styling, applies to all buttons...but maybe not the radio buttons?  */
+
+.ui-btn-hover-c{
+	background: #bfbfbf;
+	text-shadow: 0 0 10px #908f8f;
+	font-size: 75%;
+	text-transform: uppercase;
+	font-weight: 400;
+	
+} 	/* General Button Styling, applies to all buttons...but maybe not the radio buttons?  */
+
+.ui-br {
+	border-bottom: none;
+} 	/* Removes strange border that shows up just above the search field ... related to the div that's above it.  */
+
+.min-width-480px input.ui-input-text, .min-width-480px textarea.ui-input-text, .min-width-480px .ui-input-search {
+	width: none;
+}
+
+.ui-icon-arrow-d {
+background-position: -216px 50% ;
+}
+
+.max-width-480px .ui-icon-arrow-d{
+	background-position: -269px 50% ;
+} /* Fixes icon positioning for mobile devices. The rule is the same. Still doesn't explain where those 40 pixels are coming from.  */
+
