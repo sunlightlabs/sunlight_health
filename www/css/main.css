@@ -16,11 +16,7 @@ table.data tbody th {font-weight: normal;}
 table.data tbody td {}
 
 
-#stickey_footer { /* This will make your footer stay where it is */
- bottom: 0;
- position: fixed;
 
-}
 
 
 h1{
