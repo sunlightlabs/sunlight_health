@@ -17,6 +17,11 @@
     border-top-right-radius: 0.8em;
 }
 
+.ui-icon{
+	width: 19px;
+	height: 19px;
+}
+
 
 /* -------- Radio Button styling -------- */
 .ui-controlgroup, fieldset.ui-controlgroup, .min-width-480px .ui-field-contain{
@@ -59,14 +64,15 @@
 	
 }/* Styles that really faint border at top of button. Causes a beveled effect.  */
 
-.ui-radio .ui-btn-active .ui-btn-text{
+/*.ui-radio .ui-btn-active .ui-btn-text{
 	padding-left: 17px;
 	background: url('images/icons-18-white.png') -363px -4px;
-}/* Adding GPS icon ... or other image to button text  */
+} Adding GPS icon ... or other image to button text  */
 
 fieldset.ui-controlgroup{
 	text-align: center;
 }
+
 
 
 /* -------- Button styling -------- */
@@ -74,7 +80,7 @@ fieldset.ui-controlgroup{
 .ui-btn-up-c{
 	background: #bfbfbf;
 	text-shadow: 0 0 10px #908f8f;
-	font-size: 75%;
+	font-size: 80%;
 	text-transform: uppercase;
 	font-weight: 400;
 	
@@ -83,7 +89,7 @@ fieldset.ui-controlgroup{
 .ui-btn-hover-c{
 	background: #bfbfbf;
 	text-shadow: 0 0 10px #908f8f;
-	font-size: 75%;
+	font-size: 80%;
 	text-transform: uppercase;
 	font-weight: 400;
 	
@@ -103,5 +109,20 @@ background-position: -216px 50% ;
 
 .max-width-480px .ui-icon-arrow-d{
 	background-position: -269px 50% ;
-} /* Fixes icon positioning for mobile devices. The rule is the same. Still doesn't explain where those 40 pixels are coming from.  */
+} /* Fixes icon positioning for mobile devices. Still doesn't explain where those 40 pixels are coming from.  */
+
+.ui-select .ui-btn{
+	text-align: left;
+}
+
+
+
+/* -------- Text Field Styling -------- */
+
+input.ui-input-text, textarea.ui-input-text {
+	font-size: 80%;
+}
+
+
+
 

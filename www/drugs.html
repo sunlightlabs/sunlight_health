@@ -90,20 +90,19 @@
     <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
     <input class="search drugs text" type="text" name="query" placeholder="Start typing a class, chemical, or drug" />
     <div class="autosearch_results">
-		<p>Start typing a class, chemical, or drug</p>
 	    <ul data-role="listview" data-theme="e" class="list drug_terms">
 	      <!-- term list goes here, template specified in JavaScript above -->
 	    </ul>
-	    <p class="loading empty drug_terms">Start typing to see a list of terms.</p>
+	    <p class="loading empty drug_terms"></p>
 	</div>
 
   </div><!-- /content -->
-  	<div data-role="footer" id="stickey_footer">
+  	<div data-role="footer" data-id="stickey_footer" id="stickey_footer">
 		<div data-role="navbar">
 			<ul>
 				<li><a href="facilities.html">Facilities</a></li>
-				<li><a href="suppliers.html" class="ui-btn-active">Suppliers</a></li>
-				<li><a href="drugs.html">Drugs</a></li>
+				<li><a href="suppliers.html">Suppliers</a></li>
+				<li><a href="drugs.html" class="ui-btn-active ui-state-persist">Drugs</a></li>
 			</ul>
 		</div><!-- /navbar -->
 
