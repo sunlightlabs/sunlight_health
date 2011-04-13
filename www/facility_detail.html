@@ -67,8 +67,15 @@
           });
         }
         
-        else if (facility_type == "hospital")
-          $(".facility.loading").hide();
+        else if (facility_type == "hospital") {
+          Utils.bgLoading();
+          Api.Facility.find(provider_number, facility_type, ["survey_experiences"], function(facility) {
+            Utils.bgLoading(true);
+            if (!facility) return;
+            
+            populateHospital(facility.survey_experiences);
+          });
+        }
         
       });
       
@@ -100,6 +107,40 @@
       });
       
       $(".facility.reveal").show();
+    }
+    
+    function populateHospital(survey_experiences) {
+      var html = "";
+      
+      var i = 0;
+      $.each(survey_experiences, function(field, qualifiers) {
+        // combine usually and always
+        if (qualifiers.usually && qualifiers.always) {
+          var name = Names.survey_experiences[field];
+          var individual = qualifiers.usually.value + qualifiers.always.value;
+          var nearby = qualifiers.usually.nearby_average + qualifiers.always.nearby_average;
+          var us = qualifiers.usually.national_average + qualifiers.always.national_average;
+          
+          html += averageRow(i, name, individual, nearby, us);
+          
+          i += 1;
+        } else {
+          $.each(qualifiers, function(qualifier, info) {
+            var name = Names.survey_experiences[field][qualifier];
+            var individual = info.value;
+            var nearby = info.nearby_average;
+            var us = info.national_average;
+            
+            html += averageRow(i, name, individual, nearby, us);
+            i += 1;
+          });
+        }
+      });
+      
+      $(".facility.hospital .survey_experiences table.data tbody").html(html);
+      
+      $(".facility.loading").hide();
+      $(".facility.hospital.hidden").show();
     }
     
     function populateNursingHome(ratings) {
@@ -172,6 +213,16 @@
         "</tr>";
     }
     
+    function averageRow(i, name, individual, nearby, national) {
+      return "" +
+        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
+          "<th scope=\"row\">" + name + "</th>" +
+          "<td>" + national + "</td>" +
+          "<td>" + nearby + "</td>" +
+          "<td>" + individual + "</td>" +
+        "</tr>";
+    }
+    
   </script>
 
   <div data-role="header">
@@ -203,6 +254,25 @@
       <p class="facility loading">
         Loading data about this facility...
       </p>
+      
+      <div class="facility hospital hidden">
+        
+        <div data-role="collapsible" class="survey_experiences">
+          <h1>Services</h1>
+          
+          <table class="data">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th class="hosp" scope="col">US</th>
+                <th class="hosp" scope="col">Nearby</th>
+                <th class="hosp" scope="col">Hosp</th>
+              </tr>
+            <tbody></tbody>
+          </table>
+        </div>
+      
+      </div><!-- end home health container -->
       
       <div class="facility nursing_home hidden">
       
