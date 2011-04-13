@@ -49,7 +49,7 @@
 } 	/* Styles background, basic exterior border, and text  */
 
 .ui-controlgroup .ui-radio label{
-	font-size: 75%;
+	font-size: 70%;
 	text-transform: uppercase;
 }
 
@@ -80,7 +80,7 @@ fieldset.ui-controlgroup{
 .ui-btn-up-c{
 	background: #bfbfbf;
 	text-shadow: 0 0 10px #908f8f;
-	font-size: 80%;
+	font-size: 70%;
 	text-transform: uppercase;
 	font-weight: 400;
 	
@@ -89,7 +89,7 @@ fieldset.ui-controlgroup{
 .ui-btn-hover-c{
 	background: #bfbfbf;
 	text-shadow: 0 0 10px #908f8f;
-	font-size: 80%;
+	font-size: 70%;
 	text-transform: uppercase;
 	font-weight: 400;
 	
@@ -120,8 +120,105 @@ background-position: -216px 50% ;
 /* -------- Text Field Styling -------- */
 
 input.ui-input-text, textarea.ui-input-text {
-	font-size: 80%;
+	font-size: 70%;
 }
+
+
+
+/* -------- Global Nav Styling -------- */
+
+#facilities_nav .ui-icon-nav-icons{
+	background: url('images/icons-32-nav.png') -48px 50% no-repeat;
+	width: 32px;
+	height: 32px;
+	margin-left: -16px;
+	border-radius: 0;
+}
+#suppliers_nav .ui-icon-nav-icons{
+	background: url('images/icons-32-nav.png') -144px 50% no-repeat;
+	width: 32px;
+	height: 32px;
+	margin-left: -16px;
+	border-radius: 0;
+	
+}
+#drugs_nav .ui-icon-nav-icons{
+	background: url('images/icons-32-nav.png') -236px 50% no-repeat;
+	width: 32px;
+	height: 32px;
+	margin-left: -16px;
+	border-radius: 0;
+	
+}
+
+#facilities_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons{
+	background-position: -331px 50%;
+
+}
+
+#suppliers_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons{
+	background-position: -427px 50%;
+
+}
+
+#drugs_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons{
+	background-position: -519px 50%;
+
+}
+.ui-navbar li .ui-btn, .ui-navbar .ui-navbar-toggle .ui-btn{
+	font-size: 70%;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+.ui-navbar .ui-btn-up-a{
+	background:url('images/bg_footer.jpg') center center repeat-x ;
+}
+.ui-navbar .ui-btn-hover-a, .ui-btn-active.ui-state-persist{
+	background:url('images/bg_footer_hover.jpg') center center repeat-x ;
+}
+
+.ui-footer .ui-btn-icon-top .ui-btn-inner {
+	padding-top: 39px;
+} /* Moves text below icon */
+
+#suppliers_nav.ui-btn-active.ui-state-persist, #facilities_nav.ui-btn-active.ui-state-persist, #drugs_nav.ui-btn-active.ui-state-persist{
+	border: none;
+}
+#suppliers_nav .ui-btn-inner{
+	border-right: 2px solid #414141;
+	border-left: 2px solid #1e1e1e;
+}
+
+#facilities_nav .ui-btn-inner{
+	border-right: 2px solid #414141;
+}
+
+#drugs_nav .ui-btn-inner{
+	border-left: 2px solid #1e1e1e;
+}
+
+
+/* -------- Auto Search Result List Styling -------- */
+
+.list .ui-btn-up-e, .list .ui-btn-up-c{
+	background: url('images/bg_search.jpg') center center repeat-x;
+	border-top-color: #4f4f4f;
+	border-bottom-color: #8f8d8d;
+	border-width: 1px;
+}
+
+.list .ui-btn-hover-e, .list .ui-btn-hover-c{
+	background: url('images/bg_search_hover.png') center center repeat-x;
+	border-top-color: #4f4f4f;
+	border-bottom-color: #8f8d8d;
+	border-width: 1px;
+}
+
+.ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
+    padding-left: 25px;
+}
+
 
 
 
