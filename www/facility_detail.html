@@ -117,7 +117,7 @@
       $.each(survey_experiences, function(field, qualifiers) {
         // combine usually and always
         if (qualifiers.usually && qualifiers.always) {
-          var name = Names.survey_experiences[field];
+          var name = qualifiers.usually.name;
           var individual = qualifiers.usually.value + qualifiers.always.value;
           var nearby = qualifiers.usually.nearby_average + qualifiers.always.nearby_average;
           var us = qualifiers.usually.national_average + qualifiers.always.national_average;
@@ -127,7 +127,7 @@
           i += 1;
         } else {
           $.each(qualifiers, function(qualifier, info) {
-            var name = Names.survey_experiences[field][qualifier];
+            var name = info.name;
             var individual = info.value;
             var nearby = info.nearby_average;
             var us = info.national_average;
