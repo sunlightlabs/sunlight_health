@@ -217,7 +217,108 @@ input.ui-input-text, textarea.ui-input-text {
 
 .ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
     padding-left: 25px;
+	padding-right: 25px;
 }
+
+.ui-content .autosearch_results .ui-listview{
+	margin-top: 0;
+}
+
+.list .ui-icon{
+	background-color: transparent;
+	padding-right: 10px;
+}
+
+.max-width-480px .ui-icon-arrow-r{
+	background-position: -161px 50% ;
+} /* Fixes icon positioning for mobile devices. Still doesn't explain where those 40 pixels are coming from.  */
+
+
+/* -------- Collapsible Heading Styling -------- */
+
+
+.ui-collapsible-heading .ui-btn-up-c{
+	background:url('images/bg_collapsible_header.jpg') center center repeat-x ; 
+}
+.ui-collapsible-heading .ui-btn-hover-c{
+	background:url('images/bg_collapsible_header_hover.jpg') center center repeat-x ; 
+}
+
+.ui-icon-plus{
+	background-color: #464646;
+}
+
+.ui-collapsible-heading .ui-btn{
+	padding-left: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.ui-collapsible-heading .ui-btn-inner{
+	border: none;
+}
+
+.ui-collapsible-contain{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+
+.ui-collapsible-contain .ui-btn-up-c{
+	text-shadow: 0 1px 0 #8f8d8d;
+	color: #363636;
+	border-top-color: #4f4f4f;
+	border-bottom-color: #8f8d8d;
+	border-width: 1px;
+	font-size: 80%;
+	
+} 	/* General Button Styling, applies to all buttons...but maybe not the radio buttons?  */
+.ui-collapsible-contain .ui-btn-hover-c{
+	text-shadow: 0 1px 0 #8f8d8d;
+	border-top-color: #4f4f4f;
+	border-bottom-color: #8f8d8d;
+	border-width: 1px;
+	font-size: 80%;
+	
+} 	/* General Button Styling, applies to all buttons...but maybe not the radio buttons?  */
+
+.ui-collapsible-heading a span.ui-btn{
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+	border: none;
+}
+
+.ui-collapsible-heading .ui-btn-up-d{
+	background-color: #787878 ;
+}
+.ui-collapsible-heading .ui-btn-hover-d{
+	background-color: #787878 ;
+}
+
+.ui-collapsible-heading .ui-icon-shadow {
+	box-shadow: none;
+}
+
+
+/* -------- Page Heading Styling -------- */
+
+.ui-bar-a{
+	background: url('images/bg_header.jpg')center center repeat-x;
+}
+
+
+
+/* -------- Collapsible Content Styling -------- */
+
+.ui-collapsible-content{
+	padding-left: 0;
+	padding-right: 0;
+	
+}
+
+
 
 
 
