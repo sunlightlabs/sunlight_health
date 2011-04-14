@@ -30,7 +30,7 @@ h1{
 }
 
 
-.content-banner p{
+#suppliers .content-banner p, #facilities .content-banner p, #drugs .content-banner p{
 	text-align: center;
 	line-height: 1.5;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -39,7 +39,16 @@ h1{
 	margin: 0;
 	text-shadow: none;
 	padding-top: 10px;
-	
+}
+
+.content-banner p{
+	line-height: 1.5;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: 300;
+	border: none;
+	margin: 0;
+	text-shadow: none;
+	padding-top: 10px;
 }
 
 
@@ -84,7 +93,7 @@ h3.name{
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight: 300;
 	font-style: normal;
-	font-size: 19px;
+	font-size: 100%;
 	letter-spacing: 1.5px;
 	color: #ffffff;
 	text-transform: uppercase;
@@ -191,6 +200,7 @@ td.cost{
 
 .notes{
 	color: #4c4c4c;
+	font-size: 90%;
 }
 
 
@@ -212,10 +222,10 @@ td.cost{
 	clear: both;
 }
 
-h2.drug{
+.ui-collapsible-content h2 {
 	color: #4c4c4c;
 	text-transform: uppercase;
-	font-size: 110%;
+	font-size: 90%;
 	padding-left: 10px;
 	margin-bottom: 10px;
 }
@@ -223,7 +233,7 @@ h3.dosage{
 	color: #006f8b;
 	text-transform: uppercase;
 	font-weight: 700;
-	font-size: 110%;
+	font-size: 90%;
 	text-align: left;
 	margin-top: 0;
 	padding-top: 4px;
@@ -241,7 +251,8 @@ h3.dosage{
 	color: #4c4c4c;
 	padding-left: 10px;
 	padding-right: 10px;
-	font-size: 	14px;
+	font-size: 	79%;
+	line-height: 1.25;
 }
 .chemicals li.ui-li-divider{
 	padding-left: 25px;
@@ -258,9 +269,10 @@ h3.dosage{
 	height: 30px;
 	padding: 10px 10px 0 10px;
 	margin: 0;
+	text-shadow: none;
 }
 
-.more a{
+.more a:link{
 	background:url('images/more_arrows.png') right top no-repeat;
 	padding-right: 30px;
 	font-style: oblique;
@@ -277,3 +289,12 @@ h3.dosage{
 	width: 22px;
 	height: 22px;
 }
+
+.content-banner dl{
+	text-shadow: none;
+	font-size: 90%;
+}
+.content-banner dd{
+	padding-left: 50px;
+}
+
