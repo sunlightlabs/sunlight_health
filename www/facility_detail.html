@@ -70,11 +70,11 @@
         
         else if (facility_type == "hospital") {
           Utils.bgLoading();
-          Api.Facility.find(provider_number, facility_type, ["survey_experiences"], function(facility) {
+          Api.Facility.find(provider_number, facility_type, ["survey_experiences", "outcomes"], function(facility) {
             Utils.bgLoading(true);
             if (!facility) return;
             
-            populateHospital(facility.survey_experiences);
+            populateHospital(facility.survey_experiences, facility.outcomes);
           });
         }
         
@@ -110,10 +110,12 @@
       $(".facility.reveal").show();
     }
     
-    function populateHospital(survey_experiences) {
-      var html = "";
+    function populateHospital(survey_experiences, outcomes) {
+      var html;
+      var i;
       
-      var i = 0;
+      html = "";
+      i = 0;
       $.each(survey_experiences, function(field, qualifiers) {
         // combine usually and always
         if (qualifiers.usually && qualifiers.always) {
@@ -139,6 +141,20 @@
       });
       
       $(".facility.hospital .survey_experiences table.data tbody").html(html);
+      
+      i = 0;
+      html = "";
+      $.each(outcomes, function(condition, years) {
+        $.each(years, function(year, info) {
+          if (info.code) {
+            html += outcomesRow(i, info.name, info.code);
+            i += 1;
+          }
+        });
+      });
+      
+      $(".facility.hospital .outcomes table.data tbody").html(html);
+      
       
       $(".facility.loading").hide();
       $(".facility.hospital.hidden").show();
@@ -224,6 +240,14 @@
         "</tr>";
     }
     
+    function outcomesRow(i, name, value) {
+      return "" +
+        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
+          "<th scope=\"row\">" + name + "</th>" +
+          "<td>" + value + "</td>" +
+        "</tr>";
+    }
+    
   </script>
 
   <div data-role="header">
@@ -258,8 +282,8 @@
       
       <div class="facility hospital hidden">
         
-        <div data-role="collapsible" class="survey_experiences">
-          <h1>Services</h1>
+        <div data-role="collapsible" data-collapsed="true" class="survey_experiences">
+          <h1>Patient Surveys</h1>
           
           <table class="data">
             <thead>
@@ -268,6 +292,19 @@
                 <th class="hosp" scope="col">US</th>
                 <th class="hosp" scope="col">Nearby</th>
                 <th class="hosp" scope="col">Hosp</th>
+              </tr>
+            <tbody></tbody>
+          </table>
+        </div>
+        
+        <div data-role="collapsible" data-collapsed="true" class="outcomes">
+          <h1>Patient Outcomes</h1>
+          
+          <table class="data">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th class="hosp" scope="col">Compared to US Average</th>
               </tr>
             <tbody></tbody>
           </table>
