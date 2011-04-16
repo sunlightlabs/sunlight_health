@@ -62,11 +62,11 @@
         
         else if (facility_type == "dialysis") {
           Utils.bgLoading();
-          Api.Facility.find(provider_number, facility_type, ["extended"], function(facility) {
+          Api.Facility.find(provider_number, facility_type, ["extended", "services"], function(facility) {
             Utils.bgLoading(true);
             if (!facility) return;
             
-            populateDialysis(facility.extended);
+            populateDialysis(facility.extended, facility.services);
           });
         }
         
@@ -176,18 +176,18 @@
       
       html = "" +
         simpleValueRow(0, extended.ownership_type.name, extended.ownership_type.value) +
-        simpleValueRow(0, extended.program_participation.name, extended.program_participation.value) +
-        simpleValueRow(0, extended.total_residents.name, extended.total_residents.value) +
-        simpleValueRow(0, extended.certified_bed.name, extended.certified_bed.value) +
-        simpleValueRow(0, extended.occupied_beds.name, extended.occupied_beds.value) +
-        simpleValueRow(0, extended.fire_survey_date.name, dateFor(extended.fire_survey_date.value)) +
-        simpleValueRow(0, extended.health_survey_date.name, dateFor(extended.health_survey_date.value)) +
-        booleanRow(0, extended.within_hospital.name, extended.within_hospital.value) +
-        booleanRow(0, extended.multi_ownership.name, extended.multi_ownership.value) +
-        booleanRow(0, extended.continuing_care_retirement_community.name, extended.continuing_care_retirement_community.value) +
-        booleanRow(0, extended.special_focus_facility.name, extended.special_focus_facility.value) +
-        simpleValueRow(0, extended.resident_and_family_councils.name, extended.resident_and_family_councils.value) +
-        simpleValueRow(0, extended.sprinkler_status.name, extended.sprinkler_status.value);
+        simpleValueRow(1, extended.program_participation.name, extended.program_participation.value) +
+        simpleValueRow(2, extended.total_residents.name, extended.total_residents.value) +
+        simpleValueRow(3, extended.certified_bed.name, extended.certified_bed.value) +
+        simpleValueRow(4, extended.occupied_beds.name, extended.occupied_beds.value) +
+        simpleValueRow(5, extended.fire_survey_date.name, dateFor(extended.fire_survey_date.value)) +
+        simpleValueRow(6, extended.health_survey_date.name, dateFor(extended.health_survey_date.value)) +
+        booleanRow(7, extended.within_hospital.name, extended.within_hospital.value) +
+        booleanRow(8, extended.multi_ownership.name, extended.multi_ownership.value) +
+        booleanRow(9, extended.continuing_care_retirement_community.name, extended.continuing_care_retirement_community.value) +
+        booleanRow(10, extended.special_focus_facility.name, extended.special_focus_facility.value) +
+        simpleValueRow(11, extended.resident_and_family_councils.name, extended.resident_and_family_councils.value) +
+        simpleValueRow(12, extended.sprinkler_status.name, extended.sprinkler_status.value);
         
       $(".facility.nursing_home .extended table.data tbody").html(html);
       
@@ -224,14 +224,17 @@
       $(".facility.home_health.hidden").show();
     }
     
-    function populateDialysis(extended) {
-      var html = "";
-      html += "" +
-        booleanRow(0, "In-Center Hemodialysis", extended.services.in_center_hemodialysis) +
-        booleanRow(1, "In-Center Peritoneal Dialysis", extended.services.in_center_peritoneal_dialysis) +
-        booleanRow(2, "Home Hemodialysis Training", extended.services.home_hemodialysis_training);
+    function populateDialysis(extended, services) {
+      var html, i;
+      
+      html = "" +
+        booleanRow(0, services.in_center_hemodialysis.name, services.in_center_hemodialysis.value) +
+        booleanRow(1, services.in_center_peritoneal_dialysis.name, services.in_center_peritoneal_dialysis.value) +
+        booleanRow(2, services.home_hemodialysis_training.name, services.in_center_peritoneal_dialysis.value);
       
       $(".facility.dialysis .services table.data tbody").html(html);
+      
+      html = "";
       
       $(".facility.loading").hide();
       $(".facility.dialysis.hidden").show();
@@ -265,7 +268,7 @@
     
     function ratingRow(i, name, value) {
       return "" +
-        "<tr class=\"odd\">" +
+        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
           "<th scope=\"row\">" + name + "</td>" +
           "<td class=\"rating-" + value + "\"></td>" +
         "</tr>";
@@ -320,6 +323,7 @@
                 <th class="hosp" scope="col">Nearby</th>
                 <th class="hosp" scope="col">Hosp</th>
               </tr>
+            </thead>
             <tbody></tbody>
           </table>
         </div>
@@ -333,6 +337,7 @@
                 <th scope="col"></th>
                 <th class="hosp" scope="col">Compared to US Average</th>
               </tr>
+            </thead>
             <tbody></tbody>
           </table>
         </div>
@@ -346,10 +351,8 @@
           
           <table class="data">
             <thead>
-              <tr>
-                <th scope="col"></th>
-                <th class="hosp" scope="col"></th>
-              </tr>
+              
+            </thead>
             <tbody></tbody>
           </table>
         </div>
@@ -359,10 +362,8 @@
           
           <table class="data">
             <thead>
-              <tr>
-                <th scope="col"></th>
-                <th class="hosp" scope="col">Rating</th>
-              </tr>
+              
+            </thead>
             <tbody></tbody>
           </table>
         </div>
@@ -380,6 +381,7 @@
                 <th scope="col"></th>
                 <th class="hosp" scope="col">Offered?</th>
               </tr>
+            </thead>
             <tbody></tbody>
           </table>
         </div>
@@ -393,6 +395,7 @@
                 <th scope="col"></th>
                 <th class="hosp" scope="col">% Patients</th>
               </tr>
+            </thead>
             <tbody></tbody>
           </table>
         </div>
@@ -410,6 +413,7 @@
                 <th scope="col"></th>
                 <th class="hosp" scope="col">Offered?</th>
               </tr>
+            </thead>
             <tbody></tbody>
           </table>
         </div>
