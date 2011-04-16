@@ -32,29 +32,31 @@
       var provider_number = Utils.param("provider_number");
       var facility_type = Utils.param("facility_type");
       
-      var sections;
-      if (facility_type == "nursing_home")
-        sections = ["basic", "ratings"]; // ratings section is small enough to just fetch it now
-      else
-        sections = ["basic"];
       
       Utils.loading();
-      Api.Facility.find(provider_number, facility_type, sections, function(facility) {
+      Api.Facility.find(provider_number, facility_type, ["basic"], function(facility) {
         Utils.loading(true);
         if (!facility) return;
         
         populateFacility(facility);
         
-        if (facility_type == "nursing_home")
-          populateNursingHome(facility.ratings);
+        if (facility_type == "nursing_home") {
+          Utils.bgLoading();
+          Api.Facility.find(provider_number, facility_type, ["ratings", "extended"], function(facility) {
+            Utils.bgLoading(true);
+            if (!facility) return;
+            window.facility = facility;
+            populateNursingHome(facility.ratings, facility.extended);
+          });
+        }
         
         else if (facility_type == "home_health") {
           Utils.bgLoading();
-          Api.Facility.find(provider_number, facility_type, ["extended.services"], function(facility) {
+          Api.Facility.find(provider_number, facility_type, ["extended.services", "extended.patient_improvement"], function(facility) {
             Utils.bgLoading(true);
             if (!facility) return;
             
-            populateHomeHealth(facility.extended.services);
+            populateHomeHealth(facility.extended.services, facility.extended.patient_improvement);
           });
         }
         
@@ -147,7 +149,7 @@
       $.each(outcomes, function(condition, years) {
         $.each(years, function(year, info) {
           if (info.code) {
-            html += outcomesRow(i, info.name, info.code);
+            html += simpleValueRow(i, info.name, info.code);
             i += 1;
           }
         });
@@ -160,50 +162,63 @@
       $(".facility.hospital.hidden").show();
     }
     
-    function populateNursingHome(ratings) {
-      var html = "";
-      html += "" +
-        "<tr class=\"odd\">" +
-          "<th scope=\"row\">Overall</td>" +
-          "<td class=\"rating-" + ratings.overall + "\"></td>" +
-        "</tr>" +
-        "<tr class=\"even\">" +
-          "<th scope=\"row\">Health Inspections</td>" +
-          "<td class=\"rating-" + ratings.health_inspections + "\"></td>" +
-        "</tr>" +
-        "<tr class=\"odd\">" +
-          "<th scope=\"row\">Nurse Staffing</td>" +
-          "<td class=\"rating-" + ratings.nurse_staffing + "\"></td>" +
-        "</tr>" +
-        "<tr class=\"even\">" +
-          "<th scope=\"row\">RN Only</td>" +
-          "<td class=\"rating-" + ratings.rn_only + "\"></td>" +
-        "</tr>";
+    function populateNursingHome(ratings, extended) {
+      var i, html;
+      
+      html = "" +
+        ratingRow(0, ratings.overall.name, ratings.overall.value) +
+        ratingRow(1, ratings.rn_only.name, ratings.rn_only.value) +
+        ratingRow(2, ratings.nurse_staffing.name, ratings.nurse_staffing.value) +
+        ratingRow(3, ratings.health_inspections.name, ratings.health_inspections.value);
     
       $(".facility.nursing_home .ratings table.data tbody").html(html);
+      
+      
+      html = "" +
+        simpleValueRow(0, extended.ownership_type.name, extended.ownership_type.value) +
+        simpleValueRow(0, extended.program_participation.name, extended.program_participation.value) +
+        simpleValueRow(0, extended.total_residents.name, extended.total_residents.value) +
+        simpleValueRow(0, extended.certified_bed.name, extended.certified_bed.value) +
+        simpleValueRow(0, extended.occupied_beds.name, extended.occupied_beds.value) +
+        simpleValueRow(0, extended.fire_survey_date.name, dateFor(extended.fire_survey_date.value)) +
+        simpleValueRow(0, extended.health_survey_date.name, dateFor(extended.health_survey_date.value)) +
+        booleanRow(0, extended.within_hospital.name, extended.within_hospital.value) +
+        booleanRow(0, extended.multi_ownership.name, extended.multi_ownership.value) +
+        booleanRow(0, extended.continuing_care_retirement_community.name, extended.continuing_care_retirement_community.value) +
+        booleanRow(0, extended.special_focus_facility.name, extended.special_focus_facility.value) +
+        simpleValueRow(0, extended.resident_and_family_councils.name, extended.resident_and_family_councils.value) +
+        simpleValueRow(0, extended.sprinkler_status.name, extended.sprinkler_status.value);
+        
+      $(".facility.nursing_home .extended table.data tbody").html(html);
       
       $(".facility.loading").hide();
       $(".facility.nursing_home.hidden").show();
     }
     
-    function populateHomeHealth(services) {
-      var names = {
-        nursing_care: "Nursing Care",
-        home_health_aide: "Home Health Aide",
-        physical_therapy: "Physical Therapy",
-        occupational_therapy: "Occupational Therapy",
-        medical_social: "Medical Social Services",
-        speech_pathology: "Occupation Speech Pathology"
-      };
-    
-      var html = "";
-      var i = 0;
-      $.each(names, function(key, value) {
-        html += booleanRow(i, names[key], value);
+    function populateHomeHealth(services, patient_improvement) {
+      var html;
+      var i;
+      
+      html = "";
+      i = 0;
+      $.each(services, function(key, info) {
+        html += booleanRow(i, info.name, info.value);
         i += 1;
       });
       
       $(".facility.home_health .services table.data tbody").html(html);
+      
+      
+      html = "";
+      i = 0;
+      $.each(patient_improvement, function(key, info) {
+        if (info.value != null) {
+          html += simpleValueRow(i, info.name, info.value);
+          i += 1;
+        }
+      });
+      
+      $(".facility.home_health .patient_improvement table.data tbody").html(html);
       
       $(".facility.loading").hide();
       $(".facility.home_health.hidden").show();
@@ -240,12 +255,24 @@
         "</tr>";
     }
     
-    function outcomesRow(i, name, value) {
+    function simpleValueRow(i, name, value) {
       return "" +
         "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
           "<th scope=\"row\">" + name + "</th>" +
           "<td>" + value + "</td>" +
         "</tr>";
+    }
+    
+    function ratingRow(i, name, value) {
+      return "" +
+        "<tr class=\"odd\">" +
+          "<th scope=\"row\">" + name + "</td>" +
+          "<td class=\"rating-" + value + "\"></td>" +
+        "</tr>";
+    }
+    
+    function dateFor(string) {
+      return string;
     }
     
   </script>
@@ -314,7 +341,20 @@
       
       <div class="facility nursing_home hidden">
       
-        <div data-role="collapsible" class="ratings">
+        <div data-role="collapsible" data-collapsed="true" class="extended">
+          <h1>More Info</h1>
+          
+          <table class="data">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th class="hosp" scope="col"></th>
+              </tr>
+            <tbody></tbody>
+          </table>
+        </div>
+      
+        <div data-role="collapsible" data-collapsed="true" class="ratings">
           <h1>Ratings</h1>
           
           <table class="data">
@@ -331,7 +371,7 @@
       
       <div class="facility home_health hidden">
         
-        <div data-role="collapsible" class="services">
+        <div data-role="collapsible" data-collapsed="true" class="services">
           <h1>Services</h1>
           
           <table class="data">
@@ -343,12 +383,25 @@
             <tbody></tbody>
           </table>
         </div>
+        
+        <div data-role="collapsible" data-collapsed="true" class="patient_improvement">
+          <h1>Patient Outcomes</h1>
+          
+          <table class="data">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th class="hosp" scope="col">% Patients</th>
+              </tr>
+            <tbody></tbody>
+          </table>
+        </div>
       
       </div><!-- end home health container -->
       
       <div class="facility dialysis hidden">
         
-        <div data-role="collapsible" class="services">
+        <div data-role="collapsible" data-collapsed="true" class="services">
           <h1>Services</h1>
           
           <table class="data">
