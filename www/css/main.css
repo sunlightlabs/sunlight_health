@@ -297,4 +297,21 @@ h3.dosage{
 .content-banner dd{
 	padding-left: 50px;
 }
+.consumer-reports{
+	display: block;
+	margin-left: -27px;
+	font-style: oblique;
+	font-weight: 400;
+	color: black;
+	text-transform: none;
+	padding-top: 5px;
+}
+
+.survey_experiences tbody{
+	width: 50px;
+	padding-right: 8px;
+	padding-left: 8px;
+	text-align: left;
+}
+
 

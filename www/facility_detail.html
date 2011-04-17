@@ -234,7 +234,23 @@
       
       $(".facility.dialysis .services table.data tbody").html(html);
       
-      html = "";
+      
+      html = "" +
+        simpleValueRow(0, extended.dialysis_stations.name, extended.dialysis_stations.value) +
+        simpleValueRow(0, extended.profit_type.name, extended.profit_type.value) +
+        simpleValueRow(0, extended.high_hemoglobin.name, percentFor(extended.high_hemoglobin.value)) +
+        simpleValueRow(0, extended.low_hemoglobin.name, percentFor(extended.low_hemoglobin.value)) +
+        simpleValueRow(0, extended.network.name, extended.network.value) +
+        simpleValueRow(0, extended.patient_survival.name, extended.patient_survival.value) +
+        simpleValueRow(0, extended.dialysis_adequacy.name, percentFor(extended.dialysis_adequacy.value)) +
+        booleanRow(0, extended.late_shift.name, extended.late_shift.value) +
+        booleanRow(0, extended.chain_owned.name, extended.chain_owned.value) +
+        simpleValueRow(0, extended.chain_organization.name, extended.chain_organization.value) +
+        simpleValueRow(0, extended.hgb_number.name, extended.hgb_number.value) +
+        "";
+      
+      $(".facility.dialysis .extended table.data tbody").html(html);
+      
       
       $(".facility.loading").hide();
       $(".facility.dialysis.hidden").show();
@@ -276,6 +292,10 @@
     
     function dateFor(string) {
       return string;
+    }
+    
+    function percentFor(string) {
+      return string + "%";
     }
     
   </script>
@@ -350,9 +370,7 @@
           <h1>More Info</h1>
           
           <table class="data">
-            <thead>
-              
-            </thead>
+            <thead></thead>
             <tbody></tbody>
           </table>
         </div>
@@ -404,6 +422,15 @@
       
       <div class="facility dialysis hidden">
         
+        <div data-role="collapsible" data-collapsed="true" class="extended">
+          <h1>More Info</h1>
+          
+          <table class="data">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        
         <div data-role="collapsible" data-collapsed="true" class="services">
           <h1>Services</h1>
           
@@ -423,7 +450,7 @@
     </div>
   </div><!-- /content -->
   
-  <div data-role="footer" data-id="stickey_footer" id="stickey_footer">
+  <div data-role="footer" data-position="fixed" data-id="stickey_footer" id="stickey_footer">
     <div data-role="navbar">
       <ul>
         <li><a href="facilities.html" data-icon="nav-icons" id="facilities_nav" class="ui-btn-active ui-state-persist">Facilities</a></li>

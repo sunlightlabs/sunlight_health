@@ -4,9 +4,6 @@
 	padding: 0;
 }
 
-.ui-bar-a, .ui-footer, .stickey_footer {
-	margin: none;
-}
 
 
 
@@ -226,16 +223,50 @@ input.ui-input-text, textarea.ui-input-text {
 
 .list .ui-icon{
 	background-color: transparent;
-	padding-right: 10px;
 }
 
+.ui-icon-arrow-r{
+	background-position: -108px 50% ;
+}
 .max-width-480px .ui-icon-arrow-r{
-	background-position: -161px 50% ;
-} /* Fixes icon positioning for mobile devices. Still doesn't explain where those 40 pixels are coming from.  */
+	background-position: -135px 50% ;
+}
 
+
+
+
+
+ /* Fixes icon positioning for mobile devices. Still doesn't explain where those 40 pixels are coming from.  */
+
+
+/* -------- All Search Results Text Styling -------- */
+.list .ui-li-heading{
+	font-size: 12.8px;
+	text-transform: uppercase;
+	color: #282828;
+	text-shadow: 0 1px 0 #bcbcbc;
+	
+}
+
+.list .ui-li-desc{
+	text-transform: normal;
+
+}
+
+.ui-content .ui-listview{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.ui-btn-icon-right .ui-icon{
+	right: 20px;
+}
 
 /* -------- Collapsible Heading Styling -------- */
-
+.ui-bar-b{
+	text-transform: capitalize;
+	border-top: none;
+}
 
 .ui-collapsible-heading .ui-btn-up-c{
 	background:url('images/bg_collapsible_header.jpg') center center repeat-x ; 
@@ -315,6 +346,12 @@ input.ui-input-text, textarea.ui-input-text {
 .ui-collapsible-content{
 	padding-left: 0;
 	padding-right: 0;
+	
+}
+
+.ui-collapsible-contain .ui-collapsible-content{
+	padding-top: 0;
+	padding-bottom: 0;
 	
 }
 
