@@ -9,8 +9,12 @@ Utils = {
   // depends on jQuery and JQM being loaded, will run a function on page load
   show: function (page, callback) {
     $("#" + page).live("pageshow", function(event, ui) {
-      window.ui = ui;
-      Utils.log("[LOAD](" + page + ")");
+      var msg = "[LOAD](" + page + ")";
+      if (ui.prevPage && ui.prevPage.get(0))
+        msg += " prev page is #" + ui.prevPage.get(0).id;
+      
+      Utils.log(msg);
+      
       callback();
     });
   },

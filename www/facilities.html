@@ -43,17 +43,6 @@
         return false;
       });
       
-      $("button.facilities.emergency").click(function() {
-        var search_type = $('input:radio[name=search_type]:checked').val();
-        
-        if (search_type == "nearby")
-          searchNearbyEmergency();
-        else
-          searchZipEmergency();
-          
-        return false;
-      });
-      
       $("input.facilities.radio").change(function() {
         var search_type = $('input:radio[name=search_type]:checked').val();
         if (search_type == "zip")
@@ -99,32 +88,6 @@
       }
     }
     
-    function searchNearbyEmergency() {
-      Utils.loading();
-        
-      Utils.location(function (lat, lng) {
-        Utils.loading(true);
-        $.mobile.changePage({
-          url: "facilities_list.html",
-          data: {lat: lat, lng: lng, emergency: true},
-          type: "get"
-        });
-      });
-    }
-    
-    function searchZipEmergency() {
-      var zip = $("input.facilities.zipcode").val().trim();
-      if (!zip)
-        Utils.popup("Searching by zip code", "If you want to limit results to a zip code, enter one before searching.");
-      else {
-        $.mobile.changePage({
-          url: "facilities_list.html",
-          data: {zip: zip, emergency: true},
-          type: "get"
-        });
-      }
-    }
-    
   </script>
 
   <div data-role="content">
@@ -164,10 +127,6 @@
 
     <br/> <!-- needed to make sure the button goes below the fields, but doesn't stretch -->
     <button data-inline="true" disabled="disabled" class="search facilities">Search</button>
-    
-    <!-- <div class="emergency">
-      <button data-inline="true" class="facilities emergency">Emergency Care</button>
-    </div> -->
 	
   </div><!-- /content -->
 
