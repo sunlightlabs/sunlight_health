@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+  <meta charset="utf-8" /> 
+  <title>Health in Hand</title>
+  
+  <link href="css/jquery.mobile-1.0a4.1.min.css" rel="stylesheet" />
+  <link href="css/theme.css" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  
+  <!-- Phonegap and JQM init -->
+  <script type="text/javascript" charset="utf-8" src="js/phonegap-0.9.4.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery-1.5.2.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a4.1.min.js"></script>
+  
+  <!-- Utilities -->
+  <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
+  
+  <!-- API communication -->
+  <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/keys.js"></script>
+  
+</head> 
+<body> 
+
+<div data-role="page" class="page" id="about">
+
+  <!-- Page-specific code -->
+  <script type="text/javascript">
+    Utils.show("about", function() {
+    
+    });
+  </script>
+
+  <div data-role="header">
+    <h1>Health in Hand</h1>
+    <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
+  </div><!-- /header -->
+
+  <div data-role="content"> 
+    <p>Page content goes here.</p>    
+  </div><!-- /content -->
+  
+</div><!-- /page -->
+
+</body>
+</html>
