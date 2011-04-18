@@ -1,5 +1,6 @@
 var Api = {
   key: null,
+  host: "health.sunlightlabs.com/api/v1",
   
   get: function(method, sections, params, callback) {
     params = params || {};
@@ -28,7 +29,7 @@ var Api = {
   },
   
   url: function(method) {
-    return "http://health.sunlightlabs.com/api/v1/" + method + ".json";
+    return "http://" + Api.host + "/" + method + ".json";
   },
   
   Facility: {
