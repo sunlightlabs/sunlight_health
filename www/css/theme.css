@@ -15,10 +15,9 @@
 }
 
 .ui-icon{
-	width: 19px;
-	height: 19px;
+	width: 20px;
+	height: 20px;
 }
-
 
 /* -------- Radio Button styling -------- */
 .ui-controlgroup, fieldset.ui-controlgroup, .min-width-480px .ui-field-contain{
@@ -124,24 +123,26 @@ input.ui-input-text, textarea.ui-input-text {
 
 /* -------- Global Nav Styling -------- */
 
+
+
 #facilities_nav .ui-icon-nav-icons{
-	background: url('images/icons-32-nav.png') -48px 50% no-repeat;
-	width: 32px;
+	background: url('images/icons-18-nav.png') -48px 50% no-repeat;
+	width: 34px;
 	height: 32px;
 	margin-left: -16px;
 	border-radius: 0;
 }
 #suppliers_nav .ui-icon-nav-icons{
-	background: url('images/icons-32-nav.png') -144px 50% no-repeat;
-	width: 32px;
+	background: url('images/icons-18-nav.png') -144px 50% no-repeat;
+	width: 34px;
 	height: 32px;
 	margin-left: -16px;
 	border-radius: 0;
 	
 }
 #drugs_nav .ui-icon-nav-icons{
-	background: url('images/icons-32-nav.png') -236px 50% no-repeat;
-	width: 32px;
+	background: url('images/icons-18-nav.png') -234px 50% no-repeat;
+	width: 34px;
 	height: 32px;
 	margin-left: -16px;
 	border-radius: 0;
@@ -159,7 +160,7 @@ input.ui-input-text, textarea.ui-input-text {
 }
 
 #drugs_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons{
-	background-position: -519px 50%;
+	background-position: -517px 50%;
 
 }
 .ui-navbar li .ui-btn, .ui-navbar .ui-navbar-toggle .ui-btn{
@@ -206,7 +207,7 @@ input.ui-input-text, textarea.ui-input-text {
 }
 
 .list .ui-btn-hover-e, .list .ui-btn-hover-c{
-	background: url('images/bg_search_hover.png') center center repeat-x;
+	background: url('images/bg_search_hover.jpg') center center repeat-x;
 	border-top-color: #4f4f4f;
 	border-bottom-color: #8f8d8d;
 	border-width: 1px;
@@ -228,9 +229,7 @@ input.ui-input-text, textarea.ui-input-text {
 .ui-icon-arrow-r{
 	background-position: -108px 50% ;
 }
-.max-width-480px .ui-icon-arrow-r{
-	background-position: -135px 50% ;
-}
+
 
 
 
@@ -277,6 +276,7 @@ input.ui-input-text, textarea.ui-input-text {
 
 .ui-icon-plus{
 	background-color: #464646;
+	background-position: 1px 50%;
 }
 
 .ui-collapsible-heading .ui-btn{
@@ -356,7 +356,85 @@ input.ui-input-text, textarea.ui-input-text {
 }
 
 
+/* -------- Image exceptions for mobile screens -------- */
 
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+	
+	.ui-icon-plus, .ui-icon-minus, .ui-icon-delete, .ui-icon-arrow-r,
+	.ui-icon-arrow-l, .ui-icon-arrow-u, .ui-icon-arrow-d, .ui-icon-check,
+	.ui-icon-gear, .ui-icon-refresh, .ui-icon-forward, .ui-icon-back,
+	.ui-icon-grid, .ui-icon-star, .ui-icon-alert, .ui-icon-info, .ui-icon-home, .ui-icon-search, 
+	.ui-icon-checkbox-off, .ui-icon-checkbox-on, .ui-icon-radio-off, .ui-icon-radio-on {
+		background-image: url(images/icons-36-white.png);
+		-moz-background-size: 630px 18px;
+		-o-background-size: 630px 18px;
+		-webkit-background-size: 630px 18px;
+		background-size: 630px 18px;
+	}
+	.ui-icon-alt {
+		background-image: url(images/icons-36-black.png);
+	}
+	#facilities_nav .ui-icon-nav-icons, #suppliers_nav .ui-icon-nav-icons, #drugs_nav .ui-icon-nav-icons, #facilities_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons, #suppliers_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons, #drugs_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons {
+		background-image: url(images/icons-32-nav.png);
+		-moz-background-size: 600px 36px;
+		-o-background-size: 600px 36px;
+		-webkit-background-size: 600px 36px;
+		background-size: 600px 36px;
+	}
+	.ui-navbar .ui-btn-up-a{
+		background:url('images/bg_footer_x2.jpg') center center repeat-x ;
+		-moz-background-size: 425px 65px;
+		-o-background-size: 425px 65px;
+		-webkit-background-size: 425px 65px;
+		background-size: 425px 65px;
+	}
+	.ui-navbar .ui-btn-hover-a, .ui-btn-active.ui-state-persist{
+		background:url('images/bg_footer_hover_x2.jpg') center center repeat-x ;
+		-moz-background-size: 425px 65px;
+		-o-background-size: 425px 65px;
+		-webkit-background-size: 425px 65px;
+		background-size: 425px 65px;
+	}
+	.list .ui-btn-up-e, .list .ui-btn-up-c{
+		background: url('images/bg_search_x2.jpg') center center repeat-x;
+		-moz-background-size: 355px 75px;
+		-o-background-size: 355px 75px;
+		-webkit-background-size: 355px 75px;
+		background-size: 355px 75px;
+	}
+
+	.list .ui-btn-hover-e, .list .ui-btn-hover-c{
+		background: url('images/bg_search_hover_x2.jpg') center center repeat-x;
+		-moz-background-size: 355px 75px;;
+		-o-background-size: 355px 75px;
+		-webkit-background-size: 355px 75px;
+		background-size: 355px 75px;
+	}
+	.ui-collapsible-heading .ui-btn-up-c{
+		background:url('images/bg_collapsible_header_x2.jpg') center center repeat-x ; 
+		-moz-background-size: 357px 90px;
+		-o-background-size: 357px 90px;
+		-webkit-background-size: 357px 90px;
+		background-size: 357px 90px;
+	}
+	.ui-collapsible-heading .ui-btn-hover-c{
+		background:url('images/bg_collapsible_header_hover_x2.jpg') center center repeat-x ; 
+		-moz-background-size: 357px 90px;
+		-o-background-size: 357px 90px;
+		-webkit-background-size: 357px 90px;
+		background-size: 357px 90px;
+	}
+	.ui-bar-a{
+		background: url('images/bg_header_x2.jpg')center center repeat-x;
+		-moz-background-size: 357px 46px;
+		-o-background-size: 357px 46px;
+		-webkit-background-size: 357px 46px;
+		background-size: 357px 46px;
+	}
+
+}
 
 
 

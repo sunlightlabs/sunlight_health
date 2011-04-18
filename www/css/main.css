@@ -55,10 +55,12 @@ h1{
 .content-banner h1{
 	background: url('images/SunlightHealth_logo.png') top center no-repeat;
 	width: 189px;
-	height: 129px;
+	height: 130px;
 	text-indent: -9999em;
 	margin: auto;
 }
+
+
 
 .page{
     background: url('images/bg_grid.jpg') center top repeat;
@@ -82,7 +84,7 @@ h1{
 }
 .scallop{
 	background: url('images/bg_header_scallop.png') top center repeat-x;
-	height: 35px;
+	height: 27px;
 	width: 100%;
 	margin-top: -1px; /* This hides that wacky blue border that shows up on Android devices under pngs and CSS3 gradients. */
 	margin-bottom: 0;
@@ -314,4 +316,78 @@ h3.dosage{
 	text-align: left;
 }
 
+
+/* -------- Image exceptions for mobiel screens -------- */
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+	
+	.content-banner h1 {
+		background-image: url('images/SunlightHealth_logo_x2.png');
+		-moz-background-size: 189px 130px;
+		-o-background-size: 189px 130px;
+		-webkit-background-size: 189px 130px;
+		background-size: 189px 130px;
+	}
+	.scallop{
+		background: url('images/bg_header_scallop_x2.png') top center repeat-x;
+		-moz-background-size: 37px 27px;
+		-o-background-size: 37px 27px;
+		-webkit-background-size: 37px 27px;
+		background-size: 37px 27px;	
+	}
+	.info{
+		background: url('images/info_icon_x2.png') center top no-repeat;
+		-moz-background-size: 19px 19px;
+		-o-background-size: 19px 19px;
+		-webkit-background-size: 19px 19px;
+		background-size: 19px 19px;
+	}
+	.page{
+	    background: url('images/bg_grid_x2.jpg') center top repeat;
+		-moz-background-size: 20px 19px;
+		-o-background-size: 20px 19px;
+		-webkit-background-size: 20px 19px;
+		background-size: 20px 19px;
+	}
+	#supplier_map .buttons{
+		background: url('images/bg_search_hover_x2.png');
+		-moz-background-size: 355px 75px;
+		-o-background-size: 355px 75px;
+		-webkit-background-size: 355px 75px;
+		background-size: 355px 75px;
+	}
+	.best-buy{
+		background: url('images/bestbuy_star_x2.png') left top no-repeat;
+		-moz-background-size: 20px 18px;
+		-o-background-size: 20px 18px;
+		-webkit-background-size: 20px 18px;
+		background-size: 20px 18px;
+	}
+	.more{
+		background:url('images/bg_more_x2.png') center top repeat-x;
+		-moz-background-size: 12px 40px;
+		-o-background-size: 12px 40px;
+		-webkit-background-size: 12px 40px;
+		background-size: 12px 40px;
+	}
+
+	.more a:link{
+		background:url('images/more_arrows_x2.png') right top no-repeat;
+		-moz-background-size: 19px 17px;
+		-o-background-size: 19px 17px;
+		-webkit-background-size: 19px 17px;
+		background-size: 19px 17px;
+	}
+
+	.info{
+		background: url('images/info_icon.png') center top no-repeat;
+		-moz-background-size: 19px 19px;
+		-o-background-size: 19px 19px;
+		-webkit-background-size: 19px 19px;
+		background-size: 19px 19px;
+	}
+}
 
