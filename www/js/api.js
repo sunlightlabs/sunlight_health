@@ -9,10 +9,12 @@ var Api = {
     if (sections && sections.length > 0)
       params.sections = sections.join(",");
       
+    Utils.log("[" + method + "](" + params.sections + ") sending request");
     $.ajax({
       url: Api.url(method), 
       data: params, 
       success: function(data) {
+        Utils.log("Response received, sending " + (data[method] ? data[method].length : "null") + " results into callback.");
         callback(data[method]);
       },
       dataType: "jsonp" //TODO: Turn this off (to regular JSON) when on a device
