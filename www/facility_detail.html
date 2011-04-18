@@ -85,7 +85,7 @@
     
     function populateFacility(facility) {
       $(".facility .name").html(facility.name);
-      $(".facility .address").html(Utils.address(facility, {break: true}));
+      $(".facility .address").html(Utils.address(facility, {line_break: true}));
       $(".facility .phone").html(Utils.phone(facility.phone));
       $(".facility a.call").attr("href", "tel://" + facility.phone);
       $(".facility a.directions").attr("href", Utils.directions(Utils.address(facility)));

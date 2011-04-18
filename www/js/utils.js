@@ -8,7 +8,11 @@ Utils = {
   
   // depends on jQuery and JQM being loaded, will run a function on page load
   show: function (page, callback) {
-    $("#" + page).live("pageshow", callback);
+    $("#" + page).live("pageshow", function(event, ui) {
+      window.ui = ui;
+      Utils.log("[LOAD](" + page + ")");
+      callback();
+    });
   },
   
   // adapted from http://stackoverflow.com/questions/901115/get-querystring-values-with-jquery
@@ -125,7 +129,7 @@ Utils = {
   address: function(object, options) {
     var addr = object.address;
     
-    if (options && options['break'])
+    if (options && options.line_break)
       addr += "<br/>";
     else
       addr += ", ";
