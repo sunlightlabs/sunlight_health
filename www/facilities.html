@@ -15,7 +15,6 @@
   
   <!-- Utilities -->
   <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
-  <script type="text/javascript" charset="utf-8" src="js/names.js"></script>
   
   <!-- API communication -->
   <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
@@ -41,17 +40,6 @@
         else
           searchZip(facility_type);
         
-        return false;
-      });
-      
-      $("button.facilities.emergency").click(function() {
-        var search_type = $('input:radio[name=search_type]:checked').val();
-        
-        if (search_type == "nearby")
-          searchNearbyEmergency();
-        else
-          searchZipEmergency();
-          
         return false;
       });
       
@@ -100,36 +88,12 @@
       }
     }
     
-    function searchNearbyEmergency() {
-      Utils.loading();
-        
-      Utils.location(function (lat, lng) {
-        Utils.loading(true);
-        $.mobile.changePage({
-          url: "facilities_list.html",
-          data: {lat: lat, lng: lng, emergency: true},
-          type: "get"
-        });
-      });
-    }
-    
-    function searchZipEmergency() {
-      var zip = $("input.facilities.zipcode").val().trim();
-      if (!zip)
-        Utils.popup("Searching by zip code", "If you want to limit results to a zip code, enter one before searching.");
-      else {
-        $.mobile.changePage({
-          url: "facilities_list.html",
-          data: {zip: zip, emergency: true},
-          type: "get"
-        });
-      }
-    }
-    
   </script>
 
   <div data-role="content">
     <div class="content-banner">
+      <a href="about.html" class="info">About</a>
+      
       <h1>Sunlight Health</h1>
       <p>
         Drill down a little deeper. Find out more about the facilities near you.
@@ -163,10 +127,6 @@
 
     <br/> <!-- needed to make sure the button goes below the fields, but doesn't stretch -->
     <button data-inline="true" disabled="disabled" class="search facilities">Search</button>
-    
-    <!-- <div class="emergency">
-      <button data-inline="true" class="facilities emergency">Emergency Care</button>
-    </div> -->
 	
   </div><!-- /content -->
 

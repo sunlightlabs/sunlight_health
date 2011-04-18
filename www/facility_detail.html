@@ -15,7 +15,6 @@
   
   <!-- Utilities -->
   <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
-  <script type="text/javascript" charset="utf-8" src="js/names.js"></script>
   
   <!-- API communication -->
   <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
@@ -86,7 +85,7 @@
     
     function populateFacility(facility) {
       $(".facility .name").html(facility.name);
-      $(".facility .address").html(Utils.address(facility, {break: true}));
+      $(".facility .address").html(Utils.address(facility, {line_break: true}));
       $(".facility .phone").html(Utils.phone(facility.phone));
       $(".facility a.call").attr("href", "tel://" + facility.phone);
       $(".facility a.directions").attr("href", Utils.directions(Utils.address(facility)));

@@ -8,16 +8,24 @@ Utils = {
   
   // depends on jQuery and JQM being loaded, will run a function on page load
   show: function (page, callback) {
-    $("#" + page).live("pageshow", callback);
+    $("#" + page).live("pageshow", function(event, ui) {
+      var msg = "[LOAD](" + page + ")";
+      if (ui.prevPage && ui.prevPage.get(0))
+        msg += " prev page is #" + ui.prevPage.get(0).id;
+      
+      Utils.log(msg);
+      
+      callback();
+    });
   },
   
   // adapted from http://stackoverflow.com/questions/901115/get-querystring-values-with-jquery
   param: function (name) {
     name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
     var regexS = "[\\?&]"+name+"=([^&#]*)";
-    var regex = new RegExp( regexS );
-    var results = regex.exec( window.location.href );
-    if( results == null )
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.href);
+    if (results == null)
       return "";
     else
       return decodeURIComponent(results[1].replace(/\+/g, " "));
@@ -99,13 +107,13 @@ Utils = {
     navigator.geolocation.getCurrentPosition(
       function(point) {
         Utils.loading(true);
-        console.log("Located user at " + point.coords.latitude + "," + point.coords.longitude);
+        Utils.log("Located user at " + point.coords.latitude + "," + point.coords.longitude);
         
         success(point.coords.latitude, point.coords.longitude);
       },
       function(error) {
         Utils.loading(true);
-        console.log("Error " + error.code + ": " + error.message);
+        Utils.log("Error " + error.code + ": " + error.message);
         
         // from phonegap's JS:
         //   PositionError.PERMISSION_DENIED = 1;
@@ -125,7 +133,7 @@ Utils = {
   address: function(object, options) {
     var addr = object.address;
     
-    if (options && options['break'])
+    if (options && options.line_break)
       addr += "<br/>";
     else
       addr += ", ";
@@ -160,13 +168,5 @@ Utils = {
           chemical.drug_names.join(", ") +
         "</p>" +
       "</a>";
-  },
-  
-  collapsible: function(parent, class, header) {
-    $(parent).append("" +
-      "<div data-role=\"collapsible\" class=\"" + class + "\">" +
-        "<h1>" + header + "</h1>" +
-      "</div>"
-    );
   }
 };

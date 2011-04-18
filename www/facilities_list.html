@@ -15,7 +15,6 @@
   
   <!-- Utilities -->
   <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
-  <script type="text/javascript" charset="utf-8" src="js/names.js"></script>
   
   <!-- API communication -->
   <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
@@ -27,11 +26,13 @@
 
   <!-- Page-specific code -->
   <script type="text/javascript">
+    // convention for caching query parameters
+    var p = {};
+      
+    
     Utils.show("facilities_list", function() {
     
       var facility_type = Utils.param("facility_type");
-      
-      var emergency = Utils.param("emergency") == "true";
       
       var lat = Utils.param("lat");
       var lng = Utils.param("lng");
@@ -39,11 +40,7 @@
       
       Utils.loading();
       
-      var params = {};
-      if (emergency)
-        params = {emergency_services: true, facility_type: "hospital"};
-      else
-        params = {facility_type: facility_type};
+      var params = {facility_type: facility_type};
       
       if (zip)
         Api.Facility.searchZip(zip, params, loadFacilities);
