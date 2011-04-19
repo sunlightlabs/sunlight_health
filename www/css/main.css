@@ -3,7 +3,7 @@
 .reveal {display: none;} /* used as a hook in common JS functions */
 .hidden {display: none;} /* must be shown manually */
 
-div.page {height: 100%;}
+div.page {height: ;}
 
 div.map.container, div.map_canvas {width: 100%; height: 100%; padding: 0px;}
 div.map.buttons {
@@ -14,8 +14,6 @@ table.data {width: 100%;}
 table.data thead th {}
 table.data tbody th {font-weight: normal;}
 table.data tbody td {}
-
-
 
 
 
@@ -315,6 +313,33 @@ h3.dosage{
 	padding-left: 8px;
 	text-align: left;
 }
+
+/* -------- Outliers Styling -------- */
+
+
+.outliers .totals{
+	text-shadow: none;
+	font-size: 14px;
+}
+
+.outlier.above, .outlier.below{
+	font-weight: 700;
+	font-size: 16px;
+	padding-right: 15px;
+	color: #d7ca57;
+}
+
+.outlier.above{
+	background: url('images/outlier_up.png') top right ;
+}
+
+
+
+
+
+
+
+
 
 
 /* -------- Image exceptions for mobiel screens -------- */
