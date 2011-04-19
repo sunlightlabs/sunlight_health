@@ -319,12 +319,12 @@
         <!-- Currently using mocked up data so that it can be styled. -->
         <div class="outliers hidden">
           <div class="totals">
-            <span class="outlier above">7</span>
-            above avg measures
-            <span class="outlier below">3</span>
-            below avg measures
+            <span class="above"><span class="outlier above">7</span>
+            above avg measures</span>
+            <span class="below"><span class="outlier below">3</span>
+            below avg measures</span>
           </div>
-          <p>
+          <p class="small">
             Outliers were significantly above/below the national average.
           </p>
         </div>
@@ -383,33 +383,33 @@
             <span class="outlier above">3</span>
             <span class="outlier below">1</span>
           </h1>
-          <table class="data summary">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th class="hosp" scope="col">Local</th>
-                <th class="hosp" scope="col">Hosp</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Number of patients</th>
-                <td>79</td>
-                <td>79</td>
-                <td></td>
-              </tr>
-              <tr>
-                <th scope="row">Average performance</th>
-                <td>79%</td>
-                <td>79%</td>
-              </tr>
-            </tbody>
-          </table>
-          
-          <p>
+			<div class="outliers">
+	          <table class="data summary">
+	            <thead>
+	              <tr>
+	                <th scope="col"></th>
+	                <th class="hosp" scope="col">Local</th>
+	                <th class="hosp" scope="col">Hosp</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                <th scope="row">Number of patients</th>
+	                <td class="hosp" >79</td>
+	                <td class="hosp" >79</td>
+	              </tr>
+	              <tr>
+	                <th scope="row">Average performance</th>
+	                <td class="hosp" >79%</td>
+	                <td class="hosp" >79%</td>
+	              </tr>
+	            </tbody>
+	          </table>
+          	
+          <p class="small">
             Outliers were significantly above/below the national average.
           </p>
-          
+          </div>
           <table class="data values">
             <thead>
               <tr>
@@ -422,33 +422,33 @@
             <tbody>
               <tr>
                 <th scope="row" class="outlier above">Given an antibiotic at the right time</th>
-                <td>95%</td>
-                <td>95%</td>
-                <td>95%</td>
+                <td class="hosp" >95%</td>
+                <td class="hosp" >95%</td>
+                <td class="hosp" >95%</td>
               </tr>
               <tr>
                 <th scope="row" class="outlier above">Antibiotics were stopped at the right time</th>
-                <td>95%</td>
-                <td>95%</td>
-                <td>95%</td>
+                <td class="hosp" >95%</td>
+                <td class="hosp" >95%</td>
+                <td class="hosp" >95%</td>
               </tr>
               <tr>
                 <th scope="row" class="outlier below">Given the right kind of antibiotic</th>
-                <td>95%</td>
-                <td>95%</td>
-                <td>95%</td>
+                <td class="hosp" >95%</td>
+                <td class="hosp" >95%</td>
+                <td class="hosp" >95%</td>
               </tr>
               <tr>
                 <th scope="row" class="outlier below">Received treatment at right time to help prevent blood clot</th>
-                <td>85%</td>
-                <td>84%</td>
-                <td>72%</td>
+                <td class="hosp" >85%</td>
+                <td class="hosp" >84%</td>
+                <td class="hosp" >72%</td>
               </tr>
               <tr>
                 <th scope="row">Received treatment at right time to help prevent blood clot</th>
-                <td>72%</td>
-                <td>72%</td>
-                <td>72%</td>
+                <td class="hosp" >72%</td>
+                <td class="hosp" >72%</td>
+                <td class="hosp" >72%</td>
               </tr>
             </tbody>
           </table>
