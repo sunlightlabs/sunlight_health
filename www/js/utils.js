@@ -3,13 +3,14 @@ Utils = {
   // if running in Android, the command to see log messages in a terminal is:
   // adb logcat PhoneGapLog:V *:S
   log: function(msg) {
-    console.log(msg);
+    console.log("Utils.log:\n" + msg);
   },
   
   // depends on jQuery and JQM being loaded, will run a function on page load
   show: function (page, callback) {
     $("#" + page).live("pageshow", function(event, ui) {
-      var msg = "[LOAD](" + page + ")";
+      window.event = event;
+      var msg = "[LOAD](#" + page + ")";
       if (ui.prevPage && ui.prevPage.get(0))
         msg += " prev page is #" + ui.prevPage.get(0).id;
       
