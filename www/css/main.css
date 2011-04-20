@@ -353,13 +353,14 @@ h3.dosage{
 
 .ui-collapsible-content .small{
 	padding-left: 10px;
-	padding-bottom: 10px;
 }
 
 .ui-collapsible-content .outliers{
 	background-color: #898989;
 	color: #ffffff;
 	text-shadow: none;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .ui-collapsible-heading-toggle .below{

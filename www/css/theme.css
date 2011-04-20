@@ -73,6 +73,8 @@ fieldset.ui-controlgroup{
 
 /* -------- Button styling -------- */
 
+
+
 .ui-btn-up-c{
 	background: #bfbfbf;
 	text-shadow: 0 0 10px #908f8f;
@@ -265,6 +267,7 @@ input.ui-input-text, textarea.ui-input-text {
 .ui-bar-b{
 	text-transform: capitalize;
 	border-top: none;
+	text-shadow: none;
 }
 
 .ui-collapsible-heading .ui-btn-up-c{
