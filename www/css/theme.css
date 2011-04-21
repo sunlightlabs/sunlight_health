@@ -124,6 +124,21 @@ background-position: -216px 50% ;
 	top: 47%;
 }
 
+.call .ui-btn-text{
+	background: url('images/icon_phone.png') left center no-repeat;
+	padding-left: 20px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: #ececec;
+}
+.directions .ui-btn-text{
+	background: url('images/icon_directions.png') left center no-repeat;
+	padding-left: 20px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: #ececec;
+}
+
 
 /* -------- Text Field Styling -------- */
 
@@ -277,6 +292,17 @@ input.ui-input-text, textarea.ui-input-text {
 	right: 20px;
 }
 
+.ui-btn-up-c a.ui-link-inherit{
+	color: #282828;
+}
+
+.ui-btn-hover-c a.ui-link-inherit{
+	color: #282828;
+}
+.ui-btn-down-c a.ui-link-inherit{
+	color: #282828;
+}
+
 /* -------- Collapsible Heading Styling -------- */
 .ui-bar-b{
 	text-transform: capitalize;
@@ -343,6 +369,7 @@ input.ui-input-text, textarea.ui-input-text {
 }
 .ui-collapsible-heading .ui-btn-hover-d{
 	background-color: #787878 ;
+	background-image: none;
 }
 
 

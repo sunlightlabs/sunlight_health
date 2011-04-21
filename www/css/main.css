@@ -223,6 +223,7 @@ td.cost{
 	text-align: left;
 	margin: 0;
 	float: left;
+	font-weight: 400;
 }
 
 .clear{
@@ -378,7 +379,39 @@ h3.dosage{
 	margin-right:50px;
 }
 
+/* -------- Search Results Loading Dialogue -------- */
 
+.loading.empty{
+	padding-left: 10px;
+}
+
+
+/* -------- Star Ratings -------- */
+
+.rating-0{
+	background: url('images/stars_zero.png') right center no-repeat;	
+	width: 90px;
+}
+.rating-1{
+	background: url('images/stars_one.png') left center no-repeat;
+	width: 90px;
+}
+.rating-2{
+	background: url('images/stars_two.png') right center no-repeat;
+	width: 90px;
+}
+.rating-3{
+	background: url('images/stars_three.png') right center no-repeat;
+	width: 90px;
+}
+.rating-4{
+	background: url('images/stars_four.png') right center no-repeat;
+	width: 90px;
+}
+.rating-5{
+	background: url('images/stars_five.png') right center no-repeat;
+	width: 90px;
+}
 
 
 
