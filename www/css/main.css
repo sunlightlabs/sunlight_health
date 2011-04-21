@@ -7,7 +7,8 @@ div.page.map_parent {height: 100%;}
 
 div.map.container, div.map_canvas {width: 100%; height: 100%; padding: 0px;}
 div.map.buttons {
-  position: absolute; z-index: 9; width: 100%; bottom: 0;
+  position: fixed; z-index: 9; width: 100%; bottom: 60px; padding-top: 10px; padding-bottom: 10px;
+	background: url('images/bg_collapsible_header.jpg') center center repeat-x ;
 }
 
 table.data {width: 100%;}
@@ -37,6 +38,8 @@ h1{
 	margin: 0;
 	text-shadow: none;
 	padding-top: 10px;
+	font-size: 14px;
+	color: white;
 }
 
 .content-banner p{
@@ -47,6 +50,7 @@ h1{
 	margin: 0;
 	text-shadow: none;
 	padding-top: 10px;
+
 }
 
 
@@ -109,8 +113,8 @@ h3.name{
 	font-weight: 400;
 	font-style: normal;
 }
-.phone{
-	font-weight: bold;
+.content-banner p.phone{
+	font-weight: 700;
 }
 
 #supplier_detail .ui-content{
@@ -277,7 +281,7 @@ h3.dosage{
 
 .more a:link{
 	background:url('images/more_arrows.png') right top no-repeat;
-	padding-right: 30px;
+	padding-right: 20px;
 	font-style: oblique;
 	color: #818181;
 	font-size: 14px;
