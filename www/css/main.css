@@ -29,9 +29,9 @@ h1{
 }
 
 
-#suppliers .content-banner p, #facilities .content-banner p, #drugs .content-banner p{
+#suppliers .content-banner p, #facilities .content-banner p, #drugs .content-banner p, #about .content-banner p{
 	text-align: center;
-	line-height: 1.5;
+	line-height: 1.75;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight: 300;
 	border: none;
@@ -297,6 +297,23 @@ h3.dosage{
 	width: 22px;
 	height: 22px;
 }
+.info-close{
+	text-indent: -9999em;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: url('images/exit_icon.png') center top no-repeat;
+	width: 22px;
+	height: 22px;
+}
+.sunlight{
+	text-indent: -9999em;
+	background: url('images/sunlight.png') center top no-repeat;
+	width: 153px;
+	height: 35px;
+	margin: auto;
+	margin-top: 10px;
+}
 
 .content-banner dl{
 	text-shadow: none;
@@ -389,7 +406,7 @@ h3.dosage{
 /* -------- Star Ratings -------- */
 
 .rating-0{
-	background: url('images/stars_zero.png') right center no-repeat;	
+	background: url('images/stars_zero.png') left center no-repeat;	
 	width: 90px;
 }
 .rating-1{
@@ -397,19 +414,19 @@ h3.dosage{
 	width: 90px;
 }
 .rating-2{
-	background: url('images/stars_two.png') right center no-repeat;
+	background: url('images/stars_two.png') left center no-repeat;
 	width: 90px;
 }
 .rating-3{
-	background: url('images/stars_three.png') right center no-repeat;
+	background: url('images/stars_three.png') left center no-repeat;
 	width: 90px;
 }
 .rating-4{
-	background: url('images/stars_four.png') right center no-repeat;
+	background: url('images/stars_four.png') left center no-repeat;
 	width: 90px;
 }
 .rating-5{
-	background: url('images/stars_five.png') right center no-repeat;
+	background: url('images/stars_five.png') left center no-repeat;
 	width: 90px;
 }
 
@@ -443,7 +460,7 @@ h3.dosage{
 		-webkit-background-size: 19px 19px;
 		background-size: 19px 19px;
 	}
-	.page{
+	.page{ 
 	    background: url('images/bg_grid_x2.jpg') center top repeat;
 		-moz-background-size: 20px 19px;
 		-o-background-size: 20px 19px;
