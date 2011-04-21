@@ -108,10 +108,6 @@ fieldset.ui-controlgroup{
 background-position: -216px 50% ;
 }
 
-.max-width-480px .ui-icon-arrow-d{
-	background-position: -269px 50% ;
-} /* Fixes icon positioning for mobile devices. Still doesn't explain where those 40 pixels are coming from.  */
-
 .ui-select .ui-btn{
 	text-align: left;
 }
