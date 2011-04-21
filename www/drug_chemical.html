@@ -2,7 +2,7 @@
 <html> 
 <head>
   <meta charset="utf-8" /> 
-  <title>Health in Hand</title>
+  <title>Sunlight Health</title>
   
   <link href="css/jquery.mobile-1.0a4.1.min.css" rel="stylesheet" />
   <link href="css/theme.css" rel="stylesheet" />
@@ -37,9 +37,7 @@
       Utils.loading();
       Api.Drug.chemical(name, drug_class, subdivision, ["basic", "drugs"], function(chemical) {
         Utils.loading(true);
-        
-        if (!chemical)
-          return; // TODO: dialog
+        if (!chemical) return;
         
         populateChemical(chemical);
         populateDrugs(chemical.drugs);
@@ -84,9 +82,9 @@
         for (var j=0; j<drug.doses.length; j++) {
           var dose = drug.doses[j];
           html += "" +
-                "<tr class=\"" + (j % 2 == 0 ? "even" : "odd") + "\">" +
+                "<tr class=\"" + (j % 2 == 0 ? "even" : "odd") + (dose.best_buy ? " best-buy" : "") + "\">" +
                   "<th scope=\"row\" class=\"drug dosage\">" +
-                    "<h3 class=\"drug dosage name" + (dose.best_buy ? " best-buy" : "") +"\">" +
+                    "<h3 class=\"drug dosage name\">" +
                       dose.dosage +
                       (dose.best_buy ? "<span class=\"consumer-reports\">A Consumer Reports Best Buy Drug</span>" : "") +
                     "</h3>" +
