@@ -112,6 +112,15 @@ background-position: -216px 50% ;
 	text-align: left;
 }
 
+.ui-select{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.ui-btn{
+	margin-left: 0;
+	margin-right: 0;
+}
+
 .ui-btn.ui-shadow{
 	box-shadow: none;
 }
@@ -140,10 +149,12 @@ background-position: -216px 50% ;
 
 input.ui-input-text, textarea.ui-input-text {
 	font-size: 80%;
-	padding-left: 25px;
-	margin-left:5px ;
+	padding-left: 0;
+	padding-right: 0;
 	padding-top: 7px;
 	padding-bottom: 7px;
+	text-indent: 25px;
+	width: 100%;
 }
 
 
@@ -320,7 +331,7 @@ input.ui-input-text, textarea.ui-input-text {
 
 .ui-collapsible-heading .ui-btn{
 	padding-left: 10px;
-	padding-top: 3px;
+	padding-top: 5px;
 	padding-bottom: 3px;
 }
 
@@ -373,6 +384,10 @@ input.ui-input-text, textarea.ui-input-text {
 	box-shadow: none;
 }
 
+.ui-collapsible-heading .ui-icon, .ui-collapsible-heading .ui-icon{
+	top: 50%;
+}
+
 
 /* -------- Page Heading Styling -------- */
 
@@ -394,6 +409,19 @@ input.ui-input-text, textarea.ui-input-text {
 	padding-top: 0;
 	padding-bottom: 0;
 	
+}
+
+/* -------- Dialgue Window -------- */
+
+.ui-corner-bottom{
+	.ui-corner-bottom {
+		-moz-border-radius-bottomleft: 		0;
+		-webkit-border-bottom-left-radius: 	0;
+		border-bottom-left-radius: 			0;
+		-moz-border-radius-bottomright: 	0;
+		-webkit-border-bottom-right-radius: 0;
+		border-bottom-right-radius: 		0;
+		}
 }
 
 
