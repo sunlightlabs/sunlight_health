@@ -2,7 +2,7 @@
 <html> 
 <head>
   <meta charset="utf-8" /> 
-  <title>Health in Hand</title>
+  <title>Sunlight Health</title>
   
   <link href="css/jquery.mobile-1.0a4.1.min.css" rel="stylesheet" />
   <link href="css/theme.css" rel="stylesheet" />
@@ -79,15 +79,20 @@
     
     function populateList(supplies) {
       var html = "";
-      var i = 0;
+      
+      
+      var names = [];
+      
       $.each(supplies, function(name, whether) {
-        if (whether) {
-          html += "" +
-            "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
-              "<th scope=\"row\">" + name + "</th>" +
-            "</tr>";
-          i += 1;
-        }        
+        if (whether)
+          names[names.length] = name;
+      });
+      
+      $.each(names.sort(), function(i, name) {
+        html += "" +
+          "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
+            "<th scope=\"row\">" + name + "</th>" +
+          "</tr>";
       });
       
       $(".supplier.supplies table.data tbody").html(html);
