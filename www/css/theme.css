@@ -438,13 +438,10 @@ input.ui-input-text, textarea.ui-input-text {
     margin-right: 10px;
     margin-top: 0;
     opacity: 0.9;
-    position: relative;
     width: 18px;
 	display: inline-block;
 }
-.loading p{
-	display: inline;
-}
+
 
 .loading .ui-icon-loading {
 	background-image:url('images/ajax-loader_180px.png');
@@ -454,7 +451,6 @@ input.ui-input-text, textarea.ui-input-text {
 	-webkit-border-radius: 20px;
 	border-radius: 20px;
 	background-size: 18px 18px;
-	position: absolute;
 }
 
 .loading.empty{
