@@ -854,7 +854,7 @@ a.ui-link-inherit {
 
 /* loading icon */
 .ui-icon-loading {
-	background-image: url(images/ajax-loader.png);
+	background-image: url('images/arrow_circle_right_64.png');
 	width: 40px;
 	height: 40px;
 	-moz-border-radius: 20px;
