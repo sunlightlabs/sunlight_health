@@ -2,6 +2,8 @@ Utils = {
   
   // if running in Android, the command to see log messages in a terminal is:
   // adb logcat PhoneGapLog:V *:S
+  // or when running in the web browser:
+  // adb logcat browser:V *:S
   log: function(msg) {
     console.log("Utils.log:\n" + msg);
   },
