@@ -1,8 +1,10 @@
 <!DOCTYPE html> 
 <html> 
 <head>
-  <meta charset="utf-8" /> 
-  <title>Health in Hand</title>
+  <meta charset="utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  <title>Sunlight Health</title>
   
   <link href="css/jquery.mobile-1.0a4.1.min.css" rel="stylesheet" />
   <link href="css/theme.css" rel="stylesheet" />
@@ -23,42 +25,128 @@
 </head>
 
 <body>
-  
-  <div data-role="page" id="jqm-home" class="page" data-theme="a">
-    <!-- Page-specific code -->
-    <script type="text/javascript">
-      Utils.show("jqm-home", function() {
+
+<div data-role="page" class="page" id="facilities">
+
+  <!-- Page-specific code -->
+  <script type="text/javascript">
+    var currentQuery = "";
+    
+    Utils.show("facilities", function() {
+      $("button.search.facilities").click(function() {
+        var facility_type = $("select#facility_type").val();
         
+        var search_type = $('input:radio[name=search_type]:checked').val();
+        
+        if (search_type == "nearby")
+          searchNearby(facility_type);
+        else
+          searchZip(facility_type);
+        
+        return false;
       });
-    </script>
+      
+      $("input.facilities.radio").change(function() {
+        var search_type = $('input:radio[name=search_type]:checked').val();
+        if (search_type == "zip")
+          $("input.facilities.search.zipcode").attr("disabled", "");
+        else
+          $("input.facilities.search.zipcode").attr("disabled", "disabled");
+      });
+      
+      $("select#facility_type").change(function() {
+        if ($(this).val() == "placeholder")
+          $("button.search.facilities").attr("disabled", "disabled");
+        else
+          $("button.search.facilities").attr("disabled", "");
+          
+        $("button.search.facilities").button("refresh");
+      });
+      
+    });
     
-    <div data-role="header" data-backbtn="false">
-      <h1>Health In Hand</h1>
-    </div><!-- /header -->
+    function searchNearby(facility_type) {
+      Utils.loading();
+        
+      Utils.location(function (lat, lng) {
+        Utils.loading(true);
+        $.mobile.changePage({
+          url: "facilities_list.html",
+          data: {lat: lat, lng: lng, facility_type: facility_type},
+          type: "get"
+        });
+      });
+    }
+    
+    function searchZip(facility_type) {
+      var zip = $("input.facilities.zipcode").val().trim();
+      if (!zip)
+        Utils.popup("Searching by zip code", "If you want to limit results to a zip code, enter one before searching.");
+      else {
+        $.mobile.changePage({
+          url: "facilities_list.html",
+          data: {zip: zip, facility_type: facility_type},
+          type: "get"
+        });
+      }
+    }
+    
+  </script>
 
-    <div data-role="content" class="content">
+  <div data-role="content">
+    <div class="content-banner">
+      <a href="about.html" data-transition="fade" class="info">About</a>
+      
+      <h1>Sunlight Health</h1>
+      <p>
+        Drill down a little deeper. Find out more about the facilities near you.
+      </p>
+    </div>
+	<div class="scallop">
+		
+	</div>
+
+    <div data-role="fieldcontain">
+      <fieldset data-role="controlgroup" data-type="horizontal">
+        <input type="radio" name="search_type" value="nearby" class="radio facilities nearby" id="search_type-nearby" checked="checked" />
+        <label for="search_type-nearby">Nearby</label>
+        <input type="radio" name="search_type" value="zip" class="radio facilities zip" id="search_type-zip" />
+        <label for="search_type-zip">Zipcode</label>
+      </fieldset>
+    </div>
+
+    <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
     
-      <ul data-role="listview" data-theme="c">
-        <li><a href="facilities.html">Facilities</a></li>
-        <li><a href="suppliers.html">Suppliers</a></li>
-        <li><a href="drugs.html">Drugs</a></li>
+    <div class="ui-select">
+	<input class="search facilities zipcode" type="text" name="zip" placeholder="Enter a zipcode..." disabled="disabled" />
+    </div>
+    
+    <select name="facility_type" id="facility_type">
+      <option value="placeholder" data-placeholder="true" class="placeholder">Select a Facility Type</option>
+      <option value="hospital">Hospital</option>
+      <option value="dialysis">Dialysis Clinic</option>
+      <option value="nursing_home">Nursing Home</option>
+      <option value="home_health">Home Health</option>
+    </select>
+
+    <br/> <!-- needed to make sure the button goes below the fields, but doesn't stretch -->
+     <div class="ui-select">
+		<button data-inline="true" disabled="disabled" class="search facilities">Search</button>
+	</div>
+	
+  </div><!-- /content -->
+
+  <div data-role="footer" data-position="fixed" data-id="stickey_footer" id="stickey_footer">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="index.html" data-icon="nav-icons" id="facilities_nav" class="ui-btn-active ui-state-persist">Facilities</a></li>
+        <li><a href="suppliers.html" data-icon="nav-icons" id="suppliers_nav" >Suppliers</a></li>
+        <li><a href="drugs.html" data-icon="nav-icons" id="drugs_nav">Drugs</a></li>
       </ul>
-    
-    </div><!-- /content -->
-
-	<div data-role="footer" data-position="fixed" data-id="stickey_footer" id="stickey_footer">
-		<div data-role="navbar">
-			<ul>
-				<li><a href="facilities.html" data-icon="nav-icons" id="facilities_nav">Facilities</a></li>
-				<li><a href="suppliers.html" data-icon="nav-icons" id="suppliers_nav" class="ui-btn-active ui-state-persist">Suppliers</a></li>
-				<li><a href="drugs.html" data-icon="nav-icons" id="drugs_nav">Drugs</a></li>
-			</ul>
-		</div><!-- /navbar -->
-
+    </div><!-- /navbar -->
   </div><!-- /footer -->
-  </div>
-  
-  <!-- comment testing -->
-  
+
+</div><!-- /page -->
+
 </body>
 </html>
