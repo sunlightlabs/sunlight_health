@@ -446,20 +446,10 @@ input.ui-input-text, textarea.ui-input-text {
 	display: inline;
 }
 
-.ui-icon-loading {
-	background-image: url('images/arrow_circle_right_64.png');
-	width: 40px;
-	height: 40px;
-	-moz-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	border-radius: 20px;
-	background-size: 35px 35px;
-}
-
 .loading .ui-icon-loading {
-	background-image: url('images/arrow_circle_right_18.png');
-	width: 18px;
-	height: 18px;
+	background-image:url('images/ajax-loader_180px.png');
+	width: 23px;
+	height: 23px;
 	-moz-border-radius: 20px;
 	-webkit-border-radius: 20px;
 	border-radius: 20px;
