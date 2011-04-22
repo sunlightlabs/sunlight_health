@@ -96,6 +96,15 @@ fieldset.ui-controlgroup{
 	
 } 	/* General Button Styling, applies to all buttons...but maybe not the radio buttons?  */
 
+.ui-btn-active{
+	border-color: #bbbbbb;
+	text-shadow: 0 0 4px #908f8f;
+
+}
+.ui-btn-down-c{
+	border-color: #bbbbbb;
+}
+
 .ui-br {
 	border-bottom: none;
 } 	/* Removes strange border that shows up just above the search field ... related to the div that's above it.  */
@@ -110,6 +119,9 @@ background-position: -216px 50% ;
 
 .ui-select .ui-btn{
 	text-align: left;
+}
+.ui-select .ui-btn-active{
+	color: #101010;
 }
 
 .ui-select{
@@ -234,6 +246,13 @@ input.ui-input-text, textarea.ui-input-text {
 	border-left: 2px solid #1e1e1e;
 }
 
+.ui-navbar .ui-btn-active, .ui-navbar .ui-btn-active, .ui-navbar .ui-btn-active {
+	border: none;
+}
+.ui-navbar .ui-btn-down-a, .ui-navbar .ui-btn-down-a, .ui-navbar .ui-btn-down-a {
+	border: none;
+}
+
 
 /* -------- Auto Search Result List Styling -------- */
 
@@ -273,7 +292,13 @@ input.ui-input-text, textarea.ui-input-text {
 }
 
 
+.list .ui-btn-active{
+	text-shadow: 0 1px 1px #FFFFFF;
+}
 
+.ui-btn-active a.ui-link-inherit {
+	color: #333333;
+}
 
 
 
