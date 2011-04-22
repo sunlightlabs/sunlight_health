@@ -1,8 +1,10 @@
 <!DOCTYPE html> 
 <html> 
 <head>
-  <meta charset="utf-8" /> 
-  <title>Health in Hand</title>
+  <meta charset="utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  <title>Sunlight Health</title>
   
   <link href="css/jquery.mobile-1.0a4.1.min.css" rel="stylesheet" />
   <link href="css/theme.css" rel="stylesheet" />
@@ -15,12 +17,13 @@
   
   <!-- Utilities -->
   <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/analytics.js"></script>
   
   <!-- API communication -->
   <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/keys.js"></script>
-  
-</head> 
+</head>
+
 <body>
 
 <div data-role="page" class="page" id="facilities">
@@ -136,7 +139,7 @@
   <div data-role="footer" data-position="fixed" data-id="stickey_footer" id="stickey_footer">
     <div data-role="navbar">
       <ul>
-        <li><a href="facilities.html" data-icon="nav-icons" id="facilities_nav" class="ui-btn-active ui-state-persist">Facilities</a></li>
+        <li><a href="index.html" data-icon="nav-icons" id="facilities_nav" class="ui-btn-active ui-state-persist">Facilities</a></li>
         <li><a href="suppliers.html" data-icon="nav-icons" id="suppliers_nav" >Suppliers</a></li>
         <li><a href="drugs.html" data-icon="nav-icons" id="drugs_nav">Drugs</a></li>
       </ul>
