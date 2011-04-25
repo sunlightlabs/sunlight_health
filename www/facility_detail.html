@@ -176,22 +176,40 @@
       $(".facility.nursing_home .ratings table.data tbody").html(html);
       
       
-      html = "" +
-        simpleValueRow(0, extended.ownership_type.name, extended.ownership_type.value) +
-        simpleValueRow(1, extended.program_participation.name, extended.program_participation.value) +
-        simpleValueRow(2, extended.total_residents.name, extended.total_residents.value) +
-        simpleValueRow(3, extended.certified_bed.name, extended.certified_bed.value) +
-        simpleValueRow(4, extended.occupied_beds.name, extended.occupied_beds.value) +
-        simpleValueRow(5, extended.fire_survey_date.name, dateFor(extended.fire_survey_date.value)) +
-        simpleValueRow(6, extended.health_survey_date.name, dateFor(extended.health_survey_date.value)) +
-        booleanRow(7, extended.within_hospital.name, extended.within_hospital.value) +
-        booleanRow(8, extended.multi_ownership.name, extended.multi_ownership.value) +
-        booleanRow(9, extended.continuing_care_retirement_community.name, extended.continuing_care_retirement_community.value) +
-        booleanRow(10, extended.special_focus_facility.name, extended.special_focus_facility.value) +
-        simpleValueRow(11, extended.resident_and_family_councils.name, extended.resident_and_family_councils.value) +
-        simpleValueRow(12, extended.sprinkler_status.name, extended.sprinkler_status.value);
+      var percent = parseInt((extended.total_residents.value / extended.certified_bed.value) * 100);
+      $(".facility.nursing_home .occupancy div.data span.percent").html(percent + "%");
+      $(".facility.nursing_home .occupancy div.data .beds dd").html(extended.certified_bed.value);
+      $(".facility.nursing_home .occupancy div.data .residents dd").html(extended.total_residents.value);
         
-      $(".facility.nursing_home .extended table.data tbody").html(html);
+      
+      html = "" +
+        booleanRow(0, "Medicaid Participation", extended.program_participation.value.match(/Medicaid/)) +
+        booleanRow(1, "Medicare Participation", extended.program_participation.value.match(/Medicare/)) +
+        booleanRow(2, extended.within_hospital.name, extended.within_hospital.value) +
+        booleanRow(3, extended.multi_ownership.name, extended.multi_ownership.value) +
+        simpleValueRow(4, extended.resident_and_family_councils.name, extended.resident_and_family_councils.value) +
+        booleanRow(5, extended.continuing_care_retirement_community.name, extended.continuing_care_retirement_community.value) +
+        booleanRow(6, extended.special_focus_facility.name, extended.special_focus_facility.value) +
+        "";
+        
+      $(".facility.nursing_home .participation table.data tbody").html(html);
+      
+      
+      
+      $(".facility.nursing_home .inspections div.data .health_survey dd").html(dateFor(extended.health_survey_date.value));
+      $(".facility.nursing_home .inspections div.data .fire_survey dd").html(dateFor(extended.fire_survey_date.value));
+      
+      var val = extended.sprinkler_status.value;
+      var klass;
+      if (val.match(/Partially/i))
+        klass = "partially";
+      else if (val.match(/Fully/i))
+        klass = "fully";
+      else
+        klass = "not";
+        
+      $(".facility.nursing_home .inspections div.data .sprinklers dt").addClass(klass);
+      
       
       $(".facility.loading").hide();
       $(".facility.nursing_home.hidden").show();
@@ -340,9 +358,9 @@
         </div>
       </div>
       
-	  <p class="loading empty facilities ">
-	    <span class='ui-icon ui-icon-loading spin'></span>Loading facilities...
-	  </p>
+      <p class="loading empty facilities">
+        <span class='ui-icon ui-icon-loading spin'></span>Loading facilities...
+      </p>
       
       <div class="facility hospital hidden">
         
@@ -360,7 +378,7 @@
             </thead>
             <tbody></tbody>
           </table>
-		  <p class="more"><a href="">read more about this data...</a></p>
+          <p class="more"><a href="">read more about this data...</a></p>
         </div>
         
         <div data-role="collapsible" data-collapsed="true" class="outcomes">
@@ -375,7 +393,7 @@
             </thead>
             <tbody></tbody>
           </table>
-		  <p class="more"><a href="">read more about this data...</a></p>
+          <p class="more"><a href="">read more about this data...</a></p>
         </div>
         
         <div data-role="collapsible" data-collapsed="false" class="process surgical_care">
@@ -396,13 +414,13 @@
               <tbody>
                 <tr>
                   <th scope="row">Number of patients</th>
-                  <td class="hosp" >79</td>
-                  <td class="hosp" >79</td>
+                  <td class="hosp">79</td>
+                  <td class="hosp">79</td>
                 </tr>
                 <tr>
                   <th scope="row">Average performance</th>
-                  <td class="hosp" >79%</td>
-                  <td class="hosp" >79%</td>
+                  <td class="hosp">79%</td>
+                  <td class="hosp">79%</td>
                 </tr>
               </tbody>
             </table>
@@ -424,33 +442,33 @@
             <tbody>
               <tr>
                 <th scope="row" class="outlier above">Given an antibiotic at the right time</th>
-                <td class="hosp" >95%</td>
-                <td class="hosp" >95%</td>
-                <td class="hosp" >95%</td>
+                <td class="hosp">95%</td>
+                <td class="hosp">95%</td>
+                <td class="hosp">95%</td>
               </tr>
               <tr>
                 <th scope="row" class="outlier above">Antibiotics were stopped at the right time</th>
-                <td class="hosp" >95%</td>
-                <td class="hosp" >95%</td>
-                <td class="hosp" >95%</td>
+                <td class="hosp">95%</td>
+                <td class="hosp">95%</td>
+                <td class="hosp">95%</td>
               </tr>
               <tr>
                 <th scope="row" class="outlier below">Given the right kind of antibiotic</th>
-                <td class="hosp" >95%</td>
-                <td class="hosp" >95%</td>
-                <td class="hosp" >95%</td>
+                <td class="hosp">95%</td>
+                <td class="hosp">95%</td>
+                <td class="hosp">95%</td>
               </tr>
               <tr>
                 <th scope="row" class="outlier below">Received treatment at right time to help prevent blood clot</th>
-                <td class="hosp" >85%</td>
-                <td class="hosp" >84%</td>
-                <td class="hosp" >72%</td>
+                <td class="hosp">85%</td>
+                <td class="hosp">84%</td>
+                <td class="hosp">72%</td>
               </tr>
               <tr>
                 <th scope="row">Received treatment at right time to help prevent blood clot</th>
-                <td class="hosp" >72%</td>
-                <td class="hosp" >72%</td>
-                <td class="hosp" >72%</td>
+                <td class="hosp">72%</td>
+                <td class="hosp">72%</td>
+                <td class="hosp">72%</td>
               </tr>
             </tbody>
           </table>
@@ -470,17 +488,55 @@
             </thead>
             <tbody></tbody>
           </table>
-		  <p class="more"><a href="">read more about this data...</a></p>
+          <p class="more"><a href="">read more about this data...</a></p>
+        </div>
+        
+        <div data-role="collapsible" data-collapsed="true" class="occupancy">
+          <h1>Occupancy</h1>
+          
+          <div class="data">
+            <span class="percent">
+            </span>
+            <div class="beds">
+              <dt>Certified Beds</dt>
+              <dd></dd>
+            </div>
+            <div class="residents">
+              <dt>Residents</dt>
+              <dd></dd>
+            </div>
+          </div>
+          <p class="more"><a href="">read more about this data...</a></p>
         </div>
 
-		<div data-role="collapsible" data-collapsed="true" class="extended">
-          <h1>More Info</h1>
+        <div data-role="collapsible" data-collapsed="true" class="participation">
+          <h1>Facility Participation</h1>
           
           <table class="data">
             <thead></thead>
             <tbody></tbody>
           </table>
-		  <p class="more"><a href="">read more about this data...</a></p>
+          <p class="more"><a href="">read more about this data...</a></p>
+        </div>
+        
+        <div data-role="collapsible" data-collapsed="true" class="inspections">
+          <h1>Inspections</h1>
+          
+          <div class="data">
+            <div class="health_survey">
+              <dt>Health Survey</dt>
+              <dd></dd>
+            </div>
+            <div class="fire_survey">
+              <dt>Fire Survey</dt>
+              <dd></dd>
+            </div>
+            <div class="sprinklers">
+              <dt>Sprinklers</dt>
+              <dd></dd><!-- will get marked with class "checked" or "unchecked" -->
+            </div>
+          </div>
+          <p class="more"><a href="">read more about this data...</a></p>
         </div>
         
       </div><!-- end nursing home container -->

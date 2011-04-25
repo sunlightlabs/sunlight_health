@@ -29,7 +29,6 @@
     Utils.show("supplier_detail", function() {
       
       var row = Utils.param("row");
-      Utils.log("row: " + row);
       
       Utils.loading();
       Api.Supplier.find(row, ["basic", "row"], function(supplier) {
