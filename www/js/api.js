@@ -46,7 +46,7 @@ var Api = {
     searchZip: function(zip, params, callback) {
       Api.get("facilities", 
               ["basic"], 
-              $.extend({zip: zip}, params),
+              $.extend({location: zip}, params),
               callback);
     },
     
@@ -70,7 +70,7 @@ var Api = {
     },
     
     searchZip: function(supply, zip, callback) {
-      var params = {zip: zip};
+      var params = {location: zip};
       params["supplies." + supply] = true;
       Api.get("suppliers", ["basic", "row"], params, callback);
     },
