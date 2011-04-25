@@ -167,6 +167,9 @@
     function populateNursingHome(ratings, extended) {
       var i, html;
       
+      $(".nursing_home.ownership_type").html(extended.ownership_type.value).show();
+      $(".nursing_home.overall_rating").addClass("rating-" + ratings.overall.value).show();
+      
       html = "" +
         ratingRow(0, ratings.overall.name, ratings.overall.value) +
         ratingRow(1, ratings.rn_only.name, ratings.rn_only.value) +
@@ -180,7 +183,7 @@
       $(".facility.nursing_home .occupancy div.data span.percent").html(percent + "%");
       $(".facility.nursing_home .occupancy div.data .beds dd").html(extended.certified_bed.value);
       $(".facility.nursing_home .occupancy div.data .residents dd").html(extended.total_residents.value);
-        
+      
       
       html = "" +
         booleanRow(0, "Medicaid Participation", extended.program_participation.value.match(/Medicaid/)) +
@@ -193,7 +196,6 @@
         "";
         
       $(".facility.nursing_home .participation table.data tbody").html(html);
-      
       
       
       $(".facility.nursing_home .inspections div.data .health_survey dd").html(dateFor(extended.health_survey_date.value));
@@ -345,6 +347,9 @@
             Outliers were significantly above/below the national average.
           </p>
         </div>
+        
+        <div class="nursing_home ownership_type hidden"></div>
+        <div class="nursing_home overall_rating hidden"></div>
       </div>
       
       <div class="scallop"></div>
