@@ -135,8 +135,6 @@ h3.name{
 	width: 90%;
 	text-align: left;
 }	
-.data tbody>tr>td{
-}
 
 table.data td.hosp, table.data th.hosp, table.data td.state, table.data th.state{
 	text-transform: uppercase;
@@ -185,6 +183,9 @@ tr.even{
 	background-color: #e1e2e3;
 	padding-top: 5px;	
 }
+#drug_chemical .data td{
+	text-align: right;
+}
 #suppliers, #suppliers_list, #suppliers_detail{
 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 font-weight: 300;
@@ -217,18 +218,21 @@ td.cost{
 
 
 .notes dt{
-	float: left;
 	font-weight: 700;
 	padding-right: 15px;
 	line-height: 1.5;
+	width: 80%;
+	margin-top: 10px;
+	text-shadow: none;
 }
 
 .notes dd{
 	line-height: 1.5;
 	text-align: left;
 	margin: 0;
-	float: left;
 	font-weight: 400;
+	text-shadow: none;
+	
 }
 
 .clear{
@@ -256,7 +260,11 @@ h3.dosage{
 	
 }
 
-.best-buy{
+tr.best-buy{
+	background-color: #d3d5d6;
+}
+
+.best-buy h3{
 	background: url('images/bestbuy_star.png') left top no-repeat;
 	padding-left: 27px;
 }
