@@ -31,6 +31,9 @@
       var provider_number = Utils.param("provider_number");
       var facility_type = Utils.param("facility_type");
       
+      //TODO: check cache to see if this needs to be loaded from network
+      
+      $(".facility.hidden").hide(); // reset
       
       Utils.loading();
       Api.Facility.find(provider_number, facility_type, ["basic"], function(facility) {
@@ -180,7 +183,7 @@
       
       
       var percent = parseInt((extended.total_residents.value / extended.certified_bed.value) * 100);
-      $(".facility.nursing_home .occupancy div.data span.percent").html(percent + "%");
+      $(".facility.nursing_home .occupancy div.data span.percent").html(percentFor(percent));
       $(".facility.nursing_home .occupancy div.data .beds dd").html(extended.certified_bed.value);
       $(".facility.nursing_home .occupancy div.data .residents dd").html(extended.total_residents.value);
       
@@ -249,28 +252,36 @@
     function populateDialysis(extended, services) {
       var html, i;
       
+      $(".dialysis.ownership_type").html(extended.profit_type.value).show();
+      if (extended.chain_owned.value)
+        $(".dialysis.chain_organization").html(extended.chain_organization.value).show();
+        
+      $(".dialysis.dialysis_adequacy dd").html(percentFor(extended.dialysis_adequacy.value));
+      $(".dialysis.dialysis_adequacy").show();
+      
+      
       html = "" +
-        booleanRow(0, services.in_center_hemodialysis.name, services.in_center_hemodialysis.value) +
-        booleanRow(1, services.in_center_peritoneal_dialysis.name, services.in_center_peritoneal_dialysis.value) +
-        booleanRow(2, services.home_hemodialysis_training.name, services.in_center_peritoneal_dialysis.value);
+        simpleValueRow(0, extended.dialysis_stations.name, extended.dialysis_stations.value) +
+        booleanRow(1, services.in_center_hemodialysis.name, services.in_center_hemodialysis.value) +
+        booleanRow(2, services.in_center_peritoneal_dialysis.name, services.in_center_peritoneal_dialysis.value) +
+        booleanRow(3, services.home_hemodialysis_training.name, services.in_center_peritoneal_dialysis.value) +
+        booleanRow(4, extended.late_shift.name, extended.late_shift.value) +
+        simpleValueRow(5, extended.hgb_number.name, extended.hgb_number.value) +
+        "";
+        
       
       $(".facility.dialysis .services table.data tbody").html(html);
       
       
       html = "" +
-        simpleValueRow(0, extended.dialysis_stations.name, extended.dialysis_stations.value) +
-        simpleValueRow(1, extended.profit_type.name, extended.profit_type.value) +
-        simpleValueRow(2, extended.high_hemoglobin.name, percentFor(extended.high_hemoglobin.value)) +
-        simpleValueRow(3, extended.low_hemoglobin.name, percentFor(extended.low_hemoglobin.value)) +
-        simpleValueRow(4, extended.patient_survival.name, extended.patient_survival.value) +
-        simpleValueRow(5, extended.dialysis_adequacy.name, percentFor(extended.dialysis_adequacy.value)) +
-        booleanRow(6, extended.late_shift.name, extended.late_shift.value) +
-        booleanRow(7, extended.chain_owned.name, extended.chain_owned.value) +
-        simpleValueRow(8, extended.chain_organization.name, extended.chain_organization.value) +
-        simpleValueRow(9, extended.hgb_number.name, extended.hgb_number.value) +
+        simpleValueRow(0, extended.dialysis_adequacy.name, percentFor(extended.dialysis_adequacy.value)) +
+        simpleValueRow(1, extended.high_hemoglobin.name, percentFor(extended.high_hemoglobin.value)) +
+        simpleValueRow(2, extended.low_hemoglobin.name, percentFor(extended.low_hemoglobin.value)) +
         "";
       
-      $(".facility.dialysis .extended table.data tbody").html(html);
+      $(".facility.dialysis .quality table.data tbody").html(html);
+      
+      $(".facility.dialysis .quality div.patient_survival dd").html(extended.patient_survival.value);
       
       
       $(".facility.loading").hide();
@@ -336,7 +347,7 @@
         </div>
         
         <!-- Currently using mocked up data so that it can be styled. -->
-        <div class="outliers hidden">
+        <div class="facility hospital outliers hidden">
           <div class="totals">
             <span class="above"><span class="outlier above">7</span>
             above avg measures</span>
@@ -348,8 +359,14 @@
           </p>
         </div>
         
-        <div class="nursing_home ownership_type hidden"></div>
-        <div class="nursing_home overall_rating hidden"></div>
+        <div class="facility nursing_home ownership_type hidden"></div>
+        <div class="facility nursing_home overall_rating hidden"></div>
+        <div class="facility dialysis ownership_type hidden"></div>
+        <div class="facility dialysis chain_organization hidden"></div>
+        <div class="facility dialysis dialysis_adequacy hidden">
+          <dd></dd>
+          <dt>Dialysis Adequacy</dt>
+        </div>
       </div>
       
       <div class="scallop"></div>
@@ -560,8 +577,7 @@
             </thead>
             <tbody></tbody>
           </table>
-		  <p class="more"><a href="">read more about this data...</a></p>
-		  
+          <p class="more"><a href="">read more about this data...</a></p>
         </div>
         
         <div data-role="collapsible" data-collapsed="true" class="patient_improvement">
@@ -576,8 +592,8 @@
             </thead>
             <tbody></tbody>
           </table>
-		  <p class="more"><a href="">read more about this data...</a></p>
-		  
+          <p class="more"><a href="">read more about this data...</a></p>
+          
         </div>
       
       </div><!-- end home health container -->
@@ -601,13 +617,19 @@
 		  
         </div>
 
-		<div data-role="collapsible" data-collapsed="true" class="extended">
-          <h1>More Info</h1>
+		<div data-role="collapsible" data-collapsed="true" class="quality">
+          <h1>Average Quality Levels</h1>
           
           <table class="data">
             <thead></thead>
             <tbody></tbody>
           </table>
+          
+          <div class="patient_survival">
+            <dt>Patient Survival</dt>
+            <dd></dd>
+          </div>
+          
           <p class="more"><a href="">read more about this data...</a></p>
         </div>
       
