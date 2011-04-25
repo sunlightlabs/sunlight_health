@@ -20,8 +20,11 @@
 }
 
 /* -------- Radio Button styling -------- */
-.ui-controlgroup, fieldset.ui-controlgroup, .min-width-480px .ui-field-contain{
+.ui-controlgroup, fieldset.ui-controlgroup, .max-width-480px .ui-field-contain, .min-width-480px .ui-field-contain{
 	margin-top: 0;
+	margin-bottom: 8px;
+	padding-top: 0;
+	padding-bottom: 0;
 }
 
 .ui-corner-left{
@@ -117,8 +120,10 @@ fieldset.ui-controlgroup{
 background-position: -216px 50% ;
 }
 
-.ui-select .ui-btn{
+.ui-btn{
 	text-align: left;
+	margin-top: 0;
+	margin-bottom: 10px;
 }
 .ui-select .ui-btn-active{
 	color: #101010;
@@ -167,6 +172,7 @@ input.ui-input-text, textarea.ui-input-text {
 	padding-bottom: 7px;
 	text-indent: 25px;
 	width: 100%;
+	margin-bottom: 10px;
 }
 
 
@@ -300,7 +306,9 @@ input.ui-input-text, textarea.ui-input-text {
 	color: #333333;
 }
 
-
+.list .ui-btn{
+	margin-bottom: 0;
+}
 
  /* Fixes icon positioning for mobile devices. Still doesn't explain where those 40 pixels are coming from.  */
 
