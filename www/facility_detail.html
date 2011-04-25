@@ -239,15 +239,15 @@
       
       html = "" +
         simpleValueRow(0, extended.dialysis_stations.name, extended.dialysis_stations.value) +
-        simpleValueRow(0, extended.profit_type.name, extended.profit_type.value) +
-        simpleValueRow(0, extended.high_hemoglobin.name, percentFor(extended.high_hemoglobin.value)) +
-        simpleValueRow(0, extended.low_hemoglobin.name, percentFor(extended.low_hemoglobin.value)) +
-        simpleValueRow(0, extended.patient_survival.name, extended.patient_survival.value) +
-        simpleValueRow(0, extended.dialysis_adequacy.name, percentFor(extended.dialysis_adequacy.value)) +
-        booleanRow(0, extended.late_shift.name, extended.late_shift.value) +
-        booleanRow(0, extended.chain_owned.name, extended.chain_owned.value) +
-        simpleValueRow(0, extended.chain_organization.name, extended.chain_organization.value) +
-        simpleValueRow(0, extended.hgb_number.name, extended.hgb_number.value) +
+        simpleValueRow(1, extended.profit_type.name, extended.profit_type.value) +
+        simpleValueRow(2, extended.high_hemoglobin.name, percentFor(extended.high_hemoglobin.value)) +
+        simpleValueRow(3, extended.low_hemoglobin.name, percentFor(extended.low_hemoglobin.value)) +
+        simpleValueRow(4, extended.patient_survival.name, extended.patient_survival.value) +
+        simpleValueRow(5, extended.dialysis_adequacy.name, percentFor(extended.dialysis_adequacy.value)) +
+        booleanRow(6, extended.late_shift.name, extended.late_shift.value) +
+        booleanRow(7, extended.chain_owned.name, extended.chain_owned.value) +
+        simpleValueRow(8, extended.chain_organization.name, extended.chain_organization.value) +
+        simpleValueRow(9, extended.hgb_number.name, extended.hgb_number.value) +
         "";
       
       $(".facility.dialysis .extended table.data tbody").html(html);
@@ -536,7 +536,7 @@
             </thead>
             <tbody></tbody>
           </table>
-		  <p class="more"><a href="">read more about this data...</a></p>
+          <p class="more"><a href="">read more about this data...</a></p>
 		  
         </div>
 
@@ -547,7 +547,7 @@
             <thead></thead>
             <tbody></tbody>
           </table>
-		  <p class="more"><a href="">read more about this data...</a></p>
+          <p class="more"><a href="">read more about this data...</a></p>
         </div>
       
       </div><!-- end dialysis container -->
