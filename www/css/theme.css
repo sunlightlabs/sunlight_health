@@ -146,6 +146,15 @@ background-position: -216px 50% ;
 	top: 47%;
 }
 
+.call{
+	margin-left: 10px;
+	margin-right: 5px;
+}
+.directions{
+	margin-left: 5px;
+	margin-right: 10px;
+}
+
 .call .ui-btn-text{
 	background: url('images/icon_phone.png') left center no-repeat;
 	padding-left: 20px;
@@ -159,6 +168,10 @@ background-position: -216px 50% ;
 	padding-top: 3px;
 	padding-bottom: 3px;
 	color: #ececec;
+}
+
+.directions .ui-btn-inner, .call .ui-btn-inner{
+	text-align: center;
 }
 
 
@@ -261,9 +274,15 @@ input.ui-input-text, textarea.ui-input-text {
 
 #stickey_footer.ui-bar-a{
 	background: none;
-	border-right: none;
-	margin-right: none;
+
 }
+#stickey_footer.ui-bar-a>.ui-navbar{
+
+	border-right: none;
+	margin-right: -2px;
+}
+
+
 
 
 /* -------- Auto Search Result List Styling -------- */
