@@ -44,11 +44,11 @@
       var sections;
       
       if (facility_type == "nursing_home")
-        sections = ["basic", "extended.ownership_type", "ratings.overall"];
+        sections = ["basic", "ratings.overall"];
       else if (facility_type == "dialysis")
-        sections = ["basic", "extended.profit_type", "extended.dialysis_adequacy"];
+        sections = ["basic", "extended.dialysis_adequacy"];
       else if (facility_type == "home_health")
-        sections = ["basic", "extended.ownership_type"]
+        sections = ["basic"]
       else if (facility_type == "hospital")
         sections = ["basic"];
       
@@ -87,25 +87,13 @@
         
         if (facility.facility_type == "nursing_home")
           html += "" +
-            "<span class=\"nursing_home ownership_type\">" + 
-              facility.extended.ownership_type.value +
-            "</span>" +
             "<div class=\"nursing_home overall_ratings rating-" + facility.ratings.overall.value + "\">" + 
             "</div>";
         else if (facility.facility_type == "dialysis")
           html += "" +
-            "<span class=\"dialysis profit_type\">" + 
-              facility.extended.profit_type.value +
-            "</span>" +
             "<span class=\"dialysis dialysis_adequacy\">" +
               facility.extended.dialysis_adequacy.value + "%" +
-            "</span>";
-        else if (facility.facility_type == "home_health")
-          html += "" +
-            "<span class=\"home_health ownership_type\">" + 
-              facility.extended.ownership_type +
-            "</span>";
-          
+            "</span>";  
           
         html += "" +
           "</a>";
