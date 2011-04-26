@@ -41,11 +41,21 @@
       Utils.loading();
       
       var params = {facility_type: facility_type};
+      var sections;
+      
+      if (facility_type == "nursing_home")
+        sections = ["basic", "extended.ownership_type", "ratings.overall"];
+      else if (facility_type == "dialysis")
+        sections = ["basic", "extended.profit_type", "extended.dialysis_adequacy"];
+      else if (facility_type == "home_health")
+        sections = ["basic", "extended.ownership_type"]
+      else if (facility_type == "hospital")
+        sections = ["basic"];
       
       if (zip)
-        Api.Facility.searchZip(zip, params, loadFacilities);
+        Api.Facility.searchZip(zip, sections, params, loadFacilities);
       else
-        Api.Facility.searchNearby(lat, lng, params, loadFacilities);
+        Api.Facility.searchNearby(lat, lng, sections, params, loadFacilities);
     });
     
     function loadFacilities(facilities) {
@@ -65,7 +75,7 @@
           phone: facility.phone.replace(/[\(\)]/g, '')
         });
           
-        return "" +
+        var html = "" +
           "<a href=\"facility_detail.html?" + url + "\">" +
             "<h3>" +
               facility.name +
@@ -73,8 +83,34 @@
             "<p>" + 
               facility.address + "<br/>" +
               facility.city + ", " + facility.state + " " + facility.zip +
-            "</p>" +
+            "</p>";
+        
+        if (facility.facility_type == "nursing_home")
+          html += "" +
+            "<span class=\"nursing_home ownership_type\">" + 
+              facility.extended.ownership_type.value +
+            "</span>" +
+            "<div class=\"nursing_home overall_ratings rating-" + facility.ratings.overall.value + "\">" + 
+            "</div>";
+        else if (facility.facility_type == "dialysis")
+          html += "" +
+            "<span class=\"dialysis profit_type\">" + 
+              facility.extended.profit_type.value +
+            "</span>" +
+            "<span class=\"dialysis dialysis_adequacy\">" +
+              facility.extended.dialysis_adequacy.value + "%" +
+            "</span>";
+        else if (facility.facility_type == "home_health")
+          html += "" +
+            "<span class=\"home_health ownership_type\">" + 
+              facility.extended.ownership_type +
+            "</span>";
+          
+          
+        html += "" +
           "</a>";
+          
+        return html;
       }, {empty: "No facilities found for this location."});
     }
   </script>

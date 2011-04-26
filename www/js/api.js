@@ -36,16 +36,16 @@ var Api = {
   
   Facility: {
     // returns all suppliers by a given location search
-    searchNearby: function(lat, lng, params, callback) {
+    searchNearby: function(lat, lng, sections, params, callback) {
       Api.get("facilities", 
-              ["basic"], 
+              sections, 
               $.extend({location: lat + "," + lng}, params), 
               callback);
     },
     
-    searchZip: function(zip, params, callback) {
+    searchZip: function(zip, sections, params, callback) {
       Api.get("facilities", 
-              ["basic"], 
+              sections, 
               $.extend({location: zip}, params),
               callback);
     },
