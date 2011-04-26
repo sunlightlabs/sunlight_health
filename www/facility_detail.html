@@ -54,11 +54,11 @@
         
         else if (facility_type == "home_health") {
           Utils.bgLoading();
-          Api.Facility.find(provider_number, facility_type, ["extended.services", "extended.patient_improvement"], function(facility) {
+          Api.Facility.find(provider_number, facility_type, ["extended"], function(facility) {
             Utils.bgLoading(true);
             if (!facility) return;
             
-            populateHomeHealth(facility.extended.services, facility.extended.patient_improvement);
+            populateHomeHealth(facility.extended.ownership_type, facility.extended.services, facility.extended.patient_improvement);
           });
         }
         
@@ -220,9 +220,11 @@
       $(".facility.nursing_home.hidden").show();
     }
     
-    function populateHomeHealth(services, patient_improvement) {
+    function populateHomeHealth(ownership_type, services, patient_improvement) {
       var html;
       var i;
+      
+      $(".home_health.ownership_type").html(ownership_type).show();
       
       html = "";
       i = 0;
@@ -252,7 +254,7 @@
     function populateDialysis(extended, services) {
       var html, i;
       
-      $(".dialysis.ownership_type").html(extended.profit_type.value).show();
+      $(".dialysis.profit_type").html(extended.profit_type.value).show();
       if (extended.chain_owned.value)
         $(".dialysis.chain_organization").html(extended.chain_organization.value).show();
         
@@ -361,12 +363,13 @@
         
         <div class="facility nursing_home ownership_type hidden"></div>
         <div class="facility nursing_home overall_rating hidden"></div>
-        <div class="facility dialysis ownership_type hidden"></div>
+        <div class="facility dialysis profit_type hidden"></div>
         <div class="facility dialysis chain_organization hidden"></div>
         <div class="facility dialysis dialysis_adequacy hidden">
           <dd></dd>
           <dt>Dialysis Adequacy</dt>
         </div>
+        <div class="facility home_health ownership_type hidden"></div>
       </div>
       
       <div class="scallop"></div>
