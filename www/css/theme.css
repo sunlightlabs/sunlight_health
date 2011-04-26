@@ -259,6 +259,12 @@ input.ui-input-text, textarea.ui-input-text {
 	border: none;
 }
 
+#stickey_footer.ui-bar-a{
+	background: none;
+	border-right: none;
+	margin-right: none;
+}
+
 
 /* -------- Auto Search Result List Styling -------- */
 
