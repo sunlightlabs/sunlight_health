@@ -34,9 +34,7 @@
       var drug_class = Utils.param("drug_class");
       var subdivision = Utils.param("subdivision");
       
-      Utils.loading();
       Api.Drug.chemical(name, drug_class, subdivision, ["basic", "drugs"], function(chemical) {
-        Utils.loading(true);
         if (!chemical) return;
         
         populateChemical(chemical);
@@ -48,7 +46,7 @@
           
           populateDescription(chemical.class_description);
           
-          Api.Drug.classExcept(drug_class, name, function(chemicals) {
+          Api.Drug.drugClassExcept(drug_class, name, function(chemicals) {
             populateChemicals(chemicals);
           });
           

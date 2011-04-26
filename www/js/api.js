@@ -91,12 +91,12 @@ var Api = {
     },
     
     // all chemicals in a given drug class
-    class: function(drug_class, callback) {
+    drugClass: function(drug_class, callback) {
       Api.get("drug_chemicals", ["basic"], {drug_class: drug_class, order: "subdivision", sort: "asc"}, callback);
     },
     
     // all chemicals in a given drug class...except for one
-    classExcept: function(drug_class, chemical, callback) {
+    drugClassExcept: function(drug_class, chemical, callback) {
       Api.get("drug_chemicals", ["basic"], {
         drug_class: drug_class, 
         order: "subdivision",
