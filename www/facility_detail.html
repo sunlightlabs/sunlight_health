@@ -74,11 +74,11 @@
         
         else if (facility_type == "hospital") {
           Utils.bgLoading();
-          Api.Facility.find(provider_number, facility_type, ["survey_experiences", "outcomes"], function(facility) {
+          Api.Facility.find(provider_number, facility_type, ["outliers_above", "outliers_below", "survey_experiences", "outcomes", "process"], function(facility) {
             Utils.bgLoading(true);
             if (!facility) return;
             
-            populateHospital(facility.survey_experiences, facility.outcomes);
+            populateHospital(facility.outliers_above, facility.outliers_below, facility.survey_experiences, facility.outcomes, facility.process);
           });
         }
         
@@ -111,13 +111,14 @@
         });
       });
       
-      if (facility.facility_type == "hospital")
-        $(".outliers.hidden").show();
-      
       $(".facility.reveal").show();
     }
     
-    function populateHospital(survey_experiences, outcomes) {
+    function populateHospital(outliers_above, outliers_below, survey_experiences, outcomes, process) {
+      $(".facility.hospital.outliers .totals span.outlier.above").html(outliers_above);
+      $(".facility.hospital.outliers .totals span.outlier.below").html(outliers_below);
+      $(".facility.hospital.outliers").show();
+      
       var html;
       var i;
       
@@ -161,6 +162,41 @@
       });
       
       $(".facility.hospital .outcomes table.data tbody").html(html);
+      
+      
+      $.each(process, function(condition, info) {
+        var calculations = info.calculations;
+        var fields = info.fields;
+        
+        if (calculations.valid_metrics == 0) {
+          $(".facility.hospital .process." + condition).hide();
+          return true; // continue to the next one
+        } else // reset
+          $(".facility.hospital .process." + condition).show();
+        
+        $(".facility.hospital .process." + condition + " span.outlier.above").html(calculations.outliers_above);
+        $(".facility.hospital .process." + condition + " span.outlier.below").html(calculations.outliers_below);
+        
+        var html = "" +
+          twoPieceRow("Average Performance", parseInt(calculations.average_performance) + "%", parseInt(calculations.nearby_average_performance) + "%") +
+          twoPieceRow("Number of Patients", calculations.people, calculations.nearby_people);
+        $(".facility.hospital .process." + condition + " table.data.summary tbody").html(html);
+        
+        html = "";
+        var i = 0;
+        $.each(fields, function(slug, field) {
+          
+          if (field.value != null && !field.too_small) {
+            var suffix = (field.value_type == "percent" ? "%" : "");
+            html += processFieldRow(i, (field.outlier ? "outlier " + field.outlier : ""), field.name, ((field.calculated_national_average != null) ? parseInt(field.calculated_national_average) + suffix : "n/a"),  ((field.nearby_considered > 1) ? parseInt(field.nearby_average) + suffix : "n/a"), field.value + suffix);
+            
+            i += 1;
+          }
+        });
+        
+        $(".facility.hospital .process." + condition + " table.data.values tbody").html(html);
+        
+      });
       
       
       $(".facility.loading").hide();
@@ -308,6 +344,25 @@
         "</tr>";
     }
     
+    function processFieldRow(i, outlier, name, individual, nearby, national) {
+      return "" +
+        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + " " + outlier + "\">" +
+          "<th scope=\"row\">" + name + "</th>" +
+          "<td>" + national + "</td>" +
+          "<td>" + nearby + "</td>" +
+          "<td>" + individual + "</td>" +
+        "</tr>";
+    }
+    
+    function twoPieceRow(name, one, two) {
+      return "" +
+        "<tr>" +
+          "<th scope=\"row\">" + name + "</th>" +
+          "<td>" + one + "</td>" +
+          "<td>" + two + "</td>" +
+        "</tr>";
+    }
+    
     function simpleValueRow(i, name, value) {
       return "" +
         "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
@@ -351,9 +406,9 @@
         <!-- Currently using mocked up data so that it can be styled. -->
         <div class="facility hospital outliers hidden">
           <div class="totals">
-            <span class="above"><span class="outlier above">7</span>
+            <span class="above"><span class="outlier above"></span>
             above avg measures</span>
-            <span class="below"><span class="outlier below">3</span>
+            <span class="below"><span class="outlier below"></span>
             below avg measures</span>
           </div>
           <p class="small">
@@ -421,32 +476,25 @@
           <p class="more"><a href="">read more about this data...</a></p>
         </div>
         
-        <div data-role="collapsible" data-collapsed="false" class="process surgical_care">
+        <div data-role="collapsible" data-collapsed="true" class="process surgical_care">
           <h1>
             Surgical Care
-            <span class="outlier above">3</span>
-            <span class="outlier below">1</span>
+            <span class="outlier above"></span>
+            <span class="outlier below"></span>
           </h1>
           <div class="outliers">
             <table class="data summary">
               <thead>
                 <tr>
                   <th scope="col"></th>
-                  <th class="hosp" scope="col">Local</th>
                   <th class="hosp" scope="col">Hosp</th>
+                  <th class="hosp" scope="col">Local</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">Number of patients</th>
-                  <td class="hosp">79</td>
-                  <td class="hosp">79</td>
-                </tr>
-                <tr>
-                  <th scope="row">Average performance</th>
-                  <td class="hosp">79%</td>
-                  <td class="hosp">79%</td>
-                </tr>
+                <!-- made of two twoPieceRows(), 
+                  one for Average Performance, 
+                  one for number of Patients -->
               </tbody>
             </table>
               
@@ -459,42 +507,139 @@
             <thead>
               <tr>
                 <th scope="col"></th>
-                <th class="hosp" scope="col">Fed</th>
-                <th class="hosp" scope="col">Local</th>
                 <th class="hosp" scope="col">Hosp</th>
+                <th class="hosp" scope="col">Local</th>
+                <th class="hosp" scope="col">Fed</th>
               </tr>
             </thead>
             <tbody>
+               <!-- filled with averageRow() fields -->
+            </tbody>
+          </table>
+          <p class="more"><a href="">read more about this data...</a></p>
+        </div>
+        
+        <div data-role="collapsible" data-collapsed="true" class="process heart_attack">
+          <h1>
+            Heart Attack
+            <span class="outlier above"></span>
+            <span class="outlier below"></span>
+          </h1>
+          <div class="outliers">
+            <table class="data summary">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th class="hosp" scope="col">Hosp</th>
+                  <th class="hosp" scope="col">Local</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+              
+            <p class="small">
+              Outliers were significantly above/below the national average.
+            </p>
+          </div>
+          
+          <table class="data values">
+            <thead>
               <tr>
-                <th scope="row" class="outlier above">Given an antibiotic at the right time</th>
-                <td class="hosp">95%</td>
-                <td class="hosp">95%</td>
-                <td class="hosp">95%</td>
+                <th scope="col"></th>
+                <th class="hosp" scope="col">Hosp</th>
+                <th class="hosp" scope="col">Local</th>
+                <th class="hosp" scope="col">Fed</th>
               </tr>
+            </thead>
+            <tbody>
+               <!-- filled with averageRow() fields -->
+            </tbody>
+          </table>
+          <p class="more"><a href="">read more about this data...</a></p>
+        </div>
+        
+        <div data-role="collapsible" data-collapsed="true" class="process heart_failure">
+          <h1>
+            Heart Failure
+            <span class="outlier above"></span>
+            <span class="outlier below"></span>
+          </h1>
+          <div class="outliers">
+            <table class="data summary">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th class="hosp" scope="col">Hosp</th>
+                  <th class="hosp" scope="col">Local</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- made of two twoPieceRows(), 
+                  one for Average Performance, 
+                  one for number of Patients -->
+              </tbody>
+            </table>
+              
+            <p class="small">
+              Outliers were significantly above/below the national average.
+            </p>
+          </div>
+          
+          <table class="data values">
+            <thead>
               <tr>
-                <th scope="row" class="outlier above">Antibiotics were stopped at the right time</th>
-                <td class="hosp">95%</td>
-                <td class="hosp">95%</td>
-                <td class="hosp">95%</td>
+                <th scope="col"></th>
+                <th class="hosp" scope="col">Hosp</th>
+                <th class="hosp" scope="col">Local</th>
+                <th class="hosp" scope="col">Fed</th>
               </tr>
+            </thead>
+            <tbody>
+               <!-- filled with averageRow() fields -->
+            </tbody>
+          </table>
+          <p class="more"><a href="">read more about this data...</a></p>
+        </div>
+        
+        <div data-role="collapsible" data-collapsed="true" class="process pneumonia">
+          <h1>
+            Pneumonia
+            <span class="outlier above"></span>
+            <span class="outlier below"></span>
+          </h1>
+          <div class="outliers">
+            <table class="data summary">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th class="hosp" scope="col">Hosp</th>
+                  <th class="hosp" scope="col">Local</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- made of two twoPieceRows(), 
+                  one for Average Performance, 
+                  one for number of Patients -->
+              </tbody>
+            </table>
+              
+            <p class="small">
+              Outliers were significantly above/below the national average.
+            </p>
+          </div>
+          
+          <table class="data values">
+            <thead>
               <tr>
-                <th scope="row" class="outlier below">Given the right kind of antibiotic</th>
-                <td class="hosp">95%</td>
-                <td class="hosp">95%</td>
-                <td class="hosp">95%</td>
+                <th scope="col"></th>
+                <th class="hosp" scope="col">Hosp</th>
+                <th class="hosp" scope="col">Local</th>
+                <th class="hosp" scope="col">Fed</th>
               </tr>
-              <tr>
-                <th scope="row" class="outlier below">Received treatment at right time to help prevent blood clot</th>
-                <td class="hosp">85%</td>
-                <td class="hosp">84%</td>
-                <td class="hosp">72%</td>
-              </tr>
-              <tr>
-                <th scope="row">Received treatment at right time to help prevent blood clot</th>
-                <td class="hosp">72%</td>
-                <td class="hosp">72%</td>
-                <td class="hosp">72%</td>
-              </tr>
+            </thead>
+            <tbody>
+               <!-- filled with averageRow() fields -->
             </tbody>
           </table>
           <p class="more"><a href="">read more about this data...</a></p>
