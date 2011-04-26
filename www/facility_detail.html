@@ -206,7 +206,7 @@
     function populateNursingHome(ratings, extended) {
       var i, html;
       
-      $(".nursing_home.ownership_type").html(extended.ownership_type.value).show();
+//       $(".nursing_home.ownership_type").html(extended.ownership_type.value).show();
       $(".nursing_home.overall_rating").addClass("rating-" + ratings.overall.value).show();
       
       html = "" +
@@ -260,7 +260,7 @@
       var html;
       var i;
       
-      $(".home_health.ownership_type").html(ownership_type).show();
+//       $(".home_health.ownership_type").html(ownership_type).show();
       
       html = "";
       i = 0;
@@ -290,9 +290,9 @@
     function populateDialysis(extended, services) {
       var html, i;
       
-      $(".dialysis.profit_type").html(extended.profit_type.value).show();
-      if (extended.chain_owned.value)
-        $(".dialysis.chain_organization").html(extended.chain_organization.value).show();
+//       $(".dialysis.profit_type").html(extended.profit_type.value).show();
+//       if (extended.chain_owned.value)
+//         $(".dialysis.chain_organization").html(extended.chain_organization.value).show();
         
       $(".dialysis.dialysis_adequacy dd").html(percentFor(extended.dialysis_adequacy.value));
       $(".dialysis.dialysis_adequacy").show();
