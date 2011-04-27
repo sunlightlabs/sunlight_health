@@ -101,7 +101,9 @@
     function searchZip(supply, radius) {
       var zip = $("input.supplies.zipcode").val().trim();
       if (!zip)
-        Utils.popup("Searching by zip code", "If you want to limit results to a zip code, enter one before selecting a supplier.");
+        Utils.popup("If you want to limit results to a zip code, enter one before selecting a supplier.");
+      else if (zip.match(/[^\d]/))
+        Utils.popup("Enter a valid zip code.");
       else {
         $.mobile.changePage({
           url: "suppliers_list.html",
@@ -149,7 +151,7 @@
     <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
 	
     <div class="ui-select">
-      <input class="search supplies zipcode" type="text" name="zip" placeholder="Enter a zipcode..." style="display: none" />
+      <input class="search supplies zipcode" type="number" name="zip" placeholder="Enter a zipcode..." style="display: none" />
       <input class="search supplies text" type="text" name="query" placeholder="Start typing what you're looking for..." />
 
     </div>

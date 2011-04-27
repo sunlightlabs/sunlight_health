@@ -18,7 +18,6 @@
   
   <!-- Utilities -->
   <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
-  <script type="text/javascript" charset="utf-8" src="js/analytics.js"></script>
   
   <!-- API communication -->
   <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
@@ -85,7 +84,9 @@
     function searchZip(facility_type, radius) {
       var zip = $("input.facilities.zipcode").val().trim();
       if (!zip)
-        Utils.popup("Searching by zip code", "If you want to limit results to a zip code, enter one before searching.");
+        Utils.popup("If you want to limit results to a zip code, enter one before searching.");
+      else if (zip.match(/[^\d]/))
+        Utils.popup("Enter a valid zip code.");
       else {
         $.mobile.changePage({
           url: "facilities_list.html",
@@ -133,7 +134,7 @@
     <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
     
     <div class="ui-select">
-      <input class="search facilities zipcode" type="text" name="zip" placeholder="Enter a zipcode..." style="display: none" />
+      <input class="search facilities zipcode" type="number" name="zip" placeholder="Enter a zipcode..." style="display: none" />
     </div>
 
     <select name="facility_type" id="facility_type">

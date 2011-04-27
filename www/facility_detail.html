@@ -42,10 +42,10 @@
         
         populateFacility(facility);
         
+        Utils.loading();
         if (facility_type == "nursing_home") {
-          Utils.bgLoading();
           Api.Facility.find(provider_number, facility_type, ["ratings", "extended"], function(facility) {
-            Utils.bgLoading(true);
+            Utils.loading(true);
             if (!facility) return;
             window.facility = facility;
             populateNursingHome(facility.ratings, facility.extended);
@@ -53,9 +53,8 @@
         }
         
         else if (facility_type == "home_health") {
-          Utils.bgLoading();
           Api.Facility.find(provider_number, facility_type, ["extended"], function(facility) {
-            Utils.bgLoading(true);
+            Utils.loading(true);
             if (!facility) return;
             
             populateHomeHealth(facility.extended.ownership_type, facility.extended.services, facility.extended.patient_improvement);
@@ -63,9 +62,8 @@
         }
         
         else if (facility_type == "dialysis") {
-          Utils.bgLoading();
           Api.Facility.find(provider_number, facility_type, ["extended", "services"], function(facility) {
-            Utils.bgLoading(true);
+            Utils.loading(true);
             if (!facility) return;
             
             populateDialysis(facility.extended, facility.services);
@@ -73,9 +71,8 @@
         }
         
         else if (facility_type == "hospital") {
-          Utils.bgLoading();
           Api.Facility.find(provider_number, facility_type, ["outliers_above", "outliers_below", "survey_experiences", "outcomes", "process"], function(facility) {
-            Utils.bgLoading(true);
+            Utils.loading(true);
             if (!facility) return;
             
             populateHospital(facility.outliers_above, facility.outliers_below, facility.survey_experiences, facility.outcomes, facility.process);
@@ -152,8 +149,8 @@
       
       i = 0;
       html = "";
-      $.each(outcomes, function(condition, years) {
-        $.each(years, function(year, info) {
+      Utils.orderedEach(outcomes, function(condition, years) {
+        Utils.orderedEach(years, function(year, info) {
           if (info.code) {
             html += simpleValueRow(i, info.name, info.code);
             i += 1;
@@ -206,7 +203,6 @@
     function populateNursingHome(ratings, extended) {
       var i, html;
       
-//       $(".nursing_home.ownership_type").html(extended.ownership_type.value).show();
       $(".nursing_home.overall_rating").addClass("rating-" + ratings.overall.value).show();
       
       html = "" +
