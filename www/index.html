@@ -38,10 +38,12 @@
         
         var search_type = $('input:radio[name=search_type]:checked').val();
         
-        if (search_type == "nearby")
-          searchNearby(facility_type);
-        else
-          searchZip(facility_type);
+        if (facility_type != "placeholder") {
+          if (search_type == "nearby")
+            searchNearby(facility_type);
+          else
+            searchZip(facility_type);
+        }
         
         return false;
       });
