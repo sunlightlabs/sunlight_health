@@ -48,6 +48,19 @@ Utils = {
       return decodeURIComponent(results[1].replace(/\+/g, " "));
   },
   
+  orderedEach: function(object, callback) {
+    var keys = [];
+    $.each(object, function(key, value) {
+      keys[keys.length] = key;
+    });
+    
+    keys = keys.sort();
+    
+    $.each(keys, function(i, key) {
+      callback(key, object[key]);
+    });
+  },
+  
   loadList: function(name, array, assemble, options) {
     if (!options) options = {};
     

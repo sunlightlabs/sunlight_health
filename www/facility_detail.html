@@ -152,8 +152,8 @@
       
       i = 0;
       html = "";
-      $.each(outcomes, function(condition, years) {
-        $.each(years, function(year, info) {
+      Utils.orderedEach(outcomes, function(condition, years) {
+        Utils.orderedEach(years, function(year, info) {
           if (info.code) {
             html += simpleValueRow(i, info.name, info.code);
             i += 1;
@@ -206,7 +206,6 @@
     function populateNursingHome(ratings, extended) {
       var i, html;
       
-//       $(".nursing_home.ownership_type").html(extended.ownership_type.value).show();
       $(".nursing_home.overall_rating").addClass("rating-" + ratings.overall.value).show();
       
       html = "" +
