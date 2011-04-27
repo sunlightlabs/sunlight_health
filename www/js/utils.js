@@ -117,20 +117,6 @@ Utils = {
       
   },
   
-  loading: function(done) {
-    if (done) {
-      if (navigator.notification && navigator.notification.activityStop) 
-        navigator.notification.activityStop();
-//       else
-//         $.mobile.pageLoading(true);
-    } else {
-      if (navigator.notification && navigator.notification.activityStart) 
-        navigator.notification.activityStart();
-//       else
-//         $.mobile.pageLoading();
-    }
-  },
-  
   popup: function(message) {
     var elem = document.createElement('div');
     elem.className = "toast";

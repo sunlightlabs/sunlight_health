@@ -36,8 +36,6 @@
       var searchType = Utils.param("search_type");
       var radius = Utils.radiusFor(Utils.param("radius"));
       
-      Utils.loading();
-      
       if (searchType == "zip") {
         $(".suppliers.title").html("Suppliers Near " + zip);
         Api.Supplier.searchZip(supply, zip, radius, loadSuppliers);
@@ -48,7 +46,6 @@
     });
     
     function loadSuppliers(suppliers) {
-      Utils.loading(true);
       $(".suppliers.thinking").hide();
       
       Utils.loadList("suppliers", suppliers, function(supplier) {
