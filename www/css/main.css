@@ -360,14 +360,15 @@ tr.best-buy{
     font-size: 16px;
     font-weight: 700;
     position: absolute;
-    right: 45px;
+    right: 40px;
 }
 
 .list .overall_ratings {
     bottom: 11px;
     position: absolute;
-    right: 45px;
-height: 20px;
+    right: 40px;
+	height: 20px;
+	padding-right: 7px;
 }
 
 /* -------- Outliers Styling -------- */
