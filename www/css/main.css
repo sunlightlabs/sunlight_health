@@ -300,7 +300,9 @@ tr.best-buy{
 	color: #818181;
 	font-size: 14px;
 }
-
+.more a:visited{
+	color: #818181;
+}
 .info{
 	text-indent: -9999em;
 	position: absolute;
@@ -350,6 +352,22 @@ tr.best-buy{
 	padding-right: 8px;
 	padding-left: 8px;
 	text-align: left;
+}
+
+.list .dialysis_adequacy {
+    bottom: 11px;
+    color: #D7CA57;
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    right: 45px;
+}
+
+.list .overall_ratings {
+    bottom: 11px;
+    position: absolute;
+    right: 45px;
+height: 20px;
 }
 
 /* -------- Outliers Styling -------- */
@@ -442,6 +460,8 @@ tr.best-buy{
 	background: url('images/stars_five.png') left center no-repeat;
 	width: 90px;
 }
+
+
 
 
 
