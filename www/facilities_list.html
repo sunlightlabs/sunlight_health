@@ -60,7 +60,7 @@
     function loadFacilities(facilities) {
       window.facilities = facilities;
       Utils.loadList("facilities", facilities, function(facility) {
-        var url = $.param({
+        var url = Utils.queryString({
           provider_number: facility.provider_number,
           facility_type: facility.facility_type,
           address: facility.address,

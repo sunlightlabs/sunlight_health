@@ -92,7 +92,7 @@
         Utils.loading(true);
         $.mobile.changePage({
           url: "suppliers_list.html",
-          data: {lat: lat, lng: lng, radius: radius, supply: supply, search_type: "nearby"},
+          data: Utils.cleanedData({lat: lat, lng: lng, radius: radius, supply: supply, search_type: "nearby"}),
           type: "get"
         });
       });
@@ -107,7 +107,7 @@
       else {
         $.mobile.changePage({
           url: "suppliers_list.html",
-          data: {zip: zip, supply: supply, radius: radius, search_type: "zip"},
+          data: Utils.cleanedData({zip: zip, supply: supply, radius: radius, search_type: "zip"}),
           type: "get"
         });
       }

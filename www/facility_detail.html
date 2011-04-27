@@ -93,7 +93,7 @@
       $(".facility.map").click(function() {
         $.mobile.changePage({
           url: "facility_map.html",
-          data: {
+          data: Utils.cleanedData({
             provider_number: facility.provider_number,
             address: facility.address,
             address_2: facility.address_2,
@@ -103,7 +103,7 @@
             state: facility.state,
             name: facility.name,
             phone: facility.phone.replace(/[\(\)]/g, '')
-          },
+          }),
           type: "get"
         });
       });
@@ -771,7 +771,7 @@
   <div data-role="footer" data-position="fixed" data-id="stickey_footer" id="stickey_footer">
     <div data-role="navbar">
       <ul>
-        <li><a href="index.html" data-icon="nav-icons" id="facilities_nav" class="ui-btn-active ui-state-persist">Facilities</a></li>
+        <li><a href="index.html" data-icon="nav-icons" id="facilities_nav" class="ui-btn-active">Facilities</a></li>
         <li><a href="suppliers.html" data-icon="nav-icons" id="suppliers_nav" >Suppliers</a></li>
         <li><a href="drugs.html" data-icon="nav-icons" id="drugs_nav">Drugs</a></li>
       </ul>

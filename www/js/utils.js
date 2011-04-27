@@ -36,18 +36,6 @@ Utils = {
     });
   },
   
-  // adapted from http://stackoverflow.com/questions/901115/get-querystring-values-with-jquery
-  param: function (name) {
-    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-    var regexS = "[\\?&]"+name+"=([^&#]*)";
-    var regex = new RegExp(regexS);
-    var results = regex.exec(window.location.href);
-    if (results == null)
-      return "";
-    else
-      return decodeURIComponent(results[1].replace(/\+/g, " "));
-  },
-  
   orderedEach: function(object, callback) {
     var keys = [];
     $.each(object, function(key, value) {
@@ -59,6 +47,46 @@ Utils = {
     $.each(keys, function(i, key) {
       callback(key, object[key]);
     });
+  },
+  
+  // adapted from http://stackoverflow.com/questions/901115/get-querystring-values-with-jquery
+  param: function (name) {
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.href);
+    if (results == null)
+      return "";
+    else
+      return Utils.uncleanParam(decodeURIComponent(results[1].replace(/\+/g, " ")));
+  },
+  
+  // swaps out particular chars that screw up JQM's navigation
+  cleanParam: function(string) {
+    return string.replace('\'','%27').replace('(','%28').replace(')','%29');
+  },
+  
+  // undoes the cleaning process
+  uncleanParam: function(string) {
+    return string.replace('%27','\'').replace('%28','(').replace('%29',')');
+  },
+  
+  // runs each string inside of an object through cleaning (shallow, meant for JQM data nav objects)
+  cleanedData: function(object) {
+    var cleaned = {};
+    $.each(object, function(key, value) {
+      if (typeof(value) == "string")
+        cleaned[key] = Utils.cleanParam(value);
+      else
+        cleaned[key] = value;
+    });
+    
+    return cleaned;
+  },
+  
+  // cleans up the strings in an object, returns a query string for it
+  queryString: function(object) {
+    return $.param(Utils.cleanedData(object));
   },
   
   loadList: function(name, array, assemble, options) {
@@ -107,7 +135,7 @@ Utils = {
   popup: function(message) {
     var elem = document.createElement('div');
     elem.className = "toast";
-    elem.innerHTML = message;
+    elem.innerHTML = "<div class=\"toast-text\">" + message + "</div>";
     
     var page = $.mobile.activePage.get(0);
     
@@ -169,7 +197,7 @@ Utils = {
   },
   
   chemicalItem: function(chemical) {
-    var q = $.param({
+    var q = Utils.queryString({
       name: chemical.name,
       drug_class: chemical.drug_class,
       subdivision: chemical.subdivision

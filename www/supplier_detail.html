@@ -59,7 +59,7 @@
       $(".supplier.map").click(function() {
         $.mobile.changePage({
           url: "supplier_map.html",
-          data: {
+          data: Utils.cleanedData({
             address: supplier.address,
             address_2: supplier.address_2,
             zip: supplier.zip,
@@ -68,7 +68,7 @@
             state: supplier.state,
             name: supplier.name,
             phone: supplier.phone.replace(/[\(\)]/g, '')
-          },
+          }),
           type: "get"
         });
       });

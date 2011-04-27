@@ -52,7 +52,7 @@
       
       Utils.loadList("suppliers", suppliers, function(supplier) {
         return "" +
-          "<a href=\"supplier_detail.html?row=" + supplier.row + "\">" +
+          "<a href=\"supplier_detail.html?" + Utils.queryString({row: supplier.row}) + "\">" +
             "<h3>" +
               supplier.name +
             "</h3>" +
