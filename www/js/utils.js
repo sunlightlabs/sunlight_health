@@ -94,22 +94,14 @@ Utils = {
     if (done) {
       if (navigator.notification && navigator.notification.activityStop) 
         navigator.notification.activityStop();
-      else
-        $.mobile.pageLoading(true);
+//       else
+//         $.mobile.pageLoading(true);
     } else {
       if (navigator.notification && navigator.notification.activityStart) 
         navigator.notification.activityStart();
-      else
-        $.mobile.pageLoading();
+//       else
+//         $.mobile.pageLoading();
     }
-  },
-  
-  // on iOS, show the loading spinner, but don't throw up a giant dialog in any other context
-  bgLoading: function(done) {
-    if (done && navigator.notification && navigator.notification.activityStop) 
-      navigator.notification.activityStop();
-    else if (!done && navigator.notification && navigator.notification.activityStart) 
-        navigator.notification.activityStart();
   },
   
   popup: function(message) {

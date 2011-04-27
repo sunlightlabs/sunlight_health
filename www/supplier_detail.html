@@ -37,9 +37,9 @@
         
         populateSupplier(supplier);
         
-        Utils.bgLoading();
+        Utils.loading();
         Api.Supplier.find(row, ["supplies"], function(supplier) {
-          Utils.bgLoading(true);
+          Utils.loading(true);
           if (!supplier) return;
           
           populateList(supplier.supplies);
