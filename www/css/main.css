@@ -72,7 +72,9 @@ h1{
 	padding-top: 10px;
 }
 
-
+.ui-body-c{
+	text-shadow: none;
+}
 
 
 .content-banner {
@@ -555,9 +557,30 @@ tr.below th{
 	width: 90px;
 }
 
+/* -------- Star Ratings -------- */
 
-
-
+div.toast{
+	position: fixed;
+	bottom: 60px;
+	text-align: center;
+	width: 100%;
+	opacity: 0.85;
+	margin-bottom: 10px;
+	
+}
+.toast-text{
+	background: #4f4f4f ;
+	opacity: 85%;
+	padding: 10px;
+	max-width: 85%;
+	margin: 0 auto;
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+	border: 2px solid #393939;
+	color: #ffffff;
+	font-size: 12px;
+}
 
 /* -------- Image exceptions for mobiel screens -------- */
 

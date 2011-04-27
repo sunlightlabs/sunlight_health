@@ -525,7 +525,7 @@ input.ui-input-text, textarea.ui-input-text {
 .loading.empty{
 	margin-top: 20px;
 }
-*/
+
 
 .whirl  {
 	-webkit-transform: rotate(360deg);
@@ -537,19 +537,28 @@ input.ui-input-text, textarea.ui-input-text {
 	from {-webkit-transform: rotate(0deg);}
   	to {-webkit-transform: rotate(360deg);}
 }
-
+*/
 .content-banner .thinking {
 	background:url('images/ajax-loader.gif')center center no-repeat;
 	width: 18px;
 	height: 18px;
+	padding-left: 0;
+	margin: 0;
 }
 .thinking {
 	background:url('images/ajax-loader_gray.gif')left center no-repeat;
-	width: 18px;
+	min-width: 18px;
 	height: 18px;
 	padding-left: 22px;
 	margin: 10px;
 }
+
+input.search{
+	background: url('images/ajax-loader_white.gif') 98% center no-repeat;
+	background-color: #ffffff;
+	
+}
+
 
 
 /* -------- Image exceptions for mobile screens -------- */
