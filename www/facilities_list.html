@@ -79,11 +79,13 @@
               facility.city + ", " + facility.state + " " + facility.zip +
             "</p>";
         
-        if (facility.facility_type == "nursing_home")
-          html += "" +
-            "<div class=\"nursing_home overall_ratings rating-" + facility.ratings.overall.value + "\">" + 
-            "</div>";
-        else if (facility.facility_type == "dialysis") {
+        if (facility.facility_type == "nursing_home") {
+          if (facility.ratings.overall.value) {
+            html += "" +
+              "<div class=\"nursing_home overall_ratings rating-" + facility.ratings.overall.value + "\">" + 
+              "</div>";
+          }
+        } else if (facility.facility_type == "dialysis") {
           if (facility.extended.dialysis_adequacy.value)
             html += "" +
               "<span class=\"dialysis dialysis_adequacy\">" +
