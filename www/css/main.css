@@ -559,7 +559,7 @@ tr.below th{
 
 /* -------- Star Ratings -------- */
 
-.toast{
+div.toast{
 
 	padding: 10px;
 	position: fixed;
@@ -571,6 +571,8 @@ tr.below th{
 	background: #898989;
 	opacity: 85%;
 	padding: 10px;
+	max-width: 300px;
+	margin: 0 auto;
 }
 
 /* -------- Image exceptions for mobiel screens -------- */
