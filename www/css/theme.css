@@ -547,7 +547,7 @@ input.ui-input-text, textarea.ui-input-text {
 	margin: 10px;
 }
 
-input.search{
+input.search.text{
 	background: url('images/ajax-loader_white.gif') 98% center no-repeat;
 	background-color: #ffffff;
 }
@@ -660,7 +660,7 @@ input.search{
 		background-size: 18px 18px;
 	}
 
-	input.search{
+	input.search.text{
 		background: url('images/ajax-loader_white.gif') 98% center no-repeat;
 		-moz-background-size: 18px 18px;
 		-o-background-size: 18px 18px;
