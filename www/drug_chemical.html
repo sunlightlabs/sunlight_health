@@ -63,7 +63,8 @@
       );
       $(".chemical.drug_names").html(chemical.drug_names.join(", "));
       
-      $(".chemical.content-banner").show();
+      $(".chemical.thinking.basic").hide();
+      $(".chemical.reveal.basic").show();
     }
     
     function populateDrugs(drugs) {
@@ -114,8 +115,6 @@
             
         $(".chemical.drugs").append(html);
       }
-      
-      $(".cost-comparison").show();
     }
     
     function populateDescription(description) {
@@ -131,6 +130,9 @@
         empty: "No other drugs found in this drug class.",
         divider: "subdivision"
       });
+      
+      $(".chemical.thinking.extended").hide();
+      $(".chemical.reveal.extended").show();
     }
     
   </script>
@@ -142,102 +144,69 @@
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <div class="chemical content-banner hidden">
-      <div class="top">
-		<h3 class="chemical name">
-	      <!-- chemical name -->
-	    </h3>
-		<dl>
-        <dt>Class</dt>
-        <dd class="chemical class">
-          <!-- chemical class and subdivision names -->
-        </dd>
-        <dt class="clear">Chemical</dt>
-        <dd class="chemical name">
-          <!-- chemical name -->
-        </dd>
-        <dt class="clear">Includes</dt>
-        <dd class="chemical drug_names">
-          <!-- drug names associated with this chemical -->
-        </dd>
-		</dl>
-      </div>
-    </div>
+    <div class="chemical thinking basic">Loading chemical information...</div>
     
-    <div class="scallop"></div>
-
-    <div class="thinking">loading...</div>
-
-    
-    <div data-role="collapsible" data-collapsed="true" class="cost-comparison hidden">
-      <h1>Cost Comparison</h1>
-      
-      <div class="chemical drugs">
-      
-        <!-- example drug, this whole block will get repeated for each drug
-        <div class="chemical drug">
-          <h2 class="drug name">Generic</h2>
-          <table class="data">
-            <tbody>
-            
-              <!-- a tr row for each dosage --><!--
-              <tr class="odd"> 
-                <th scope="row" class="drug dosage">
-                  <h3 class="drug dosage name best-buy">
-                    75 mg tablet
-                  </h3>
-                  <div class="drug notes">
-                    <!-- a dt/dd pair for each note --><!--
-                    
-                    <dt>Frequency of use per day</dt>
-                    <dd>Two</dd>
-                    <dt>Total daily dose</dt>
-                    <dd>150mg</dd>
-                    <dt>Best buy indication</dt>
-                    <dd>High blood pressure, for people with kidney disease</dd>
-                  </div>
-                </th>
-                <td class="drug cost">
-                  $132
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="chemical reveal basic">
+      <div class="chemical content-banner">
+        <div class="top">
+          <h3 class="chemical name"></h3>
+          <dl>
+            <dt>Class</dt>
+            <dd class="chemical class">
+              <!-- chemical class and subdivision names -->
+            </dd>
+            <dt class="clear">Chemical</dt>
+            <dd class="chemical name">
+              <!-- chemical name -->
+            </dd>
+            <dt class="clear">Includes</dt>
+            <dd class="chemical drug_names">
+              <!-- drug names associated with this chemical -->
+            </dd>
+          </dl>
         </div>
-        -->
       </div>
-    </div>
-    
-    <div data-role="collapsible" data-collapsed="true" class="drug_class about">
-      <h1>About this Drug Class</h1>
-      <p class="drug_class description">
-        <!-- example text
-          Antidepressants can improve the symptoms of depression, but they can also have serious side effects. So you don't want to take one if you don't have to. The information in this report can help you decide--with your doctor or mental-health professional--whether an antidepressant might be right for you, and if so, which one...
-        -->
-      </p>
-
-    </div>
-    
-    <div data-role="collapsible" data-collapsed="true" class="other chemicals" data-theme="c">
-      <h1>Other Chemicals in this Class</h1>
       
-      <ul data-role="listview" data-theme="c" class="list chemicals">
-        <!-- gets filled in identically to the list of chemicals in drug_class.html -->
+      <div class="scallop"></div>
+      
+    
+      <div data-role="collapsible" data-collapsed="true" class="cost-comparison">
+        <h1>Cost Comparison</h1>
+        <div class="chemical drugs"></div>
+      </div>
+      
+      <div data-role="collapsible" data-collapsed="true" class="drug_class about">
+        <h1>About this Drug Class</h1>
+        <p class="drug_class description"></p>
+      </div>
+        
+      
+      <div data-role="collapsible" data-collapsed="false" class="other chemicals" data-theme="c">
+        <h1>Other Chemicals in this Class</h1>
+        
+        <div class="chemical thinking extended">Loading other chemicals...</div>
+        <div class="chemical reveal extended">
+          <ul data-role="listview" data-theme="c" class="list chemicals">
+            <!-- gets filled in identically to the list of chemicals in drug_class.html -->
+          </ul>
+        </div>
+      </div>
+        
+      <p class="more"><a href="about.html" data-transition="fade">read more about this data...</a></p>
+      
+    </div><!-- /reveal -->
+  </div><!-- /content -->
+  
+  <div data-role="footer" data-position="fixed" data-id="stickey_footer" id="stickey_footer">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="index.html" data-icon="nav-icons" id="facilities_nav">Facilities</a></li>
+        <li><a href="suppliers.html" data-icon="nav-icons" id="suppliers_nav" >Suppliers</a></li>
+        <li><a href="drugs.html" data-icon="nav-icons" id="drugs_nav" class="ui-btn-active ui-state-persist">Drugs</a></li>
       </ul>
-    </div>
-    <p class="more"><a href="about.html" data-transition="fade">read more about this data...</a></p>
-	
-</div><!-- /content -->
-	<div data-role="footer" data-position="fixed" data-id="stickey_footer" id="stickey_footer">
-		<div data-role="navbar">
-			<ul>
-				<li><a href="index.html" data-icon="nav-icons" id="facilities_nav">Facilities</a></li>
-				<li><a href="suppliers.html" data-icon="nav-icons" id="suppliers_nav" >Suppliers</a></li>
-				<li><a href="drugs.html" data-icon="nav-icons" id="drugs_nav" class="ui-btn-active ui-state-persist">Drugs</a></li>
-			</ul>
-		</div><!-- /navbar -->
-
-</div><!-- /footer -->
+    </div><!-- /navbar -->
+  </div><!-- /footer -->
+  
 </div><!-- /page -->
 
 </body>

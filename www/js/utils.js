@@ -95,7 +95,6 @@ Utils = {
     if (array.length > 0) {
       var list = $(".list." + name);
       list.html("");
-      $(".loading." + name).hide();
       
       var divider;
       
@@ -116,20 +115,6 @@ Utils = {
     } else
       $(".empty." + name).html(options.empty || "No results found.");
       
-  },
-  
-  loading: function(done) {
-    if (done) {
-      if (navigator.notification && navigator.notification.activityStop) 
-        navigator.notification.activityStop();
-//       else
-//         $.mobile.pageLoading(true);
-    } else {
-      if (navigator.notification && navigator.notification.activityStart) 
-        navigator.notification.activityStart();
-//       else
-//         $.mobile.pageLoading();
-    }
   },
   
   popup: function(message) {

@@ -69,10 +69,10 @@
     });
     
     function searchNearby(facility_type, radius) {
-      Utils.loading();
+      $(".facilities.thinking.main").show();
         
       Utils.location(function (lat, lng) {
-        Utils.loading(true);
+        $(".facilities.thinking.main").hide();
         $.mobile.changePage({
           url: "facilities_list.html",
           data: Utils.cleanedData({lat: lat, lng: lng, radius: radius, facility_type: facility_type, search_type: "nearby"}),
@@ -101,7 +101,7 @@
   <div data-role="content">
     <div class="content-banner">
       <a href="about.html" data-transition="fade" class="info">About</a>
-        <div class='thinking'></div>
+      <div class="thinking facilities main hidden"></div>
 	  
       <h1>Sunlight Health</h1>
       <p>
