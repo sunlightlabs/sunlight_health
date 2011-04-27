@@ -547,7 +547,7 @@ input.ui-input-text, textarea.ui-input-text {
 }
 .thinking {
 	background:url('images/ajax-loader_gray.gif')left center no-repeat;
-	width: 18px;
+	min-width: 18px;
 	height: 18px;
 	padding-left: 22px;
 	margin: 10px;
