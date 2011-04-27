@@ -84,7 +84,9 @@
     function searchZip(facility_type, radius) {
       var zip = $("input.facilities.zipcode").val().trim();
       if (!zip)
-        Utils.popup("Searching by zip code", "If you want to limit results to a zip code, enter one before searching.");
+        Utils.popup("If you want to limit results to a zip code, enter one before searching.");
+      else if (zip.match(/[^\d]/))
+        Utils.popup("Enter a valid zip code.");
       else {
         $.mobile.changePage({
           url: "facilities_list.html",

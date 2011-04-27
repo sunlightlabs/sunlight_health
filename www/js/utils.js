@@ -112,23 +112,18 @@ Utils = {
         navigator.notification.activityStart();
   },
   
-  popup: function(title, message) {
-    var dialog = '<div data-role="dialog" data-url="dialog" class="page" id="dialog">' +
-      '<div data-role="header" data-backbtn="false">' +
-        '<h1>' + title + '</h1>' +
-      '</div>' +
-      '<div data-role="content">' +
-        '<p class="message">' + message + '</p>' +
-        '<a href="index.html" data-role="button" data-rel="back">Close</a>' +
-      '</div>' +
-    '</div>';
-    $.mobile.pageContainer.append(dialog);
-    //TODO: Add an event handler to get rid of the dialog from the DOM tree entirely
-    // $("#dialog").live("pagehide", function() {
-      
+  popup: function(message) {
+    var elem = document.createElement('div');
+    elem.className = "toast";
+    elem.innerHTML = message;
     
-    $.mobile.changePage("#dialog", "pop");
+    var page = $.mobile.activePage.get(0);
     
+    page.appendChild(elem);
+    
+    setTimeout(function() {
+      page.removeChild(elem);
+    }, 2000);
   },
   
   // get location and feed the lat/lng to a callback,
@@ -150,11 +145,11 @@ Utils = {
         //   PositionError.TIMEOUT = 3;
         
         if (error.code == 1)
-          Utils.popup("Your Location", "You'll need to enable sharing of your location on your phone first.");
+          Utils.popup("You'll need to enable sharing of your location on your phone first.");
         else if (error.code == 2)
-          Utils.popup("Your Location", "We couldn't locate you right now. Try again later or in a different place, or search by zip code.");
+          Utils.popup("We couldn't locate you right now. Try again later or in a different place, or search by zip code.");
         else
-          Utils.popup("Your Location", "There was an error while finding your location.");
+          Utils.popup("There was an error while finding your location.");
       }
     );
   },

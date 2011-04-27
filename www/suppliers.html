@@ -101,7 +101,9 @@
     function searchZip(supply, radius) {
       var zip = $("input.supplies.zipcode").val().trim();
       if (!zip)
-        Utils.popup("Searching by zip code", "If you want to limit results to a zip code, enter one before selecting a supplier.");
+        Utils.popup("If you want to limit results to a zip code, enter one before selecting a supplier.");
+      else if (zip.match(/[^\d]/))
+        Utils.popup("Enter a valid zip code.");
       else {
         $.mobile.changePage({
           url: "suppliers_list.html",
