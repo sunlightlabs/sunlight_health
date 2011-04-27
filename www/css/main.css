@@ -471,7 +471,7 @@ dd.not {
 }
 
 .ui-collapsible-heading-toggle .above, .content-banner .outlier.above{
-	background: url('images/outlier_up.png') top right no-repeat ;
+	background: url('images/outlier_up.png') right 2px no-repeat ;
 	font-weight: 700;
 	font-size: 16px;
 	padding-right: 20px;
@@ -480,7 +480,7 @@ dd.not {
 
 
 .ui-collapsible-heading-toggle .below, .content-banner .outlier.below{
-	background: url('images/outlier_down.png') top right no-repeat;
+	background: url('images/outlier_down.png') right 2px no-repeat;
 	font-weight: 700;
 	font-size: 16px;
 	padding-right: 20px;
@@ -516,11 +516,17 @@ dd.not {
 	right: 0;
 	position: absolute;
 	margin-right:50px;
+
 }
-
-
 tr.below th{
-	background: url('images/outlier_down.png') left center no-repeat;
+	background: url('images/outlier_down.png') left top no-repeat;
+	padding-left: 15px;
+	margin-left: 5px;
+	padding-top: 0;
+	margin-top: 10px;
+}
+tr.below th{
+	background: url('images/outlier_up.png') left top no-repeat;
 	padding-left: 15px;
 	margin-left: 5px;
 }
