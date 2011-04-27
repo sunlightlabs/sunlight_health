@@ -75,7 +75,7 @@
         Utils.loading(true);
         $.mobile.changePage({
           url: "facilities_list.html",
-          data: {lat: lat, lng: lng, radius: radius, facility_type: facility_type, search_type: "nearby"},
+          data: Utils.cleanedData({lat: lat, lng: lng, radius: radius, facility_type: facility_type, search_type: "nearby"}),
           type: "get"
         });
       });
@@ -90,7 +90,7 @@
       else {
         $.mobile.changePage({
           url: "facilities_list.html",
-          data: {zip: zip, radius: radius, facility_type: facility_type, search_type: "zip"},
+          data: Utils.cleanedData({zip: zip, radius: radius, facility_type: facility_type, search_type: "zip"}),
           type: "get"
         });
       }
