@@ -121,6 +121,7 @@ Utils = {
   // get location and feed the lat/lng to a callback,
   // and in case of error, use some predefined popups
   location: function(success) {
+    Utils.log("Locating user...");
     navigator.geolocation.getCurrentPosition(
       function(point) {
         Utils.log("Located user at " + point.coords.latitude + "," + point.coords.longitude);
@@ -199,6 +200,14 @@ Utils = {
     } catch(err) {
       Utils.log("[ERROR] While logging analytics: " + err);
     } 
+  },
+  
+  radiusFor: function(radius) {
+    return {
+      small: 5,
+      medium: 25,
+      large: 100
+    }[radius];
   }
 };
 

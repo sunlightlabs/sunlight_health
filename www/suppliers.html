@@ -25,7 +25,6 @@
 
 <div data-role="page" class="page" id="suppliers">
 
-  <!-- Page-specific code -->
   <script type="text/javascript">
     var currentQuery = "";
     
@@ -33,11 +32,12 @@
       $("ul.list.supplies li a").live("click", function() {
         var term = $(this).data("value");
         var search_type = $('input:radio[name=search_type]:checked').val();
+        var radius = $('input:radio[name=radius]:checked').val();
         
         if (search_type == "nearby")
-          searchNearby(term);
+          searchNearby(term, radius);
         else
-          searchZip(term);
+          searchZip(term, radius);
         
         return false;
       });
@@ -45,9 +45,9 @@
       $("input.supplies.radio").change(function() {
         var search_type = $('input:radio[name=search_type]:checked').val();
         if (search_type == "zip")
-          $("input.supplies.search.zipcode").attr("disabled", "");
+          $("input.supplies.search.zipcode").show();
         else
-          $("input.supplies.search.zipcode").attr("disabled", "disabled");
+          $("input.supplies.search.zipcode").hide();
       });
       
       $("input.search.supplies.text").change(function() {
@@ -85,27 +85,27 @@
       }, {empty: "No supplies found.",});
     }
     
-    function searchNearby(supply) {
+    function searchNearby(supply, radius) {
       Utils.loading();
         
       Utils.location(function (lat, lng) {
         Utils.loading(true);
         $.mobile.changePage({
           url: "suppliers_list.html",
-          data: {lat: lat, lng: lng, supply: supply},
+          data: {lat: lat, lng: lng, radius: radius, supply: supply, search_type: "nearby"},
           type: "get"
         });
       });
     }
     
-    function searchZip(supply) {
+    function searchZip(supply, radius) {
       var zip = $("input.supplies.zipcode").val().trim();
       if (!zip)
         Utils.popup("Searching by zip code", "If you want to limit results to a zip code, enter one before selecting a supplier.");
       else {
         $.mobile.changePage({
           url: "suppliers_list.html",
-          data: {zip: zip, supply: supply},
+          data: {zip: zip, supply: supply, radius: radius, search_type: "zip"},
           type: "get"
         });
       }
@@ -122,29 +122,39 @@
         Looking for medical supplies? See who carries it.
       </p>
     </div>
-	<div class="scallop">
-		
-	</div>
+    
+    <div class="scallop"></div>
 
-  <div data-role="fieldcontain">
-    <fieldset data-role="controlgroup" data-type="horizontal">
-      <input type="radio" name="search_type" value="nearby" class="radio supplies nearby" id="search_type-nearby" checked="checked" />
-      <label for="search_type-nearby">Nearby</label>
-      <input type="radio" name="search_type" value="zip" class="radio supplies zip" id="search_type-zip" />
-      <label for="search_type-zip">Zipcode</label>
-    </fieldset>
-  </div>
+    <div data-role="fieldcontain">
+      <fieldset data-role="controlgroup" data-type="horizontal">
+        <input type="radio" name="search_type" value="nearby" class="radio supplies nearby" id="search_type-nearby" checked="checked" />
+        <label for="search_type-nearby">Nearby</label>
+        <input type="radio" name="search_type" value="zip" class="radio supplies zip" id="search_type-zip" />
+        <label for="search_type-zip">Zipcode</label>
+      </fieldset>
+    </div>
+    
+    <div data-role="fieldcontain">
+      <fieldset data-role="controlgroup" data-type="horizontal">
+        <input type="radio" name="radius" value="small" class="radio radius small" id="radius-small" />
+        <label for="radius-small">5 miles</label>
+        <input type="radio" name="radius" value="medium" class="radio radius medium" id="radius-medium" checked="checked" />
+        <label for="radius-medium">25 miles</label>
+        <input type="radio" name="radius" value="large" class="radio radius large" id="radius-large" />
+        <label for="radius-large">100 miles</label>
+      </fieldset>
+    </div>
 
-	<script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
 	
     <div class="ui-select">
-		<input class="search supplies zipcode" type="text" name="zip" placeholder="Enter a zipcode..." disabled="disabled" />
-		<input class="search supplies text" type="text" name="query" placeholder="Start typing what you're looking for..." />
-	</div>
+      <input class="search supplies zipcode" type="text" name="zip" placeholder="Enter a zipcode..." style="display: none" />
+      <input class="search supplies text" type="text" name="query" placeholder="Start typing what you're looking for..." />
+    </div>
 
-	<ul data-role="listview" data-theme="e" class="list supplies">
-	  <!-- supply list goes here, template specified in JavaScript above -->
-	</ul>
+    <ul data-role="listview" data-theme="e" class="list supplies">
+      <!-- supply list goes here, template specified in JavaScript above -->
+    </ul>
 	
   </div><!-- /content -->
 

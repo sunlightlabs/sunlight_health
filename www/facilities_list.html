@@ -33,7 +33,8 @@
       var lat = Utils.param("lat");
       var lng = Utils.param("lng");
       var zip = Utils.param("zip");
-      
+      var radius = Utils.radiusFor(Utils.param("radius"));
+      var searchType = Utils.param("search_type");
       
       var params = {facility_type: facility_type};
       var sections;
@@ -47,10 +48,10 @@
       else if (facility_type == "hospital")
         sections = ["basic"];
       
-      if (zip)
-        Api.Facility.searchZip(zip, sections, params, loadFacilities);
+      if (searchType == "zip")
+        Api.Facility.searchZip(zip, radius, sections, params, loadFacilities);
       else
-        Api.Facility.searchNearby(lat, lng, sections, params, loadFacilities);
+        Api.Facility.searchNearby(lat, lng, radius, sections, params, loadFacilities);
     });
     
     function loadFacilities(facilities) {
