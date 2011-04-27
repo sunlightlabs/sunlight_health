@@ -26,19 +26,14 @@
 
   <!-- Page-specific code -->
   <script type="text/javascript">
-    // convention for caching query parameters
-    var p = {};
-      
     
     Utils.show("facilities_list", function() {
-    
       var facility_type = Utils.param("facility_type");
       
       var lat = Utils.param("lat");
       var lng = Utils.param("lng");
       var zip = Utils.param("zip");
       
-      Utils.loading();
       
       var params = {facility_type: facility_type};
       var sections;
@@ -59,7 +54,6 @@
     });
     
     function loadFacilities(facilities) {
-      Utils.loading(true);
       window.facilities = facilities;
       Utils.loadList("facilities", facilities, function(facility) {
         var url = $.param({
