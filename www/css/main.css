@@ -363,12 +363,20 @@ tr.best-buy{
     right: 40px;
 }
 
-.list .overall_ratings {
+.list .overall_ratings{
     bottom: 11px;
     position: absolute;
     right: 40px;
 	height: 20px;
 	padding-right: 7px;
+}
+.content-banner .top{
+}
+.content-banner .overall_rating{
+	height: 20px;
+	padding-right: 7px;
+	float: right;
+	margin-top: -23px;
 }
 
 .occupancy .ui-collapsible-content, .inspections .ui-collapsible-content{
@@ -376,7 +384,7 @@ tr.best-buy{
 	margin: auto;
 	text-align: center;
 }
-.nursing_home .percent{
+.occupancy .percent{
 	font-size: 20px;
 	font-weight: 700;
 	color: #D7CA57 ;
