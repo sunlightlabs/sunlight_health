@@ -83,12 +83,14 @@
           html += "" +
             "<div class=\"nursing_home overall_ratings rating-" + facility.ratings.overall.value + "\">" + 
             "</div>";
-        else if (facility.facility_type == "dialysis")
-          html += "" +
-            "<span class=\"dialysis dialysis_adequacy\">" +
-              facility.extended.dialysis_adequacy.value + "%" +
-            "</span>";  
-          
+        else if (facility.facility_type == "dialysis") {
+          if (facility.extended.dialysis_adequacy.value)
+            html += "" +
+              "<span class=\"dialysis dialysis_adequacy\">" +
+                facility.extended.dialysis_adequacy.value + "%" +
+              "</span>";  
+        }
+        
         html += "" +
           "</a>";
           
