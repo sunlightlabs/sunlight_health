@@ -497,7 +497,7 @@ input.ui-input-text, textarea.ui-input-text {
 		}
 }
 
-/* -------- Loading icon -------- */
+/* -------- Loading icon -------- 
 
 .ui-content .ui-icon-loading.ui-icon{
 	background-color: transparent;
@@ -524,6 +524,31 @@ input.ui-input-text, textarea.ui-input-text {
 
 .loading.empty{
 	margin-top: 20px;
+}
+*/
+
+.whirl  {
+	-webkit-transform: rotate(360deg);
+	-webkit-animation-name: spin;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count:  infinite;
+}
+@-webkit-keyframes spin {
+	from {-webkit-transform: rotate(0deg);}
+  	to {-webkit-transform: rotate(360deg);}
+}
+
+.content-banner .thinking {
+	background:url('images/ajax-loader.gif')center center no-repeat;
+	width: 18px;
+	height: 18px;
+}
+.thinking {
+	background:url('images/ajax-loader_gray.gif')left center no-repeat;
+	width: 18px;
+	height: 18px;
+	padding-left: 22px;
+	margin: 10px;
 }
 
 
