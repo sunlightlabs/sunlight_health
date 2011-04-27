@@ -483,6 +483,13 @@ dd.not {
 	margin-right:50px;
 }
 
+
+tr.below th{
+	background: url('images/outlier_down.png') left center no-repeat;
+	padding-left: 15px;
+	margin-left: 5px;
+}
+
 /* -------- Search Results Loading Dialogue -------- */
 
 .loading.empty{
