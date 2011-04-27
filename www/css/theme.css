@@ -3,22 +3,16 @@
 .ui-content { 
 	padding: 0;
 }
-
-
-
-
 .ui-corner-all{
 	border-bottom-left-radius: 0.8em;
     border-bottom-right-radius: 0.8em;
     border-top-left-radius: 0.8em;
     border-top-right-radius: 0.8em;
 }
-
 .ui-icon{
 	width: 20px;
 	height: 20px;
 }
-
 /* -------- Radio Button styling -------- */
 .ui-controlgroup, fieldset.ui-controlgroup, .max-width-480px .ui-field-contain, .min-width-480px .ui-field-contain{
 	margin-top: 0;
@@ -556,7 +550,6 @@ input.ui-input-text, textarea.ui-input-text {
 input.search{
 	background: url('images/ajax-loader_white.gif') 98% center no-repeat;
 	background-color: #ffffff;
-	
 }
 
 
@@ -637,6 +630,42 @@ input.search{
 		-o-background-size: 357px 46px;
 		-webkit-background-size: 357px 46px;
 		background-size: 357px 46px;
+	}
+	.call .ui-btn-text{
+		background: url('images/icon_phone_x2.png') left center no-repeat;
+		-moz-background-size: 14px 19px;
+		-o-background-size: 14px 19px;
+		-webkit-background-size: 14px 19px;
+		background-size: 14px 19px;
+	}
+	.directions .ui-btn-text{
+		background: url('images/icon_directions_x2.png') left center no-repeat;
+		-moz-background-size: 14px 19px;
+		-o-background-size: 14px 19px;
+		-webkit-background-size: 14px 19px;
+		background-size: 14px 19px;
+	}
+	.content-banner .thinking {
+		background:url('images/ajax-loader.gif')center center no-repeat;
+		-moz-background-size: 18px 18px;
+		-o-background-size: 18px 18px;
+		-webkit-background-size: 18px 18px;
+		background-size: 18px 18px;
+	}
+	.thinking {
+		background:url('images/ajax-loader_gray.gif')left center no-repeat;
+		-moz-background-size: 18px 18px;
+		-o-background-size: 18px 18px;
+		-webkit-background-size: 18px 18px;
+		background-size: 18px 18px;
+	}
+
+	input.search{
+		background: url('images/ajax-loader_white.gif') 98% center no-repeat;
+		-moz-background-size: 18px 18px;
+		-o-background-size: 18px 18px;
+		-webkit-background-size: 18px 18px;
+		background-size: 18px 18px;
 	}
 
 }
