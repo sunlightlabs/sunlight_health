@@ -1,5 +1,8 @@
 Utils = {
   
+  // internal cache of last loaded URL, to protect against JQM's redundant reloading
+  currentUrl: null,
+  
   // if running in Android, the command to see log messages in a terminal is:
   // adb logcat PhoneGapLog:V *:S
   // or when running in the web browser:
@@ -11,14 +14,25 @@ Utils = {
   // depends on jQuery and JQM being loaded, will run a function on page load
   show: function (page, callback) {
     $("#" + page).live("pageshow", function(event, ui) {
-      window.event = event;
-      var msg = "[LOAD](#" + page + ")";
-      if (ui.prevPage && ui.prevPage.get(0))
-        msg += " prev page is #" + ui.prevPage.get(0).id;
       
-      Utils.log(msg);
+      var url = $.mobile.urlHistory.stack[$.mobile.urlHistory.activeIndex].url;
+      if (Utils.currentUrl == url)
+        return;
       
-      callback();
+      // cache current URL
+      Utils.currentUrl = url;
+      
+      if ($.mobile.urlHistory.getNext())
+        Utils.log("[BACK](#" + page + ")");
+      else {
+        Utils.log("[LOAD](#" + page + ")");
+        
+        // log a hit in Google Analytics
+        Utils.hit(event, ui);
+      
+        callback();
+      }
+      
     });
   },
   
@@ -109,13 +123,11 @@ Utils = {
   location: function(success) {
     navigator.geolocation.getCurrentPosition(
       function(point) {
-        Utils.loading(true);
         Utils.log("Located user at " + point.coords.latitude + "," + point.coords.longitude);
         
         success(point.coords.latitude, point.coords.longitude);
       },
       function(error) {
-        Utils.loading(true);
         Utils.log("Error " + error.code + ": " + error.message);
         
         // from phonegap's JS:
@@ -171,5 +183,40 @@ Utils = {
           chemical.drug_names.join(", ") +
         "</p>" +
       "</a>";
+  },
+  
+  hit: function(event, ui) {
+    var defaultUrl = "#facilities.html";
+    try {
+      if (location.hash)
+        url = location.hash;
+      else 
+        url = defaultUrl;
+      
+      Utils.log("[ANALYTICS](#" + event.currentTarget.id + ") url: " + url);
+      _gaq.push( ['_trackPageview', url] );
+        
+    } catch(err) {
+      Utils.log("[ERROR] While logging analytics: " + err);
+    } 
   }
 };
+
+
+// approach to recording using Google Analytics with JQM adapted from Jon Gales:
+// http://www.jongales.com/blog/2011/01/10/google-analytics-and-jquery-mobile/
+
+// optimized GA async snippet adapted from:
+// http://mathiasbynens.be/notes/async-analytics-snippet
+var _gaq = [['_setAccount', 'UA-22821126-1']];
+(function(d, t) {
+  var g = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+  g.async = 1;
+  g.src = '//www.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g, s);
+}(document, 'script'));
+
+// approach to recording using Google Analytics with JQM adapted from:
+// http://blog.stickmanventures.com/2011/03/15/basic-google-analytics-with-jquery-mobile-pageshow/
+
