@@ -38,10 +38,13 @@
       
       Utils.loading();
       
-      if (searchType == "zip")
+      if (searchType == "zip") {
+        $(".suppliers.title").html("Suppliers Near " + zip);
         Api.Supplier.searchZip(supply, zip, radius, loadSuppliers);
-      else
+      } else {
+        $(".suppliers.title").html("Suppliers Nearby");
         Api.Supplier.searchNearby(supply, lat, lng, radius, loadSuppliers);
+      }
     });
     
     function loadSuppliers(suppliers) {
@@ -63,7 +66,7 @@
   </script>
 
   <div data-role="header">
-    <h1>Suppliers Nearby</h1>
+    <h1 class="suppliers title">Suppliers Nearby</h1>
   </div><!-- /header -->
 
   <div data-role="content"> 

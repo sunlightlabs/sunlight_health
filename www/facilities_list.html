@@ -48,10 +48,13 @@
       else if (facility_type == "hospital")
         sections = ["basic"];
       
-      if (searchType == "zip")
+      if (searchType == "zip") {
+        $(".facilities.title").html("Facilities Near " + zip);
         Api.Facility.searchZip(zip, radius, sections, params, loadFacilities);
-      else
+      } else {
+        $(".facilities.title").html("Facilities Nearby");
         Api.Facility.searchNearby(lat, lng, radius, sections, params, loadFacilities);
+      }
     });
     
     function loadFacilities(facilities) {
@@ -103,7 +106,7 @@
   </script>
 
   <div data-role="header">
-    <h1>Facilities Nearby</h1>
+    <h1 class="facilities title"></h1>
   </div><!-- /header -->
 
   <div data-role="content"> 
