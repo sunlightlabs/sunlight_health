@@ -107,6 +107,9 @@ fieldset.ui-controlgroup{
 .ui-btn-down-c{
 	border-color: #bbbbbb;
 }
+.ui-btn-down-c .dialysis_adequacy{
+	text-shadow: none;
+}
 
 .ui-br {
 	border-bottom: none;
@@ -173,6 +176,14 @@ background-position: -216px 50% ;
 .directions .ui-btn-inner, .call .ui-btn-inner{
 	text-align: center;
 }
+
+/* -------- Button styling -------- */
+.ui-btn-active{
+	background-image: none;
+	border-color: #222222;
+	background-color: none;
+}
+
 
 
 /* -------- Text Field Styling -------- */

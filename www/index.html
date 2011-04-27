@@ -119,9 +119,11 @@
     <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
     
     <div class="ui-select">
-      <input class="search facilities zipcode" type="text" name="zip" placeholder="Enter a zipcode..." disabled="disabled" />
+      <input class="search facilities zipcode ui-icon ui-icon-loading spin" type="text" name="zip" placeholder="Enter a zipcode..." disabled="disabled" />
     </div>
-    
+   	  <p class="loading empty facilities ">
+	    <span class='ui-icon ui-icon-loading spin'></span>Loading facilities...
+	  </p> 
     <select name="facility_type" id="facility_type">
       <option value="placeholder" data-placeholder="true" class="placeholder">Select a Facility Type</option>
       <option value="hospital">Hospital</option>
