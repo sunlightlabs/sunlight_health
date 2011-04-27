@@ -135,7 +135,7 @@ Utils = {
   popup: function(message) {
     var elem = document.createElement('div');
     elem.className = "toast";
-    elem.innerHTML = message;
+    elem.innerHTML = "<div class=\"toast-text\">" + message + "</div>";
     
     var page = $.mobile.activePage.get(0);
     
