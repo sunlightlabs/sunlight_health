@@ -378,7 +378,25 @@ tr.best-buy{
 	float: right;
 	margin-top: -23px;
 }
-
+.content-banner .dialysis_adequacy{
+	height: 20px;
+	padding-right: 0;
+	float: right;
+	margin-top: -31px;
+	text-shadow: none;
+}
+.content-banner .dialysis_adequacy dd{
+	color: #D7CA57 ;
+	font-size: 16px;
+	text-align: right;
+	font-weight: 700;
+	
+}
+.content-banner .dialysis_adequacy dt{
+	font-size: 10px;
+	text-align: right;
+	text-transform: uppercase;
+}
 .occupancy .ui-collapsible-content, .inspections .ui-collapsible-content{
 	padding: 10px 8px;
 	margin: auto;
@@ -423,6 +441,23 @@ dd.not {
 	background: url('images/sprinklers_not.png') top center no-repeat ;
 }
 
+.patient_survival{
+	padding: 20px 8px 10px 8px;
+	font-weight: 700;
+	
+}
+.patient_survival dt{
+	font-size: 14px ;
+	font-weight: 700;
+	display: inline;
+	
+}
+.patient_survival dd{
+	font-size: 14px ;
+	display: inline;
+	margin-left: 10px;
+	text-transform: uppercase;
+}
 
 
 
