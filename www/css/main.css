@@ -560,25 +560,26 @@ tr.below th{
 /* -------- Star Ratings -------- */
 
 div.toast{
-
-	padding: 10px;
 	position: fixed;
 	bottom: 60px;
 	text-align: center;
 	width: 100%;
 	opacity: 0.85;
+	margin-bottom: 10px;
 	
 }
 .toast-text{
-	background: #898989 ;
+	background: #4f4f4f ;
 	opacity: 85%;
 	padding: 10px;
-	max-width: 275px;
+	max-width: 85%;
 	margin: 0 auto;
-	-moz-border-radius: 				1em;
-	-webkit-border-radius: 				1em;
-	border-radius: 						1em;
-	border: 3px solid #393939;
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+	border: 2px solid #393939;
+	color: #ffffff;
+	font-size: 12px;
 }
 
 /* -------- Image exceptions for mobiel screens -------- */
