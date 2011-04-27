@@ -33,13 +33,15 @@
       var lat = Utils.param("lat");
       var lng = Utils.param("lng");
       var zip = Utils.param("zip");
+      var searchType = Utils.param("search_type");
+      var radius = Utils.radiusFor(Utils.param("radius"));
       
       Utils.loading();
       
-      if (zip)
-        Api.Supplier.searchZip(supply, zip, loadSuppliers);
+      if (searchType == "zip")
+        Api.Supplier.searchZip(supply, zip, radius, loadSuppliers);
       else
-        Api.Supplier.searchNearby(supply, lat, lng, loadSuppliers);
+        Api.Supplier.searchNearby(supply, lat, lng, radius, loadSuppliers);
     });
     
     function loadSuppliers(suppliers) {

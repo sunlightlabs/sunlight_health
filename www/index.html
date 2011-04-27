@@ -13,6 +13,7 @@
   <!-- Phonegap and JQM init -->
   <script type="text/javascript" charset="utf-8" src="js/phonegap-0.9.4.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery-1.5.2.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/defaults.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a4.1.min.js"></script>
   
   <!-- Utilities -->
@@ -37,12 +38,13 @@
         var facility_type = $("select#facility_type").val();
         
         var search_type = $('input:radio[name=search_type]:checked').val();
+        var radius = $('input:radio[name=radius]:checked').val();
         
         if (facility_type != "placeholder") {
           if (search_type == "nearby")
-            searchNearby(facility_type);
+            searchNearby(facility_type, radius);
           else
-            searchZip(facility_type);
+            searchZip(facility_type, radius);
         }
         
         return false;
@@ -51,9 +53,9 @@
       $("input.facilities.radio").change(function() {
         var search_type = $('input:radio[name=search_type]:checked').val();
         if (search_type == "zip")
-          $("input.facilities.search.zipcode").attr("disabled", "");
+          $("input.facilities.search.zipcode").show()
         else
-          $("input.facilities.search.zipcode").attr("disabled", "disabled");
+          $("input.facilities.search.zipcode").hide();
       });
       
       $("select#facility_type").change(function() {
@@ -67,27 +69,27 @@
       
     });
     
-    function searchNearby(facility_type) {
+    function searchNearby(facility_type, radius) {
       Utils.loading();
         
       Utils.location(function (lat, lng) {
         Utils.loading(true);
         $.mobile.changePage({
           url: "facilities_list.html",
-          data: {lat: lat, lng: lng, facility_type: facility_type},
+          data: {lat: lat, lng: lng, radius: radius, facility_type: facility_type, search_type: "nearby"},
           type: "get"
         });
       });
     }
     
-    function searchZip(facility_type) {
+    function searchZip(facility_type, radius) {
       var zip = $("input.facilities.zipcode").val().trim();
       if (!zip)
         Utils.popup("Searching by zip code", "If you want to limit results to a zip code, enter one before searching.");
       else {
         $.mobile.changePage({
           url: "facilities_list.html",
-          data: {zip: zip, facility_type: facility_type},
+          data: {zip: zip, radius: radius, facility_type: facility_type, search_type: "zip"},
           type: "get"
         });
       }
@@ -115,15 +117,24 @@
         <label for="search_type-zip">Zipcode</label>
       </fieldset>
     </div>
+    
+    <div data-role="fieldcontain">
+      <fieldset data-role="controlgroup" data-type="horizontal">
+        <input type="radio" name="radius" value="small" class="radio radius small" id="radius-small" />
+        <label for="radius-small">5 miles</label>
+        <input type="radio" name="radius" value="medium" class="radio radius medium" id="radius-medium" checked="checked" />
+        <label for="radius-medium">25 miles</label>
+        <input type="radio" name="radius" value="large" class="radio radius large" id="radius-large" />
+        <label for="radius-large">100 miles</label>
+      </fieldset>
+    </div>
 
     <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
     
     <div class="ui-select">
-      <input class="search facilities zipcode ui-icon ui-icon-loading spin" type="text" name="zip" placeholder="Enter a zipcode..." disabled="disabled" />
+      <input class="search facilities zipcode" type="text" name="zip" placeholder="Enter a zipcode..." style="display: none" />
     </div>
-   	  <p class="loading empty facilities ">
-	    <span class='ui-icon ui-icon-loading spin'></span>Loading facilities...
-	  </p> 
+
     <select name="facility_type" id="facility_type">
       <option value="placeholder" data-placeholder="true" class="placeholder">Select a Facility Type</option>
       <option value="hospital">Hospital</option>
