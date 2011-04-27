@@ -58,7 +58,8 @@
     });
     
     function loadFacilities(facilities) {
-      window.facilities = facilities;
+      $(".facilities.thinking").hide();
+      
       Utils.loadList("facilities", facilities, function(facility) {
         var url = Utils.queryString({
           provider_number: facility.provider_number,
@@ -110,7 +111,7 @@
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <div class="thinking">loading...</div>
+    <div class="facilities thinking">loading...</div>
 
     
     <ul data-role="listview" data-theme="c" class="list facilities">

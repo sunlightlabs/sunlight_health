@@ -30,16 +30,14 @@
       
       var row = Utils.param("row");
       
-      Utils.loading();
       Api.Supplier.find(row, ["basic", "row"], function(supplier) {
-        Utils.loading(true);
+        $(".supplier.thinking.basic").hide();
         if (!supplier) return;
         
         populateSupplier(supplier);
         
-        Utils.loading();
         Api.Supplier.find(row, ["supplies"], function(supplier) {
-          Utils.loading(true);
+          $(".supplier.thinking.extended").hide();
           if (!supplier) return;
           
           populateList(supplier.supplies);
@@ -50,6 +48,7 @@
     });
     
     function populateSupplier(supplier) {
+    
       $(".supplier .name").html(supplier.name);
       $(".supplier .address").html(Utils.address(supplier, {line_break: true}));
       $(".supplier .phone").html(Utils.phone(supplier.phone));
@@ -103,17 +102,19 @@
     <a data-role="button" class="ui-btn-right map supplier reveal">Map</a>
   </div><!-- /header -->
 
-  <div data-role="content"> 
+  <div data-role="content">
+    <div class="supplier basic thinking">Loading supplier information...</div>
+    
     <div class="supplier reveal">
-		<div class="content-banner">
-	      <div class="top">
-	        <h3 class="name"></h3>
-	        <p class="address"></p>
-	        <p class="phone"></p>
-	      </div>
-		</div>
-		<div class="scallop">
-		</div>
+      <div class="content-banner">
+          <div class="top">
+            <h3 class="name"></h3>
+            <p class="address"></p>
+            <p class="phone"></p>
+          </div>
+      </div>
+      
+      <div class="scallop"></div>
       
       <div class="buttons ui-grid-a">
         <div class="ui-block-a">
@@ -123,12 +124,11 @@
           <a href="#" data-role="button" class="directions">Directions</a>
         </div>
       </div>
-      
-    <div class="thinking">loading...</div>
-
 
       <div data-role="collapsible" class="supplier supplies">
         <h1>Supplies</h1>
+        
+        <div class="supplier extended thinking">Loading supplies...</div>
         
         <table class="data">
           <tbody>
@@ -140,7 +140,8 @@
           </tbody>
         </table>
       </div>
-      	<p class="more"><a href="about.html" data-transition="fade">read more about this data...</a></p>
+      
+      <p class="more"><a href="about.html" data-transition="fade">read more about this data...</a></p>
 	
     </div>
   </div><!-- /content -->

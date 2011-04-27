@@ -95,7 +95,6 @@ Utils = {
     if (array.length > 0) {
       var list = $(".list." + name);
       list.html("");
-      $(".loading." + name).hide();
       
       var divider;
       

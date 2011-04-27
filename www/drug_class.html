@@ -32,6 +32,7 @@
       $(".drug_class.name").html(drug_class);
       
       Api.Drug.drugClass(drug_class, function(chemicals) {
+        $(".drugs.thinking").hide();
         
         Utils.loadList("chemicals", chemicals, function(chemical) {
           return Utils.chemicalItem(chemical);
@@ -50,7 +51,7 @@
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <div class="thinking">loading...</div>
+    <div class="drugs thinking">Loading chemicals in this class...</div>
 
 	  
     <ul data-role="listview" data-theme="c" class="list chemicals">

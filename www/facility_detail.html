@@ -35,17 +35,13 @@
       
       $(".facility.hidden").hide(); // reset
       
-      Utils.loading();
       Api.Facility.find(provider_number, facility_type, ["basic"], function(facility) {
-        Utils.loading(true);
         if (!facility) return;
         
         populateFacility(facility);
         
-        Utils.loading();
         if (facility_type == "nursing_home") {
           Api.Facility.find(provider_number, facility_type, ["ratings", "extended"], function(facility) {
-            Utils.loading(true);
             if (!facility) return;
             window.facility = facility;
             populateNursingHome(facility.ratings, facility.extended);
@@ -54,7 +50,6 @@
         
         else if (facility_type == "home_health") {
           Api.Facility.find(provider_number, facility_type, ["extended"], function(facility) {
-            Utils.loading(true);
             if (!facility) return;
             
             populateHomeHealth(facility.extended.ownership_type, facility.extended.services, facility.extended.patient_improvement);
@@ -63,7 +58,6 @@
         
         else if (facility_type == "dialysis") {
           Api.Facility.find(provider_number, facility_type, ["extended", "services"], function(facility) {
-            Utils.loading(true);
             if (!facility) return;
             
             populateDialysis(facility.extended, facility.services);
@@ -72,7 +66,6 @@
         
         else if (facility_type == "hospital") {
           Api.Facility.find(provider_number, facility_type, ["outliers_above", "outliers_below", "survey_experiences", "outcomes", "process"], function(facility) {
-            Utils.loading(true);
             if (!facility) return;
             
             populateHospital(facility.outliers_above, facility.outliers_below, facility.survey_experiences, facility.outcomes, facility.process);
@@ -108,7 +101,10 @@
         });
       });
       
-      $(".facility.reveal").show();
+      $(".facility.common.thinking.basic").hide();
+      $(".facility.common.reveal.basic").show();
+      
+      $(".facility." + facility.facility_type + ".reveal.basic").show();
     }
     
     function populateHospital(outliers_above, outliers_below, survey_experiences, outcomes, process) {
@@ -196,8 +192,8 @@
       });
       
       
-      $(".facility.loading").hide();
-      $(".facility.hospital.hidden").show();
+      $(".facility.thinking.extended").hide();
+      $(".facility.hospital.reveal.extended").show();
     }
     
     function populateNursingHome(ratings, extended) {
@@ -247,9 +243,8 @@
         
       $(".facility.nursing_home .inspections div.data .sprinklers dt").addClass(klass);
       
-      
-      $(".facility.loading").hide();
-      $(".facility.nursing_home.hidden").show();
+      $(".facility.thinking.extended").hide();
+      $(".facility.nursing_home.reveal.extended").show();
     }
     
     function populateHomeHealth(ownership_type, services, patient_improvement) {
@@ -279,8 +274,8 @@
       
       $(".facility.home_health .patient_improvement table.data tbody").html(html);
       
-      $(".facility.loading").hide();
-      $(".facility.home_health.hidden").show();
+      $(".facility.thinking.extended").hide();
+      $(".facility.home_health.reveal.extended").show();
     }
     
     function populateDialysis(extended, services) {
@@ -317,9 +312,8 @@
       
       $(".facility.dialysis .quality div.patient_survival dd").html(extended.patient_survival.value);
       
-      
-      $(".facility.loading").hide();
-      $(".facility.dialysis.hidden").show();
+      $(".facility.thinking.extended").hide();
+      $(".facility.dialysis.reveal.extended").show();
     }
     
     function booleanRow(i, name, value) {
@@ -387,11 +381,12 @@
 
   <div data-role="header">
     <h1>Facility Details</h1>
-    <a data-role="button" class="ui-btn-right map facility reveal">Map</a>
+    <a data-role="button" class="ui-btn-right map facility common basic reveal" style="display: none">Map</a>
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <div class="facility reveal">
+    <div class="facility common thinking basic">Loading facility information...</div>
+    <div class="facility common reveal basic">
       <div class="content-banner">
         <div class="top">
           <h3 class="name"></h3>
@@ -400,7 +395,7 @@
         </div>
         
         <!-- Currently using mocked up data so that it can be styled. -->
-        <div class="facility hospital outliers hidden">
+        <div class="facility hospital outliers reveal">
           <div class="totals">
             <span class="above"><span class="outlier above"></span>
             above avg measures</span>
@@ -412,15 +407,12 @@
           </p>
         </div>
         
-        <div class="facility nursing_home ownership_type hidden"></div>
-        <div class="facility nursing_home overall_rating hidden"></div>
-        <div class="facility dialysis profit_type hidden"></div>
-        <div class="facility dialysis chain_organization hidden"></div>
-        <div class="facility dialysis dialysis_adequacy hidden">
+        <div class="facility nursing_home overall_rating reveal"></div>
+        <div class="facility dialysis chain_organization reveal"></div>
+        <div class="facility dialysis dialysis_adequacy reveal">
           <dd></dd>
           <dt>Dialysis Adequacy</dt>
         </div>
-        <div class="facility home_health ownership_type hidden"></div>
       </div>
       
       <div class="scallop"></div>
@@ -430,13 +422,13 @@
           <a href="#" data-role="button" class="call">Call</a>
         </div>
         <div class="ui-block-b">
-          <a href="#" data-role="button" class="directions">Directions</a>
+          <a href="#" data-role="button" target="_blank" class="directions">Directions</a>
         </div>
       </div>
-    <div class="thinking">loading...</div>
-
+    
+      <div class="facility thinking extended">Loading more facility information...</div>
       
-      <div class="facility hospital hidden">
+      <div class="facility hospital reveal extended">
         
         <div data-role="collapsible" data-collapsed="true" class="survey_experiences">
           <h1>Patient Surveys</h1>
@@ -635,7 +627,7 @@
       
       </div><!-- end hospital container -->
       
-      <div class="facility nursing_home hidden">
+      <div class="facility nursing_home reveal extended">
       
         <div data-role="collapsible" data-collapsed="true" class="ratings">
           <h1>Ratings</h1>
@@ -695,7 +687,7 @@
         
       </div><!-- end nursing home container -->
       
-      <div class="facility home_health hidden">
+      <div class="facility home_health reveal extended">
         
         <div data-role="collapsible" data-collapsed="true" class="services">
           <h1>Services</h1>
@@ -728,7 +720,7 @@
       
       </div><!-- end home health container -->
       
-      <div class="facility dialysis hidden">
+      <div class="facility dialysis reveal extended">
  
         
         <div data-role="collapsible" data-collapsed="true" class="services">
@@ -746,7 +738,7 @@
 		  
         </div>
 
-		<div data-role="collapsible" data-collapsed="true" class="quality">
+        <div data-role="collapsible" data-collapsed="true" class="quality">
           <h1>Average Quality Levels</h1>
           
           <table class="data">
