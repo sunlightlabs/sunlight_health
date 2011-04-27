@@ -525,7 +525,7 @@ input.ui-input-text, textarea.ui-input-text {
 .loading.empty{
 	margin-top: 20px;
 }
-*/
+
 
 .whirl  {
 	-webkit-transform: rotate(360deg);
@@ -537,11 +537,13 @@ input.ui-input-text, textarea.ui-input-text {
 	from {-webkit-transform: rotate(0deg);}
   	to {-webkit-transform: rotate(360deg);}
 }
-
+*/
 .content-banner .thinking {
 	background:url('images/ajax-loader.gif')center center no-repeat;
 	width: 18px;
 	height: 18px;
+	padding-left: 0;
+	margin: 0;
 }
 .thinking {
 	background:url('images/ajax-loader_gray.gif')left center no-repeat;

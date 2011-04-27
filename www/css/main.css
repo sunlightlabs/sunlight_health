@@ -72,7 +72,9 @@ h1{
 	padding-top: 10px;
 }
 
-
+.ui-body-c{
+	text-shadow: none;
+}
 
 
 .content-banner {
@@ -555,9 +557,21 @@ tr.below th{
 	width: 90px;
 }
 
+/* -------- Star Ratings -------- */
 
+.toast{
 
-
+	padding: 10px;
+	position: fixed;
+	bottom: 60px;
+	text-align: center;
+	width: 100%;
+}
+.toast-text{
+	background: #898989;
+	opacity: 85%;
+	padding: 10px;
+}
 
 /* -------- Image exceptions for mobiel screens -------- */
 
