@@ -553,6 +553,13 @@ input.ui-input-text, textarea.ui-input-text {
 	margin: 10px;
 }
 
+input.search{
+	background: url('images/ajax-loader_white.gif') 98% center no-repeat;
+	background-color: #ffffff;
+	
+}
+
+
 
 /* -------- Image exceptions for mobile screens -------- */
 
