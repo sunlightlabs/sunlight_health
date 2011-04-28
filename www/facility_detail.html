@@ -65,10 +65,10 @@
         }
         
         else if (facility_type == "hospital") {
-          Api.Facility.find(provider_number, facility_type, ["outliers_above", "outliers_below", "survey_experiences", "outcomes", "process"], function(facility) {
+          Api.Facility.find(provider_number, facility_type, ["outliers_above", "outliers_below", "survey_experiences", "outcomes", "process", "hac"], function(facility) {
             if (!facility) return;
             
-            populateHospital(facility.outliers_above, facility.outliers_below, facility.survey_experiences, facility.outcomes, facility.process);
+            populateHospital(facility.outliers_above, facility.outliers_below, facility.survey_experiences, facility.outcomes, facility.process, facility.hac);
           });
         }
         
@@ -107,7 +107,7 @@
       $(".facility." + facility.facility_type + ".reveal.basic").show();
     }
     
-    function populateHospital(outliers_above, outliers_below, survey_experiences, outcomes, process) {
+    function populateHospital(outliers_above, outliers_below, survey_experiences, outcomes, process, hac) {
       $(".facility.hospital.outliers .totals span.outlier.above").html(outliers_above);
       $(".facility.hospital.outliers .totals span.outlier.below").html(outliers_below);
       $(".facility.hospital.outliers").show();
@@ -123,9 +123,9 @@
           var name = qualifiers.usually.name;
           var individual = qualifiers.usually.value + qualifiers.always.value;
           var nearby = qualifiers.usually.nearby_average + qualifiers.always.nearby_average;
-          var us = qualifiers.usually.national_average + qualifiers.always.national_average;
+          var national = qualifiers.usually.national_average + qualifiers.always.national_average;
           
-          html += averageRow(i, name, individual, nearby, us);
+          html += surveyRow(i, name, individual, nearby, national);
           
           i += 1;
         } else {
@@ -133,9 +133,9 @@
             var name = info.name;
             var individual = info.value;
             var nearby = info.nearby_average;
-            var us = info.national_average;
+            var national = info.national_average;
             
-            html += averageRow(i, name, individual, nearby, us);
+            html += surveyRow(i, name, individual, nearby, national);
             i += 1;
           });
         }
@@ -161,7 +161,10 @@
       i = 0;
       html = "";
       
-      html += hacRow(i, "Example condition", 20, 1678, "0.02%", "0.12%");
+      $.each(hac, function(slug, info) {
+        html += hacRow(i, info.name, info.incidents, info.eligible, info.rate + "%", info.national_rate + "%");
+        i += 1;
+      });
       
       $(".facility.hospital .hac table.data tbody").html(html);
       
@@ -327,13 +330,14 @@
         "</tr>";
     }
     
-    function averageRow(i, name, individual, nearby, national) {
+    function surveyRow(i, name, individual, nearby, national) {
       return "" +
         "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
           "<th scope=\"row\">" + name + "</th>" +
-          "<td>" + national + "</td>" +
-          "<td>" + nearby + "</td>" +
           "<td>" + individual + "</td>" +
+          "<td>" + nearby + "</td>" +
+          "<td>" + national + "</td>" +
+          
         "</tr>";
     }
     
@@ -359,8 +363,8 @@
               " eligible" +
             "</dd>" +
           "</th>" +
-          "<td>" + national + "</td>" +
           "<td>" + individual + "</td>" +
+          "<td>" + national + "</td>" +
         "</tr>";
     }
     
@@ -467,7 +471,7 @@
           </table>
         </div>
         
-        <div data-role="collapsible" data-collapsed="false" class="hac">
+        <div data-role="collapsible" data-collapsed="true" class="hac">
           <h1>Hospital-Acquired Conditions</h1>
           
           <table class="data">
@@ -535,7 +539,6 @@
               </tr>
             </thead>
             <tbody>
-               <!-- filled with averageRow() fields -->
             </tbody>
           </table>
         </div>
@@ -574,7 +577,6 @@
               </tr>
             </thead>
             <tbody>
-               <!-- filled with averageRow() fields -->
             </tbody>
           </table>
         </div>
@@ -616,7 +618,6 @@
               </tr>
             </thead>
             <tbody>
-               <!-- filled with averageRow() fields -->
             </tbody>
           </table>
         </div>
@@ -658,7 +659,6 @@
               </tr>
             </thead>
             <tbody>
-               <!-- filled with averageRow() fields -->
             </tbody>
           </table>
         </div>
