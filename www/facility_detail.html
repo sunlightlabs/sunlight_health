@@ -115,93 +115,110 @@
       var html;
       var i;
       
-      html = "";
-      i = 0;
-      $.each(survey_experiences, function(field, qualifiers) {
-        // combine usually and always
-        if (qualifiers.usually && qualifiers.always) {
-          var name = qualifiers.usually.name;
-          var individual = qualifiers.usually.value + qualifiers.always.value;
-          var nearby = qualifiers.usually.nearby_average + qualifiers.always.nearby_average;
-          var national = qualifiers.usually.national_average + qualifiers.always.national_average;
-          
-          html += surveyRow(i, name, individual, nearby, national);
-          
-          i += 1;
-        } else {
-          $.each(qualifiers, function(qualifier, info) {
-            var name = info.name;
-            var individual = info.value;
-            var nearby = info.nearby_average;
-            var national = info.national_average;
+      if (survey_experiences) {
+        html = "";
+        i = 0;
+        $.each(survey_experiences, function(field, qualifiers) {
+          // combine usually and always
+          if (qualifiers.usually && qualifiers.always) {
+            var name = qualifiers.usually.name;
+            var individual = qualifiers.usually.value + qualifiers.always.value;
+            var nearby = qualifiers.usually.nearby_average + qualifiers.always.nearby_average;
+            var national = qualifiers.usually.national_average + qualifiers.always.national_average;
             
             html += surveyRow(i, name, individual, nearby, national);
-            i += 1;
-          });
-        }
-      });
-      
-      
-      $(".facility.hospital .survey_experiences table.data tbody").html(html);
-      
-      i = 0;
-      html = "";
-      Utils.orderedEach(outcomes, function(condition, years) {
-        Utils.orderedEach(years, function(year, info) {
-          if (info.code) {
-            html += simpleValueRow(i, info.name, info.code);
-            i += 1;
-          }
-        });
-      });
-      
-      $(".facility.hospital .outcomes table.data tbody").html(html);
-      
-      
-      i = 0;
-      html = "";
-      
-      $.each(hac, function(slug, info) {
-        html += hacRow(i, info.name, info.incidents, info.eligible, info.rate + "%", info.national_rate + "%");
-        i += 1;
-      });
-      
-      $(".facility.hospital .hac table.data tbody").html(html);
-      
-      
-      $.each(process, function(condition, info) {
-        var calculations = info.calculations;
-        var fields = info.fields;
-        
-        if (calculations.valid_metrics == 0) {
-          $(".facility.hospital .process." + condition).hide();
-          return true; // continue to the next one
-        } else // reset
-          $(".facility.hospital .process." + condition).show();
-        
-        $(".facility.hospital .process." + condition + " span.outlier.above").html(calculations.outliers_above);
-        $(".facility.hospital .process." + condition + " span.outlier.below").html(calculations.outliers_below);
-        
-        var html = "" +
-          twoPieceRow("Average Performance", parseInt(calculations.average_performance) + "%", parseInt(calculations.nearby_average_performance) + "%") +
-          twoPieceRow("Number of Patients", calculations.people, calculations.nearby_people);
-        $(".facility.hospital .process." + condition + " table.data.summary tbody").html(html);
-        
-        html = "";
-        var i = 0;
-        $.each(fields, function(slug, field) {
-          
-          if (field.value != null && !field.too_small) {
-            var suffix = (field.value_type == "percent" ? "%" : "");
-            html += processFieldRow(i, (field.outlier ? "outlier " + field.outlier : ""), field.name, ((field.calculated_national_average != null) ? parseInt(field.calculated_national_average) + suffix : "n/a"),  ((field.nearby_considered > 1) ? parseInt(field.nearby_average) + suffix : "n/a"), field.value + suffix);
             
             i += 1;
+          } else {
+            $.each(qualifiers, function(qualifier, info) {
+              var name = info.name;
+              var individual = info.value;
+              var nearby = info.nearby_average;
+              var national = info.national_average;
+              
+              html += surveyRow(i, name, individual, nearby, national);
+              i += 1;
+            });
           }
         });
         
-        $(".facility.hospital .process." + condition + " table.data.values tbody").html(html);
         
-      });
+        $(".facility.hospital .survey_experiences table.data tbody").html(html);
+      } else
+        $(".facility.hospital .survey_experiences").hide();
+      
+      
+      if (outcomes) {
+        i = 0;
+        html = "";
+        Utils.orderedEach(outcomes, function(condition, years) {
+          Utils.orderedEach(years, function(year, info) {
+            if (info.code) {
+              html += simpleValueRow(i, info.name, info.code);
+              i += 1;
+            }
+          });
+        });
+        
+        $(".facility.hospital .outcomes table.data tbody").html(html);
+      } else
+        $(".facility.hospital .outcomes").hide();
+      
+      
+      if (hac) {
+        i = 0;
+        html = "";
+        
+        $.each(hac, function(slug, info) {
+          html += hacRow(i, info.name, info.incidents, info.eligible, info.rate + "%", info.national_rate + "%");
+          i += 1;
+        });
+        
+        $(".facility.hospital .hac table.data tbody").html(html);
+      } else
+        $(".facility.hospital .hac").hide();
+      
+      
+      if (process) {
+        $.each(process, function(condition, info) {
+          var calculations = info.calculations;
+          var fields = info.fields;
+          
+          if (calculations.valid_metrics == 0) {
+            $(".facility.hospital .process." + condition).hide();
+            return true; // continue to the next one
+          } else // reset
+            $(".facility.hospital .process." + condition).show();
+          
+          $(".facility.hospital .process." + condition + " span.outlier.above").html(calculations.outliers_above);
+          $(".facility.hospital .process." + condition + " span.outlier.below").html(calculations.outliers_below);
+          
+          var html = "" +
+            twoPieceRow("Average Performance", parseInt(calculations.average_performance) + "%", parseInt(calculations.nearby_average_performance) + "%") +
+            twoPieceRow("Number of Patients", calculations.people, calculations.nearby_people);
+          $(".facility.hospital .process." + condition + " table.data.summary tbody").html(html);
+          
+          html = "";
+          var i = 0;
+          $.each(fields, function(slug, field) {
+            
+            if (field.value != null && !field.too_small) {
+              var suffix = (field.value_type == "percent" ? "%" : "");
+              html += processFieldRow(i, (field.outlier ? "outlier " + field.outlier : ""), field.name, ((field.calculated_national_average != null) ? parseInt(field.calculated_national_average) + suffix : "n/a"),  ((field.nearby_considered > 1) ? parseInt(field.nearby_average) + suffix : "n/a"), field.value + suffix);
+              
+              i += 1;
+            }
+          });
+          
+          $(".facility.hospital .process." + condition + " table.data.values tbody").html(html);
+          
+        });
+      } else {
+        $(".facility.hospital .heart_failure").hide();
+        $(".facility.hospital .heart_attack").hide();
+        $(".facility.hospital .pneumonia").hide();
+        $(".facility.hospital .surgical_care").hide();
+      }
       
       
       $(".facility.thinking.extended").hide();
@@ -211,17 +228,19 @@
     function populateNursingHome(ratings, extended) {
       var i, html;
       
-      $(".nursing_home.overall_rating").addClass("rating-" + ratings.overall.value).show();
+      if (ratings) {
+        $(".nursing_home.overall_rating").addClass("rating-" + ratings.overall.value).show();
+        
+        html = "" +
+          ratingRow(0, ratings.overall.name, ratings.overall.value) +
+          ratingRow(1, ratings.rn_only.name, ratings.rn_only.value) +
+          ratingRow(2, ratings.nurse_staffing.name, ratings.nurse_staffing.value) +
+          ratingRow(3, ratings.health_inspections.name, ratings.health_inspections.value);
       
-      html = "" +
-        ratingRow(0, ratings.overall.name, ratings.overall.value) +
-        ratingRow(1, ratings.rn_only.name, ratings.rn_only.value) +
-        ratingRow(2, ratings.nurse_staffing.name, ratings.nurse_staffing.value) +
-        ratingRow(3, ratings.health_inspections.name, ratings.health_inspections.value);
-    
-      $(".facility.nursing_home .ratings table.data tbody").html(html);
-      
-      
+        $(".facility.nursing_home .ratings table.data tbody").html(html);
+      } else
+        $(".facility.nursing_home .ratings").hide();  
+        
       var percent = parseInt((extended.total_residents.value / extended.certified_bed.value) * 100);
       $(".facility.nursing_home .occupancy div.data span.percent").html(percentFor(percent));
       $(".facility.nursing_home .occupancy div.data .beds dd").html(extended.certified_bed.value);

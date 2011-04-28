@@ -85,7 +85,7 @@
             "</p>";
         
         if (facility.facility_type == "nursing_home") {
-          if (facility.ratings.overall.value) {
+          if (facility.ratings && facility.ratings.overall.value) {
             html += "" +
               "<div class=\"nursing_home overall_ratings rating-" + facility.ratings.overall.value + "\">" + 
               "</div>";
