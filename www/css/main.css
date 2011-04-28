@@ -532,11 +532,14 @@ tr.below th{
 	padding-top: 0;
 	margin-top: 10px;
 }
-tr.below th{
+tr.above th{
 	background: url('images/outlier_up.png') left top no-repeat;
 	padding-left: 15px;
 	margin-left: 5px;
+	padding-top: 0;
+	margin-top: 10px;
 }
+
 
 /* -------- Search Results Loading Dialogue -------- */
 
@@ -659,7 +662,7 @@ div.toast{
 		background-size: 19px 17px;
 	}
 	div.map.buttons {
-		background: url('images/bg_collapsible_header.jpg') center center repeat-x ;
+		background: url('images/bg_collapsible_header_x2.jpg') center center repeat-x ;
 		-moz-background-size: 357px 90px;
 		-o-background-size: 357px 90px;
 		-webkit-background-size: 357px 90px;
@@ -667,105 +670,105 @@ div.toast{
 	}
 	.info-close{
 
-		background: url('images/exit_icon.png') center top no-repeat;
+		background: url('images/exit_icon_x2.png') center top no-repeat;
 		-moz-background-size: 19px 19px;
 		-o-background-size: 19px 19px;
 		-webkit-background-size: 19px 19px;
 		background-size: 19px 19px;
 	}
 	.sunlight{
-		background: url('images/sunlight.png') center top no-repeat;
+		background: url('images/sunlight_x2.png') center top no-repeat;
 		-moz-background-size: 77px 35px;
 		-o-background-size: 77px 35px;
 		-webkit-background-size: 77px 35px;
 		background-size: 77px 35px;
 	}
 	dd.fully {
-		background: url('images/sprinklers_fully.png') top center no-repeat ;
+		background: url('images/sprinklers_fully_x2.png') top center no-repeat ;
 		-moz-background-size: 14px 14px;
 		-o-background-size: 14px 14px;
 		-webkit-background-size: 14px 14px;
 		background-size: 14px 14px;
 	}
 	dd.partially {
-		background: url('images/sprinklers_partially.png') top center no-repeat ;
+		background: url('images/sprinklers_partially_x2.png') top center no-repeat ;
 		-moz-background-size: 14px 14px;
 		-o-background-size: 14px 14px;
 		-webkit-background-size: 14px 14px;
 		background-size: 14px 14px;
 	}
 	dd.not {
-		background: url('images/sprinklers_not.png') top center no-repeat ;
+		background: url('images/sprinklers_not_x2.png') top center no-repeat ;
 		-moz-background-size: 14px 14px;
 		-o-background-size: 14px 14px;
 		-webkit-background-size: 14px 14px;
 		background-size: 14px 14px;
 	}
 	.ui-collapsible-heading-toggle .above, .content-banner .outlier.above{
-		background: url('images/outlier_up.png') right 2px no-repeat ;
+		background: url('images/outlier_up_x2.png') right 2px no-repeat ;
 		-moz-background-size: 14px 13px;
 		-o-background-size: 14px 13px;
 		-webkit-background-size: 14px 13px;
 		background-size: 14px 13px;
 	}
 	.ui-collapsible-heading-toggle .below, .content-banner .outlier.below{
-		background: url('images/outlier_down.png') right 2px no-repeat;
+		background: url('images/outlier_down_x2.png') right 2px no-repeat;
 		-moz-background-size: 14px 13px;
 		-o-background-size: 14px 13px;
 		-webkit-background-size: 14px 13px;
 		background-size: 14px 13px;
 	}
 	tr.below th{
-		background: url('images/outlier_down.png') left top no-repeat;
+		background: url('images/outlier_down_x2.png') left top no-repeat;
 		-moz-background-size: 14px 13px;
 		-o-background-size: 14px 13px;
 		-webkit-background-size: 14px 13px;
 		background-size: 14px 13px;
 	}
-	tr.below th{
-		background: url('images/outlier_up.png') left top no-repeat;
+	tr.above th{
+		background: url('images/outlier_down_x2.png') left top no-repeat;
 		-moz-background-size: 14px 13px;
 		-o-background-size: 14px 13px;
 		-webkit-background-size: 14px 13px;
 		background-size: 14px 13px;
 	}
 	.rating-0{
-		background: url('images/stars_zero.png') left center no-repeat;	
+		background: url('images/stars_zero_x2.png') left center no-repeat;	
 		-moz-background-size: 98px 15px;
 		-o-background-size: 98px 15px;
 		-webkit-background-size: 98px 15px;
 		background-size: 98px 15px;
 	}
 	.rating-1{
-		background: url('images/stars_one.png') left center no-repeat;
+		background: url('images/stars_one_x2.png') left center no-repeat;
 		-moz-background-size: 98px 15px;
 		-o-background-size: 98px 15px;
 		-webkit-background-size: 98px 15px;
 		background-size: 98px 15px;
 	}
 	.rating-2{
-		background: url('images/stars_two.png') left center no-repeat;
+		background: url('images/stars_two_x2.png') left center no-repeat;
 		-moz-background-size: 98px 15px;
 		-o-background-size: 98px 15px;
 		-webkit-background-size: 98px 15px;
 		background-size: 98px 15px;
 	}
 	.rating-3{
-		background: url('images/stars_three.png') left center no-repeat;
+		background: url('images/stars_three_x2.png') left center no-repeat;
 		-moz-background-size: 98px 15px;
 		-o-background-size: 98px 15px;
 		-webkit-background-size: 98px 15px;
 		background-size: 98px 15px;
 	}
 	.rating-4{
-		background: url('images/stars_four.png') left center no-repeat;
+		background: url('images/stars_four_x2.png') left center no-repeat;
 		-moz-background-size: 98px 15px;
 		-o-background-size: 98px 15px;
 		-webkit-background-size: 98px 15px;
 		background-size: 98px 15px;
 	}
 	.rating-5{
-		background: url('images/stars_five.png') left center no-repeat;
+		background: url('images/stars_five_x2.png') left center no-repeat;
 		-moz-background-size: 98px 15px;
 		-o-background-size: 98px 15px;
 		-webkit-background-size: 98px 15px;
