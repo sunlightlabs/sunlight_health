@@ -45,11 +45,11 @@ h1{
 #about .content-banner p{
 	text-align: left;
 	line-height: 1.5;
-	padding-bottom: 10px;
-	
-	
+	padding-top: 15px;
 }
-
+#about .ui-content{
+	margin: 20px 10px;
+}
 
 .content-banner h1{
 	background: url('images/SunlightHealth_logo.png') top center no-repeat;
@@ -328,15 +328,27 @@ tr.best-buy{
 	width: 22px;
 	height: 22px;
 }
+.logos{
+	text-align: center;
+	margin-top: 20px;
+}
 .sunlight{
 	text-indent: -9999em;
 	background: url('images/sunlight.png') center top no-repeat;
+	width: 77px;
+	height: 35px;
+	display: inline-block;
+	margin-right: 15px;
+}
+.knight{
+	text-indent: -9999em;
+	background: url('images/knightfoundation_logo.png') center top no-repeat;
 	width: 153px;
 	height: 35px;
-	margin: auto;
-	margin-top: 10px;
+	display: inline-block;
+	margin-left: 15px;
+	
 }
-
 .content-banner dl{
 	text-shadow: none;
 	font-size: 90%;
@@ -404,17 +416,26 @@ tr.best-buy{
 	text-align: right;
 	text-transform: uppercase;
 }
-.occupancy .ui-collapsible-content, .inspections .ui-collapsible-content{
-	padding: 10px 8px;
-	margin: auto;
-	text-align: center;
-}
-.occupancy .percent{
-	font-size: 20px;
-	font-weight: 700;
-	color: #D7CA57 ;
-}
 
+
+.nursing_home .occupancy dt{
+	display: inline;
+	padding-right: 15px;
+	text-align: left;
+}
+.nursing_home .occupancy dd{
+	text-align: left;
+	display: inline;
+	float: right;
+	
+}
+.beds, .occupied, .residents{
+	padding: 10px 8px;
+	
+}
+.occupied{
+	background-color: #E1E2E3;
+}
 .nursing_home dt {
     font-weight: 700;
 	text-align: center;
@@ -426,26 +447,37 @@ tr.best-buy{
 	font-size: 14px ;
 	text-align: center;	
 }
-.beds, .residents, .health_survey, .fire_survey, .sprinklers{
+.health_survey, .fire_survey, .sprinklers{
 	display: inline-block;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.inspections dd{
+	margin-top: 5px;
+}
+.inspections .data{
+	text-align: center;
+	padding: 10px 8px;
 }
 
 dd.fully {
-	width: 14px;
-	height: 14px;
-	background: url('images/sprinklers_fully.png') top center no-repeat ;
+	width: 68px;
+	height: 15px;
+	background: url('images/sprinklers_fully.png') center center no-repeat ;
+	text-indent: -9999em;
 }
 dd.partially {
-	width: 14px;
-	height: 14px;
-	background: url('images/sprinklers_partially.png') top center no-repeat ;
+	width: 68px;
+	height: 15px;
+	background: url('images/sprinklers_partially.png') center center no-repeat ;
+	text-indent: -9999em;
 }
 dd.not {
-	width: 14px;
-	height: 14px;
-	background: url('images/sprinklers_not.png') top center no-repeat ;
+	width: 68px;
+	height: 15px;
+	background: url('images/sprinklers_not.png') center center no-repeat ;
+	text-indent: -9999em;
 }
 
 .patient_survival{
@@ -783,6 +815,13 @@ div.toast{
 		-o-background-size: 98px 15px;
 		-webkit-background-size: 98px 15px;
 		background-size: 98px 15px;
+	}
+	.knight{
+		background: url('images/knightfoundation_logo_x2.png');
+		-moz-background-size: 138px 35px;
+		-o-background-size: 138px 35px;
+		-webkit-background-size: 138px 35px;
+		background-size: 138px 35px;
 	}
 
 
