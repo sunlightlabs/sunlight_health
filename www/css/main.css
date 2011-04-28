@@ -404,17 +404,26 @@ tr.best-buy{
 	text-align: right;
 	text-transform: uppercase;
 }
-.occupancy .ui-collapsible-content, .inspections .ui-collapsible-content{
-	padding: 10px 8px;
-	margin: auto;
-	text-align: center;
-}
-.occupancy .percent{
-	font-size: 20px;
-	font-weight: 700;
-	color: #D7CA57 ;
-}
 
+
+.nursing_home .occupancy dt{
+	display: inline;
+	padding-right: 15px;
+	text-align: left;
+}
+.nursing_home .occupancy dd{
+	text-align: left;
+	display: inline;
+	float: right;
+	
+}
+.beds, .occupied, .residents{
+	padding: 10px 8px;
+	
+}
+.occupied{
+	background-color: #E1E2E3;
+}
 .nursing_home dt {
     font-weight: 700;
 	text-align: center;
@@ -432,32 +441,31 @@ tr.best-buy{
 	padding-right: 5px;
 }
 
-.beds, .residents, .occupied{
-	display: block;
-	padding-left: 5px;
-	padding-right: 5px;
+.inspections dd{
+	margin-top: 5px;
 }
-.occupancy dd, .occupancy dt{
-	text-align: left;
-}
-.occupancy dd{
-	display: inline;
+.inspections .data{
+	text-align: center;
+	padding: 10px 8px;
 }
 
 dd.fully {
-	width: 14px;
-	height: 14px;
-	background: url('images/sprinklers_fully.png') top center no-repeat ;
+	width: 68px;
+	height: 15px;
+	background: url('images/sprinklers_fully.png') center center no-repeat ;
+	text-indent: -9999em;
 }
 dd.partially {
-	width: 14px;
-	height: 14px;
-	background: url('images/sprinklers_partially.png') top center no-repeat ;
+	width: 68px;
+	height: 15px;
+	background: url('images/sprinklers_partially.png') center center no-repeat ;
+	text-indent: -9999em;
 }
 dd.not {
-	width: 14px;
-	height: 14px;
-	background: url('images/sprinklers_not.png') top center no-repeat ;
+	width: 68px;
+	height: 15px;
+	background: url('images/sprinklers_not.png') center center no-repeat ;
+	text-indent: -9999em;
 }
 
 .patient_survival{
