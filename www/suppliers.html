@@ -80,7 +80,9 @@
         // link won't be used, live click handler will be used instead
         return "" + 
           "<a href=\"#\" data-value=\"" + supply.term.replace(/\"/g, "\\\"") + "\">" +
-            supply.term + 
+            "<h3>" +
+              supply.term + 
+            "</h3>" +
           "</a>";
       }, {empty: "No supplies found.",});
     }
@@ -155,11 +157,12 @@
       <input class="search supplies text" type="text" name="query" placeholder="Start typing what you're looking for..." />
 
     </div>
-
-    <ul data-role="listview" data-theme="e" class="list supplies">
-      <!-- supply list goes here, template specified in JavaScript above -->
-    </ul>
-	
+	<div class="autosearch_results">
+    
+	    <ul data-role="listview" data-theme="e" class="list supplies ui-li-heading">
+	      <!-- supply list goes here, template specified in JavaScript above -->
+	    </ul>
+	</div>
   </div><!-- /content -->
 
 	<div data-role="footer" data-position="fixed" data-id="stickey_footer" id="stickey_footer">

@@ -16,7 +16,7 @@
 /* -------- Radio Button styling -------- */
 .ui-controlgroup, fieldset.ui-controlgroup, .max-width-480px .ui-field-contain, .min-width-480px .ui-field-contain{
 	margin-top: 0;
-	margin-bottom: 8px;
+	margin-bottom: 13px;
 	padding-top: 0;
 	padding-bottom: 0;
 }
@@ -121,6 +121,8 @@ background-position: -216px 50% ;
 	text-align: left;
 	margin-top: 0;
 	margin-bottom: 10px;
+	margin-left: 0;
+	margin-right: 0;
 }
 .ui-select .ui-btn-active{
 	color: #101010;
@@ -130,11 +132,10 @@ background-position: -216px 50% ;
 	padding-left: 10px;
 	padding-right: 10px;
 }
-.ui-btn{
-	margin-left: 0;
-	margin-right: 0;
-}
 
+.ui-select .ui-btn{
+	margin-bottom: 15px;
+}
 .ui-btn.ui-shadow{
 	box-shadow: none;
 }
@@ -172,10 +173,10 @@ background-position: -216px 50% ;
 }
 
 /* -------- Button styling -------- */
-.ui-btn-active{
+.ui-header .ui-btn-active{
 	background-image: none;
 	border-color: #222222;
-	background-color: none;
+	background-color: #333333;
 }
 
 
@@ -190,7 +191,7 @@ input.ui-input-text, textarea.ui-input-text {
 	padding-bottom: 7px;
 	text-indent: 25px;
 	width: 100%;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 
@@ -223,17 +224,17 @@ input.ui-input-text, textarea.ui-input-text {
 	
 }
 
-#facilities_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons{
+#facilities_nav.ui-btn-active .ui-icon-nav-icons{
 	background-position: -331px 50%;
 
 }
 
-#suppliers_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons{
+#suppliers_nav.ui-btn-active .ui-icon-nav-icons{
 	background-position: -427px 50%;
 
 }
 
-#drugs_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons{
+#drugs_nav.ui-btn-active .ui-icon-nav-icons{
 	background-position: -517px 50%;
 
 }
@@ -340,11 +341,15 @@ input.ui-input-text, textarea.ui-input-text {
 	margin-bottom: 0;
 }
 
+.ui-li .ui-btn-text a.ui-link-inherit {
+    white-space: normal;
+}
+
  /* Fixes icon positioning for mobile devices. Still doesn't explain where those 40 pixels are coming from.  */
 
 
 /* -------- All Search Results Text Styling -------- */
-.list .ui-li-heading{
+.list .ui-li-heading, .list.ui-li-heading{
 	font-size: 12.8px;
 	text-transform: uppercase;
 	color: #282828;
@@ -575,7 +580,7 @@ input.search.text.loading {
 	.ui-icon-alt {
 		background-image: url(images/icons-36-black.png);
 	}
-	#facilities_nav .ui-icon-nav-icons, #suppliers_nav .ui-icon-nav-icons, #drugs_nav .ui-icon-nav-icons, #facilities_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons, #suppliers_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons, #drugs_nav.ui-btn-active.ui-state-persist .ui-icon-nav-icons {
+	#facilities_nav .ui-icon-nav-icons, #suppliers_nav .ui-icon-nav-icons, #drugs_nav .ui-icon-nav-icons, #facilities_nav.ui-btn-active .ui-icon-nav-icons, #suppliers_nav.ui-btn-active .ui-icon-nav-icons, #drugs_nav.ui-btn-active .ui-icon-nav-icons {
 		background-image: url(images/icons-32-nav.png);
 		-moz-background-size: 600px 36px;
 		-o-background-size: 600px 36px;

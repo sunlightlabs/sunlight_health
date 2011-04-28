@@ -260,7 +260,6 @@ h3.dosage{
 }
 
 tr.best-buy{
-	background-color: #d3d5d6;
 }
 
 .best-buy h3{
@@ -464,20 +463,14 @@ tr.best-buy{
 dd.fully {
 	width: 68px;
 	height: 15px;
-	background: url('images/sprinklers_fully.png') center center no-repeat ;
-	text-indent: -9999em;
 }
 dd.partially {
 	width: 68px;
 	height: 15px;
-	background: url('images/sprinklers_partially.png') center center no-repeat ;
-	text-indent: -9999em;
 }
 dd.not {
 	width: 68px;
 	height: 15px;
-	background: url('images/sprinklers_not.png') center center no-repeat ;
-	text-indent: -9999em;
 }
 
 .patient_survival{
@@ -725,27 +718,7 @@ div.toast{
 		-webkit-background-size: 77px 35px;
 		background-size: 77px 35px;
 	}
-	dd.fully {
-		background: url('images/sprinklers_fully_x2.png') top center no-repeat ;
-		-moz-background-size: 14px 14px;
-		-o-background-size: 14px 14px;
-		-webkit-background-size: 14px 14px;
-		background-size: 14px 14px;
-	}
-	dd.partially {
-		background: url('images/sprinklers_partially_x2.png') top center no-repeat ;
-		-moz-background-size: 14px 14px;
-		-o-background-size: 14px 14px;
-		-webkit-background-size: 14px 14px;
-		background-size: 14px 14px;
-	}
-	dd.not {
-		background: url('images/sprinklers_not_x2.png') top center no-repeat ;
-		-moz-background-size: 14px 14px;
-		-o-background-size: 14px 14px;
-		-webkit-background-size: 14px 14px;
-		background-size: 14px 14px;
-	}
+
 	.ui-collapsible-heading-toggle .above, .content-banner .outlier.above{
 		background: url('images/outlier_up_x2.png') right 2px no-repeat ;
 		-moz-background-size: 14px 13px;
