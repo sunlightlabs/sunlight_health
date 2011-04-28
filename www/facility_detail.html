@@ -204,7 +204,7 @@
             
             if (field.value != null && !field.too_small) {
               var suffix = (field.value_type == "percent" ? "%" : "");
-              html += processFieldRow(i, (field.outlier ? "outlier " + field.outlier : ""), field.name, ((field.calculated_national_average != null) ? parseInt(field.calculated_national_average) + suffix : "n/a"),  ((field.nearby_considered > 1) ? parseInt(field.nearby_average) + suffix : "n/a"), field.value + suffix);
+              html += processFieldRow(i, (field.outlier ? "outlier " + field.outlier : ""), field.name, field.value + suffix, ((field.nearby_considered > 1) ? parseInt(field.nearby_average) + suffix : "n/a"), ((field.calculated_national_average != null) ? parseInt(field.calculated_national_average) + suffix : "n/a"));
               
               i += 1;
             }
@@ -363,9 +363,9 @@
       return "" +
         "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + " " + outlier + "\">" +
           "<th scope=\"row\">" + name + "</th>" +
-          "<td>" + national + "</td>" +
-          "<td>" + nearby + "</td>" +
           "<td>" + individual + "</td>" +
+          "<td>" + nearby + "</td>" +
+          "<td>" + national + "</td>" +
         "</tr>";
     }
     
