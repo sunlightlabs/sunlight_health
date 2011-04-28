@@ -52,22 +52,19 @@
       
       $("input.search.supplies.text").change(function() {
         var query = $(this).val().trim();
-        
-        if (currentQuery == query)
-          return;
-        currentQuery = query;
-        
         if (!query) {
           $("ul.list.supplies").html("");
           return;
         }
         
+        if (currentQuery == query)
+          return;
+        
+        currentQuery = query;
+        
         Utils.log("filter: " + query);
         
-        $("input.search.text.supplies").addClass("loading");
         Api.Supplier.terms(query, function(supplies) {
-          $("input.search.text.supplies").removeClass("loading");
-          
           if (supplies) {
             Utils.log("got back " + supplies.length + " results");
             populateSupplies(supplies);
@@ -89,13 +86,13 @@
     }
     
     function searchNearby(supply, radius) {
-      $(".suppliers.thinking.main").show();
+      Utils.loading();
         
       Utils.location(function (lat, lng) {
-        $(".suppliers.thinking.main").hide();
+        Utils.loading(true);
         $.mobile.changePage({
           url: "suppliers_list.html",
-          data: Utils.cleanedData({lat: lat, lng: lng, radius: radius, supply: supply, search_type: "nearby"}),
+          data: {lat: lat, lng: lng, radius: radius, supply: supply, search_type: "nearby"},
           type: "get"
         });
       });
@@ -110,7 +107,7 @@
       else {
         $.mobile.changePage({
           url: "suppliers_list.html",
-          data: Utils.cleanedData({zip: zip, supply: supply, radius: radius, search_type: "zip"}),
+          data: {zip: zip, supply: supply, radius: radius, search_type: "zip"},
           type: "get"
         });
       }
@@ -120,8 +117,8 @@
 
   <div data-role="content">
     <div class="content-banner">
-      <a href="about.html" data-transition="fade" class="info">About</a>
-      <div class="thinking suppliers main hidden"></div>
+      <a href="about.html" class="info">About</a>
+    <div class="thinking"></div>
       
       <h1>Sunlight Health</h1>
       <p>
