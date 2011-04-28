@@ -141,6 +141,7 @@
         }
       });
       
+      
       $(".facility.hospital .survey_experiences table.data tbody").html(html);
       
       i = 0;
@@ -155,6 +156,14 @@
       });
       
       $(".facility.hospital .outcomes table.data tbody").html(html);
+      
+      
+      i = 0;
+      html = "";
+      
+      html += hacRow(i, "Example condition", 20, 1678, "0.02%", "0.12%");
+      
+      $(".facility.hospital .hac table.data tbody").html(html);
       
       
       $.each(process, function(condition, info) {
@@ -278,10 +287,6 @@
     
     function populateDialysis(extended, services) {
       var html, i;
-      
-//       $(".dialysis.profit_type").html(extended.profit_type.value).show();
-//       if (extended.chain_owned.value)
-//         $(".dialysis.chain_organization").html(extended.chain_organization.value).show();
         
       $(".dialysis.dialysis_adequacy dd").html(percentFor(extended.dialysis_adequacy.value));
       $(".dialysis.dialysis_adequacy").show();
@@ -338,6 +343,23 @@
           "<th scope=\"row\">" + name + "</th>" +
           "<td>" + national + "</td>" +
           "<td>" + nearby + "</td>" +
+          "<td>" + individual + "</td>" +
+        "</tr>";
+    }
+    
+    function hacRow(i, name, incidents, eligible, individual, national) {
+      return "" +
+        "<tr class=\"hac " + (i % 2 == 0 ? "even" : "odd") + "\">" +
+          "<th scope=\"row\">" + 
+            "<dt>" + name + "</dt>" +
+            "<dd>" +
+              "<span class=\"incidents\">" + incidents + "</span>" +
+              " incidents among " +
+              "<span class=\"eligible\">" + eligible + "</span>" +
+              " eligible" +
+            "</dd>" +
+          "</th>" +
+          "<td>" + national + "</td>" +
           "<td>" + individual + "</td>" +
         "</tr>";
     }
@@ -435,12 +457,30 @@
             <thead>
               <tr>
                 <th scope="col"></th>
-                <th class="hosp" scope="col">US</th>
-                <th class="hosp" scope="col">Local</th>
                 <th class="hosp" scope="col">Hosp</th>
+                <th class="hosp" scope="col">Local</th>
+                <th class="hosp" scope="col">US</th>
+                
               </tr>
             </thead>
             <tbody></tbody>
+          </table>
+        </div>
+        
+        <div data-role="collapsible" data-collapsed="false" class="hac">
+          <h1>Hospital-Acquired Conditions</h1>
+          
+          <table class="data">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th class="hosp" scope="col">Hosp</th>
+                <th class="hosp" scope="col">US</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
           </table>
         </div>
         
@@ -491,7 +531,7 @@
                 <th scope="col"></th>
                 <th class="hosp" scope="col">Hosp</th>
                 <th class="hosp" scope="col">Local</th>
-                <th class="hosp" scope="col">Fed</th>
+                <th class="hosp" scope="col">US</th>
               </tr>
             </thead>
             <tbody>
@@ -530,7 +570,7 @@
                 <th scope="col"></th>
                 <th class="hosp" scope="col">Hosp</th>
                 <th class="hosp" scope="col">Local</th>
-                <th class="hosp" scope="col">Fed</th>
+                <th class="hosp" scope="col">US</th>
               </tr>
             </thead>
             <tbody>
@@ -572,7 +612,7 @@
                 <th scope="col"></th>
                 <th class="hosp" scope="col">Hosp</th>
                 <th class="hosp" scope="col">Local</th>
-                <th class="hosp" scope="col">Fed</th>
+                <th class="hosp" scope="col">US</th>
               </tr>
             </thead>
             <tbody>
@@ -614,7 +654,7 @@
                 <th scope="col"></th>
                 <th class="hosp" scope="col">Hosp</th>
                 <th class="hosp" scope="col">Local</th>
-                <th class="hosp" scope="col">Fed</th>
+                <th class="hosp" scope="col">US</th>
               </tr>
             </thead>
             <tbody>
