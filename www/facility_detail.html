@@ -241,9 +241,8 @@
       } else
         $(".facility.nursing_home .ratings").hide();  
         
-      var percent = parseInt((extended.total_residents.value / extended.certified_bed.value) * 100);
-      $(".facility.nursing_home .occupancy div.data span.percent").html(percentFor(percent));
       $(".facility.nursing_home .occupancy div.data .beds dd").html(extended.certified_bed.value);
+      $(".facility.nursing_home .occupancy div.data .occupied dd").html(extended.occupied_beds.value);
       $(".facility.nursing_home .occupancy div.data .residents dd").html(extended.total_residents.value);
       
       
@@ -705,6 +704,10 @@
             </span>
             <div class="beds">
               <dt>Certified Beds</dt>
+              <dd></dd>
+            </div>
+            <div class="occupied">
+              <dt>Occupied Beds</dt>
               <dd></dd>
             </div>
             <div class="residents">
