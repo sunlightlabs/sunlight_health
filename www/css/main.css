@@ -466,6 +466,16 @@ dd.not {
 	text-transform: uppercase;
 }
 
+.hac dd{
+	text-transform: uppercase;
+	font-size: 11px;
+	margin-left: 0;
+	font-weight: 400;
+	
+}
+.hac .incidents, .hac .eligible{
+	font-weight: 700;
+}
 
 
 /* -------- Outliers Styling -------- */

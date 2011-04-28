@@ -538,6 +538,7 @@ input.ui-input-text, textarea.ui-input-text {
 	height: 18px;
 	padding-left: 0;
 	margin: 0;
+	position: fixed;
 }
 .thinking {
 	background:url('images/ajax-loader_gray.gif')left center no-repeat;
