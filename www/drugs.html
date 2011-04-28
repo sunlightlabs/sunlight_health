@@ -27,17 +27,30 @@
 
   <!-- Page-specific code -->
   <script type="text/javascript">
+    var currentQuery = "";
+  
     Utils.show("drugs", function() {
       
       $("input.search.drugs").keyup(function() {
         var query = $("input.search.drugs").val();
+        
+        if (currentQuery == query)
+          return;
+        currentQuery = query;
+        
         if (!query) {
           $("ul.list.drug_terms").html("");
           return;
         }
         
+        Utils.log("filter: " + query);
+        
+        $("input.search.text.drugs").addClass("loading");
+        
         Api.Drug.terms(query, function(terms) {
           Utils.loadList("drug_terms", terms, function(term) {
+            $("input.search.text.drugs").removeClass("loading");
+            
             var link;
             if (term.term_type == "drug_class")
               link = "drug_class.html?" + Utils.queryString({drug_class: term.drug_class});
@@ -84,9 +97,11 @@
 	</div>
     
     <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
+    
     <div class="ui-select">
-    <input class="search drugs text" type="text" name="query" placeholder="Start typing a class, chemical, or drug" />
-	</div>
+      <input class="search drugs text" type="text" name="query" placeholder="Start typing a class, chemical, or drug" />
+    </div>
+    
     <div class="autosearch_results">
 	    <ul data-role="listview" data-theme="e" class="list drug_terms">
 	      <!-- term list goes here, template specified in JavaScript above -->

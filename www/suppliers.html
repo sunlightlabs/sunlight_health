@@ -52,19 +52,22 @@
       
       $("input.search.supplies.text").change(function() {
         var query = $(this).val().trim();
+        
+        if (currentQuery == query)
+          return;
+        currentQuery = query;
+        
         if (!query) {
           $("ul.list.supplies").html("");
           return;
         }
         
-        if (currentQuery == query)
-          return;
-        
-        currentQuery = query;
-        
         Utils.log("filter: " + query);
         
+        $("input.search.text.supplies").addClass("loading");
         Api.Supplier.terms(query, function(supplies) {
+          $("input.search.text.supplies").removeClass("loading");
+          
           if (supplies) {
             Utils.log("got back " + supplies.length + " results");
             populateSupplies(supplies);
