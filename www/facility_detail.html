@@ -80,7 +80,7 @@
       $(".facility .name").html(facility.name);
       $(".facility .address").html(Utils.address(facility, {line_break: true}));
       $(".facility .phone").html(Utils.phone(facility.phone));
-      $(".facility a.call").attr("href", "tel://" + facility.phone);
+      $(".facility a.call").attr("href", "tel:" + facility.phone);
       $(".facility a.directions").attr("href", Utils.directions(Utils.address(facility)));
       
       $(".facility.map").click(function() {
@@ -263,15 +263,15 @@
       $(".facility.nursing_home .inspections div.data .fire_survey dd").html(dateFor(extended.fire_survey_date.value));
       
       var val = extended.sprinkler_status.value;
-      var klass;
+      var desc;
       if (val.match(/Partially/i))
-        klass = "partially";
+        desc = "Sprinklers partially installed";
       else if (val.match(/Fully/i))
-        klass = "fully";
+        desc = "Sprinklers fully installed";
       else
-        klass = "not";
+        desc = "Sprinklers not installed";
         
-      $(".facility.nursing_home .inspections div.data .sprinklers dd").addClass(klass);
+      $(".facility.nursing_home .inspections div.data .sprinklers").html(desc);
       
       $(".facility.thinking.extended").hide();
       $(".facility.nursing_home.reveal.extended").show();
@@ -743,8 +743,6 @@
               <dd></dd>
             </div>
             <div class="sprinklers">
-              <dt>Sprinklers</dt>
-              <dd>Sprinklers</dd><!-- will get marked with class "checked" or "unchecked" -->
             </div>
           </div>
         </div>

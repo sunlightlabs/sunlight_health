@@ -52,7 +52,7 @@
       $(".supplier .name").html(supplier.name);
       $(".supplier .address").html(Utils.address(supplier, {line_break: true}));
       $(".supplier .phone").html(Utils.phone(supplier.phone));
-      $(".supplier a.call").attr("href", "tel://" + supplier.phone);
+      $(".supplier a.call").attr("href", "tel:" + supplier.phone);
       $(".supplier a.directions").attr("href", Utils.directions(Utils.address(supplier)));
       
       $(".supplier.map").click(function() {
