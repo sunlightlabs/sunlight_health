@@ -123,8 +123,13 @@
           if (qualifiers.usually && qualifiers.always) {
             var name = qualifiers.usually.name;
             var individual = qualifiers.usually.value + qualifiers.always.value;
-            var nearby = qualifiers.usually.nearby_average + qualifiers.always.nearby_average;
             var national = qualifiers.usually.national_average + qualifiers.always.national_average;
+            
+            var nearby;
+            if (qualifiers.usually.nearby_count > 1 && qualifiers.always.nearby_count > 1)
+              nearby = qualifiers.usually.nearby_average + qualifiers.always.nearby_average;
+            else
+              nearby = "n/a";
             
             html += surveyRow(i, name, individual, nearby, national);
             
@@ -133,8 +138,9 @@
             $.each(qualifiers, function(qualifier, info) {
               var name = info.name;
               var individual = info.value;
-              var nearby = info.nearby_average;
+              var nearby = (info.nearby_count > 1) ? info.nearby_average : "n/a";
               var national = info.national_average;
+              
               
               html += surveyRow(i, name, individual, nearby, national);
               i += 1;
