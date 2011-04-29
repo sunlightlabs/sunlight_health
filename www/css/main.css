@@ -120,6 +120,9 @@ h3.name{
 .content-banner p.phone{
 	font-weight: 700;
 }
+#facility_detail .content-banner p.phone{
+	margin-bottom: 9px;
+}
 
 #supplier_detail .ui-content{
 	color: #4c4c4c;
@@ -509,7 +512,6 @@ dd.not {
 .outliers .totals{
 	text-shadow: none;
 	font-size: 14px;
-	padding-top: 10px;
 }
 
 .ui-collapsible-heading-toggle .above, .content-banner .outlier.above{
@@ -531,10 +533,40 @@ dd.not {
 .totals>.below{
 	display: block;
 }
+.outliers .indicators{
+	display: inline;
+}
+.top .indicators dt {
+	padding-right: 10px;
+	float: none;
+}
 
-.small{
-	font-size: 70%;
-	padding-top: 0;
+.outliers p{
+    display: inline-block;
+    margin-top: 6px;
+    width: 225px;
+	vertical-align: bottom;
+	line-height: 1.3;
+}
+.indicators dt{
+	font-size: 13px;
+	text-align: center;
+	letter-spacing: .5px;
+	
+}
+.indicators dd{
+	position: absolute;
+	display: block;
+	margin-left: 0;
+	padding-left: 0;
+	padding-right: 20px;
+}
+.indicators dd.below{
+	margin-left: 40px;
+}
+.indicators{
+	right: 0;
+	position: absolute;
 }
 
 .ui-collapsible-content .small{
@@ -552,12 +584,12 @@ dd.not {
 .ui-collapsible-heading-toggle .below{
 	right: 0;
 	position: absolute;
-	margin-right: 10px;
+	margin-right: 15px;
 }
 .ui-collapsible-heading-toggle .above{
 	right: 0;
 	position: absolute;
-	margin-right:50px;
+	margin-right:55px;
 
 }
 tr.below th{
@@ -574,7 +606,9 @@ tr.above th{
 	padding-top: 0;
 	margin-top: 10px;
 }
-
+.content-banner .outlier.below{
+	margin: 2px;
+}
 
 /* -------- Search Results Loading Dialogue -------- */
 
