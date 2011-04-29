@@ -295,7 +295,7 @@
       i = 0;
       $.each(patient_improvement, function(key, info) {
         if (info.value != null) {
-          html += simpleValueRow(i, info.name, info.value);
+          html += simpleValueRow(i, info.name, info.value + "%");
           i += 1;
         }
       });
