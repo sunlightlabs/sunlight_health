@@ -144,8 +144,8 @@
         
         
         $(".facility.hospital .survey_experiences table.data tbody").html(html);
-      } else
-        $(".facility.hospital .survey_experiences").hide();
+        $(".facility.hospital .survey_experiences").show();
+      }
       
       
       if (outcomes) {
@@ -161,8 +161,9 @@
         });
         
         $(".facility.hospital .outcomes table.data tbody").html(html);
-      } else
-        $(".facility.hospital .outcomes").hide();
+        $(".facility.hospital .outcomes").show();
+      }
+        
       
       
       if (hac) {
@@ -175,8 +176,8 @@
         });
         
         $(".facility.hospital .hac table.data tbody").html(html);
-      } else
-        $(".facility.hospital .hac").hide();
+        $(".facility.hospital .hac").show();
+      }
       
       
       if (process) {
@@ -211,13 +212,9 @@
           });
           
           $(".facility.hospital .process." + condition + " table.data.values tbody").html(html);
-          
+          $(".facility.hospital .process." + condition).show();
         });
-      } else {
-        $(".facility.hospital .heart_failure").hide();
-        $(".facility.hospital .heart_attack").hide();
-        $(".facility.hospital .pneumonia").hide();
-        $(".facility.hospital .surgical_care").hide();
+        
       }
       
       
@@ -238,13 +235,13 @@
           ratingRow(3, ratings.health_inspections.name, ratings.health_inspections.value);
       
         $(".facility.nursing_home .ratings table.data tbody").html(html);
-      } else
-        $(".facility.nursing_home .ratings").hide();  
-        
+        $(".facility.nursing_home .ratings").show();
+      } 
+       
       $(".facility.nursing_home .occupancy div.data .beds dd").html(extended.certified_bed.value);
       $(".facility.nursing_home .occupancy div.data .occupied dd").html(extended.occupied_beds.value);
       $(".facility.nursing_home .occupancy div.data .residents dd").html(extended.total_residents.value);
-      
+      $(".facility.nursing_home .occupancy").show();
       
       html = "" +
         booleanRow(0, "Medicaid Participation", extended.program_participation.value.match(/Medicaid/)) +
@@ -257,7 +254,7 @@
         "";
         
       $(".facility.nursing_home .participation table.data tbody").html(html);
-      
+      $(".facility.nursing_home .participation").show()
       
       $(".facility.nursing_home .inspections div.data .health_survey dd").html(dateFor(extended.health_survey_date.value));
       $(".facility.nursing_home .inspections div.data .fire_survey dd").html(dateFor(extended.fire_survey_date.value));
@@ -272,6 +269,8 @@
         desc = "Sprinklers not installed";
         
       $(".facility.nursing_home .inspections div.data .sprinklers").html(desc);
+      $(".facility.nursing_home .inspections").show();
+      
       
       $(".facility.thinking.extended").hide();
       $(".facility.nursing_home.reveal.extended").show();
@@ -289,6 +288,7 @@
       });
       
       $(".facility.home_health .services table.data tbody").html(html);
+      $(".facility.home_health .services").show();
       
       
       html = "";
@@ -301,6 +301,8 @@
       });
       
       $(".facility.home_health .patient_improvement table.data tbody").html(html);
+      $(".facility.home_health .patient_improvement").show();
+      
       
       $(".facility.thinking.extended").hide();
       $(".facility.home_health.reveal.extended").show();
@@ -324,6 +326,7 @@
         
       
       $(".facility.dialysis .services table.data tbody").html(html);
+      $(".facility.dialysis .services").show();
       
       
       html = "" +
@@ -333,8 +336,9 @@
         "";
       
       $(".facility.dialysis .quality table.data tbody").html(html);
-      
       $(".facility.dialysis .quality div.patient_survival dd").html(extended.patient_survival.value);
+      $(".facility.dialysis .quality").show();
+      
       
       $(".facility.thinking.extended").hide();
       $(".facility.dialysis.reveal.extended").show();
@@ -476,7 +480,7 @@
       
       <div class="facility hospital reveal extended">
         
-        <div data-role="collapsible" data-collapsed="true" class="survey_experiences">
+        <div data-role="collapsible" data-collapsed="true" class="survey_experiences hidden">
           <h1>Patient Surveys</h1>
           
           <table class="data">
@@ -493,7 +497,7 @@
           </table>
         </div>
         
-        <div data-role="collapsible" data-collapsed="true" class="hac">
+        <div data-role="collapsible" data-collapsed="true" class="hac hidden">
           <h1>Hospital-Acquired Conditions</h1>
           
           <table class="data">
@@ -510,7 +514,7 @@
           </table>
         </div>
         
-        <div data-role="collapsible" data-collapsed="true" class="outcomes">
+        <div data-role="collapsible" data-collapsed="true" class="outcomes hidden">
           <h1>Patient Outcomes</h1>
           
           <table class="data">
@@ -524,7 +528,7 @@
           </table>
         </div>
         
-        <div data-role="collapsible" data-collapsed="true" class="process surgical_care">
+        <div data-role="collapsible" data-collapsed="true" class="process surgical_care hidden">
           <h1>
             Surgical Care
             <span class="outlier above"></span>
@@ -565,7 +569,7 @@
           </table>
         </div>
         
-        <div data-role="collapsible" data-collapsed="true" class="process heart_attack">
+        <div data-role="collapsible" data-collapsed="true" class="process heart_attack hidden">
           <h1>
             Heart Attack
             <span class="outlier above"></span>
@@ -603,7 +607,7 @@
           </table>
         </div>
         
-        <div data-role="collapsible" data-collapsed="true" class="process heart_failure">
+        <div data-role="collapsible" data-collapsed="true" class="process heart_failure hidden">
           <h1>
             Heart Failure
             <span class="outlier above"></span>
@@ -644,7 +648,7 @@
           </table>
         </div>
         
-        <div data-role="collapsible" data-collapsed="true" class="process pneumonia">
+        <div data-role="collapsible" data-collapsed="true" class="process pneumonia hidden">
           <h1>
             Pneumonia
             <span class="outlier above"></span>
@@ -689,7 +693,7 @@
       
       <div class="facility nursing_home reveal extended">
       
-        <div data-role="collapsible" data-collapsed="true" class="ratings">
+        <div data-role="collapsible" data-collapsed="true" class="ratings hidden">
           <h1>Ratings</h1>
           
           <table class="data">
@@ -700,7 +704,7 @@
           </table>
         </div>
         
-        <div data-role="collapsible" data-collapsed="true" class="occupancy">
+        <div data-role="collapsible" data-collapsed="true" class="occupancy hidden">
           <h1>Occupancy</h1>
           
           <div class="data">
@@ -721,7 +725,7 @@
           </div>
         </div>
 
-        <div data-role="collapsible" data-collapsed="true" class="participation">
+        <div data-role="collapsible" data-collapsed="true" class="participation hidden">
           <h1>Facility Participation</h1>
           
           <table class="data">
@@ -730,7 +734,7 @@
           </table>
         </div>
         
-        <div data-role="collapsible" data-collapsed="true" class="inspections">
+        <div data-role="collapsible" data-collapsed="true" class="inspections hidden">
           <h1>Inspections</h1>
           
           <div class="data">
@@ -751,7 +755,7 @@
       
       <div class="facility home_health reveal extended">
         
-        <div data-role="collapsible" data-collapsed="true" class="services">
+        <div data-role="collapsible" data-collapsed="true" class="services hidden">
           <h1>Services</h1>
           
           <table class="data">
@@ -760,7 +764,7 @@
           </table>
         </div>
         
-        <div data-role="collapsible" data-collapsed="true" class="patient_improvement">
+        <div data-role="collapsible" data-collapsed="true" class="patient_improvement hidden">
           <h1>Average Quality Levels</h1>
           
           <table class="data">
@@ -780,7 +784,7 @@
       <div class="facility dialysis reveal extended">
  
         
-        <div data-role="collapsible" data-collapsed="true" class="services">
+        <div data-role="collapsible" data-collapsed="true" class="services hidden">
           <h1>Services</h1>
           
           <table class="data">
@@ -795,7 +799,7 @@
 		  
         </div>
 
-        <div data-role="collapsible" data-collapsed="true" class="quality">
+        <div data-role="collapsible" data-collapsed="true" class="quality hidden">
           <h1>Average Quality Levels</h1>
           
           <table class="data">
