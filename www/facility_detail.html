@@ -216,7 +216,14 @@
             
             if (field.value != null && !field.too_small) {
               var suffix = (field.value_type == "percent" ? "%" : "");
-              html += processFieldRow(i, (field.outlier ? "outlier " + field.outlier : ""), field.name, field.value + suffix, ((field.nearby_considered > 1) ? parseInt(field.nearby_average) + suffix : "n/a"), ((field.calculated_national_average != null) ? parseInt(field.calculated_national_average) + suffix : "n/a"));
+              
+              var outlier = (field.outlier ? "outlier " + field.outlier : "");
+              
+              var individual = field.value + suffix;
+              var nearby = ((field.nearby_considered > 1) ? parseInt(field.nearby_average) + suffix : "n/a");
+              var national = ((field.calculated_national_average != null) ? parseInt(field.calculated_national_average) + suffix : "n/a");
+              
+              html += processFieldRow(i, outlier, field.name, individual, nearby, national);
               
               i += 1;
             }
