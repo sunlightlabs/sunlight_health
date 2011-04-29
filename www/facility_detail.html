@@ -65,10 +65,10 @@
         }
         
         else if (facility_type == "hospital") {
-          Api.Facility.find(provider_number, facility_type, ["outliers_above", "outliers_below", "survey_experiences", "outcomes", "process", "hac"], function(facility) {
+          Api.Facility.find(provider_number, facility_type, ["hsa_count", "outliers_above", "outliers_below", "survey_experiences", "outcomes", "process", "hac"], function(facility) {
             if (!facility) return;
             
-            populateHospital(facility.outliers_above, facility.outliers_below, facility.survey_experiences, facility.outcomes, facility.process, facility.hac);
+            populateHospital(facility.hsa_count, facility.outliers_above, facility.outliers_below, facility.survey_experiences, facility.outcomes, facility.process, facility.hac);
           });
         }
         
@@ -107,7 +107,7 @@
       $(".facility." + facility.facility_type + ".reveal.basic").show();
     }
     
-    function populateHospital(outliers_above, outliers_below, survey_experiences, outcomes, process, hac) {
+    function populateHospital(hsa_count, outliers_above, outliers_below, survey_experiences, outcomes, process, hac) {
       $(".facility.hospital.outliers .totals span.outlier.above").html(outliers_above);
       $(".facility.hospital.outliers .totals span.outlier.below").html(outliers_below);
       $(".facility.hospital.outliers").show();
@@ -200,9 +200,14 @@
           $(".facility.hospital .process." + condition + " span.outlier.above").html(calculations.outliers_above);
           $(".facility.hospital .process." + condition + " span.outlier.below").html(calculations.outliers_below);
           
+          var individual = parseInt(calculations.average_performance) + "%";
+          var nearby = (hsa_count > 1) ? parseInt(calculations.nearby_average_performance) + "%" : "n/a";
+          
+          var nearby_people = (hsa_count > 1) ? calculations.nearby_people : "n/a";
+          
           var html = "" +
-            twoPieceRow("Average Performance", parseInt(calculations.average_performance) + "%", parseInt(calculations.nearby_average_performance) + "%") +
-            twoPieceRow("Number of Patients", calculations.people, calculations.nearby_people);
+            twoPieceRow("Average Performance", individual, nearby) +
+            twoPieceRow("Number of Patients", calculations.people, nearby_people);
           $(".facility.hospital .process." + condition + " table.data.summary tbody").html(html);
           
           html = "";
