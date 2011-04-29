@@ -1,7 +1,9 @@
 <!DOCTYPE html> 
 <html> 
 <head>
-  <meta charset="utf-8" /> 
+  <meta charset="utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
   <title>Sunlight Health</title>
   
   <link href="css/jquery.mobile-1.0a4.1.min.css" rel="stylesheet" />
@@ -11,6 +13,7 @@
   <!-- Phonegap and JQM init -->
   <script type="text/javascript" charset="utf-8" src="js/phonegap-0.9.4.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery-1.5.2.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/defaults.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a4.1.min.js"></script>
   
   <!-- Utilities -->
@@ -19,8 +22,8 @@
   <!-- API communication -->
   <script type="text/javascript" charset="utf-8" src="js/api.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/keys.js"></script>
-  
-</head> 
+</head>
+
 <body>
 
 <div data-role="page" class="page" id="suppliers">
@@ -35,9 +38,9 @@
         var radius = $('input:radio[name=radius]:checked').val();
         
         if (search_type == "nearby")
-          searchNearby(term, radius);
+          suppliersSearchNearby(term, radius);
         else
-          searchZip(term, radius);
+          suppliersSearchZip(term, radius);
         
         return false;
       });
@@ -87,11 +90,9 @@
       }, {empty: "No supplies found.",});
     }
     
-    function searchNearby(supply, radius) {
-      Utils.loading();
+    function suppliersSearchNearby(supply, radius) {
         
       Utils.location(function (lat, lng) {
-        Utils.loading(true);
         $.mobile.changePage({
           url: "suppliers_list.html",
           data: {lat: lat, lng: lng, radius: radius, supply: supply, search_type: "nearby"},
@@ -100,7 +101,7 @@
       });
     }
     
-    function searchZip(supply, radius) {
+    function suppliersSearchZip(supply, radius) {
       var zip = $("input.supplies.zipcode").val().trim();
       if (!zip)
         Utils.popup("If you want to limit results to a zip code, enter one before selecting a supplier.");
@@ -168,7 +169,7 @@
 	<div data-role="footer" data-position="fixed" data-id="stickey_footer" id="stickey_footer">
 		<div data-role="navbar">
 			<ul>
-				<li><a href="index.html" data-icon="nav-icons" id="facilities_nav">Facilities</a></li>
+				<li><a href="index.html" rel="external" data-icon="nav-icons" id="facilities_nav">Facilities</a></li>
 				<li><a href="suppliers.html" data-icon="nav-icons" id="suppliers_nav" class="ui-btn-active ui-state-persist">Suppliers</a></li>
 				<li><a href="drugs.html" data-icon="nav-icons" id="drugs_nav">Drugs</a></li>
 			</ul>

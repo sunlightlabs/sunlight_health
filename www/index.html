@@ -26,13 +26,13 @@
 
 <body>
 
-<div data-role="page" class="page" id="facilities">
+<div data-role="page" class="page" id="index">
 
   <!-- Page-specific code -->
   <script type="text/javascript">
     var currentQuery = "";
     
-    Utils.show("facilities", function() {
+    Utils.show("index", function() {
       
       
       $("button.search.facilities").click(function() {
@@ -43,9 +43,9 @@
         
         if (facility_type != "placeholder") {
           if (search_type == "nearby")
-            searchNearby(facility_type, radius);
+            facilitiesSearchNearby(facility_type, radius);
           else
-            searchZip(facility_type, radius);
+            facilitiesSearchZip(facility_type, radius);
         }
         
         return false;
@@ -70,7 +70,7 @@
       
     });
     
-    function searchNearby(facility_type, radius) {
+    function facilitiesSearchNearby(facility_type, radius) {
       $(".facilities.thinking.main").show();
         
       Utils.location(function (lat, lng) {
@@ -83,7 +83,7 @@
       });
     }
     
-    function searchZip(facility_type, radius) {
+    function facilitiesSearchZip(facility_type, radius) {
       var zip = $("input.facilities.zipcode").val().trim();
       if (!zip)
         Utils.popup("If you want to limit results to a zip code, enter one before searching.");
@@ -155,7 +155,7 @@
   <div data-role="footer" data-position="fixed" data-id="stickey_footer" id="stickey_footer">
     <div data-role="navbar">
       <ul>
-        <li><a href="index.html" data-icon="nav-icons" id="facilities_nav" class="ui-btn-active ui-state-persist">Facilities</a></li>
+        <li><a href="index.html" rel="external" data-icon="nav-icons" id="facilities_nav" class="ui-btn-active ui-state-persist">Facilities</a></li>
         <li><a href="suppliers.html" data-icon="nav-icons" id="suppliers_nav" >Suppliers</a></li>
         <li><a href="drugs.html" data-icon="nav-icons" id="drugs_nav">Drugs</a></li>
       </ul>
