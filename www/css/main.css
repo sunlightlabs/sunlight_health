@@ -29,7 +29,7 @@ h1{
 }
 
 
-#suppliers .content-banner p, #facilities .content-banner p, #drugs .content-banner p, #about .content-banner p{
+#suppliers .content-banner p, #index .content-banner p, #drugs .content-banner p, #about .content-banner p{
 	text-align: center;
 	line-height: 1.75;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -50,6 +50,12 @@ h1{
 #about .ui-content{
 	margin: 20px 10px;
 }
+.foundations{
+	background: url('images/foundation_border.png') top center repeat-x;
+	margin-top: 20px;
+	padding-top: 10px;
+}
+
 
 .content-banner h1{
 	background: url('images/SunlightHealth_logo.png') top center no-repeat;
@@ -80,6 +86,13 @@ h1{
 	text-shadow: none;
 }
 
+#about .content-banner {
+	background-image: -moz-linear-gradient(top, #007592 0%, #5190AA 8%, #007592 16%); /* firefox */
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#007592), color-stop(8%,#5190AA), color-stop(16%,#007592)); /* webkit */
+	padding: 7px;
+	border: none;
+	margin: 0;
+}
 
 .content-banner {
 	background-image: -moz-linear-gradient(top, #007592 0%, #5190AA 50%, #007592 100%); /* firefox */
@@ -301,8 +314,15 @@ tr.best-buy{
 	color: #818181;
 	font-size: 14px;
 }
-.more a:visited{
+.more a:visited, .drug_class a:visited.ui-link{
 	color: #818181;
+}
+.drug_class a:link.ui-link{
+	background:url('images/more_arrows.png') right top no-repeat;
+	padding-right: 20px;
+	font-style: oblique;
+	color: #818181;
+	font-size: 14px;
 }
 #about .content-banner a:link{
 	font-style: oblique;
@@ -449,10 +469,16 @@ tr.best-buy{
 	font-size: 14px ;
 	text-align: center;	
 }
-.health_survey, .fire_survey, .sprinklers{
+.health_survey, .fire_survey{
 	display: inline-block;
 	padding-left: 5px;
 	padding-right: 5px;
+}
+.sprinklers{
+	font-size: 14px ;
+	padding-top: 10px;
+	font-weight: 700;
+	text-transform: uppercase;
 }
 
 .inspections dd{
@@ -552,6 +578,7 @@ dd.not {
 	font-size: 13px;
 	text-align: center;
 	letter-spacing: .5px;
+	width: 67px;
 	
 }
 .indicators dd{
@@ -562,7 +589,7 @@ dd.not {
 	padding-right: 20px;
 }
 .indicators dd.below{
-	margin-left: 40px;
+	margin-left: 38px;
 }
 .indicators{
 	right: 0;
@@ -571,7 +598,10 @@ dd.not {
 
 .ui-collapsible-content .small{
 	padding-left: 10px;
+	font-size: 11px;
+	width: auto;
 }
+
 
 .ui-collapsible-content .outliers{
 	background-color: #898989;
@@ -824,7 +854,7 @@ div.toast{
 		background-size: 98px 15px;
 	}
 	.knight{
-		background: url('images/knightfoundation_logo_x2.png');
+		background: url('images/knightfoundation_logo_x2.png')center top no-repeat;
 		-moz-background-size: 138px 35px;
 		-o-background-size: 138px 35px;
 		-webkit-background-size: 138px 35px;
