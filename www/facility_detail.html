@@ -134,7 +134,7 @@
             else
               nearby = "n/a";
             
-            html += surveyRow(i, name, individual, nearby, national);
+            html += surveyRow(i, name, individual + "%", nearby + "%", national + "%");
             
             i += 1;
           } else {
@@ -145,7 +145,7 @@
               var national = info.national_average;
               
               
-              html += surveyRow(i, name, individual, nearby, national);
+              html += surveyRow(i, name, individual + "%", nearby + "%", national + "%");
               i += 1;
             });
           }
