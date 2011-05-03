@@ -108,9 +108,12 @@
     }
     
     function populateHospital(hsa_count, outliers_above, outliers_below, survey_experiences, outcomes, process, hac) {
-      $(".facility.hospital.outliers .totals span.outlier.above").html(outliers_above);
-      $(".facility.hospital.outliers .totals span.outlier.below").html(outliers_below);
-      $(".facility.hospital.outliers").show();
+      
+      if (process) {
+        $(".facility.hospital.outliers .totals span.outlier.above").html(outliers_above);
+        $(".facility.hospital.outliers .totals span.outlier.below").html(outliers_below);
+        $(".facility.hospital.outliers").show();
+      }
       
       var html;
       var i;
