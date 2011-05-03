@@ -65,10 +65,10 @@
         }
         
         else if (facility_type == "hospital") {
-          Api.Facility.find(provider_number, facility_type, ["hsa_count", "outliers_above", "outliers_below", "survey_experiences", "outcomes", "process", "hac"], function(facility) {
+          Api.Facility.find(provider_number, facility_type, ["hsa_count", "outliers_above", "outliers_below", "survey_experiences", "outcomes", "process"], function(facility) {
             if (!facility) return;
             
-            populateHospital(facility.hsa_count, facility.outliers_above, facility.outliers_below, facility.survey_experiences, facility.outcomes, facility.process, facility.hac);
+            populateHospital(facility.hsa_count, facility.outliers_above, facility.outliers_below, facility.survey_experiences, facility.outcomes, facility.process);
           });
         }
         
@@ -107,7 +107,7 @@
       $(".facility." + facility.facility_type + ".reveal.basic").show();
     }
     
-    function populateHospital(hsa_count, outliers_above, outliers_below, survey_experiences, outcomes, process, hac) {
+    function populateHospital(hsa_count, outliers_above, outliers_below, survey_experiences, outcomes, process) {
       
       if (process) {
         $(".facility.hospital.outliers .totals span.outlier.above").html(outliers_above);
@@ -173,21 +173,6 @@
         $(".facility.hospital .outcomes").show();
       }
         
-      
-      
-      if (hac) {
-        i = 0;
-        html = "";
-        
-        $.each(hac, function(slug, info) {
-          html += hacRow(i, info.name, info.incidents, info.eligible, info.rate + "%", info.national_rate + "%");
-          i += 1;
-        });
-        
-        $(".facility.hospital .hac table.data tbody").html(html);
-        $(".facility.hospital .hac").show();
-      }
-      
       
       if (process) {
         $.each(process, function(condition, info) {
@@ -394,23 +379,6 @@
         "</tr>";
     }
     
-    function hacRow(i, name, incidents, eligible, individual, national) {
-      return "" +
-        "<tr class=\"hac " + (i % 2 == 0 ? "even" : "odd") + "\">" +
-          "<th scope=\"row\">" + 
-            "<dt>" + name + "</dt>" +
-            "<dd>" +
-              "<span class=\"incidents\">" + incidents + "</span>" +
-              " incidents among " +
-              "<span class=\"eligible\">" + eligible + "</span>" +
-              " eligible" +
-            "</dd>" +
-          "</th>" +
-          "<td>" + individual + "</td>" +
-          "<td>" + national + "</td>" +
-        "</tr>";
-    }
-    
     function twoPieceRow(name, one, two) {
       return "" +
         "<tr>" +
@@ -517,23 +485,6 @@
               </tr>
             </thead>
             <tbody></tbody>
-          </table>
-        </div>
-        
-        <div data-role="collapsible" data-collapsed="true" class="hac hidden">
-          <h1>Hospital-Acquired Conditions</h1>
-          
-          <table class="data">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th class="hosp" scope="col">Hosp</th>
-                <th class="hosp" scope="col">US</th>
-              </tr>
-            </thead>
-            <tbody>
-            
-            </tbody>
           </table>
         </div>
         
