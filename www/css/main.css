@@ -187,7 +187,8 @@ table.data{
 	padding-bottom: 10px;
 }
 tr.odd{
-
+	background-color: #e1e2e3;
+	padding-top: 5px;
 }
 
 .data th, .data td{
@@ -199,8 +200,7 @@ tr.odd{
 	display: block;
 }
 tr.even{
-	background-color: #e1e2e3;
-	padding-top: 5px;	
+	
 }
 #drug_chemical .data td{
 	text-align: right;
@@ -216,7 +216,7 @@ font-weight: 300;
 	font-weight: 700;
 	padding-right: 15px;
 	text-align: right;
-	width: 70px;
+	width: 100px;
 	line-height: 1.5;
 }
 
@@ -259,11 +259,16 @@ td.cost{
 }
 
 .ui-collapsible-content h2 {
-	color: #4c4c4c;
-	text-transform: uppercase;
-	font-size: 90%;
+	color: #ffffff;
+	font-size: 14px;
 	padding-left: 10px;
 	margin-bottom: 10px;
+	background-color: #898989;
+	padding-top: 8px;
+	padding-bottom: 6px;
+	margin-top: 0;
+	margin-bottom: 0;
+	border-bottom: 1px solid #4F4F4F;
 }
 h3.dosage{
 	color: #006f8b;
@@ -283,8 +288,7 @@ tr.best-buy{
 }
 
 .best-buy h3{
-	background: url('images/bestbuy_star.png') left top no-repeat;
-	padding-left: 27px;
+
 }
 .description{
 	color: #4c4c4c;
@@ -380,16 +384,17 @@ tr.best-buy{
 	font-size: 90%;
 }
 .content-banner dd{
-	padding-left: 50px;
+	padding-left: 75px;
 }
 .consumer-reports{
 	display: block;
-	margin-left: -27px;
-	font-style: oblique;
+font-style: oblique;
 	font-weight: 400;
 	color: black;
 	text-transform: none;
-	padding-top: 5px;
+	padding-top: 4px;
+	background: url('images/bestbuy_star.png') left top no-repeat;
+	padding-left: 27px;
 }
 
 .survey_experiences tbody{
@@ -475,8 +480,8 @@ tr.best-buy{
 }
 .health_survey, .fire_survey{
 	display: inline-block;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 .sprinklers{
 	font-size: 14px ;
@@ -507,21 +512,23 @@ dd.not {
 }
 
 .patient_survival{
-	padding: 20px 8px 10px 8px;
+	padding: 15px 8px 10px 8px;
 	font-weight: 700;
+	border-top: 2px dashed #d7ca57;
 	
 }
 .patient_survival dt{
 	font-size: 14px ;
 	font-weight: 700;
 	display: inline;
+	text-transform: uppercase;
 	
 }
 .patient_survival dd{
 	font-size: 14px ;
 	display: inline;
 	margin-left: 10px;
-	text-transform: uppercase;
+	font-weight: 400;
 }
 
 .hac dd{
@@ -548,17 +555,22 @@ dd.not {
 	background: url('images/outlier_up.png') right 2px no-repeat ;
 	font-weight: 700;
 	font-size: 16px;
-	padding-right: 20px;
 	color: #d7ca57;
+	width: 25px;
+	height: 28px;
 }
-
 
 .ui-collapsible-heading-toggle .below, .content-banner .outlier.below{
 	background: url('images/outlier_down.png') right 2px no-repeat;
 	font-weight: 700;
 	font-size: 16px;
-	padding-right: 20px;
 	color: #d7ca57;
+	width: 25px;
+	height: 28px;
+}
+.ui-collapsible-heading-toggle .below, .ui-collapsible-heading-toggle .above{
+	float: right;
+	clear: top;
 }
 .totals>.below{
 	display: block;
@@ -614,30 +626,17 @@ dd.not {
 	padding-bottom: 10px;
 }
 
-.ui-collapsible-heading-toggle .below{
-	right: 0;
-	position: absolute;
-	margin-right: 15px;
-}
-.ui-collapsible-heading-toggle .above{
-	right: 0;
-	position: absolute;
-	margin-right:55px;
-
-}
 tr.below th{
-	background: url('images/outlier_down.png') left top no-repeat;
-	padding-left: 15px;
+	background: url('images/outlier_down.png') left center no-repeat;
+	padding-left: 28px;
 	margin-left: 5px;
-	padding-top: 0;
-	margin-top: 10px;
+	padding-top: 10px;
 }
 tr.above th{
-	background: url('images/outlier_up.png') left top no-repeat;
-	padding-left: 15px;
+	background: url('images/outlier_up.png') left center no-repeat;
+	padding-left: 28px;
 	margin-left: 5px;
-	padding-top: 0;
-	margin-top: 10px;
+	padding-top: 10px;
 }
 .content-banner .outlier.below{
 	margin: 2px;
@@ -743,10 +742,10 @@ div.toast{
 	}
 	.best-buy h3{
 		background: url('images/bestbuy_star_x2.png') left top no-repeat;
-		-moz-background-size: 20px 18px;
-		-o-background-size: 20px 18px;
-		-webkit-background-size: 20px 18px;
-		background-size: 20px 18px;
+		-moz-background-size: 17px 15px;
+		-o-background-size: 17px 15px;
+		-webkit-background-size: 17px 15px;
+		background-size: 17px 15px;
 	}
 	.more{
 		background:url('images/bg_more_x2.png') center top repeat-x;
@@ -788,31 +787,31 @@ div.toast{
 
 	.ui-collapsible-heading-toggle .above, .content-banner .outlier.above{
 		background: url('images/outlier_up_x2.png') right 2px no-repeat ;
-		-moz-background-size: 14px 13px;
-		-o-background-size: 14px 13px;
-		-webkit-background-size: 14px 13px;
-		background-size: 14px 13px;
+		-moz-background-size: 28px 25px;
+		-o-background-size: 28px 25px;
+		-webkit-background-size: 28px 25px;
+		background-size: 28px 25px;
 	}
 	.ui-collapsible-heading-toggle .below, .content-banner .outlier.below{
 		background: url('images/outlier_down_x2.png') right 2px no-repeat;
-		-moz-background-size: 14px 13px;
-		-o-background-size: 14px 13px;
-		-webkit-background-size: 14px 13px;
-		background-size: 14px 13px;
+		-moz-background-size: 28px 25px;
+		-o-background-size: 28px 25px;
+		-webkit-background-size: 28px 25px;
+		background-size: 28px 25px;
 	}
 	tr.below th{
 		background: url('images/outlier_down_x2.png') left top no-repeat;
-		-moz-background-size: 14px 13px;
-		-o-background-size: 14px 13px;
-		-webkit-background-size: 14px 13px;
-		background-size: 14px 13px;
+		-moz-background-size: 28px 25px;
+		-o-background-size: 28px 25px;
+		-webkit-background-size: 28px 25px;
+		background-size: 28px 25px;
 	}
 	tr.above th{
 		background: url('images/outlier_down_x2.png') left top no-repeat;
-		-moz-background-size: 14px 13px;
-		-o-background-size: 14px 13px;
-		-webkit-background-size: 14px 13px;
-		background-size: 14px 13px;
+		-moz-background-size: 28px 25px;
+		-o-background-size: 28px 25px;
+		-webkit-background-size: 28px 25px;
+		background-size: 28px 25px;
 	}
 	.rating-0{
 		background: url('images/stars_zero_x2.png') left center no-repeat;	
