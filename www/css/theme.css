@@ -351,6 +351,17 @@ ul.ui-autocomplete{
 	position: absolute;
 	
 }
+ul.ui-autocomplete h3{
+	margin-top: .6em;
+	margin-bottom: .6em;
+	color: #282828;
+    font-size: 12.8px;
+    text-shadow: 0 1px 0 #BCBCBC;
+    text-transform: uppercase;
+	background: url('images/autocomplete_arrow.png') right center no-repeat;
+	margin-right: 10px;
+	
+}
 .ui-autocomplete.ui-corner-all{
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -359,9 +370,9 @@ ul.ui-autocomplete{
 }
 .ui-autocomplete.ui-corner-all li{
 	background: url('images/bg_search.jpg') center center repeat-x;
-	border-top-color: #4f4f4f;
-	border-bottom-color: #8f8d8d;
-	border-width: 1px;
+	border-top:1px solid #4f4f4f;
+	border-bottom: 1px solid #8f8d8d;
+	padding: 3px 50px 0 3px;
 }
 
  /* Fixes icon positioning for mobile devices. Still doesn't explain where those 40 pixels are coming from.  */
