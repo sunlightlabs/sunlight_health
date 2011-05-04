@@ -41,16 +41,16 @@
             response($.map(terms, function(term) {
               var link;
               if (term.term_type == "drug_class")
-                link = "drug_class.html?" + $.param({drug_class: term.drug_class});
+                link = "drug_class.html?" + Utils.queryString({drug_class: term.drug_class});
               else if (term.term_type == "drug") {
-                link = "drug_chemical.html?" + $.param({
+                link = "drug_chemical.html?" + Utils.queryString({
                   drug_name: term.drug,
                   name: term.chemical,
                   drug_class: term.drug_class,
                   subdivision: term.subdivision
                 });
               } else { // term.term_type == "chemical"
-                link = "drug_chemical.html?" + $.param({
+                link = "drug_chemical.html?" + Utils.queryString({
                   name: term.chemical,
                   drug_class: term.drug_class,
                   subdivision: term.subdivision
