@@ -344,6 +344,25 @@ input.ui-input-text, textarea.ui-input-text {
 .ui-li .ui-btn-text a.ui-link-inherit {
     white-space: normal;
 }
+ul.ui-autocomplete{
+	border: none;
+	padding: 0;
+	margin: 0 auto;
+	position: absolute;
+	
+}
+.ui-autocomplete.ui-corner-all{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.ui-autocomplete.ui-corner-all li{
+	background: url('images/bg_search.jpg') center center repeat-x;
+	border-top-color: #4f4f4f;
+	border-bottom-color: #8f8d8d;
+	border-width: 1px;
+}
 
  /* Fixes icon positioning for mobile devices. Still doesn't explain where those 40 pixels are coming from.  */
 
