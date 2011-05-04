@@ -552,16 +552,17 @@ dd.not {
 	font-size: 14px;
 }
 
-.ui-collapsible-heading-toggle .above, .content-banner .outlier.above{
+.ui-collapsible-heading-toggle .above{
 	background: url('images/outlier_up.png') right 2px no-repeat ;
 	font-weight: 700;
 	font-size: 16px;
 	color: #d7ca57;
 	width: 25px;
 	height: 28px;
+	right: 0;
 }
 
-.ui-collapsible-heading-toggle .below, .content-banner .outlier.below{
+.ui-collapsible-heading-toggle .below{
 	background: url('images/outlier_down.png') right 2px no-repeat;
 	font-weight: 700;
 	font-size: 16px;
@@ -571,7 +572,6 @@ dd.not {
 }
 .ui-collapsible-heading-toggle .below, .ui-collapsible-heading-toggle .above{
 	float: right;
-	clear: top;
 }
 .totals>.below{
 	display: block;
@@ -642,13 +642,13 @@ p.outlier-exp{
 .ui-collapsible-content .below-key{
 	background: url('images/outlier_down_micro.png') left top no-repeat;
 	width: 20px;
-	height: 18px;
+	height: 19px;
 	display: inline-block;
 }
 .ui-collapsible-content .above-key{
 	background: url('images/outlier_up_micro.png') left center no-repeat;
 	width: 20px;
-	height: 18px;
+	height: 19px;
 	display: inline-block;
 }
 
