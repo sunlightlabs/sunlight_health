@@ -118,7 +118,7 @@
     }
     
     function populateDescription(description) {
-      $("p.drug_class.description.full").html(description);
+      $("p.drug_class.description.full").html(description.replace(/\n/g, "<br/>"));
       
       if (description.length > 400) {
         var short = description.substring(0, 400) + "...";
@@ -128,9 +128,8 @@
           $("p.drug_class.description.short").hide();
           $("p.drug_class.description.full").show();
         });
-      } else {
+      } else
         $("p.drug_class.description.full").show();
-      }
     }
     
     function populateChemicals(chemicals) {
