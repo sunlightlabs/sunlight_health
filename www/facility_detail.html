@@ -430,8 +430,8 @@
           <p class="phone"></p>
         </div>
         
-        <!-- Currently using mocked up data so that it can be styled. -->
-        <div class="facility hospital outliers reveal">
+        <!-- Currently using mocked up data so that it can be styled. 
+<div class="facility hospital outliers reveal">
           <div class="totals top">
             <p class="small">
             Outliers were significantly above/below the national average.
@@ -445,8 +445,7 @@
 			</div>
           </div>
 
-        </div>
-		</div>
+		</div>-->
         
         <div class="facility nursing_home overall_rating reveal"></div>
         <div class="facility dialysis chain_organization reveal"></div>
@@ -503,9 +502,9 @@
         </div>
         
         <div data-role="collapsible" data-collapsed="true" class="process surgical_care hidden">
-          <h1>
+         <h1>
             Surgical Care
-            <span class="outlier above"></span>
+             <span class="outlier above"></span>
             <span class="outlier below"></span>
           </h1>
           <div class="outliers">
@@ -584,7 +583,7 @@
         <div data-role="collapsible" data-collapsed="true" class="process heart_failure hidden">
           <h1>
             Heart Failure
-            <span class="outlier above"></span>
+             <span class="outlier above"></span>
             <span class="outlier below"></span>
           </h1>
           <div class="outliers">
@@ -623,7 +622,7 @@
         </div>
         
         <div data-role="collapsible" data-collapsed="true" class="process pneumonia hidden">
-          <h1>
+           <h1>
             Pneumonia
             <span class="outlier above"></span>
             <span class="outlier below"></span>
@@ -739,10 +738,20 @@
         </div>
         
         <div data-role="collapsible" data-collapsed="true" class="patient_improvement hidden">
-          <h1>Average Quality Levels</h1>
+          <h1>Patient Improvement</h1>
           
           <table class="data">
-            <thead>
+            <h2>Patient Health Improved</h2>
+			<thead>
+              <tr>
+                <th scope="col"></th>
+                <th class="hosp" scope="col">Patients</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+            <h2>Patient Health Declined</h2>
+			<thead>
               <tr>
                 <th scope="col"></th>
                 <th class="hosp" scope="col">Patients</th>
@@ -762,12 +771,7 @@
           <h1>Services</h1>
           
           <table class="data">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th class="hosp" scope="col">Offered?</th>
-              </tr>
-            </thead>
+
             <tbody></tbody>
           </table>
 		  
