@@ -65,12 +65,18 @@
       });
       
       $("input.search.drugs").data( "autocomplete" )._renderItem = function( ul, item ) {
-        return $( "<li></li>" )
+        $( "<li></li>" )
             .data( "item.autocomplete", item )
-            .append( $( "<a></a>" ).attr({href: item.link}).html( 
-              "<h3>" + item.label + "</h3>"
-            ) )
+            .append( "" +
+              "<a href=\"" + item.link + "\">" +
+                "<h3>" + item.label + "</h3>" +
+              "</a>"
+            )
             .appendTo( ul );
+        $(ul)
+          .addClass("list")
+          .addClass("drug_terms")
+          .addClass("autocomplete");
       }
       
     });
