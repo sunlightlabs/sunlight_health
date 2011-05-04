@@ -118,9 +118,19 @@
     }
     
     function populateDescription(description) {
-      if (description.length > 400)
-        description = description.substring(0,400) + "...";
-      $("p.drug_class.description").html(description);
+      $("p.drug_class.description.full").html(description);
+      
+      if (description.length > 400) {
+        var short = description.substring(0, 400) + "...";
+        $("p.drug_class.description.short").prepend(short);
+        $("p.drug_class.description.short").show();
+        $("p.drug_class.description.short a").click(function() {
+          $("p.drug_class.description.short").hide();
+          $("p.drug_class.description.full").show();
+        });
+      } else {
+        $("p.drug_class.description.full").show();
+      }
     }
     
     function populateChemicals(chemicals) {
@@ -177,7 +187,10 @@
       
       <div data-role="collapsible" data-collapsed="true" class="drug_class about">
         <h1>About this Drug Class</h1>
-        <p class="drug_class description"></p><a href="">expand description</a>
+        <p class="drug_class description short hidden">
+          <a href="#">expand description</a>
+        </p>
+        <p class="drug_class description full hidden">
       </div>
         
       
