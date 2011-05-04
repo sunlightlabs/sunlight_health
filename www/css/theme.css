@@ -13,6 +13,11 @@
 	width: 20px;
 	height: 20px;
 }
+.ui-header .ui-title{
+	margin-left: 60px;
+	margin-right: 60px;
+}
+
 /* -------- Radio Button styling -------- */
 .ui-controlgroup, fieldset.ui-controlgroup, .max-width-480px .ui-field-contain, .min-width-480px .ui-field-contain{
 	margin-top: 0;
@@ -360,6 +365,8 @@ ul.ui-autocomplete h3{
     text-transform: uppercase;
 	background: url('images/autocomplete_arrow.png') right center no-repeat;
 	margin-right: 10px;
+	padding-right: 20px;
+	white-space: normal;
 	
 }
 .ui-autocomplete.ui-corner-all{
