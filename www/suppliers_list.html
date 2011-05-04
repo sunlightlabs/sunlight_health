@@ -43,24 +43,25 @@
         $(".suppliers.title").html("Suppliers Nearby");
         Api.Supplier.searchNearby(supply, lat, lng, radius, loadSuppliers);
       }
+      
+      function loadSuppliers(suppliers) {
+        $(".suppliers.thinking").hide();
+        
+        Utils.loadList("suppliers", suppliers, function(supplier) {
+          return "" +
+            "<a href=\"supplier_detail.html?" + Utils.queryString({row: supplier.row}) + "\">" +
+              "<h3>" +
+                supplier.name +
+              "</h3>" +
+              "<p>" + 
+                supplier.address + "<br/>" +
+                supplier.city + ", " + supplier.state + " " + supplier.zip +
+              "</p>" +
+            "</a>";
+        }, {empty: "No suppliers found for this location."});
+      }
     });
     
-    function loadSuppliers(suppliers) {
-      $(".suppliers.thinking").hide();
-      
-      Utils.loadList("suppliers", suppliers, function(supplier) {
-        return "" +
-          "<a href=\"supplier_detail.html?" + Utils.queryString({row: supplier.row}) + "\">" +
-            "<h3>" +
-              supplier.name +
-            "</h3>" +
-            "<p>" + 
-              supplier.address + "<br/>" +
-              supplier.city + ", " + supplier.state + " " + supplier.zip +
-            "</p>" +
-          "</a>";
-      }, {empty: "No suppliers found for this location."});
-    }
   </script>
 
   <div data-role="header">
