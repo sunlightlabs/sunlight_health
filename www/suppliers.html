@@ -32,18 +32,7 @@
     var currentQuery = "";
     
     Utils.show("suppliers", function() {
-      $("ul.list.supplies li a").live("click", function() {
-        var term = $(this).data("value");
-        var search_type = $('input:radio[name=search_type]:checked').val();
-        var radius = $('input:radio[name=radius]:checked').val();
-        
-        if (search_type == "nearby")
-          suppliersSearchNearby(term, radius);
-        else
-          suppliersSearchZip(term, radius);
-        
-        return false;
-      });
+      
       
       $("input.supplies.radio").change(function() {
         var search_type = $('input:radio[name=search_type]:checked').val();
@@ -53,42 +42,49 @@
           $("input.supplies.search.zipcode").hide();
       });
       
-      $("input.search.supplies.text").change(function() {
-        var query = $(this).val().trim();
-        if (!query) {
-          $("ul.list.supplies").html("");
-          return;
+      $("input.search.supplies.text").autocomplete({
+        source: function(request, response) {
+          var query = request.term;
+          
+          Api.Supplier.terms(query, function(supplies) {
+            response($.map(supplies, function(supply) {
+              return {label: supply.term, value: query, param: supply.term.replace(/\"/g, "\\\"")};
+            }));
+          });
+        },
+        select: function(e, ui) {
+          var term = Utils.cleanParam(ui.item.param);
+          var search_type = $('input:radio[name=search_type]:checked').val();
+          var radius = $('input:radio[name=radius]:checked').val();
+          
+          if (search_type == "nearby")
+            suppliersSearchNearby(term, radius);
+          else
+            suppliersSearchZip(term, radius);
+          
+          return false;
         }
         
-        if (currentQuery == query)
-          return;
-        
-        currentQuery = query;
-        
-        Utils.log("filter: " + query);
-        
-        Api.Supplier.terms(query, function(supplies) {
-          if (supplies) {
-            Utils.log("got back " + supplies.length + " results");
-            populateSupplies(supplies);
-          }
-        });
-      }).keyup(function() { $(this).change(); });
+      });
+      
+      $("input.search.supplies.text").data( "autocomplete" )._renderItem = function( ul, item ) {
+        // link won't be used, live click handler will be used instead
+        $( "<li></li>" )
+            .data( "item.autocomplete", item )
+            .append( "" +
+              "<a data-value=\"" + item.param + "\">" +
+                "<h3>" + item.label + "</h3>" +
+              "</a>" 
+            )
+            .appendTo( ul );
+        $(ul)
+          .addClass("list")
+          .addClass("supplies ui-li-heading")
+          .addClass("autocomplete");
+      }
       
     });
     
-    function populateSupplies(supplies) {
-      Utils.loadList("supplies", supplies, function(supply) {
-        
-        // link won't be used, live click handler will be used instead
-        return "" + 
-          "<a href=\"#\" data-value=\"" + supply.term.replace(/\"/g, "\\\"") + "\">" +
-            "<h3>" +
-              supply.term + 
-            "</h3>" +
-          "</a>";
-      }, {empty: "No supplies found.",});
-    }
     
     function suppliersSearchNearby(supply, radius) {
         
@@ -160,9 +156,6 @@
     </div>
 	<div class="autosearch_results">
     
-	    <ul data-role="listview" data-theme="e" class="list supplies ui-li-heading">
-	      <!-- supply list goes here, template specified in JavaScript above -->
-	    </ul>
 	</div>
   </div><!-- /content -->
 
