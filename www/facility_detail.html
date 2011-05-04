@@ -232,12 +232,14 @@
       if (ratings) {
         $(".nursing_home.overall_rating").addClass("rating-" + ratings.overall.value).show();
         
-        html = "" +
-          ratingRow(0, ratings.overall.name, ratings.overall.value) +
-          ratingRow(1, ratings.rn_only.name, ratings.rn_only.value) +
-          ratingRow(2, ratings.nurse_staffing.name, ratings.nurse_staffing.value) +
-          ratingRow(3, ratings.health_inspections.name, ratings.health_inspections.value);
-      
+        i = 0;
+        html = "";
+        
+        $.each(["overall", "rn_only", "nurse_staffing", "health_inspections"], function(i, field) {
+          if (ratings[field].value != null)
+            html += ratingRow(i, ratings[field].name, ratings[field].value);
+        });
+        
         $(".facility.nursing_home .ratings table.data tbody").html(html);
         $(".facility.nursing_home .ratings").show();
       } 
