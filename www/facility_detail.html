@@ -177,14 +177,16 @@
           } else // reset
             $(".facility.hospital .process." + condition).show();
           
-          if (calculations.outliers_above)
+          if (calculations.outliers_above) {
             $(".facility.hospital .process." + condition + " span.outlier.above").show();
-          else
+            $(".facility.hospital .process." + condition).addClass("above");
+          } else
             $(".facility.hospital .process." + condition + " span.outlier.above").hide();
             
-          if (calculations.outliers_below)
+          if (calculations.outliers_below) {
             $(".facility.hospital .process." + condition + " span.outlier.below").show();
-          else
+            $(".facility.hospital .process." + condition).addClass("below");
+          } else
             $(".facility.hospital .process." + condition + " span.outlier.below").hide();
           
           var individual = parseInt(calculations.average_performance) + "%";
