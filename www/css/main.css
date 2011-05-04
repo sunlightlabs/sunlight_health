@@ -629,19 +629,28 @@ tr.above th{
 	background: url('images/outlier_up.png') left center no-repeat;
 	padding-left: 28px;
 	margin-left: 5px;
-	padding-top: 10px;
 }
 .content-banner .outlier.below{
 	margin: 2px;
 }
-.ui-collapsible-content .outliers>h2 {
-	border-bottom: none;
-	border-top: none;
-}
-.outliers p{
+p.outlier-exp{
 	font-size: 14px;
+	padding-left: 10px;
+	padding-right: 10px;
+	line-height: 1.6;
 }
-
+.ui-collapsible-content .below-key{
+	background: url('images/outlier_down_micro.png') left top no-repeat;
+	width: 20px;
+	height: 18px;
+	display: inline-block;
+}
+.ui-collapsible-content .above-key{
+	background: url('images/outlier_up_micro.png') left center no-repeat;
+	width: 20px;
+	height: 18px;
+	display: inline-block;
+}
 
 /* -------- Search Results Loading Dialogue -------- */
 
@@ -863,7 +872,20 @@ div.toast{
 		-webkit-background-size: 138px 35px;
 		background-size: 138px 35px;
 	}
-
+	.ui-collapsible-content .below-key{
+		background: url('images/outlier_down_micro_x2.png') left center no-repeat;
+		-moz-background-size: 20px 18px;
+		-o-background-size: 20px 18px;
+		-webkit-background-size: 20px 18px;
+		background-size: 20px 18px;
+	}
+	.ui-collapsible-content .above-key{
+		background: url('images/outlier_up_micro_x2.png') left center no-repeat;
+		-moz-background-size: 20px 18px;
+		-o-background-size: 20px 18px;
+		-webkit-background-size: 20px 18px;
+		background-size: 20px 18px;
+	}
 
 }
 
