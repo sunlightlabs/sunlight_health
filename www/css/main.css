@@ -552,26 +552,31 @@ dd.not {
 	font-size: 14px;
 }
 
-.ui-collapsible-heading-toggle .above{
-	background: url('images/outlier_up.png') right 2px no-repeat ;
-	font-weight: 700;
-	font-size: 16px;
-	color: #d7ca57;
+.above .ui-collapsible-heading-toggle  .outlier{
+	background: url('images/outlier_up.png') right top no-repeat ;
 	width: 25px;
 	height: 28px;
-	right: 0;
+	right: 12px;
+	top: 0;	
+	position: absolute;
 }
 
-.ui-collapsible-heading-toggle .below{
-	background: url('images/outlier_down.png') right 2px no-repeat;
-	font-weight: 700;
-	font-size: 16px;
-	color: #d7ca57;
+.below .ui-collapsible-heading-toggle  .outlier{
+	background: url('images/outlier_down.png') right top no-repeat;
 	width: 25px;
 	height: 28px;
+	right: 12px;
+	top: 0;
+	position: absolute;
 }
-.ui-collapsible-heading-toggle .below, .ui-collapsible-heading-toggle .above{
-	float: right;
+
+.above.below .ui-collapsible-heading-toggle .outlier{
+	background: url('images/outlier_both.png')right top no-repeat;
+	width: 55px;
+	height: 28px;
+	right: 12px;
+	top: 0;
+	position: absolute;
 }
 .totals>.below{
 	display: block;
@@ -651,10 +656,20 @@ p.outlier-exp{
 	height: 19px;
 	display: inline-block;
 }
+.data tbody th{
+	display: table-cell;
+}
 
-/* -------- Search Results Loading Dialogue -------- */
+/* -------- Same and Better styling -------- */
 
-
+.worse td{
+	color: #d36649;
+	font-weight: 700;
+}
+.better td{
+	color: #689758;
+	font-weight: 700;
+}
 
 /* -------- Star Ratings -------- */
 
@@ -795,19 +810,26 @@ div.toast{
 		background-size: 77px 35px;
 	}
 
-	.ui-collapsible-heading-toggle .above, .content-banner .outlier.above{
-		background: url('images/outlier_up_x2.png') right 2px no-repeat ;
+	.ui-collapsible-heading-toggle .above{
+		background: url('images/outlier_up_x2.png') right top no-repeat ;
 		-moz-background-size: 28px 25px;
 		-o-background-size: 28px 25px;
 		-webkit-background-size: 28px 25px;
 		background-size: 28px 25px;
 	}
-	.ui-collapsible-heading-toggle .below, .content-banner .outlier.below{
-		background: url('images/outlier_down_x2.png') right 2px no-repeat;
+	.ui-collapsible-heading-toggle .below{
+		background: url('images/outlier_down_x2.png') right top no-repeat;
 		-moz-background-size: 28px 25px;
 		-o-background-size: 28px 25px;
 		-webkit-background-size: 28px 25px;
 		background-size: 28px 25px;
+	}
+	.above.below .ui-collapsible-heading-toggle .outlier{
+		background: url('images/outlier_both_x2.png')right top no-repeat;
+		-moz-background-size: 55px 25px;
+		-o-background-size: 55px 25px;
+		-webkit-background-size: 55px 25px;
+		background-size: 55px 25px;
 	}
 	tr.below th{
 		background: url('images/outlier_down_x2.png') left center no-repeat;
@@ -886,6 +908,7 @@ div.toast{
 		-webkit-background-size: 20px 18px;
 		background-size: 20px 18px;
 	}
+	
 
 }
 
