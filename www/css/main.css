@@ -269,6 +269,7 @@ td.cost{
 	margin-top: 0;
 	margin-bottom: 0;
 	border-bottom: 1px solid #4F4F4F;
+	border-top: 1px solid #4F4F4F;
 }
 h3.dosage{
 	color: #006f8b;
@@ -512,9 +513,9 @@ dd.not {
 }
 
 .patient_survival{
-	padding: 15px 8px 10px 8px;
+	padding: 10px 8px 10px 8px;
 	font-weight: 700;
-	border-top: 2px dashed #d7ca57;
+	border-bottom: 2px dashed #d7ca57;
 	
 }
 .patient_survival dt{
@@ -583,13 +584,6 @@ dd.not {
 	float: none;
 }
 
-.outliers p{
-    display: inline-block;
-    margin-top: 6px;
-    width: 225px;
-	vertical-align: bottom;
-	line-height: 1.3;
-}
 .indicators dt{
 	font-size: 13px;
 	text-align: center;
@@ -630,7 +624,6 @@ tr.below th{
 	background: url('images/outlier_down.png') left center no-repeat;
 	padding-left: 28px;
 	margin-left: 5px;
-	padding-top: 10px;
 }
 tr.above th{
 	background: url('images/outlier_up.png') left center no-repeat;
@@ -641,6 +634,14 @@ tr.above th{
 .content-banner .outlier.below{
 	margin: 2px;
 }
+.ui-collapsible-content .outliers>h2 {
+	border-bottom: none;
+	border-top: none;
+}
+.outliers p{
+	font-size: 14px;
+}
+
 
 /* -------- Search Results Loading Dialogue -------- */
 
@@ -800,14 +801,14 @@ div.toast{
 		background-size: 28px 25px;
 	}
 	tr.below th{
-		background: url('images/outlier_down_x2.png') left top no-repeat;
+		background: url('images/outlier_down_x2.png') left center no-repeat;
 		-moz-background-size: 28px 25px;
 		-o-background-size: 28px 25px;
 		-webkit-background-size: 28px 25px;
 		background-size: 28px 25px;
 	}
 	tr.above th{
-		background: url('images/outlier_down_x2.png') left top no-repeat;
+		background: url('images/outlier_down_x2.png') left center no-repeat;
 		-moz-background-size: 28px 25px;
 		-o-background-size: 28px 25px;
 		-webkit-background-size: 28px 25px;
