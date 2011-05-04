@@ -643,18 +643,26 @@ p.outlier-exp{
 	padding-left: 10px;
 	padding-right: 10px;
 	line-height: 1.6;
+	background: #E1E2E3;
+	margin-top: 0;
+	padding-top: 10px;
+	margin-bottom: 0;
+	padding-bottom: 10px;
+	
 }
 .ui-collapsible-content .below-key{
 	background: url('images/outlier_down_micro.png') left top no-repeat;
 	width: 20px;
 	height: 19px;
 	display: inline-block;
+	vertical-align: -6px;
 }
 .ui-collapsible-content .above-key{
 	background: url('images/outlier_up_micro.png') left center no-repeat;
 	width: 20px;
 	height: 19px;
 	display: inline-block;
+	vertical-align: -6px;
 }
 .data tbody th{
 	display: table-cell;
