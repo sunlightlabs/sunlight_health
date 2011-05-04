@@ -139,13 +139,21 @@ Utils = {
   // and in case of error, use some predefined popups
   location: function(success) {
     Utils.log("Locating user...");
+    Utils.popup("Finding your location...");
+    
+    var still = setTimeout(function() {
+      Utils.popup("Still locating you...")
+    }, 5000);
+    
     navigator.geolocation.getCurrentPosition(
       function(point) {
+        clearTimeout(still);
         Utils.log("Located user at " + point.coords.latitude + "," + point.coords.longitude);
         
         success(point.coords.latitude, point.coords.longitude);
       },
       function(error) {
+        clearTimeout(still);
         Utils.log("Error " + error.code + ": " + error.message);
         
         // from phonegap's JS:
