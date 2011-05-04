@@ -552,26 +552,28 @@ dd.not {
 	font-size: 14px;
 }
 
-.ui-collapsible-heading-toggle .above{
-	background: url('images/outlier_up.png') right 2px no-repeat ;
-	font-weight: 700;
-	font-size: 16px;
-	color: #d7ca57;
+.above .ui-collapsible-heading-toggle  .outlier{
+	background: url('images/outlier_up.png') right top no-repeat ;
 	width: 25px;
 	height: 28px;
-	right: 0;
+	right: 10px;
+	position: absolute;
 }
 
-.ui-collapsible-heading-toggle .below{
-	background: url('images/outlier_down.png') right 2px no-repeat;
-	font-weight: 700;
-	font-size: 16px;
-	color: #d7ca57;
+.below .ui-collapsible-heading-toggle  .outlier{
+	background: url('images/outlier_down.png') right top no-repeat;
 	width: 25px;
 	height: 28px;
+	right: 12px;
+	position: absolute;
 }
-.ui-collapsible-heading-toggle .below, .ui-collapsible-heading-toggle .above{
-	float: right;
+
+.above.below .ui-collapsible-heading-toggle .outlier{
+	background: url('images/exit_icon.png')right top no-repeat;
+	width: 25px;
+	height: 28px;
+	right: 10px;
+	position: absolute;
 }
 .totals>.below{
 	display: block;
