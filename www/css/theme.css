@@ -374,6 +374,12 @@ ul.ui-autocomplete h3{
 	border-bottom: 1px solid #8f8d8d;
 	padding: 3px 50px 0 3px;
 }
+.ui-autocomplete.ui-corner-all li:hover {
+	background: url('images/bg_search_hover.jpg') center center repeat-x;
+	border-top:1px solid #4f4f4f;
+	border-bottom: 1px solid #8f8d8d;
+	padding: 3px 50px 0 3px;
+}
 
  /* Fixes icon positioning for mobile devices. Still doesn't explain where those 40 pixels are coming from.  */
 
