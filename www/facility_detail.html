@@ -107,12 +107,6 @@
     
     function populateHospital(hsa_count, outliers_above, outliers_below, survey_experiences, outcomes, process) {
       
-      if (process) {
-        $(".facility.hospital.outliers .totals span.outlier.above").html(outliers_above);
-        $(".facility.hospital.outliers .totals span.outlier.below").html(outliers_below);
-        $(".facility.hospital.outliers").show();
-      }
-      
       var html;
       var i;
       
@@ -161,7 +155,7 @@
         Utils.orderedEach(outcomes, function(condition, years) {
           Utils.orderedEach(years, function(year, info) {
             if (info.code) {
-              html += simpleValueRow(i, info.name, info.code);
+              html += outcomeRow(i, info.name, info.code);
               i += 1;
             }
           });
@@ -183,8 +177,15 @@
           } else // reset
             $(".facility.hospital .process." + condition).show();
           
-          $(".facility.hospital .process." + condition + " span.outlier.above").html(calculations.outliers_above);
-          $(".facility.hospital .process." + condition + " span.outlier.below").html(calculations.outliers_below);
+          if (calculations.outliers_above)
+            $(".facility.hospital .process." + condition + " span.outlier.above").show();
+          else
+            $(".facility.hospital .process." + condition + " span.outlier.above").hide();
+            
+          if (calculations.outliers_below)
+            $(".facility.hospital .process." + condition + " span.outlier.below").show();
+          else
+            $(".facility.hospital .process." + condition + " span.outlier.below").hide();
           
           var individual = parseInt(calculations.average_performance) + "%";
           var nearby = (hsa_count > 1) ? parseInt(calculations.nearby_average_performance) + "%" : "n/a";
@@ -232,12 +233,14 @@
       if (ratings) {
         $(".nursing_home.overall_rating").addClass("rating-" + ratings.overall.value).show();
         
-        html = "" +
-          ratingRow(0, ratings.overall.name, ratings.overall.value) +
-          ratingRow(1, ratings.rn_only.name, ratings.rn_only.value) +
-          ratingRow(2, ratings.nurse_staffing.name, ratings.nurse_staffing.value) +
-          ratingRow(3, ratings.health_inspections.name, ratings.health_inspections.value);
-      
+        i = 0;
+        html = "";
+        
+        $.each(["overall", "rn_only", "nurse_staffing", "health_inspections"], function(i, field) {
+          if (ratings[field].value != null)
+            html += ratingRow(i, ratings[field].name, ratings[field].value);
+        });
+        
         $(".facility.nursing_home .ratings table.data tbody").html(html);
         $(".facility.nursing_home .ratings").show();
       } 
@@ -294,17 +297,28 @@
       $(".facility.home_health .services table.data tbody").html(html);
       $(".facility.home_health .services").show();
       
+ 
+ 
+      html = "" +
+        simpleValueRow(0, patient_improvement.oral_medicine.name, patient_improvement.oral_medicine.value + "%") +
+        simpleValueRow(1, patient_improvement.bladder_control.name, patient_improvement.bladder_control.value + "%") +
+        simpleValueRow(2, patient_improvement.stay_home_after_care.name, patient_improvement.stay_home_after_care.value + "%") +
+        simpleValueRow(3, patient_improvement.walking.name, patient_improvement.walking.value + "%") +
+        simpleValueRow(4, patient_improvement.bathing.name, patient_improvement.bathing.value + "%") +
+        simpleValueRow(5, patient_improvement.bed_transition.name, patient_improvement.bed_transition.value + "%") +
+        simpleValueRow(6, patient_improvement.moving_pain.name, patient_improvement.moving_pain.value + "%") +
+        simpleValueRow(7, patient_improvement.short_of_breath.name, patient_improvement.short_of_breath.value + "%") +
+        simpleValueRow(8, patient_improvement.wounds_improved_after_operation.name, patient_improvement.wounds_improved_after_operation.value + "%");
+
+      $(".facility.home_health .patient_improvement table.data.improved tbody").html(html);
       
-      html = "";
-      i = 0;
-      $.each(patient_improvement, function(key, info) {
-        if (info.value != null) {
-          html += simpleValueRow(i, info.name, info.value + "%");
-          i += 1;
-        }
-      });
+      html = "" +
+        simpleValueRow(0, patient_improvement.urgent_care.name, patient_improvement.urgent_care.value + "%") +
+        simpleValueRow(1, patient_improvement.unplanned_wound.name, patient_improvement.unplanned_wound.value + "%") +
+        simpleValueRow(2, patient_improvement.admitted_to_hospital.name, patient_improvement.admitted_to_hospital.value + "%");
       
-      $(".facility.home_health .patient_improvement table.data tbody").html(html);
+      $(".facility.home_health .patient_improvement table.data.declined tbody").html(html);
+      
       $(".facility.home_health .patient_improvement").show();
       
       
@@ -394,6 +408,14 @@
         "</tr>";
     }
     
+    function outcomeRow(i, name, code) {
+      return "" +
+        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + " " + code.toLowerCase() + "\">" +
+          "<th scope=\"row\">" + name + "</th>" +
+          "<td>" + code + "</td>" +
+        "</tr>";
+    }
+    
     function ratingRow(i, name, value) {
       return "" +
         "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
@@ -427,23 +449,6 @@
           <p class="address"></p>
           <p class="phone"></p>
         </div>
-        
-        <!-- Currently using mocked up data so that it can be styled. 
-<div class="facility hospital outliers reveal">
-          <div class="totals top">
-            <p class="small">
-            Outliers were significantly above/below the national average.
-            </p>
-			<div class="indicators">
-				<dt>Outliers</dt>
-				<dd class="above"><span class="outlier above"></span>
-	            </dd>
-	            <dd class="below"><span class="outlier below"></span>
-	            </dd>
-			</div>
-          </div>
-
-		</div>-->
         
         <div class="facility nursing_home overall_rating reveal"></div>
         <div class="facility dialysis chain_organization reveal"></div>
@@ -502,7 +507,7 @@
         <div data-role="collapsible" data-collapsed="true" class="process surgical_care hidden">
          <h1>
             Surgical Care
-             <span class="outlier above"></span>
+            <span class="outlier above"></span>
             <span class="outlier below"></span>
           </h1>
           <div class="outliers">
@@ -732,11 +737,11 @@
         </div>
         
         <div data-role="collapsible" data-collapsed="true" class="patient_improvement hidden">
-          <h1>Patient Improvement</h1>
+          <h1>Quality of Care</h1>
           
-          <table class="data">
+          <table class="data improved">
             <h2>Patient Health Improved</h2>
-			<thead>
+            <thead>
               <tr>
                 <th scope="col"></th>
                 <th class="hosp" scope="col">Patients</th>
@@ -744,8 +749,10 @@
             </thead>
             <tbody></tbody>
           </table>
+          
+          <table class="data declined">
             <h2>Patient Health Declined</h2>
-			<thead>
+            <thead>
               <tr>
                 <th scope="col"></th>
                 <th class="hosp" scope="col">Patients</th>
@@ -779,7 +786,6 @@
           <h1>Services</h1>
           
           <table class="data">
-
             <tbody></tbody>
           </table>
 		  
