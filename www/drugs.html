@@ -57,17 +57,27 @@
                 });
               } 
               
-              return {label: term.term, value: term.term};
-//               return "" +
-//                 "<a href=\"" + link + "\">" +
-//                   "<h3>" +
-//                     term.term +
-//                   "</h3>" +
-//                 "</a>";
+              return {label: term.term, value: query, link: link};
             }));
           });
-        }
+        },
+        
       });
+      
+      $("input.search.drugs").data( "autocomplete" )._renderItem = function( ul, item ) {
+        $( "<li></li>" )
+            .data( "item.autocomplete", item )
+            .append( "" +
+              "<a href=\"" + item.link + "\">" +
+                "<h3>" + item.label + "</h3>" +
+              "</a>"
+            )
+            .appendTo( ul );
+        $(ul)
+          .addClass("list")
+          .addClass("drug_terms")
+          .addClass("autocomplete");
+      }
       
     });
   </script>

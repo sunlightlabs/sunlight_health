@@ -703,3 +703,5 @@ input.search.text.ui-autocomplete-loading {
   color: black;
   font-family: Helvetica,Arial,sans-serif;
 }
+
+ul.autocomplete {}
