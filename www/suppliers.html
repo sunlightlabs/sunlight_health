@@ -43,6 +43,7 @@
       });
       
       $("input.search.supplies.text").autocomplete({
+        appendTo: "#suppliers",
         source: function(request, response) {
           var query = request.term;
           
@@ -153,9 +154,6 @@
       <input class="search supplies text" type="text" name="query" placeholder="e.g. crutches, bedpans, facial prostheses..." />
 
     </div>
-	<div class="autosearch_results">
-    
-	</div>
   </div><!-- /content -->
 
 	<div data-role="footer" data-position="fixed" data-id="stickey_footer" id="stickey_footer">

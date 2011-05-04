@@ -33,6 +33,7 @@
     Utils.show("drugs", function() {
         
       $("input.search.drugs").autocomplete({
+        appendTo: "#drugs",
         source: function(request, response) {
           
           var query = request.term;
@@ -92,19 +93,12 @@
         Have a prescription to fill? See what your options are.
       </p>
     </div>
-	<div class="scallop">
-		
-	</div>
+  
+  <div class="scallop"></div>
     
-    <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
-    <div class="ui-select">
+  <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
+  <div class="ui-select">
     <input class="search drugs text" type="text" name="query" placeholder="Start typing a class, chemical, or drug" />
-	</div>
-    <div class="autosearch_results">
-	    <ul data-role="listview" data-theme="e" class="list drug_terms">
-	      <!-- term list goes here, template specified in JavaScript above -->
-	    </ul>
-	    <p class="loading empty drug_terms"></p>
 	</div>
 
   </div><!-- /content -->
