@@ -155,7 +155,7 @@
         Utils.orderedEach(outcomes, function(condition, years) {
           Utils.orderedEach(years, function(year, info) {
             if (info.code) {
-              html += simpleValueRow(i, info.name, info.code);
+              html += outcomeRow(i, info.name, info.code);
               i += 1;
             }
           });
@@ -405,6 +405,14 @@
         "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
           "<th scope=\"row\">" + name + "</th>" +
           "<td>" + value + "</td>" +
+        "</tr>";
+    }
+    
+    function outcomeRow(i, name, code) {
+      return "" +
+        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + " " + code.toLowerCase() + "\">" +
+          "<th scope=\"row\">" + name + "</th>" +
+          "<td>" + code + "</td>" +
         "</tr>";
     }
     
