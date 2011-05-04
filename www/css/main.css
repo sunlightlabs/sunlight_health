@@ -30,17 +30,16 @@ h1{
 }
 
 
-#suppliers .content-banner p, #index .content-banner p, #drugs .content-banner p, #about .content-banner p{
+#suppliers p, #index p, #drugs p{
 	text-align: center;
-	line-height: 1.75;
+	line-height: 1.5;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight: 300;
 	border: none;
 	margin: 0;
 	text-shadow: none;
-	padding-top: 10px;
+	padding: 0 10px 10px 10px;
 	font-size: 14px;
-	color: white;
 }
 
 #about .content-banner p{
@@ -59,9 +58,9 @@ h1{
 
 
 .content-banner h1{
-	background: url('images/SunlightHealth_logo.png') top center no-repeat;
-	width: 189px;
-	height: 130px;
+	background: url('images/SunlightHealth_logo.png') center top no-repeat;
+	width: 190px;
+	height: 165px;
 	text-indent: -9999em;
 	margin: auto;
 }
@@ -106,7 +105,7 @@ h1{
 	background: url('images/bg_header_scallop.png') top center repeat-x;
 	height: 27px;
 	width: 100%;
-	margin-top: -1px; /* This hides that wacky blue border that shows up on Android devices under pngs and CSS3 gradients. */
+	margin-top: -2px; /* This hides that wacky blue border that shows up on Android devices under pngs and CSS3 gradients. */
 	margin-bottom: 0;
 	border: none;	
 }
@@ -744,10 +743,10 @@ div.toast{
 	
 	.content-banner h1 {
 		background-image: url('images/SunlightHealth_logo_x2.png');
-		-moz-background-size: 189px 130px;
-		-o-background-size: 189px 130px;
-		-webkit-background-size: 189px 130px;
-		background-size: 189px 130px;
+		-moz-background-size: 190px 165px;
+		-o-background-size: 190px 165px;
+		-webkit-background-size: 190px 165px;
+		background-size: 190px 165px;
 	}
 	.scallop{
 		background: url('images/bg_header_scallop_x2.png') top center repeat-x;

@@ -82,7 +82,7 @@ fieldset.ui-controlgroup{
 
 .ui-btn-up-c{
 	background: #bfbfbf;
-	text-shadow: 0 0 4px #908f8f;
+	text-shadow: 0 0 2px #908f8f;
 	font-size: 70%;
 	text-transform: uppercase;
 	font-weight: 400;
@@ -90,8 +90,8 @@ fieldset.ui-controlgroup{
 } 	/* General Button Styling, applies to all buttons...but maybe not the radio buttons?  */
 
 .ui-btn-hover-c{
-	background: #bfbfbf;
-	text-shadow: 0 0 4px #908f8f;
+	background: #a1a1a1;
+	text-shadow: 0 1 2px #908f8f;
 	font-size: 70%;
 	text-transform: uppercase;
 	font-weight: 400;
@@ -100,7 +100,7 @@ fieldset.ui-controlgroup{
 
 .ui-btn-active{
 	border-color: #bbbbbb;
-	text-shadow: 0 0 4px #908f8f;
+	text-shadow: 0 0 2px #908f8f;
 
 }
 .ui-btn-down-c{
@@ -351,7 +351,7 @@ input.ui-input-text, textarea.ui-input-text {
 }
 ul.ui-autocomplete{
 	border: none;
-	padding: 0;
+	padding: 0 0 60px 0;
 	margin: 0 auto;
 	position: absolute;
 	width: 100%;
