@@ -107,12 +107,6 @@
     
     function populateHospital(hsa_count, outliers_above, outliers_below, survey_experiences, outcomes, process) {
       
-      if (process) {
-        $(".facility.hospital.outliers .totals span.outlier.above").html(outliers_above);
-        $(".facility.hospital.outliers .totals span.outlier.below").html(outliers_below);
-        $(".facility.hospital.outliers").show();
-      }
-      
       var html;
       var i;
       
@@ -183,8 +177,15 @@
           } else // reset
             $(".facility.hospital .process." + condition).show();
           
-          $(".facility.hospital .process." + condition + " span.outlier.above").html(calculations.outliers_above);
-          $(".facility.hospital .process." + condition + " span.outlier.below").html(calculations.outliers_below);
+          if (calculations.outliers_above)
+            $(".facility.hospital .process." + condition + " span.outlier.above").show();
+          else
+            $(".facility.hospital .process." + condition + " span.outlier.above").hide();
+            
+          if (calculations.outliers_below)
+            $(".facility.hospital .process." + condition + " span.outlier.below").show();
+          else
+            $(".facility.hospital .process." + condition + " span.outlier.below").hide();
           
           var individual = parseInt(calculations.average_performance) + "%";
           var nearby = (hsa_count > 1) ? parseInt(calculations.nearby_average_performance) + "%" : "n/a";
@@ -441,23 +442,6 @@
           <p class="phone"></p>
         </div>
         
-        <!-- Currently using mocked up data so that it can be styled. 
-<div class="facility hospital outliers reveal">
-          <div class="totals top">
-            <p class="small">
-            Outliers were significantly above/below the national average.
-            </p>
-			<div class="indicators">
-				<dt>Outliers</dt>
-				<dd class="above"><span class="outlier above"></span>
-	            </dd>
-	            <dd class="below"><span class="outlier below"></span>
-	            </dd>
-			</div>
-          </div>
-
-		</div>-->
-        
         <div class="facility nursing_home overall_rating reveal"></div>
         <div class="facility dialysis chain_organization reveal"></div>
         <div class="facility dialysis dialysis_adequacy reveal">
@@ -515,7 +499,7 @@
         <div data-role="collapsible" data-collapsed="true" class="process surgical_care hidden">
          <h1>
             Surgical Care
-             <span class="outlier above"></span>
+            <span class="outlier above"></span>
             <span class="outlier below"></span>
           </h1>
           <div class="outliers">
