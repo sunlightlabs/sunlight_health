@@ -680,6 +680,10 @@ p.outlier-exp{
 }
 
 /* -------- Star Ratings -------- */
+td.rating-0, td.rating-1, td.rating-2, td.rating-3, td.rating-4, td.rating-5{
+	float: right;
+	height: 15px;
+}
 
 .rating-0{
 	background: url('images/stars_zero.png') left center no-repeat;	
