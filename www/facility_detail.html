@@ -294,17 +294,28 @@
       $(".facility.home_health .services table.data tbody").html(html);
       $(".facility.home_health .services").show();
       
+ 
+ 
+      html = "" +
+        simpleValueRow(0, patient_improvement.oral_medicine.name, patient_improvement.oral_medicine.value + "%") +
+        simpleValueRow(1, patient_improvement.bladder_control.name, patient_improvement.bladder_control.value + "%") +
+        simpleValueRow(2, patient_improvement.stay_home_after_care.name, patient_improvement.stay_home_after_care.value + "%") +
+        simpleValueRow(3, patient_improvement.walking.name, patient_improvement.walking.value + "%") +
+        simpleValueRow(4, patient_improvement.bathing.name, patient_improvement.bathing.value + "%") +
+        simpleValueRow(5, patient_improvement.bed_transition.name, patient_improvement.bed_transition.value + "%") +
+        simpleValueRow(6, patient_improvement.moving_pain.name, patient_improvement.moving_pain.value + "%") +
+        simpleValueRow(7, patient_improvement.short_of_breath.name, patient_improvement.short_of_breath.value + "%") +
+        simpleValueRow(8, patient_improvement.wounds_improved_after_operation.name, patient_improvement.wounds_improved_after_operation.value + "%");
+
+      $(".facility.home_health .patient_improvement table.data.improved tbody").html(html);
       
-      html = "";
-      i = 0;
-      $.each(patient_improvement, function(key, info) {
-        if (info.value != null) {
-          html += simpleValueRow(i, info.name, info.value + "%");
-          i += 1;
-        }
-      });
+      html = "" +
+        simpleValueRow(0, patient_improvement.urgent_care.name, patient_improvement.urgent_care.value + "%") +
+        simpleValueRow(1, patient_improvement.unplanned_wound.name, patient_improvement.unplanned_wound.value + "%") +
+        simpleValueRow(2, patient_improvement.admitted_to_hospital.name, patient_improvement.admitted_to_hospital.value + "%");
       
-      $(".facility.home_health .patient_improvement table.data tbody").html(html);
+      $(".facility.home_health .patient_improvement table.data.declined tbody").html(html);
+      
       $(".facility.home_health .patient_improvement").show();
       
       
@@ -736,11 +747,11 @@
         </div>
         
         <div data-role="collapsible" data-collapsed="true" class="patient_improvement hidden">
-          <h1>Patient Improvement</h1>
+          <h1>Quality of Care</h1>
           
-          <table class="data">
+          <table class="data improved">
             <h2>Patient Health Improved</h2>
-			<thead>
+            <thead>
               <tr>
                 <th scope="col"></th>
                 <th class="hosp" scope="col">Patients</th>
@@ -748,8 +759,10 @@
             </thead>
             <tbody></tbody>
           </table>
+          
+          <table class="data declined">
             <h2>Patient Health Declined</h2>
-			<thead>
+            <thead>
               <tr>
                 <th scope="col"></th>
                 <th class="hosp" scope="col">Patients</th>
@@ -783,7 +796,6 @@
           <h1>Services</h1>
           
           <table class="data">
-
             <tbody></tbody>
           </table>
 		  
