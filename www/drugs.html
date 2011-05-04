@@ -31,44 +31,44 @@
   <!-- Page-specific code -->
   <script type="text/javascript">
     Utils.show("drugs", function() {
-      
-      $("input.search.drugs").keyup(function() {
-        var query = $("input.search.drugs").val();
-        if (!query) {
-          $("ul.list.drug_terms").html("");
-          return;
+        
+      $("input.search.drugs").autocomplete({
+        source: function(request, response) {
+          
+          var query = request.term;
+          
+          Api.Drug.terms(query, function(terms) {
+            response($.map(terms, function(term) {
+              var link;
+              if (term.term_type == "drug_class")
+                link = "drug_class.html?" + $.param({drug_class: term.drug_class});
+              else if (term.term_type == "drug") {
+                link = "drug_chemical.html?" + $.param({
+                  drug_name: term.drug,
+                  name: term.chemical,
+                  drug_class: term.drug_class,
+                  subdivision: term.subdivision
+                });
+              } else { // term.term_type == "chemical"
+                link = "drug_chemical.html?" + $.param({
+                  name: term.chemical,
+                  drug_class: term.drug_class,
+                  subdivision: term.subdivision
+                });
+              } 
+              
+              return {label: term.term, value: term.term};
+//               return "" +
+//                 "<a href=\"" + link + "\">" +
+//                   "<h3>" +
+//                     term.term +
+//                   "</h3>" +
+//                 "</a>";
+            }));
+          });
         }
-        
-        Api.Drug.terms(query, function(terms) {
-          Utils.loadList("drug_terms", terms, function(term) {
-            var link;
-            if (term.term_type == "drug_class")
-              link = "drug_class.html?" + $.param({drug_class: term.drug_class});
-            else if (term.term_type == "drug") {
-              link = "drug_chemical.html?" + $.param({
-                drug_name: term.drug,
-                name: term.chemical,
-                drug_class: term.drug_class,
-                subdivision: term.subdivision
-              });
-            } else { // term.term_type == "chemical"
-              link = "drug_chemical.html?" + $.param({
-                name: term.chemical,
-                drug_class: term.drug_class,
-                subdivision: term.subdivision
-              });
-            } 
-            
-            return "" +
-              "<a href=\"" + link + "\">" +
-                "<h3>" +
-                  term.term +
-                "</h3>" +
-              "</a>";
-          }, {empty: "Start typing to see a list of terms."});
-        });
-        
       });
+      
     });
   </script>
 
