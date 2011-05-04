@@ -34,6 +34,7 @@
         
       $("input.search.drugs").autocomplete({
         appendTo: "#drugs",
+        
         source: function(request, response) {
           
           var query = request.term;
