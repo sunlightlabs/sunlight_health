@@ -1103,10 +1103,10 @@ $.widget( "ui.autocomplete", {
 
 				clearTimeout( self.searching );
 				// clicks on the menu (or a button to trigger a search) will cause a blur event
-				self.closing = setTimeout(function() {
-					self.close( event );
-					self._change( event );
-				}, 150 );
+// 				self.closing = setTimeout(function() {
+// 					self.close( event );
+// 					self._change( event );
+// 				}, 150 );
 			});
 		this._initSource();
 		this.response = function() {
@@ -1128,7 +1128,7 @@ $.widget( "ui.autocomplete", {
 							if ( event.target !== self.element[ 0 ] &&
 								event.target !== menuElement &&
 								!$.ui.contains( menuElement, event.target ) ) {
-								self.close();
+								//self.close();
 							}
 						});
 					}, 1 );
@@ -1155,7 +1155,7 @@ $.widget( "ui.autocomplete", {
 
 					// only trigger when focus was lost (click on menu)
 					if ( self.element[0] !== doc.activeElement ) {
-						self.element.focus();
+						//self.element.focus();
 						self.previous = previous;
 						// #6109 - IE triggers two focus events and the second
 						// is asynchronous, so we need to reset the previous
@@ -1173,7 +1173,7 @@ $.widget( "ui.autocomplete", {
 					// this allows custom select handling to work properly
 					self.term = self.element.val();
 
-					self.close( event );
+					//self.close( event );
 					self.selectedItem = item;
 				},
 				blur: function( event, ui ) {
