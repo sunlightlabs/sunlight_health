@@ -25,7 +25,6 @@
 
   <!-- Page-specific code -->
   <script type="text/javascript">
-    var supplier;
     
     Utils.show("drug_chemical", function() {
       
@@ -54,95 +53,96 @@
         
       });
       
+      function populateChemical(chemical) {
+        $(".chemical.name").html(chemical.name);
+        $(".chemical.class").html(
+          chemical.drug_class + ", " + chemical.subdivision
+        );
+        $(".chemical.drug_names").html(chemical.drug_names.join(", "));
+        
+        $(".chemical.thinking.basic").hide();
+        $(".chemical.reveal.basic").show();
+      }
+      
+      function populateDrugs(drugs) {
+        
+        for (var i=0; i<drugs.length; i++) {
+          var drug = drugs[i];
+          
+          var html = "" +
+            "<div class=\"chemical drug\">" +
+              "<h2 class=\"drug name\">" + drug.name + "</h2>" +
+              "<table class=\"data\">" +
+                "<tbody>";
+          
+          for (var j=0; j<drug.doses.length; j++) {
+            var dose = drug.doses[j];
+            html += "" +
+                  "<tr class=\"" + (j % 2 == 0 ? "even" : "odd") + (dose.best_buy ? " best-buy" : "") + "\">" +
+                    "<th scope=\"row\" class=\"drug dosage\">" +
+                      "<h3 class=\"drug dosage name\">" +
+                        dose.dosage +
+                        (dose.best_buy ? "<span class=\"consumer-reports\">A Consumer Reports Best Buy Drug</span>" : "") +
+                      "</h3>" +
+                      "<div class=\"drug notes\">";
+            
+            for (var k=0; k<dose.notes.length; k++) {
+              var note = dose.notes[k];
+              html += "" +
+                        "<dt>" +
+                          note.name + 
+                        ":</dt>" +
+                        "<dd>" +
+                          note.value +
+                        "</dd>";
+            }
+                      
+            html += "" +
+                      "</div>" +
+                    "</th>" +
+                    "<td class=\"drug cost\">" +
+                      dose.cost +
+                    "</td>" +
+                  "</tr>";
+          }
+          
+          html += "" +
+                "</tbody>" +
+              "</table>";
+              
+          $(".chemical.drugs").append(html);
+        }
+      }
+      
+      function populateDescription(description) {
+        $("p.drug_class.description.full").html(description.replace(/\n/g, "<br/>"));
+        
+        if (description.length > 400) {
+          var short = description.substring(0, 400) + "...";
+          $("p.drug_class.description.short").prepend(short);
+          $("p.drug_class.description.short").show();
+          $("p.drug_class.description.short a").click(function() {
+            $("p.drug_class.description.short").hide();
+            $("p.drug_class.description.full").show();
+          });
+        } else
+          $("p.drug_class.description.full").show();
+      }
+      
+      function populateChemicals(chemicals) {
+        Utils.loadList("chemicals", chemicals, function(chemical) {
+          return Utils.chemicalItem(chemical);
+        }, {
+          empty: "No other drugs found in this drug class.",
+          divider: "subdivision"
+        });
+        
+        $(".chemical.thinking.extended").hide();
+        $(".chemical.reveal.extended").show();
+      }
+      
     });
     
-    function populateChemical(chemical) {
-      $(".chemical.name").html(chemical.name);
-      $(".chemical.class").html(
-        chemical.drug_class + ", " + chemical.subdivision
-      );
-      $(".chemical.drug_names").html(chemical.drug_names.join(", "));
-      
-      $(".chemical.thinking.basic").hide();
-      $(".chemical.reveal.basic").show();
-    }
-    
-    function populateDrugs(drugs) {
-      
-      for (var i=0; i<drugs.length; i++) {
-        var drug = drugs[i];
-        
-        var html = "" +
-          "<div class=\"chemical drug\">" +
-            "<h2 class=\"drug name\">" + drug.name + "</h2>" +
-            "<table class=\"data\">" +
-              "<tbody>";
-        
-        for (var j=0; j<drug.doses.length; j++) {
-          var dose = drug.doses[j];
-          html += "" +
-                "<tr class=\"" + (j % 2 == 0 ? "even" : "odd") + (dose.best_buy ? " best-buy" : "") + "\">" +
-                  "<th scope=\"row\" class=\"drug dosage\">" +
-                    "<h3 class=\"drug dosage name\">" +
-                      dose.dosage +
-                      (dose.best_buy ? "<span class=\"consumer-reports\">A Consumer Reports Best Buy Drug</span>" : "") +
-                    "</h3>" +
-                    "<div class=\"drug notes\">";
-          
-          for (var k=0; k<dose.notes.length; k++) {
-            var note = dose.notes[k];
-            html += "" +
-                      "<dt>" +
-                        note.name + 
-                      ":</dt>" +
-                      "<dd>" +
-                        note.value +
-                      "</dd>";
-          }
-                    
-          html += "" +
-                    "</div>" +
-                  "</th>" +
-                  "<td class=\"drug cost\">" +
-                    dose.cost +
-                  "</td>" +
-                "</tr>";
-        }
-        
-        html += "" +
-              "</tbody>" +
-            "</table>";
-            
-        $(".chemical.drugs").append(html);
-      }
-    }
-    
-    function populateDescription(description) {
-      $("p.drug_class.description.full").html(description.replace(/\n/g, "<br/>"));
-      
-      if (description.length > 400) {
-        var short = description.substring(0, 400) + "...";
-        $("p.drug_class.description.short").prepend(short);
-        $("p.drug_class.description.short").show();
-        $("p.drug_class.description.short a").click(function() {
-          $("p.drug_class.description.short").hide();
-          $("p.drug_class.description.full").show();
-        });
-      } else
-        $("p.drug_class.description.full").show();
-    }
-    
-    function populateChemicals(chemicals) {
-      Utils.loadList("chemicals", chemicals, function(chemical) {
-        return Utils.chemicalItem(chemical);
-      }, {
-        empty: "No other drugs found in this drug class.",
-        divider: "subdivision"
-      });
-      
-      $(".chemical.thinking.extended").hide();
-      $(".chemical.reveal.extended").show();
-    }
     
   </script>
 

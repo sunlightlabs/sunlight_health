@@ -72,367 +72,367 @@
         
       });
       
-    });
-    
-    function populateFacility(facility) {
-      $(".facility .name").html(facility.name);
-      $(".facility .address").html(Utils.address(facility, {line_break: true}));
-      $(".facility .phone").html(Utils.phone(facility.phone));
-      $(".facility a.call").attr("href", "tel:" + facility.phone);
-      $(".facility a.directions").attr("href", Utils.directions(Utils.address(facility)));
-      
-      $(".facility.map").click(function() {
-        $.mobile.changePage({
-          url: "facility_map.html",
-          data: Utils.cleanedData({
-            provider_number: facility.provider_number,
-            address: facility.address,
-            address_2: facility.address_2,
-            zip: facility.zip,
-            zip_plus_4: facility.zip_plus_4,
-            city: facility.city,  
-            state: facility.state,
-            name: facility.name,
-            phone: facility.phone.replace(/[\(\)]/g, '')
-          }),
-          type: "get"
+      function populateFacility(facility) {
+        $(".facility .name").html(facility.name);
+        $(".facility .address").html(Utils.address(facility, {line_break: true}));
+        $(".facility .phone").html(Utils.phone(facility.phone));
+        $(".facility a.call").attr("href", "tel:" + facility.phone);
+        $(".facility a.directions").attr("href", Utils.directions(Utils.address(facility)));
+        
+        $(".facility.map").click(function() {
+          $.mobile.changePage({
+            url: "facility_map.html",
+            data: Utils.cleanedData({
+              provider_number: facility.provider_number,
+              address: facility.address,
+              address_2: facility.address_2,
+              zip: facility.zip,
+              zip_plus_4: facility.zip_plus_4,
+              city: facility.city,  
+              state: facility.state,
+              name: facility.name,
+              phone: facility.phone.replace(/[\(\)]/g, '')
+            }),
+            type: "get"
+          });
         });
-      });
+        
+        $(".facility.common.thinking.basic").hide();
+        $(".facility.common.reveal.basic").show();
+        
+        $(".facility." + facility.facility_type + ".reveal.basic").show();
+      }
       
-      $(".facility.common.thinking.basic").hide();
-      $(".facility.common.reveal.basic").show();
-      
-      $(".facility." + facility.facility_type + ".reveal.basic").show();
-    }
-    
-    function populateHospital(hsa_count, outliers_above, outliers_below, survey_experiences, outcomes, process) {
-      
-      var html;
-      var i;
-      
-      if (survey_experiences) {
-        html = "";
-        i = 0;
-        $.each(survey_experiences, function(field, qualifiers) {
-          // combine usually and always
-          if (qualifiers.usually && qualifiers.always) {
-            var name = qualifiers.usually.name;
-            var individual = qualifiers.usually.value + qualifiers.always.value;
-            var national = qualifiers.usually.national_average + qualifiers.always.national_average;
-            
-            var nearby;
-            if (qualifiers.usually.nearby_count > 1 && qualifiers.always.nearby_count > 1)
-              nearby = qualifiers.usually.nearby_average + qualifiers.always.nearby_average;
-            else
-              nearby = "n/a";
-            
-            html += surveyRow(i, name, individual + "%", nearby + "%", national + "%");
-            
-            i += 1;
-          } else {
-            $.each(qualifiers, function(qualifier, info) {
-              var name = info.name;
-              var individual = info.value;
-              var nearby = (info.nearby_count > 1) ? info.nearby_average : "n/a";
-              var national = info.national_average;
+      function populateHospital(hsa_count, outliers_above, outliers_below, survey_experiences, outcomes, process) {
+        
+        var html;
+        var i;
+        
+        if (survey_experiences) {
+          html = "";
+          i = 0;
+          $.each(survey_experiences, function(field, qualifiers) {
+            // combine usually and always
+            if (qualifiers.usually && qualifiers.always) {
+              var name = qualifiers.usually.name;
+              var individual = qualifiers.usually.value + qualifiers.always.value;
+              var national = qualifiers.usually.national_average + qualifiers.always.national_average;
               
+              var nearby;
+              if (qualifiers.usually.nearby_count > 1 && qualifiers.always.nearby_count > 1)
+                nearby = qualifiers.usually.nearby_average + qualifiers.always.nearby_average;
+              else
+                nearby = "n/a";
               
               html += surveyRow(i, name, individual + "%", nearby + "%", national + "%");
+              
               i += 1;
-            });
-          }
-        });
-        
-        
-        $(".facility.hospital .survey_experiences table.data tbody").html(html);
-        $(".facility.hospital .survey_experiences").show();
-      }
-      
-      
-      if (outcomes) {
-        i = 0;
-        html = "";
-        Utils.orderedEach(outcomes, function(condition, years) {
-          Utils.orderedEach(years, function(year, info) {
-            if (info.code) {
-              html += outcomeRow(i, info.name, info.code);
-              i += 1;
+            } else {
+              $.each(qualifiers, function(qualifier, info) {
+                var name = info.name;
+                var individual = info.value;
+                var nearby = (info.nearby_count > 1) ? info.nearby_average : "n/a";
+                var national = info.national_average;
+                
+                
+                html += surveyRow(i, name, individual + "%", nearby + "%", national + "%");
+                i += 1;
+              });
             }
           });
-        });
+          
+          
+          $(".facility.hospital .survey_experiences table.data tbody").html(html);
+          $(".facility.hospital .survey_experiences").show();
+        }
         
-        $(".facility.hospital .outcomes table.data tbody").html(html);
-        $(".facility.hospital .outcomes").show();
-      }
         
-      
-      if (process) {
-        $.each(process, function(condition, info) {
-          var calculations = info.calculations;
-          var fields = info.fields;
-          
-          if (calculations.valid_metrics == 0) {
-            $(".facility.hospital .process." + condition).hide();
-            return true; // continue to the next one
-          } else // reset
-            $(".facility.hospital .process." + condition).show();
-          
-          if (calculations.outliers_above) {
-            $(".facility.hospital .process." + condition + " span.outlier.above").show();
-            $(".facility.hospital .process." + condition).addClass("above");
-          } else
-            $(".facility.hospital .process." + condition + " span.outlier.above").hide();
-            
-          if (calculations.outliers_below) {
-            $(".facility.hospital .process." + condition + " span.outlier.below").show();
-            $(".facility.hospital .process." + condition).addClass("below");
-          } else
-            $(".facility.hospital .process." + condition + " span.outlier.below").hide();
-          
-          var individual = parseInt(calculations.average_performance) + "%";
-          var nearby = (hsa_count > 1) ? parseInt(calculations.nearby_average_performance) + "%" : "n/a";
-          
-          var nearby_people = (hsa_count > 1) ? calculations.nearby_people : "n/a";
-          
-          var html = "" +
-            twoPieceRow("Follows Guidelines", individual, nearby) +
-            twoPieceRow("Number of patients per year", calculations.people, nearby_people);
-          $(".facility.hospital .process." + condition + " table.data.summary tbody").html(html);
-          
+        if (outcomes) {
+          i = 0;
           html = "";
-          var i = 0;
-          $.each(fields, function(slug, field) {
-            
-            if (field.value != null && !field.too_small) {
-              var suffix = (field.value_type == "percent" ? "%" : "");
-              
-              var outlier = (field.outlier ? "outlier " + field.outlier : "");
-              
-              var individual = field.value + suffix;
-              var nearby = ((field.nearby_considered > 1) ? parseInt(field.nearby_average) + suffix : "n/a");
-              var national = ((field.calculated_national_average != null) ? parseInt(field.calculated_national_average) + suffix : "n/a");
-              
-              html += processFieldRow(i, outlier, field.name, individual, nearby, national);
-              
-              i += 1;
-            }
+          Utils.orderedEach(outcomes, function(condition, years) {
+            Utils.orderedEach(years, function(year, info) {
+              if (info.code) {
+                html += outcomeRow(i, info.name, info.code);
+                i += 1;
+              }
+            });
           });
           
-          $(".facility.hospital .process." + condition + " table.data.values tbody").html(html);
-          $(".facility.hospital .process." + condition).show();
-        });
+          $(".facility.hospital .outcomes table.data tbody").html(html);
+          $(".facility.hospital .outcomes").show();
+        }
+          
         
+        if (process) {
+          $.each(process, function(condition, info) {
+            var calculations = info.calculations;
+            var fields = info.fields;
+            
+            if (calculations.valid_metrics == 0) {
+              $(".facility.hospital .process." + condition).hide();
+              return true; // continue to the next one
+            } else // reset
+              $(".facility.hospital .process." + condition).show();
+            
+            if (calculations.outliers_above) {
+              $(".facility.hospital .process." + condition + " span.outlier.above").show();
+              $(".facility.hospital .process." + condition).addClass("above");
+            } else
+              $(".facility.hospital .process." + condition + " span.outlier.above").hide();
+              
+            if (calculations.outliers_below) {
+              $(".facility.hospital .process." + condition + " span.outlier.below").show();
+              $(".facility.hospital .process." + condition).addClass("below");
+            } else
+              $(".facility.hospital .process." + condition + " span.outlier.below").hide();
+            
+            var individual = parseInt(calculations.average_performance) + "%";
+            var nearby = (hsa_count > 1) ? parseInt(calculations.nearby_average_performance) + "%" : "n/a";
+            
+            var nearby_people = (hsa_count > 1) ? calculations.nearby_people : "n/a";
+            
+            var html = "" +
+              twoPieceRow("Follows Guidelines", individual, nearby) +
+              twoPieceRow("Number of patients per year", calculations.people, nearby_people);
+            $(".facility.hospital .process." + condition + " table.data.summary tbody").html(html);
+            
+            html = "";
+            var i = 0;
+            $.each(fields, function(slug, field) {
+              
+              if (field.value != null && !field.too_small) {
+                var suffix = (field.value_type == "percent" ? "%" : "");
+                
+                var outlier = (field.outlier ? "outlier " + field.outlier : "");
+                
+                var individual = field.value + suffix;
+                var nearby = ((field.nearby_considered > 1) ? parseInt(field.nearby_average) + suffix : "n/a");
+                var national = ((field.calculated_national_average != null) ? parseInt(field.calculated_national_average) + suffix : "n/a");
+                
+                html += processFieldRow(i, outlier, field.name, individual, nearby, national);
+                
+                i += 1;
+              }
+            });
+            
+            $(".facility.hospital .process." + condition + " table.data.values tbody").html(html);
+            $(".facility.hospital .process." + condition).show();
+          });
+          
+        }
+        
+        
+        $(".facility.thinking.extended").hide();
+        $(".facility.hospital.reveal.extended").show();
       }
       
-      
-      $(".facility.thinking.extended").hide();
-      $(".facility.hospital.reveal.extended").show();
-    }
-    
-    function populateNursingHome(ratings, extended) {
-      var i, html;
-      
-      if (ratings) {
-        $(".nursing_home.overall_rating").addClass("rating-" + ratings.overall.value).show();
+      function populateNursingHome(ratings, extended) {
+        var i, html;
         
-        i = 0;
+        if (ratings) {
+          $(".nursing_home.overall_rating").addClass("rating-" + ratings.overall.value).show();
+          
+          i = 0;
+          html = "";
+          
+          $.each(["overall", "rn_only", "nurse_staffing", "health_inspections"], function(i, field) {
+            if (ratings[field].value != null)
+              html += ratingRow(i, ratings[field].name, ratings[field].value);
+          });
+          
+          $(".facility.nursing_home .ratings table.data tbody").html(html);
+          $(".facility.nursing_home .ratings").show();
+        } 
+        
+        $(".facility.nursing_home .occupancy div.data .beds dd").html(extended.certified_bed.value);
+        $(".facility.nursing_home .occupancy div.data .occupied dd").html(extended.occupied_beds.value);
+        $(".facility.nursing_home .occupancy div.data .residents dd").html(extended.total_residents.value);
+        $(".facility.nursing_home .occupancy").show();
+        
+        html = "" +
+          booleanRow(0, "Medicaid Participation", extended.program_participation.value.match(/Medicaid/)) +
+          booleanRow(1, "Medicare Participation", extended.program_participation.value.match(/Medicare/)) +
+          booleanRow(2, extended.within_hospital.name, extended.within_hospital.value) +
+          booleanRow(3, extended.multi_ownership.name, extended.multi_ownership.value) +
+          simpleValueRow(4, extended.resident_and_family_councils.name, extended.resident_and_family_councils.value) +
+          booleanRow(5, extended.continuing_care_retirement_community.name, extended.continuing_care_retirement_community.value) +
+          booleanRow(6, extended.special_focus_facility.name, extended.special_focus_facility.value) +
+          "";
+          
+        $(".facility.nursing_home .participation table.data tbody").html(html);
+        $(".facility.nursing_home .participation").show()
+        
+        $(".facility.nursing_home .inspections div.data .health_survey dd").html(dateFor(extended.health_survey_date.value));
+        $(".facility.nursing_home .inspections div.data .fire_survey dd").html(dateFor(extended.fire_survey_date.value));
+        
+        var val = extended.sprinkler_status.value;
+        var desc;
+        if (val.match(/Partially/i))
+          desc = "Sprinklers partially installed";
+        else if (val.match(/Fully/i))
+          desc = "Sprinklers fully installed";
+        else
+          desc = "Sprinklers not installed";
+          
+        $(".facility.nursing_home .inspections div.data .sprinklers").html(desc);
+        $(".facility.nursing_home .inspections").show();
+        
+        
+        $(".facility.thinking.extended").hide();
+        $(".facility.nursing_home.reveal.extended").show();
+      }
+      
+      function populateHomeHealth(ownership_type, services, patient_improvement) {
+        var html;
+        var i;
+        
         html = "";
-        
-        $.each(["overall", "rn_only", "nurse_staffing", "health_inspections"], function(i, field) {
-          if (ratings[field].value != null)
-            html += ratingRow(i, ratings[field].name, ratings[field].value);
+        i = 0;
+        $.each(services, function(key, info) {
+          html += booleanRow(i, info.name, info.value);
+          i += 1;
         });
         
-        $(".facility.nursing_home .ratings table.data tbody").html(html);
-        $(".facility.nursing_home .ratings").show();
-      } 
-       
-      $(".facility.nursing_home .occupancy div.data .beds dd").html(extended.certified_bed.value);
-      $(".facility.nursing_home .occupancy div.data .occupied dd").html(extended.occupied_beds.value);
-      $(".facility.nursing_home .occupancy div.data .residents dd").html(extended.total_residents.value);
-      $(".facility.nursing_home .occupancy").show();
-      
-      html = "" +
-        booleanRow(0, "Medicaid Participation", extended.program_participation.value.match(/Medicaid/)) +
-        booleanRow(1, "Medicare Participation", extended.program_participation.value.match(/Medicare/)) +
-        booleanRow(2, extended.within_hospital.name, extended.within_hospital.value) +
-        booleanRow(3, extended.multi_ownership.name, extended.multi_ownership.value) +
-        simpleValueRow(4, extended.resident_and_family_councils.name, extended.resident_and_family_councils.value) +
-        booleanRow(5, extended.continuing_care_retirement_community.name, extended.continuing_care_retirement_community.value) +
-        booleanRow(6, extended.special_focus_facility.name, extended.special_focus_facility.value) +
-        "";
+        $(".facility.home_health .services table.data tbody").html(html);
+        $(".facility.home_health .services").show();
         
-      $(".facility.nursing_home .participation table.data tbody").html(html);
-      $(".facility.nursing_home .participation").show()
-      
-      $(".facility.nursing_home .inspections div.data .health_survey dd").html(dateFor(extended.health_survey_date.value));
-      $(".facility.nursing_home .inspections div.data .fire_survey dd").html(dateFor(extended.fire_survey_date.value));
-      
-      var val = extended.sprinkler_status.value;
-      var desc;
-      if (val.match(/Partially/i))
-        desc = "Sprinklers partially installed";
-      else if (val.match(/Fully/i))
-        desc = "Sprinklers fully installed";
-      else
-        desc = "Sprinklers not installed";
-        
-      $(".facility.nursing_home .inspections div.data .sprinklers").html(desc);
-      $(".facility.nursing_home .inspections").show();
-      
-      
-      $(".facility.thinking.extended").hide();
-      $(".facility.nursing_home.reveal.extended").show();
-    }
-    
-    function populateHomeHealth(ownership_type, services, patient_improvement) {
-      var html;
-      var i;
-      
-      html = "";
-      i = 0;
-      $.each(services, function(key, info) {
-        html += booleanRow(i, info.name, info.value);
-        i += 1;
-      });
-      
-      $(".facility.home_health .services table.data tbody").html(html);
-      $(".facility.home_health .services").show();
-      
- 
- 
-      html = "" +
-        simpleValueRow(0, patient_improvement.oral_medicine.name, patient_improvement.oral_medicine.value + "%") +
-        simpleValueRow(1, patient_improvement.bladder_control.name, patient_improvement.bladder_control.value + "%") +
-        simpleValueRow(2, patient_improvement.stay_home_after_care.name, patient_improvement.stay_home_after_care.value + "%") +
-        simpleValueRow(3, patient_improvement.walking.name, patient_improvement.walking.value + "%") +
-        simpleValueRow(4, patient_improvement.bathing.name, patient_improvement.bathing.value + "%") +
-        simpleValueRow(5, patient_improvement.bed_transition.name, patient_improvement.bed_transition.value + "%") +
-        simpleValueRow(6, patient_improvement.moving_pain.name, patient_improvement.moving_pain.value + "%") +
-        simpleValueRow(7, patient_improvement.short_of_breath.name, patient_improvement.short_of_breath.value + "%") +
-        simpleValueRow(8, patient_improvement.wounds_improved_after_operation.name, patient_improvement.wounds_improved_after_operation.value + "%");
+  
+  
+        html = "" +
+          simpleValueRow(0, patient_improvement.oral_medicine.name, patient_improvement.oral_medicine.value + "%") +
+          simpleValueRow(1, patient_improvement.bladder_control.name, patient_improvement.bladder_control.value + "%") +
+          simpleValueRow(2, patient_improvement.stay_home_after_care.name, patient_improvement.stay_home_after_care.value + "%") +
+          simpleValueRow(3, patient_improvement.walking.name, patient_improvement.walking.value + "%") +
+          simpleValueRow(4, patient_improvement.bathing.name, patient_improvement.bathing.value + "%") +
+          simpleValueRow(5, patient_improvement.bed_transition.name, patient_improvement.bed_transition.value + "%") +
+          simpleValueRow(6, patient_improvement.moving_pain.name, patient_improvement.moving_pain.value + "%") +
+          simpleValueRow(7, patient_improvement.short_of_breath.name, patient_improvement.short_of_breath.value + "%") +
+          simpleValueRow(8, patient_improvement.wounds_improved_after_operation.name, patient_improvement.wounds_improved_after_operation.value + "%");
 
-      $(".facility.home_health .patient_improvement table.data.improved tbody").html(html);
-      
-      html = "" +
-        simpleValueRow(0, patient_improvement.urgent_care.name, patient_improvement.urgent_care.value + "%") +
-        simpleValueRow(1, patient_improvement.unplanned_wound.name, patient_improvement.unplanned_wound.value + "%") +
-        simpleValueRow(2, patient_improvement.admitted_to_hospital.name, patient_improvement.admitted_to_hospital.value + "%");
-      
-      $(".facility.home_health .patient_improvement table.data.declined tbody").html(html);
-      
-      $(".facility.home_health .patient_improvement").show();
-      
-      
-      $(".facility.thinking.extended").hide();
-      $(".facility.home_health.reveal.extended").show();
-    }
-    
-    function populateDialysis(extended, services) {
-      var html, i;
+        $(".facility.home_health .patient_improvement table.data.improved tbody").html(html);
         
-      $(".dialysis.dialysis_adequacy dd").html(percentFor(extended.dialysis_adequacy.value));
-      $(".dialysis.dialysis_adequacy").show();
-      
-      
-      html = "" +
-        simpleValueRow(0, extended.dialysis_stations.name, extended.dialysis_stations.value) +
-        booleanRow(1, services.in_center_hemodialysis.name, services.in_center_hemodialysis.value) +
-        booleanRow(2, services.in_center_peritoneal_dialysis.name, services.in_center_peritoneal_dialysis.value) +
-        booleanRow(3, services.home_hemodialysis_training.name, services.in_center_peritoneal_dialysis.value) +
-        booleanRow(4, extended.late_shift.name, extended.late_shift.value) +
-        simpleValueRow(5, extended.hgb_number.name, extended.hgb_number.value) +
-        "";
+        html = "" +
+          simpleValueRow(0, patient_improvement.urgent_care.name, patient_improvement.urgent_care.value + "%") +
+          simpleValueRow(1, patient_improvement.unplanned_wound.name, patient_improvement.unplanned_wound.value + "%") +
+          simpleValueRow(2, patient_improvement.admitted_to_hospital.name, patient_improvement.admitted_to_hospital.value + "%");
         
+        $(".facility.home_health .patient_improvement table.data.declined tbody").html(html);
+        
+        $(".facility.home_health .patient_improvement").show();
+        
+        
+        $(".facility.thinking.extended").hide();
+        $(".facility.home_health.reveal.extended").show();
+      }
       
-      $(".facility.dialysis .services table.data tbody").html(html);
-      $(".facility.dialysis .services").show();
-      
-      
-      html = "" +
-        simpleValueRow(0, extended.dialysis_adequacy.name, percentFor(extended.dialysis_adequacy.value)) +
-        simpleValueRow(1, extended.high_hemoglobin.name, percentFor(extended.high_hemoglobin.value)) +
-        simpleValueRow(2, extended.low_hemoglobin.name, percentFor(extended.low_hemoglobin.value)) +
-        "";
-      
-      $(".facility.dialysis .quality table.data tbody").html(html);
-      $(".facility.dialysis .quality div.patient_survival dd").html(extended.patient_survival.value);
-      $(".facility.dialysis .quality").show();
-      
-      
-      $(".facility.thinking.extended").hide();
-      $(".facility.dialysis.reveal.extended").show();
-    }
-    
-    function booleanRow(i, name, value) {
-      return "" +
-        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
-          "<th scope=\"row\">" + name + "</th>" +
-          "<td>" + (value ? "Yes" : "No") + "</td>" +
-        "</tr>";
-    }
-    
-    function surveyRow(i, name, individual, nearby, national) {
-      return "" +
-        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
-          "<th scope=\"row\">" + name + "</th>" +
-          "<td>" + individual + "</td>" +
-          "<td>" + nearby + "</td>" +
-          "<td>" + national + "</td>" +
+      function populateDialysis(extended, services) {
+        var html, i;
           
-        "</tr>";
-    }
-    
-    function processFieldRow(i, outlier, name, individual, nearby, national) {
-      return "" +
-        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + " " + outlier + "\">" +
-          "<th scope=\"row\">" + name + "</th>" +
-          "<td>" + individual + "</td>" +
-          "<td>" + nearby + "</td>" +
-          "<td>" + national + "</td>" +
-        "</tr>";
-    }
-    
-    function twoPieceRow(name, one, two) {
-      return "" +
-        "<tr>" +
-          "<th scope=\"row\">" + name + "</th>" +
-          "<td>" + one + "</td>" +
-          "<td>" + two + "</td>" +
-        "</tr>";
-    }
-    
-    function simpleValueRow(i, name, value) {
-      return "" +
-        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
-          "<th scope=\"row\">" + name + "</th>" +
-          "<td>" + value + "</td>" +
-        "</tr>";
-    }
-    
-    function outcomeRow(i, name, code) {
-      return "" +
-        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + " " + code.toLowerCase() + "\">" +
-          "<th scope=\"row\">" + name + "</th>" +
-          "<td>" + code + "</td>" +
-        "</tr>";
-    }
-    
-    function ratingRow(i, name, value) {
-      return "" +
-        "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
-          "<th scope=\"row\">" + name + "</td>" +
-          "<td class=\"rating-" + value + "\"></td>" +
-        "</tr>";
-    }
-    
-    function dateFor(string) {
-      return string;
-    }
-    
-    function percentFor(string) {
-      return string + "%";
-    }
+        $(".dialysis.dialysis_adequacy dd").html(percentFor(extended.dialysis_adequacy.value));
+        $(".dialysis.dialysis_adequacy").show();
+        
+        
+        html = "" +
+          simpleValueRow(0, extended.dialysis_stations.name, extended.dialysis_stations.value) +
+          booleanRow(1, services.in_center_hemodialysis.name, services.in_center_hemodialysis.value) +
+          booleanRow(2, services.in_center_peritoneal_dialysis.name, services.in_center_peritoneal_dialysis.value) +
+          booleanRow(3, services.home_hemodialysis_training.name, services.in_center_peritoneal_dialysis.value) +
+          booleanRow(4, extended.late_shift.name, extended.late_shift.value) +
+          simpleValueRow(5, extended.hgb_number.name, extended.hgb_number.value) +
+          "";
+          
+        
+        $(".facility.dialysis .services table.data tbody").html(html);
+        $(".facility.dialysis .services").show();
+        
+        
+        html = "" +
+          simpleValueRow(0, extended.dialysis_adequacy.name, percentFor(extended.dialysis_adequacy.value)) +
+          simpleValueRow(1, extended.high_hemoglobin.name, percentFor(extended.high_hemoglobin.value)) +
+          simpleValueRow(2, extended.low_hemoglobin.name, percentFor(extended.low_hemoglobin.value)) +
+          "";
+        
+        $(".facility.dialysis .quality table.data tbody").html(html);
+        $(".facility.dialysis .quality div.patient_survival dd").html(extended.patient_survival.value);
+        $(".facility.dialysis .quality").show();
+        
+        
+        $(".facility.thinking.extended").hide();
+        $(".facility.dialysis.reveal.extended").show();
+      }
+      
+      function booleanRow(i, name, value) {
+        return "" +
+          "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
+            "<th scope=\"row\">" + name + "</th>" +
+            "<td>" + (value ? "Yes" : "No") + "</td>" +
+          "</tr>";
+      }
+      
+      function surveyRow(i, name, individual, nearby, national) {
+        return "" +
+          "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
+            "<th scope=\"row\">" + name + "</th>" +
+            "<td>" + individual + "</td>" +
+            "<td>" + nearby + "</td>" +
+            "<td>" + national + "</td>" +
+            
+          "</tr>";
+      }
+      
+      function processFieldRow(i, outlier, name, individual, nearby, national) {
+        return "" +
+          "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + " " + outlier + "\">" +
+            "<th scope=\"row\">" + name + "</th>" +
+            "<td>" + individual + "</td>" +
+            "<td>" + nearby + "</td>" +
+            "<td>" + national + "</td>" +
+          "</tr>";
+      }
+      
+      function twoPieceRow(name, one, two) {
+        return "" +
+          "<tr>" +
+            "<th scope=\"row\">" + name + "</th>" +
+            "<td>" + one + "</td>" +
+            "<td>" + two + "</td>" +
+          "</tr>";
+      }
+      
+      function simpleValueRow(i, name, value) {
+        return "" +
+          "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
+            "<th scope=\"row\">" + name + "</th>" +
+            "<td>" + value + "</td>" +
+          "</tr>";
+      }
+      
+      function outcomeRow(i, name, code) {
+        return "" +
+          "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + " " + code.toLowerCase() + "\">" +
+            "<th scope=\"row\">" + name + "</th>" +
+            "<td>" + code + "</td>" +
+          "</tr>";
+      }
+      
+      function ratingRow(i, name, value) {
+        return "" +
+          "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
+            "<th scope=\"row\">" + name + "</td>" +
+            "<td class=\"rating-" + value + "\"></td>" +
+          "</tr>";
+      }
+      
+      function dateFor(string) {
+        return string;
+      }
+      
+      function percentFor(string) {
+        return string + "%";
+      }
+      
+    });
     
   </script>
 

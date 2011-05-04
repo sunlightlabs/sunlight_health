@@ -45,56 +45,58 @@
         
       });
       
+      function populateSupplier(supplier) {
+    
+        $(".supplier .name").html(supplier.name);
+        $(".supplier .address").html(Utils.address(supplier, {line_break: true}));
+        $(".supplier .phone").html(Utils.phone(supplier.phone));
+        $(".supplier a.call").attr("href", "tel:" + supplier.phone);
+        $(".supplier a.directions").attr("href", Utils.directions(Utils.address(supplier)));
+        
+        $(".supplier.map").click(function() {
+          $.mobile.changePage({
+            url: "supplier_map.html",
+            data: Utils.cleanedData({
+              address: supplier.address,
+              address_2: supplier.address_2,
+              zip: supplier.zip,
+              zip_plus_4: supplier.zip_plus_4,
+              city: supplier.city,  
+              state: supplier.state,
+              name: supplier.name,
+              phone: supplier.phone.replace(/[\(\)]/g, '')
+            }),
+            type: "get"
+          });
+        });
+        
+        $(".supplier.reveal").show();
+      }
+      
+      function populateList(supplies) {
+        var html = "";
+        
+        
+        var names = [];
+        
+        $.each(supplies, function(name, whether) {
+          if (whether)
+            names[names.length] = name;
+        });
+        
+        $.each(names.sort(), function(i, name) {
+          html += "" +
+            "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
+              "<th scope=\"row\">" + name + "</th>" +
+            "</tr>";
+        });
+        
+        $(".supplier.supplies table.data tbody").html(html);
+      }
+      
     });
     
-    function populateSupplier(supplier) {
     
-      $(".supplier .name").html(supplier.name);
-      $(".supplier .address").html(Utils.address(supplier, {line_break: true}));
-      $(".supplier .phone").html(Utils.phone(supplier.phone));
-      $(".supplier a.call").attr("href", "tel:" + supplier.phone);
-      $(".supplier a.directions").attr("href", Utils.directions(Utils.address(supplier)));
-      
-      $(".supplier.map").click(function() {
-        $.mobile.changePage({
-          url: "supplier_map.html",
-          data: Utils.cleanedData({
-            address: supplier.address,
-            address_2: supplier.address_2,
-            zip: supplier.zip,
-            zip_plus_4: supplier.zip_plus_4,
-            city: supplier.city,  
-            state: supplier.state,
-            name: supplier.name,
-            phone: supplier.phone.replace(/[\(\)]/g, '')
-          }),
-          type: "get"
-        });
-      });
-      
-      $(".supplier.reveal").show();
-    }
-    
-    function populateList(supplies) {
-      var html = "";
-      
-      
-      var names = [];
-      
-      $.each(supplies, function(name, whether) {
-        if (whether)
-          names[names.length] = name;
-      });
-      
-      $.each(names.sort(), function(i, name) {
-        html += "" +
-          "<tr class=\"" + (i % 2 == 0 ? "even" : "odd") + "\">" +
-            "<th scope=\"row\">" + name + "</th>" +
-          "</tr>";
-      });
-      
-      $(".supplier.supplies table.data tbody").html(html);
-    }
   </script>
 
   <div data-role="header">
