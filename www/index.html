@@ -69,35 +69,35 @@
         $("button.search.facilities").button("refresh");
       });
       
-    });
-    
-    function facilitiesSearchNearby(facility_type, radius) {
-      $(".facilities.thinking.main").show();
-        
-      Utils.location(function (lat, lng) {
-        $(".facilities.thinking.main").hide();
-        $.mobile.changePage({
-          url: "facilities_list.html",
-          data: Utils.cleanedData({lat: lat, lng: lng, radius: radius, facility_type: facility_type, search_type: "nearby"}),
-          type: "get"
-        });
-      });
-    }
-    
-    function facilitiesSearchZip(facility_type, radius) {
-      var zip = $("input.facilities.zipcode").val().trim();
-      if (!zip)
-        Utils.popup("If you want to limit results to a zip code, enter one before searching.");
-      else if (zip.match(/[^\d]/))
-        Utils.popup("Enter a valid zip code.");
-      else {
-        $.mobile.changePage({
-          url: "facilities_list.html",
-          data: Utils.cleanedData({zip: zip, radius: radius, facility_type: facility_type, search_type: "zip"}),
-          type: "get"
+      function facilitiesSearchNearby(facility_type, radius) {
+        $(".facilities.thinking.main").show();
+          
+        Utils.location(function (lat, lng) {
+          $(".facilities.thinking.main").hide();
+          $.mobile.changePage({
+            url: "facilities_list.html",
+            data: Utils.cleanedData({lat: lat, lng: lng, radius: radius, facility_type: facility_type, search_type: "nearby"}),
+            type: "get"
+          });
         });
       }
-    }
+      
+      function facilitiesSearchZip(facility_type, radius) {
+        var zip = $("input.facilities.zipcode").val().trim();
+        if (!zip)
+          Utils.popup("If you want to limit results to a zip code, enter one before searching.");
+        else if (zip.match(/[^\d]/))
+          Utils.popup("Enter a valid zip code.");
+        else {
+          $.mobile.changePage({
+            url: "facilities_list.html",
+            data: Utils.cleanedData({zip: zip, radius: radius, facility_type: facility_type, search_type: "zip"}),
+            type: "get"
+          });
+        }
+      }
+      
+    });
     
   </script>
 

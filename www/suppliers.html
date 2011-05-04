@@ -83,34 +83,33 @@
           .addClass("autocomplete");
       }
       
-    });
-    
-    
-    function suppliersSearchNearby(supply, radius) {
+      function suppliersSearchNearby(supply, radius) {
         
-      Utils.location(function (lat, lng) {
-        $.mobile.changePage({
-          url: "suppliers_list.html",
-          data: {lat: lat, lng: lng, radius: radius, supply: supply, search_type: "nearby"},
-          type: "get"
-        });
-      });
-    }
-    
-    function suppliersSearchZip(supply, radius) {
-      var zip = $("input.supplies.zipcode").val().trim();
-      if (!zip)
-        Utils.popup("If you want to limit results to a zip code, enter one before selecting a supplier.");
-      else if (zip.match(/[^\d]/))
-        Utils.popup("Enter a valid zip code.");
-      else {
-        $.mobile.changePage({
-          url: "suppliers_list.html",
-          data: {zip: zip, supply: supply, radius: radius, search_type: "zip"},
-          type: "get"
+        Utils.location(function (lat, lng) {
+          $.mobile.changePage({
+            url: "suppliers_list.html",
+            data: {lat: lat, lng: lng, radius: radius, supply: supply, search_type: "nearby"},
+            type: "get"
+          });
         });
       }
-    }
+      
+      function suppliersSearchZip(supply, radius) {
+        var zip = $("input.supplies.zipcode").val().trim();
+        if (!zip)
+          Utils.popup("If you want to limit results to a zip code, enter one before selecting a supplier.");
+        else if (zip.match(/[^\d]/))
+          Utils.popup("Enter a valid zip code.");
+        else {
+          $.mobile.changePage({
+            url: "suppliers_list.html",
+            data: {zip: zip, supply: supply, radius: radius, search_type: "zip"},
+            type: "get"
+          });
+        }
+      }
+      
+    });
     
   </script>
 
