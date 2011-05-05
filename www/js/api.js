@@ -10,23 +10,23 @@ var Api = {
       params.sections = sections.join(",");
       
     Utils.log("[" + method + "](" + params.sections + ") sending request");
-    $.ajax({
+    return $.ajax({
       url: Api.url(method), 
       data: params, 
-      success: function(data) {
+      success: function(data, status, xhr) {
         Utils.log("Response received, sending " + (data[method] ? data[method].length : "null") + " results into callback.");
-        callback(data[method]);
+        callback(data[method], xhr);
       },
       dataType: "jsonp" //TODO: Turn this off (to regular JSON) when on a device
     });
   },
   
   getOne: function(method, sections, params, callback) {
-    Api.get(method, sections, params, function(results) {
+    return Api.get(method, sections, params, function(results, xhr) {
       if (results && results.length > 0)
-        callback(results[0]);
+        callback(results[0], xhr);
       else
-        callback(null);
+        callback(null, xhr);
     });
   },
   
@@ -37,21 +37,21 @@ var Api = {
   Facility: {
     // returns all suppliers by a given location search
     searchNearby: function(lat, lng, radius, sections, params, callback) {
-      Api.get("facilities", 
+      return Api.get("facilities", 
               sections, 
               $.extend({location: lat + "," + lng, radius: radius}, params), 
               callback);
     },
     
     searchZip: function(zip, radius, sections, params, callback) {
-      Api.get("facilities", 
+      return Api.get("facilities", 
               sections, 
               $.extend({location: zip, radius: radius}, params),
               callback);
     },
     
     find: function(provider_number, facility_type, sections, callback) {
-      Api.getOne("facilities", 
+      return Api.getOne("facilities", 
                  sections, 
                  {
                   provider_number: provider_number, 
@@ -66,38 +66,38 @@ var Api = {
     searchNearby: function(supply, lat, lng, radius, callback) {
       var params = {location: lat + "," + lng, radius: radius};
       params["supplies." + supply] = true;
-      Api.get("suppliers", ["basic", "row"], params, callback);
+      return Api.get("suppliers", ["basic", "row"], params, callback);
     },
     
     searchZip: function(supply, zip, radius, callback) {
       var params = {location: zip, radius: radius};
       params["supplies." + supply] = true;
-      Api.get("suppliers", ["basic", "row"], params, callback);
+      return Api.get("suppliers", ["basic", "row"], params, callback);
     },
     
     find: function(row, sections, callback) {
-      Api.getOne("suppliers", sections, {row: row}, callback);
+      return Api.getOne("suppliers", sections, {row: row}, callback);
     },
     
     terms: function(query, callback) {
-      Api.get("supplier_terms", [], {term__start: query}, callback);
+      return Api.get("supplier_terms", [], {term__start: query}, callback);
     },
   },
   
   Drug: {
     // returns all drugs by a given query string
     terms: function(query, callback) {
-      Api.get("drug_terms", [], {term__start: query}, callback);
+      return Api.get("drug_terms", [], {term__start: query}, callback);
     },
     
     // all chemicals in a given drug class
     drugClass: function(drug_class, callback) {
-      Api.get("drug_chemicals", ["basic"], {drug_class: drug_class, order: "subdivision", sort: "asc"}, callback);
+      return Api.get("drug_chemicals", ["basic"], {drug_class: drug_class, order: "subdivision", sort: "asc"}, callback);
     },
     
     // all chemicals in a given drug class...except for one
     drugClassExcept: function(drug_class, chemical, callback) {
-      Api.get("drug_chemicals", ["basic"], {
+      return Api.get("drug_chemicals", ["basic"], {
         drug_class: drug_class, 
         order: "subdivision",
         sort: "asc",
@@ -107,7 +107,7 @@ var Api = {
     
     // any piece of info about a single chemical
     chemical: function(chemical, drug_class, subdivision, sections, callback) {
-      Api.getOne("drug_chemicals", sections, {
+      return Api.getOne("drug_chemicals", sections, {
         name: chemical,
         drug_class: drug_class,
         subdivision: subdivision

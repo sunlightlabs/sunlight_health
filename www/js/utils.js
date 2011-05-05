@@ -212,10 +212,10 @@ Utils = {
   },
   
   hit: function(event, ui) {
-    var defaultUrl = "#facilities.html";
+    var defaultUrl = "/index";
     try {
       if (location.hash)
-        url = location.hash;
+        url = "/" + location.hash.replace(/^#/, '').replace(/\?.*?$/, '').replace(".html", '');
       else 
         url = defaultUrl;
       

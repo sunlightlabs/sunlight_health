@@ -31,6 +31,8 @@
   <!-- Page-specific code -->
   <script type="text/javascript">
     Utils.show("drugs", function() {
+    
+      var cache = {}, lastXhr;
         
       $("input.search.drugs").autocomplete({
         appendTo: "#drugs",
@@ -39,8 +41,13 @@
           
           var query = request.term;
           
-          Api.Drug.terms(query, function(terms) {
-            response($.map(terms, function(term) {
+          if (query in cache) {
+            response(cache[query]);
+            return;
+          }
+          
+          lastXhr = Api.Drug.terms(query, function(terms, xhr) {
+            var data = $.map(terms, function(term) {
               var link;
               if (term.term_type == "drug_class")
                 link = "drug_class.html?" + Utils.queryString({drug_class: term.drug_class});
@@ -60,7 +67,13 @@
               } 
               
               return {label: term.term, value: query, link: link};
-            }));
+            });
+            
+            cache[query] = data;
+            
+            if (xhr == lastXhr)
+              response(data);
+            
           });
         }
         
@@ -97,7 +110,6 @@
     <p>
       Have a prescription to fill? See what your options are.
     </p>
-  <script type="text/javascript" charset="utf-8" src="js/jquery-placehold-0.3.min.js"></script>
   <div class="ui-select">
     <input class="search drugs text" type="text" name="query" placeholder="Enter a class, chemical, or drug" />
 	</div>
