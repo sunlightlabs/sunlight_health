@@ -33,6 +33,11 @@
 		334ADF371362293E0057A481 /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30E1352610E2C1420031B30D /* PhoneGap.plist */; };
 		334ADF381362293E0057A481 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 3053AC6E109B7857006FCFE7 /* VERSION */; };
 		334ADF3A1362293E0057A481 /* PhoneGapBuildSettings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 307D28A1123043350040C0FA /* PhoneGapBuildSettings.xcconfig */; };
+		33EF737313735129009CD941 /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33EF737013735129009CD941 /* Default-Landscape@2x.png */; };
+		33EF737413735129009CD941 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33EF737113735129009CD941 /* Default-Portrait@2x.png */; };
+		33EF737513735129009CD941 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33EF737213735129009CD941 /* Default@2x.png */; };
+		33EF737813735136009CD941 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 33EF737613735136009CD941 /* Icon-Small.png */; };
+		33EF737913735136009CD941 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33EF737713735136009CD941 /* Icon-Small@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +89,11 @@
 		32CA4F630368D1EE00C91783 /* health_care_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = health_care_Prefix.pch; sourceTree = "<group>"; };
 		334ADF42136229890057A481 /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		334ADF44136229890057A481 /* test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "test-Info.plist"; sourceTree = "<group>"; };
+		33EF737013735129009CD941 /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x.png"; sourceTree = "<group>"; };
+		33EF737113735129009CD941 /* Default-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x.png"; sourceTree = "<group>"; };
+		33EF737213735129009CD941 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		33EF737613735136009CD941 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		33EF737713735136009CD941 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* health_care-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "health_care-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,6 +210,8 @@
 			children = (
 				3009C2AA127B894C007F4BC6 /* icon-72.png */,
 				3009C2AB127B894C007F4BC6 /* icon@2x.png */,
+				33EF737613735136009CD941 /* Icon-Small.png */,
+				33EF737713735136009CD941 /* Icon-Small@2x.png */,
 				302CC88710CD8CCE00C49659 /* icon.png */,
 			);
 			name = icons;
@@ -210,6 +222,9 @@
 			children = (
 				3009C2B0127B897D007F4BC6 /* Default-Landscape.png */,
 				3009C2B1127B897D007F4BC6 /* Default-Portrait.png */,
+				33EF737013735129009CD941 /* Default-Landscape@2x.png */,
+				33EF737113735129009CD941 /* Default-Portrait@2x.png */,
+				33EF737213735129009CD941 /* Default@2x.png */,
 				302CC88610CD8CCE00C49659 /* Default.png */,
 			);
 			name = splash;
@@ -275,6 +290,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Sunlight Foundation";
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "health_care" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -326,6 +344,11 @@
 				334ADF371362293E0057A481 /* PhoneGap.plist in Resources */,
 				334ADF381362293E0057A481 /* VERSION in Resources */,
 				334ADF3A1362293E0057A481 /* PhoneGapBuildSettings.xcconfig in Resources */,
+				33EF737313735129009CD941 /* Default-Landscape@2x.png in Resources */,
+				33EF737413735129009CD941 /* Default-Portrait@2x.png in Resources */,
+				33EF737513735129009CD941 /* Default@2x.png in Resources */,
+				33EF737813735136009CD941 /* Icon-Small.png in Resources */,
+				33EF737913735136009CD941 /* Icon-Small@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
