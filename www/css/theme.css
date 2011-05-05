@@ -55,20 +55,26 @@
 	border-top-color: rgba(255, 255, 255, 0.3);
     border-top-style: solid;
     border-top-width: 1px;
-	padding-left: 15px;
-	padding-right: 15px;
-	width: 70px;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: 53px;
 	text-align: center;
 	
 }/* Styles that really faint border at top of button. Causes a beveled effect.  */
+
 
 /*.ui-radio .ui-btn-active .ui-btn-text{
 	padding-left: 17px;
 	background: url('images/icons-18-white.png') -363px -4px;
 } Adding GPS icon ... or other image to button text  */
 
-fieldset.ui-controlgroup{
+fieldset.ui-controlgroup, #index .ui-select, #suppliers .ui-select, #drugs .ui-select{
 	text-align: center;
+}
+#index .ui-select, #suppliers .ui-select, #drugs .ui-select{
+	margin-left: auto;
+	margin-right: auto;
+	width: 231px;
 }
 
 
@@ -194,8 +200,8 @@ input.ui-input-text, textarea.ui-input-text {
 	padding-right: 0;
 	padding-top: 7px;
 	padding-bottom: 7px;
-	text-indent: 25px;
-	width: 100%;
+	text-indent: 15px;
+	width: 225px;
 	margin-bottom: 15px;
 }
 
