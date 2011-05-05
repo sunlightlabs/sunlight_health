@@ -111,7 +111,13 @@
         if (survey_experiences) {
           html = "";
           i = 0;
-          $.each(survey_experiences, function(field, qualifiers) {
+          
+          var fields = ["rating", "pain_well_controlled", "doctor_communication", "nurse_communication", "explained_medicines", "help_when_wanted", "given_recovery_information", "rooms_clean", 
+          "rooms_quiet"];
+          
+          $.each(fields, function(i, field) {
+            var qualifiers = survey_experiences[field];
+            
             // combine usually and always
             if (qualifiers.usually && qualifiers.always) {
               var name = qualifiers.usually.name;
