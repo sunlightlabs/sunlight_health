@@ -33,6 +33,7 @@
     
     Utils.show("suppliers", function() {
       
+      var cache = {}, lastXhr;
       
       $("input.supplies.radio").change(function() {
         var search_type = $('input:radio[name=search_type]:checked').val();
@@ -47,10 +48,20 @@
         source: function(request, response) {
           var query = request.term;
           
-          Api.Supplier.terms(query, function(supplies) {
-            response($.map(supplies, function(supply) {
+          if (query in cache) {
+            response(cache[query]);
+            return;
+          }
+          
+          lastXhr = Api.Supplier.terms(query, function(supplies, xhr) {
+            var data = $.map(supplies, function(supply) {
               return {label: supply.term, value: query, param: supply.term.replace(/\"/g, "\\\"")};
-            }));
+            });
+            
+            cache[query] = data;
+            
+            if (xhr == lastXhr)
+              response(data);
           });
         },
         select: function(e, ui) {

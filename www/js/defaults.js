@@ -1,6 +1,5 @@
 $(document).bind("mobileinit", function(){
   $.mobile.defaultTransition = 'none';
-  //$.mobile.loadingMessage = false;
 });
 
 // hide the fact that the user is clicking on an external link

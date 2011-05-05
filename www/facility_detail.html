@@ -41,7 +41,6 @@
         if (facility_type == "nursing_home") {
           Api.Facility.find(provider_number, facility_type, ["ratings", "extended"], function(facility) {
             if (!facility) return;
-            window.facility = facility;
             populateNursingHome(facility.ratings, facility.extended);
           });
         }
