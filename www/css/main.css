@@ -270,6 +270,26 @@ td.cost{
 	border-bottom: 1px solid #4F4F4F;
 	border-top: 1px solid #4F4F4F;
 }
+#facilities_list .more{
+	background-color: #898989;
+	background-image: none;
+	text-align: center;
+	border-top: 1px solid #4F4F4F;
+	color: #ffffff;
+	text-transform: uppercase;
+	font-size: 13px;
+	
+}
+#facilities_list .more:hover{
+	background-color: #707070;
+	background-image: none;
+	text-align: center;
+	border-top: 1px solid #4F4F4F;
+	color: #ffffff;
+	text-transform: uppercase;
+	font-size: 13px;
+	
+}
 h3.dosage{
 	color: #006f8b;
 	text-transform: uppercase;
