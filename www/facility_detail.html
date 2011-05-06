@@ -100,6 +100,9 @@
         $(".facility.common.reveal.basic").show();
         
         $(".facility." + facility.facility_type + ".reveal.basic").show();
+        
+        if (facility.hsa_count == 1)
+          $("p.small.hsa-disclaimer").html("This hospital contains \"n/a\" under the \"LOCAL\" column because there are no other hospitals in their Hospital Service Area to compare to.").show();
       }
       
       function populateHospital(hsa_count, outliers_above, outliers_below, survey_experiences, outcomes, process) {
@@ -547,9 +550,7 @@
             <tbody>
             </tbody>
           </table>
-		  <p class="small hsa-disclaimer">
-			Hospitals that contain only n/a in the local column do not have any other hospitals in their HSA to compare to. (Or something to that effect.)
-		  </p>
+          <p class="small hsa-disclaimer hidden"></p>
         </div>
         
         <div data-role="collapsible" data-collapsed="true" class="process heart_attack hidden">
@@ -587,9 +588,7 @@
             <tbody>
             </tbody>
           </table>
-		  <p class="small hsa-disclaimer">
-			Hospitals that contain only n/a in the local column do not have any other hospitals in their HSA to compare to. (Or something to that effect.)
-		  </p>
+          <p class="small hsa-disclaimer hidden"></p>
         </div>
         
         <div data-role="collapsible" data-collapsed="true" class="process heart_failure hidden">
@@ -628,9 +627,7 @@
             <tbody>
             </tbody>
           </table>
-		  <p class="small hsa-disclaimer">
-			Hospitals that contain only n/a in the local column do not have any other hospitals in their HSA to compare to. (Or something to that effect.)
-		  </p>
+          <p class="small hsa-disclaimer hidden"></p>
         </div>
         
         <div data-role="collapsible" data-collapsed="true" class="process pneumonia hidden">
@@ -669,9 +666,7 @@
             <tbody>
             </tbody>
           </table>
-		  <p class="small hsa-disclaimer">
-			Hospitals that contain only n/a in the local column do not have any other hospitals in their HSA to compare to. (Or something to that effect.)
-		  </p>
+          <p class="small hsa-disclaimer hidden"></p>
         </div>
       
       </div><!-- end hospital container -->
