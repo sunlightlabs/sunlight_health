@@ -602,6 +602,11 @@ ul.ui-autocomplete h3{
 	margin: 10px;
 }
 
+.empty {
+  padding-left: 22px;
+  margin: 10px;
+}
+
 input.search.text.ui-autocomplete-loading {
 	background: url('images/ajax-loader_white.gif') 98% center no-repeat;
 	background-color: #ffffff;

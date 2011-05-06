@@ -34,10 +34,10 @@
       Api.Drug.drugClass(drug_class, function(chemicals) {
         $(".drugs.thinking").hide();
         
-        Utils.loadList("chemicals", chemicals, function(chemical) {
-          return Utils.chemicalItem(chemical);
-        }, {
-          empty: "No drugs found in this drug class.",
+        Utils.loadList("chemicals", chemicals, {
+          assemble: function(chemical) {
+            return Utils.chemicalItem(chemical);
+          },
           divider: "subdivision"
         });
         
@@ -52,7 +52,8 @@
 
   <div data-role="content"> 
     <div class="drugs thinking">Loading chemicals in this class...</div>
-
+    <div class="chemicals empty hidden">No drugs found in this drug class.</div>
+    <div class="chemicals error hidden">Error loading drugs in this drug class.</div>
 	  
     <ul data-role="listview" data-theme="c" class="list chemicals">
       <!-- fill in suppliers here -->

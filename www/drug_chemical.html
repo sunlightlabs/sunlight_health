@@ -130,10 +130,11 @@
       }
       
       function populateChemicals(chemicals) {
-        Utils.loadList("chemicals", chemicals, function(chemical) {
-          return Utils.chemicalItem(chemical);
-        }, {
-          empty: "No other drugs found in this drug class.",
+        Utils.loadList("chemicals", chemicals, {
+          
+          assemble: function(chemical) {
+            return Utils.chemicalItem(chemical);
+          },
           divider: "subdivision"
         });
         
@@ -197,6 +198,8 @@
         <h1>Other Chemicals in this Class</h1>
         
         <div class="chemical thinking extended">Loading other chemicals...</div>
+        <div class="chemicals empty extended hidden">No other chemicals in this drug class.</div>
+        <div class="chemicals error extended hidden">Error loading chemicals in this drug class.</div>
         <div class="chemical reveal extended">
           <ul data-role="listview" data-theme="c" class="list chemicals">
             <!-- gets filled in identically to the list of chemicals in drug_class.html -->

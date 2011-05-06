@@ -47,18 +47,21 @@
       function loadSuppliers(suppliers) {
         $(".suppliers.thinking").hide();
         
-        Utils.loadList("suppliers", suppliers, function(supplier) {
-          return "" +
-            "<a href=\"supplier_detail.html?" + Utils.queryString({row: supplier.row}) + "\">" +
-              "<h3>" +
-                supplier.name +
-              "</h3>" +
-              "<p>" + 
-                supplier.address + "<br/>" +
-                supplier.city + ", " + supplier.state + " " + supplier.zip +
-              "</p>" +
-            "</a>";
-        }, {empty: "No suppliers found for this location."});
+        Utils.loadList("suppliers", suppliers, {
+          assemble: function(supplier) {
+            return "" +
+              "<a href=\"supplier_detail.html?" + Utils.queryString({row: supplier.row}) + "\">" +
+                "<h3>" +
+                  supplier.name +
+                "</h3>" +
+                "<p>" + 
+                  supplier.address + "<br/>" +
+                  supplier.city + ", " + supplier.state + " " + supplier.zip +
+                "</p>" +
+              "</a>";
+          },
+          clear: false
+        });
       }
     });
     
@@ -70,7 +73,8 @@
 
   <div data-role="content"> 
     <div class="suppliers thinking">Searching for suppliers...</div>
-
+    <div class="suppliers empty hidden">No suppliers found for this location.</div>
+    <div class="suppliers error hidden">Error loading suppliers.</div>
     
     <ul data-role="listview" data-theme="c" class="list suppliers">
       <!-- fill in suppliers here -->

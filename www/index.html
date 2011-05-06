@@ -17,6 +17,7 @@
   <script type="text/javascript" charset="utf-8" src="js/defaults.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery-ui-1.8.12.custom.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a4.1.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery.endless-scroll-1.4.2.js"></script>
   
   <!-- Utilities -->
   <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
@@ -30,12 +31,9 @@
 
 <div data-role="page" class="page" id="index">
 
-  <!-- Page-specific code -->
   <script type="text/javascript">
-    var currentQuery = "";
     
     Utils.show("index", function() {
-      
       
       $("button.search.facilities").click(function() {
         var facility_type = $("select#facility_type").val();
