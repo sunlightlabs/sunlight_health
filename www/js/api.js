@@ -63,14 +63,14 @@ var Api = {
   
   Supplier: {
     // returns all suppliers by a given location search
-    searchNearby: function(supply, lat, lng, radius, callback) {
-      var params = {location: lat + "," + lng, radius: radius};
+    searchNearby: function(supply, lat, lng, radius, params, callback) {
+      params = $.extend({location: lat + "," + lng, radius: radius}, params);
       params["supplies." + supply] = true;
       return Api.get("suppliers", ["basic", "row"], params, callback);
     },
     
-    searchZip: function(supply, zip, radius, callback) {
-      var params = {location: zip, radius: radius};
+    searchZip: function(supply, zip, radius, params, callback) {
+      params = $.extend({location: zip, radius: radius}, params);
       params["supplies." + supply] = true;
       return Api.get("suppliers", ["basic", "row"], params, callback);
     },
