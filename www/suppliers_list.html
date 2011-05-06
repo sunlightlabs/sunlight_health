@@ -36,15 +36,23 @@
       var searchType = Utils.param("search_type");
       var radius = Utils.radiusFor(Utils.param("radius"));
       
-      if (searchType == "zip") {
-        $(".suppliers.title").html("Suppliers Near " + zip);
-        Api.Supplier.searchZip(supply, zip, radius, loadSuppliers);
-      } else {
-        $(".suppliers.title").html("Suppliers Nearby");
-        Api.Supplier.searchNearby(supply, lat, lng, radius, loadSuppliers);
+      function searchSuppliers(page) {
+        var params = {page: page};
+        
+        if (searchType == "zip") {
+          $(".suppliers.title").html("Suppliers Near " + zip);
+          Api.Supplier.searchZip(supply, zip, radius, params, function(suppliers, count, page) {
+            loadSuppliers(suppliers, count, page);
+          });
+        } else {
+          $(".suppliers.title").html("Suppliers Nearby");
+          Api.Supplier.searchNearby(supply, lat, lng, radius, params, function(suppliers, count, page) {
+            loadSuppliers(suppliers, count, page);
+          });
+        }
       }
       
-      function loadSuppliers(suppliers) {
+      function loadSuppliers(suppliers, count, page) {
         $(".suppliers.thinking").hide();
         
         Utils.loadList("suppliers", suppliers, {
@@ -62,7 +70,21 @@
           },
           clear: false
         });
+        
+        if ((page.count < page.per_page) || ((page.count * page.per_page) == count)) {
+          Utils.log("No more pages, page count: " + page.count + ", per_page: " + page.per_page + ", total count: " + count);
+          $(".suppliers.more").hide();
+        } else {
+          Utils.log("More pages, set loader to load page " + (page.page + 1));
+          $(".suppliers.more").click(function() {
+            $(".suppliers.more").hide();
+            $(".suppliers.thinking").show();
+            searchSuppliers(page.page + 1);
+          }).show();
+        }
       }
+      
+      searchSuppliers(1);
     });
     
   </script>
@@ -72,13 +94,14 @@
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <div class="suppliers thinking">Searching for suppliers...</div>
-    <div class="suppliers empty hidden">No suppliers found for this location.</div>
-    <div class="suppliers error hidden">Error loading suppliers.</div>
-    
     <ul data-role="listview" data-theme="c" class="list suppliers">
       <!-- fill in suppliers here -->
     </ul>
+    
+    <div class="suppliers thinking">Searching for suppliers...</div>
+    <div class="suppliers empty hidden">No suppliers found for this location.</div>
+    <div class="suppliers error hidden">Error loading suppliers.</div>
+    <div class="suppliers more hidden">Load more suppliers</div>
   </div><!-- /content -->
 
 	<div data-role="footer" data-id="stickey_footer" id="stickey_footer">
