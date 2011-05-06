@@ -40,13 +40,16 @@ Utils = {
     });
   },
   
-  orderedEach: function(object, callback) {
+  orderedEach: function(object, callback, reverse) {
     var keys = [];
     $.each(object, function(key, value) {
       keys[keys.length] = key;
     });
     
     keys = keys.sort();
+    
+    if (reverse)
+      keys.reverse();
     
     $.each(keys, function(i, key) {
       callback(key, object[key]);

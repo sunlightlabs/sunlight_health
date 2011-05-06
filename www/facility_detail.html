@@ -159,12 +159,14 @@
           i = 0;
           html = "";
           Utils.orderedEach(outcomes, function(condition, years) {
+            var done = false;
             Utils.orderedEach(years, function(year, info) {
-              if (info.code) {
+              if (info.code && !done) {
                 html += outcomeRow(i, info.name, info.code);
                 i += 1;
+                done = true;
               }
-            });
+            }, true);
           });
           
           $(".facility.hospital .outcomes table.data tbody").html(html);
