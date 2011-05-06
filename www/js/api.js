@@ -15,18 +15,18 @@ var Api = {
       data: params, 
       success: function(data, status, xhr) {
         Utils.log("Response received, sending " + (data[method] ? data[method].length : "null") + " results into callback.");
-        callback(data[method], xhr);
+        callback(data[method], data.count, data.page, xhr);
       },
       dataType: "jsonp" //TODO: Turn this off (to regular JSON) when on a device
     });
   },
   
   getOne: function(method, sections, params, callback) {
-    return Api.get(method, sections, params, function(results, xhr) {
+    return Api.get(method, sections, params, function(results, count, page, xhr) {
       if (results && results.length > 0)
-        callback(results[0], xhr);
+        callback(results[0], count, page, xhr);
       else
-        callback(null, xhr);
+        callback(null, count, page, xhr);
     });
   },
   

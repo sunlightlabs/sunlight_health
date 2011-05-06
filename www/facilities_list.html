@@ -36,28 +36,38 @@
       var radius = Utils.radiusFor(Utils.param("radius"));
       var searchType = Utils.param("search_type");
       
-      var params = {facility_type: facility_type};
-      var sections;
+      var total = 0;
       
-      if (facility_type == "nursing_home")
-        sections = ["basic", "ratings.overall"];
-      else if (facility_type == "dialysis")
-        sections = ["basic", "extended.dialysis_adequacy"];
-      else if (facility_type == "home_health")
-        sections = ["basic"]
-      else if (facility_type == "hospital")
-        sections = ["basic"];
-      
-      if (searchType == "zip") {
+      if (searchType == "zip")
         $(".facilities.title").html("Facilities Near " + zip);
-        Api.Facility.searchZip(zip, radius, sections, params, loadFacilities);
-      } else {
+      else
         $(".facilities.title").html("Facilities Nearby");
-        Api.Facility.searchNearby(lat, lng, radius, sections, params, loadFacilities);
+      
+      function searchFacilities(page) {
+        var params = {facility_type: facility_type, page: page};
+        var sections;
+        
+        if (facility_type == "nursing_home")
+          sections = ["basic", "ratings.overall"];
+        else if (facility_type == "dialysis")
+          sections = ["basic", "extended.dialysis_adequacy"];
+        else if (facility_type == "home_health")
+          sections = ["basic"]
+        else if (facility_type == "hospital")
+          sections = ["basic"];
+        
+        if (searchType == "zip") {
+          Api.Facility.searchZip(zip, radius, sections, params, function(facilities, count, page) {
+            loadFacilities(facilities, count, page);
+          });
+        } else {
+          Api.Facility.searchNearby(lat, lng, radius, sections, params, function(facilities, count, page) {
+            loadFacilities(facilities, count, page);
+          });
+        }
       }
       
-      
-      function loadFacilities(facilities) {
+      function loadFacilities(facilities, count, page) {
         $(".facilities.thinking").hide();
         
         Utils.loadList("facilities", facilities, {
@@ -107,7 +117,22 @@
           empty: "No facilities found for this location.",
           clear: false
         });
+        
+        if ((page.count < page.per_page) || ((page.count * page.per_page) == count)) {
+          Utils.log("No more pages, page count: " + page.count + ", per_page: " + page.per_page + ", total count: " + count);
+          $(".facilities.more").hide();
+        } else {
+          Utils.log("More pages, set loader to load page " + (page.page + 1));
+          $(".facilities.more").click(function() {
+            $(".facilities.more").hide();
+            $(".facilities.thinking").show();
+            searchFacilities(page.page + 1);
+          }).show();
+        }
+        
       }
+      
+      searchFacilities(1);
     });
     
   </script>
@@ -117,13 +142,13 @@
   </div><!-- /header -->
 
   <div data-role="content"> 
-    <div class="facilities thinking">Searching for facilities...</div>
-    <div class="facilities empty hidden">No facilities found.</div>
-    <div class="facilities error hidden">Error loading facilities.</div>
-    
     <ul data-role="listview" data-theme="c" class="list facilities">
       <!-- fill in facilities here -->
     </ul>
+    <div class="facilities more hidden">Load more facilities</div>
+    <div class="facilities empty hidden">No facilities found.</div>
+    <div class="facilities error hidden">Error loading facilities.</div>
+    <div class="facilities thinking">Searching for facilities...</div>
   </div><!-- /content -->
 
   <div data-role="footer" data-position="fixed" data-id="stickey_footer" id="stickey_footer">

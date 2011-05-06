@@ -46,7 +46,7 @@
             return;
           }
           
-          lastXhr = Api.Drug.terms(query, function(terms, xhr) {
+          lastXhr = Api.Drug.terms(query, function(terms, count, page, xhr) {
             var data = $.map(terms, function(term) {
               var link;
               if (term.term_type == "drug_class")

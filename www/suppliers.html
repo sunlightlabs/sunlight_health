@@ -52,7 +52,7 @@
             return;
           }
           
-          lastXhr = Api.Supplier.terms(query, function(supplies, xhr) {
+          lastXhr = Api.Supplier.terms(query, function(supplies, count, page, xhr) {
             var data = $.map(supplies, function(supply) {
               return {label: supply.term, value: query, param: supply.term.replace(/\"/g, "\\\"")};
             });
