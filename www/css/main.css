@@ -45,7 +45,8 @@ h1{
 #about .content-banner p{
 	text-align: left;
 	line-height: 1.5;
-	padding-top: 15px;
+	padding-top: 7px;
+	font-size: 14px;
 }
 #about .ui-content{
 	margin: 20px 10px;
@@ -355,6 +356,11 @@ tr.best-buy{
 #about .content-banner a:link{
 	font-style: oblique;
 	color: #D7CA57;
+	font-size: 14px;
+}
+#about .content-banner a:hover{
+	font-style: oblique;
+	color: #333333;
 	font-size: 14px;
 }
 #about .content-banner a:visited{
