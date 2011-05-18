@@ -80,7 +80,7 @@ var Api = {
     },
     
     terms: function(query, callback) {
-      return Api.get("supplier_terms", [], {term__start: query}, callback);
+      return Api.get("supplier_terms", [], {term__word_match: query}, callback);
     },
   },
   
