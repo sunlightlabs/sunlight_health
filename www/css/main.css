@@ -42,13 +42,13 @@ h1{
 	font-size: 14px;
 }
 
-#about .content-banner p{
+#about .content-banner p, #methodology .content-banner p{
 	text-align: left;
 	line-height: 1.5;
 	padding-top: 7px;
 	font-size: 14px;
 }
-#about .ui-content{
+#about .ui-content, #methodology .ui-content{
 	margin: 20px 10px;
 }
 .foundations{
@@ -79,7 +79,7 @@ h1{
 	padding: 7px;
 }*/
 
-#about .ui-body-c{
+#about .ui-body-c, #methodology .ui-body-c{
 	background: none;
 	padding-top: 10px;
 }
@@ -88,7 +88,7 @@ h1{
 	text-shadow: none;
 }
 
-#about .content-banner {
+#about .content-banner, #methodology .content-banner {
 	background-image: -moz-linear-gradient(top, #007592 0%, #5190AA 8%, #007592 16%); /* firefox */
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#007592), color-stop(8%,#5190AA), color-stop(16%,#007592)); /* webkit */
 	padding: 7px;
@@ -354,17 +354,17 @@ tr.best-buy{
 	color: #818181;
 	font-size: 14px;
 }
-#about .content-banner a:link{
+#about .content-banner a:link, #methodology .content-banner a:link{
 	font-style: oblique;
 	color: #D7CA57;
 	font-size: 14px;
 }
-#about .content-banner a:hover{
+#about .content-banner a:hover, #methodology .content-banner a:hover{
 	font-style: oblique;
 	color: #333333;
 	font-size: 14px;
 }
-#about .content-banner a:visited{
+#about .content-banner a:visited, #methodology .content-banner a:visited{
 	color: #D7CA57;
 }
 .info{
@@ -578,7 +578,7 @@ dd.not {
 	font-size: 14px;
 }
 
-.above .ui-collapsible-heading-toggle  .outlier{
+/*.above .ui-collapsible-heading-toggle  .outlier{
 	background: url('images/outlier_up.png') right top no-repeat ;
 	width: 25px;
 	height: 28px;
@@ -603,7 +603,7 @@ dd.not {
 	right: 12px;
 	top: 0;
 	position: absolute;
-}
+}*/
 .totals>.below{
 	display: block;
 }
@@ -760,6 +760,15 @@ div.toast{
 	color: #ffffff;
 	font-size: 12px;
 }
+
+
+.warning{
+	font-weight: bold;
+}
+.warning span{
+	text-transform: uppercase;
+}
+
 
 /* -------- Image exceptions for mobile screens -------- */
 
