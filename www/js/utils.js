@@ -251,7 +251,7 @@ var _gaq = [['_setAccount', 'UA-22821126-1']];
   var g = d.createElement(t),
       s = d.getElementsByTagName(t)[0];
   g.async = 1;
-  g.src = '//www.google-analytics.com/ga.js';
+  g.src = 'http://www.google-analytics.com/ga.js';
   s.parentNode.insertBefore(g, s);
 }(document, 'script'));
 
