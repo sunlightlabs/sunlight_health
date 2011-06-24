@@ -789,7 +789,12 @@ p.notes.sf-disclaimer{
 .sf-disclaimer a:link{
 	color: #818181;
 }
-
+h2.page-title{
+	text-align: center;
+	color: #D7CA57;
+	text-transform: uppercase;
+	font-size: 125%;
+}
 
 /* -------- Image exceptions for mobile screens -------- */
 
