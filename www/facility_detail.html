@@ -253,12 +253,16 @@
           
           $(".facility.nursing_home .ratings table.data tbody").html(html);
           $(".facility.nursing_home .ratings").show();
-        } 
+        }
         
         $(".facility.nursing_home .occupancy div.data .beds dd").html(extended.certified_bed.value);
         $(".facility.nursing_home .occupancy div.data .occupied dd").html(extended.occupied_beds.value);
         $(".facility.nursing_home .occupancy div.data .residents dd").html(extended.total_residents.value);
         $(".facility.nursing_home .occupancy").show();
+        
+        
+        if (extended.special_focus_facility.value)
+          $(".special-focus-facility").show();
         
         html = "" +
           booleanRow(0, "Medicaid Participation", extended.program_participation.value.match(/Medicaid/)) +
@@ -267,7 +271,6 @@
           booleanRow(3, extended.multi_ownership.name, extended.multi_ownership.value) +
           simpleValueRow(4, extended.resident_and_family_councils.name, extended.resident_and_family_councils.value) +
           booleanRow(5, extended.continuing_care_retirement_community.name, extended.continuing_care_retirement_community.value) +
-          booleanRow(6, extended.special_focus_facility.name, extended.special_focus_facility.value) +
           "";
           
         $(".facility.nursing_home .participation table.data tbody").html(html);
@@ -471,11 +474,11 @@
       </div>
       
       <div class="scallop"></div>
-      <div class="special-focus-facility">
-        <p class="special-focus"> This is a special focus facility</p>
-		<p class="notes sf-disclaimer">This is serious shit, <a href="">yo.</a></p>
-	  </div>
-
+      
+      <div class="special-focus-facility hidden">
+        <p class="special-focus">This is a special focus facility.</p>
+        <p class="notes sf-disclaimer">[disclaimer here with <a href="#">link</a>]</p>
+      </div>
 
       <div class="buttons ui-grid-a">
         <div class="ui-block-a">
