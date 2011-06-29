@@ -796,6 +796,29 @@ h2.page-title{
 	font-size: 125%;
 }
 
+.no-results{
+	padding: 10px 0;
+	background-color: #898989;
+}
+#drugs .no-results p, #suppliers .no-results p{
+	padding-left: 10px;
+	background: none;
+	color: #ffffff;
+	font-size: 80%;
+	font-weight: 700;
+	padding-bottom: 0;
+}
+#drugs .no-results p.not-included, #suppliers .no-results p.not-included{
+	font-weight: 400;
+}
+
+#drugs .as_of_date{
+	color: red;
+}
+
+
+
+
 /* -------- Image exceptions for mobile screens -------- */
 
 
