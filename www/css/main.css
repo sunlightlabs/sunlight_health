@@ -319,6 +319,17 @@ tr.best-buy{
 	font-size: 	79%;
 	line-height: 1.25;
 }
+
+.data-date{
+	color: #4c4c4c;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 	79%;
+	text-align: center;
+	font-style: italic;
+}
+
+
 .chemicals li.ui-li-divider{
 	padding-left: 25px;
 	background: none;
@@ -812,9 +823,7 @@ h2.page-title{
 	font-weight: 400;
 }
 
-#drugs .as_of_date{
-	color: red;
-}
+
 
 
 
