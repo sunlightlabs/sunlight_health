@@ -49,7 +49,7 @@
           Api.Facility.find(provider_number, facility_type, ["extended"], function(facility) {
             if (!facility) return;
             
-            populateHomeHealth(facility.extended.ownership_type, facility.extended.services, facility.extended.patient_improvement);
+            populateHomeHealth(facility.extended.ownership_type, facility.extended.services, facility.extended.patient_improvement, facility.extended.team_performance);
           });
         }
         
@@ -296,7 +296,7 @@
         $(".facility.nursing_home.reveal.extended").show();
       }
       
-      function populateHomeHealth(ownership_type, services, patient_improvement) {
+      function populateHomeHealth(ownership_type, services, patient_improvement, team_performance) {
         var html;
         var i;
         
@@ -314,8 +314,7 @@
   
         html = "" +
           simplePercentRow(0, patient_improvement.oral_medicine.name, patient_improvement.oral_medicine.value) +
-          simplePercentRow(1, patient_improvement.bladder_control.name, patient_improvement.bladder_control.value) +
-          simplePercentRow(2, patient_improvement.stay_home_after_care.name, patient_improvement.stay_home_after_care.value) +
+          
           simplePercentRow(3, patient_improvement.walking.name, patient_improvement.walking.value) +
           simplePercentRow(4, patient_improvement.bathing.name, patient_improvement.bathing.value) +
           simplePercentRow(5, patient_improvement.bed_transition.name, patient_improvement.bed_transition.value) +
@@ -327,12 +326,33 @@
         
         html = "" +
           simplePercentRow(0, patient_improvement.urgent_care.name, patient_improvement.urgent_care.value) +
-          simplePercentRow(1, patient_improvement.unplanned_wound.name, patient_improvement.unplanned_wound.value) +
+          simplePercentRow(1, patient_improvement.bed_sores_after_care.name, patient_improvement.bed_sores_after_care.value) +
           simplePercentRow(2, patient_improvement.admitted_to_hospital.name, patient_improvement.admitted_to_hospital.value);
         
         $(".facility.home_health .patient_improvement table.data.declined tbody").html(html);
         
         $(".facility.home_health .patient_improvement").show();
+        
+        
+        html = "" +
+          simplePercentRow(0, team_performance.began_in_timely_manner.name, team_performance.began_in_timely_manner.value) +
+          simplePercentRow(0, team_performance.taught_about_drugs.name, team_performance.taught_about_drugs.value) +
+          simplePercentRow(0, team_performance.checked_risk_of_falling.name, team_performance.checked_risk_of_falling.value) +
+          simplePercentRow(0, team_performance.whether_flu_shot.name, team_performance.whether_flu_shot.value) +
+          simplePercentRow(0, team_performance.foot_care_for_diabetes.name, team_performance.foot_care_for_diabetes.value) +
+          simplePercentRow(0, team_performance.checked_pain.name, team_performance.checked_pain.value) +
+          simplePercentRow(0, team_performance.treated_pain.name, team_performance.treated_pain.value) +
+          simplePercentRow(0, team_performance.treated_heart_failure.name, team_performance.treated_heart_failure.value) +
+          simplePercentRow(0, team_performance.bed_sore_treatment_in_care_plan.name, team_performance.bed_sore_treatment_in_care_plan.value) +
+          simplePercentRow(0, team_performance.checked_bed_sores.name, team_performance.checked_bed_sores.value) +
+          simplePercentRow(0, team_performance.checked_depression.name, team_performance.checked_depression.value) +
+          simplePercentRow(0, team_performance.whether_pneumonia_shot.name, team_performance.whether_pneumonia_shot.value) +
+          simplePercentRow(2, team_performance.took_doctor_action_for_bed_sores.name, team_performance.took_doctor_action_for_bed_sores.value) +
+            "";
+        
+        $(".facility.home_health .team_performance table.data tbody").html(html);
+        
+        $(".facility.home_health .team_performance").show();
         
         
         $(".facility.thinking.extended").hide();
@@ -787,6 +807,15 @@
             <tbody></tbody>
           </table>
           
+        </div>
+        
+        <div data-role="collapsible" data-collapsed="true" class="team_performance hidden">
+          <h1>Staff Performance</h1>
+          
+          <table class="data">
+
+            <tbody></tbody>
+          </table>
         </div>
       
       </div><!-- end home health container -->
