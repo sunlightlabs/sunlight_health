@@ -312,6 +312,13 @@ tr.best-buy{
 .best-buy h3{
 
 }
+.best-buy-logo{
+	background: url('images/best_buy_logo.png') center top no-repeat;
+	width: 100px;
+	height: 26px;
+	margin: 0 auto;
+	text-indent: -9999em;
+}
 .description{
 	color: #4c4c4c;
 	padding-left: 10px;
@@ -1012,6 +1019,13 @@ h2.page-title{
 		-o-background-size: 20px 18px;
 		-webkit-background-size: 20px 18px;
 		background-size: 20px 18px;
+	}
+	.best-buy-logo{
+		background: url('images/best_buy_logo_x2.png') center top no-repeat;
+		-moz-background-size: 100px 26px;
+		-o-background-size: 100px 26px;
+		-webkit-background-size: 100px 26px;
+		background-size: 100px 26px;
 	}
 	
 
