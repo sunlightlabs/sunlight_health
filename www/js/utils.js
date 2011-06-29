@@ -15,10 +15,12 @@ Utils = {
   show: function (page, callback) {
     $("#" + page).live("pageshow", function(event, ui) {
       
+      //TODO: May not be necessary after upgrading to Beta 1, investigate
       // final safeguard in case there is somehow a way to get to index.html#index.html
       if (window.location.hash == "#index.html")
         window.location = "index.html";
       
+      // in case this function gets called twice, there's a redundant reload bug
       var url = $.mobile.urlHistory.stack[$.mobile.urlHistory.activeIndex].url;
       if (Utils.currentUrl == url)
         return;
