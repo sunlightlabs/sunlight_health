@@ -313,22 +313,22 @@
   
   
         html = "" +
-          simpleValueRow(0, patient_improvement.oral_medicine.name, patient_improvement.oral_medicine.value + "%") +
-          simpleValueRow(1, patient_improvement.bladder_control.name, patient_improvement.bladder_control.value + "%") +
-          simpleValueRow(2, patient_improvement.stay_home_after_care.name, patient_improvement.stay_home_after_care.value + "%") +
-          simpleValueRow(3, patient_improvement.walking.name, patient_improvement.walking.value + "%") +
-          simpleValueRow(4, patient_improvement.bathing.name, patient_improvement.bathing.value + "%") +
-          simpleValueRow(5, patient_improvement.bed_transition.name, patient_improvement.bed_transition.value + "%") +
-          simpleValueRow(6, patient_improvement.moving_pain.name, patient_improvement.moving_pain.value + "%") +
-          simpleValueRow(7, patient_improvement.short_of_breath.name, patient_improvement.short_of_breath.value + "%") +
-          simpleValueRow(8, patient_improvement.wounds_improved_after_operation.name, patient_improvement.wounds_improved_after_operation.value + "%");
+          simplePercentRow(0, patient_improvement.oral_medicine.name, patient_improvement.oral_medicine.value) +
+          simplePercentRow(1, patient_improvement.bladder_control.name, patient_improvement.bladder_control.value) +
+          simplePercentRow(2, patient_improvement.stay_home_after_care.name, patient_improvement.stay_home_after_care.value) +
+          simplePercentRow(3, patient_improvement.walking.name, patient_improvement.walking.value) +
+          simplePercentRow(4, patient_improvement.bathing.name, patient_improvement.bathing.value) +
+          simplePercentRow(5, patient_improvement.bed_transition.name, patient_improvement.bed_transition.value) +
+          simplePercentRow(6, patient_improvement.moving_pain.name, patient_improvement.moving_pain.value) +
+          simplePercentRow(7, patient_improvement.short_of_breath.name, patient_improvement.short_of_breath.value) +
+          simplePercentRow(8, patient_improvement.wounds_improved_after_operation.name, patient_improvement.wounds_improved_after_operation.value);
 
         $(".facility.home_health .patient_improvement table.data.improved tbody").html(html);
         
         html = "" +
-          simpleValueRow(0, patient_improvement.urgent_care.name, patient_improvement.urgent_care.value + "%") +
-          simpleValueRow(1, patient_improvement.unplanned_wound.name, patient_improvement.unplanned_wound.value + "%") +
-          simpleValueRow(2, patient_improvement.admitted_to_hospital.name, patient_improvement.admitted_to_hospital.value + "%");
+          simplePercentRow(0, patient_improvement.urgent_care.name, patient_improvement.urgent_care.value) +
+          simplePercentRow(1, patient_improvement.unplanned_wound.name, patient_improvement.unplanned_wound.value) +
+          simplePercentRow(2, patient_improvement.admitted_to_hospital.name, patient_improvement.admitted_to_hospital.value);
         
         $(".facility.home_health .patient_improvement table.data.declined tbody").html(html);
         
@@ -419,6 +419,14 @@
             "<th scope=\"row\">" + name + "</th>" +
             "<td>" + value + "</td>" +
           "</tr>";
+      }
+      
+      function simplePercentRow(i, name, value) {
+        if (value)
+          return simpleValueRow(i, name, value + "%");
+        else
+          return simpleValueRow(i, name, "N/A");
+        
       }
       
       function outcomeRow(i, name, code) {
