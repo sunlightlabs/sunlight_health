@@ -62,10 +62,10 @@
         }
         
         else if (facility_type == "hospital") {
-          Api.Facility.find(provider_number, facility_type, ["hsa_count", "outliers_above", "outliers_below", "survey_experiences", "outcomes", "process"], function(facility) {
+          Api.Facility.find(provider_number, facility_type, ["fresh_on", "hsa_count", "outliers_above", "outliers_below", "survey_experiences", "outcomes", "process"], function(facility) {
             if (!facility) return;
             
-            populateHospital(facility.hsa_count, facility.outliers_above, facility.outliers_below, facility.survey_experiences, facility.outcomes, facility.process);
+            populateHospital(facility.fresh_on, facility.hsa_count, facility.outliers_above, facility.outliers_below, facility.survey_experiences, facility.outcomes, facility.process);
           });
         }
         
@@ -77,6 +77,14 @@
         $(".facility .phone").html(Utils.phone(facility.phone));
         $(".facility a.call").attr("href", "tel:" + facility.phone);
         $(".facility a.directions").attr("href", Utils.directions(Utils.address(facility)));
+        
+        var fresh_on;
+        if (facility.facility_type == "hospital")
+          fresh_on = facility.fresh_on.general;
+        else
+          fresh_on = facility.fresh_on;
+        
+        $("p.facility.general.data-date").html("Current as of " + fresh_on);
         
         $(".facility.map").click(function() {
           $.mobile.changePage({
@@ -105,7 +113,7 @@
           $("p.small.hsa-disclaimer").html("This hospital contains \"n/a\" under the \"LOCAL\" column because there are no other hospitals in their Hospital Service Area to compare to.").show();
       }
       
-      function populateHospital(hsa_count, outliers_above, outliers_below, survey_experiences, outcomes, process) {
+      function populateHospital(fresh_on, hsa_count, outliers_above, outliers_below, survey_experiences, outcomes, process) {
         
         var html;
         var i;
@@ -149,6 +157,7 @@
             }
           });
           
+          $("p.facility.survey_experiences.data-date").html("Current as of " + fresh_on.survey_experiences);
           
           $(".facility.hospital .survey_experiences table.data tbody").html(html);
           $(".facility.hospital .survey_experiences").show();
@@ -168,6 +177,8 @@
               }
             }, true);
           });
+          
+          $("p.facility.outcomes.data-date").html("Current as of " + fresh_on.outcomes);
           
           $(".facility.hospital .outcomes table.data tbody").html(html);
           $(".facility.hospital .outcomes").show();
@@ -226,6 +237,7 @@
               }
             });
             
+            $("p.facility.process.data-date").html("Current as of " + fresh_on.process);
             $(".facility.hospital .process." + condition + " table.data.values tbody").html(html);
             $(".facility.hospital .process." + condition).show();
           });
@@ -536,7 +548,7 @@
             </thead>
             <tbody></tbody>
           </table>
-		  <p class="data-date">Current as of 5/24/11</p>
+          <p class="facility survey_experiences data-date"></p>
        
         </div>
         
@@ -552,7 +564,7 @@
             </thead>
             <tbody></tbody>
           </table>
-		  <p class="data-date">Current as of 5/24/11</p>
+          <p class="facility outcomes data-date"></p>
 
         </div>
         
@@ -593,7 +605,7 @@
             </tbody>
           </table>
           <p class="small hsa-disclaimer hidden"></p>
-		  <p class="data-date">Current as of 5/24/11</p>
+          <p class="facility process data-date"></p>
 
         </div>
         
@@ -633,7 +645,7 @@
             </tbody>
           </table>
           <p class="small hsa-disclaimer hidden"></p>
-		  <p class="data-date">Current as of 5/24/11</p>
+          <p class="facility process data-date"></p>
 
         </div>
         
@@ -674,7 +686,7 @@
             </tbody>
           </table>
           <p class="small hsa-disclaimer hidden"></p>
-		  <p class="data-date">Current as of 5/24/11</p>
+          <p class="facility process data-date"></p>
 
         </div>
         
@@ -715,7 +727,7 @@
             </tbody>
           </table>
           <p class="small hsa-disclaimer hidden"></p>
-		  <p class="data-date">Current as of 5/24/11</p>
+          <p class="facility process data-date"></p>
 
         </div>
       
@@ -861,7 +873,7 @@
       
       </div><!-- end dialysis container -->
       <p class="more"><a href="methodology.html">Read more about this data...</a></p>
-	  <p class="data-date">Current as of 5/24/11</p>
+      <p class="facility general data-date"></p>
        
     </div>
     
