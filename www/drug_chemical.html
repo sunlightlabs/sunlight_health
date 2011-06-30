@@ -60,6 +60,8 @@
         );
         $(".chemical.drug_names").html(chemical.drug_names.join(", "));
         
+        $("p.data-date").html("Current as of " + chemical.fresh_on);
+        
         $(".chemical.thinking.basic").hide();
         $(".chemical.reveal.basic").show();
       }
@@ -209,7 +211,7 @@
 		
 
       <p class="more"><a href="methodology.html">Read more about this data...</a></p>
-       <p class="data-date">Current as of 5/24/11</p>
+       <p class="data-date"></p>
 		<div class="best-buy-logo">
 			Consumer Reports Health.org Best Buy Drugs
 		</div>
