@@ -42,6 +42,11 @@
           var query = request.term;
           
           if (query in cache) {
+            if (cache[query].length == 0)
+              $("div.no-results").show();
+            else
+              $("div.no-results").hide();
+              
             response(cache[query]);
             return;
           }
@@ -71,8 +76,14 @@
             
             cache[query] = data;
             
-            if (xhr == lastXhr)
+            if (xhr == lastXhr) {
+              if (data.length == 0)
+                $("div.no-results").show();
+              else
+                $("div.no-results").hide();
+                
               response(data);
+            }
             
           });
         }
@@ -113,7 +124,7 @@
   <div class="ui-select">
     <input class="search drugs text" type="text" name="query" placeholder="Enter a class, chemical, or drug" />
 	</div>
-	<div class="no-results">
+	<div class="no-results hidden">
 		<p >
 			No results found.
 		</p>
