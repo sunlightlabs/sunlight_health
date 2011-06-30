@@ -80,14 +80,14 @@ var Api = {
     },
     
     terms: function(query, callback) {
-      return Api.get("supplier_terms", [], {term__word_match: query}, callback);
+      return Api.get("supplier_terms", [], {term__word_match: query, order: "term", sort: "asc"}, callback);
     },
   },
   
   Drug: {
     // returns all drugs by a given query string
     terms: function(query, callback) {
-      return Api.get("drug_terms", [], {term__start: query}, callback);
+      return Api.get("drug_terms", [], {term__start: query, order: "term", sort: "asc"}, callback);
     },
     
     // all chemicals in a given drug class
