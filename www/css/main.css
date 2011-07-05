@@ -112,7 +112,7 @@ h1{
 	border: none;	
 }
 #facility_detail .scallop{
-	margin-top: -2px; /* This hides that wacky blue border that shows up on Android devices under pngs and CSS3 gradients. */
+	margin-top: -1px; /* This hides that wacky blue border that shows up on Android devices under pngs and CSS3 gradients. */
 }
 h3.name{
 	text-shadow: none;
