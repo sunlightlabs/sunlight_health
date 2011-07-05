@@ -1,8 +1,8 @@
 //
 //  main.m
-//  health_care
+//  health_care_2
 //
-//  Created by Development on 3/9/11.
+//  Created by Development on 7/1/11.
 //  Copyright __MyCompanyName__ 2011. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 int main(int argc, char *argv[]) {
     
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, @"health_careAppDelegate");
+    int retVal = UIApplicationMain(argc, argv, nil, @"AppDelegate");
     [pool release];
     return retVal;
 }
