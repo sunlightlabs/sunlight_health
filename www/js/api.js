@@ -1,10 +1,8 @@
 var Api = {
-  key: null,
   host: "health.sunlightlabs.com/api/v1",
   
   get: function(method, sections, params, callback) {
     params = params || {};
-    params.apikey = Api.key;
     
     if (sections && sections.length > 0)
       params.sections = sections.join(",");
