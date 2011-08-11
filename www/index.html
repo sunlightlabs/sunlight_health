@@ -12,15 +12,22 @@
   <link href="css/theme.css" rel="stylesheet" />
   <link href="css/main.css" rel="stylesheet" />
   
+  <!-- Utilities -->
+  <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
+  
   <!-- Phonegap and JQM init -->
-  <script type="text/javascript" charset="utf-8" src="js/phonegap-0.9.6.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/phonegap-1.0.0.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    document.addEventListener("deviceready", Utils.onDeviceReady, false);
+  </script>
+  
+  <script type="text/javascript" charset="utf-8" src="js/google_analytics.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery-1.6.1.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/defaults.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery-ui-1.8.12.custom.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0a4.1.js"></script>
   
-  <!-- Utilities -->
-  <script type="text/javascript" charset="utf-8" src="js/utils.js"></script>
+  
   
   <!-- API communication -->
   <script type="text/javascript" charset="utf-8" src="js/api.js"></script>

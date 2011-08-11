@@ -3,6 +3,58 @@ Utils = {
   // internal cache of last loaded URL, to protect against JQM's redundant reloading
   currentUrl: null,
   
+  // will be loaded with the GoogleAnalyticsPlugin object after the deviceready event fires
+  analytics: null,
+  
+  // can keep any missed hits (page loaded before deviceready fired) in a queue to be fired off on the next hit
+  missedHits: [],
+  
+  onDeviceReady: function() {
+    Utils.log("device ready!");
+    
+    // tell Phonegap's JS that the plugin exists and should be marked in the DOM at 
+    // windows.plugins.GoogleAnalytics
+    // On the Android side, this will refer to the class referenced by the plugin named "GoogleAnalytics" in plugins.xml
+    PhoneGap.addConstructor(function() {
+      console.log('Adding Google Analytics Plugin');
+      PhoneGap.addPlugin('GoogleAnalytics', new GoogleAnalyticsPlugin());
+    });
+    
+    Utils.analytics = window.plugins.GoogleAnalytics;
+  },
+  
+  hit: function(event, ui) {
+    var defaultUrl = "/index";
+    try {
+      if (location.hash)
+        url = "/" + location.hash.replace(/^#/, '').replace(/\?.*?$/, '').replace(".html", '');
+      else 
+        url = defaultUrl;
+      
+      var msg = "";
+      
+      if (Utils.analytics) {
+        
+        Utils.analytics.startTrackerWithAccountID("UA-22821126-1");
+        Utils.analytics.trackPageview(url);
+        // doesn't exist, could add it if needed
+        // Utils.analytics.stopTracker();
+        
+        // TODO: report the queue
+        
+        msg += "SENT";
+      } else {
+        Utils.missedHits[Utils.missedHits.length] = url;
+        msg += "QUEUED";
+      }
+      
+      Utils.log("[ANALYTICS](#" + event.currentTarget.id + "){" + msg + "} url: " + url);
+      
+    } catch(err) {
+      Utils.log("[ERROR] While logging analytics: " + err);
+    } 
+  },
+  
   // if running in Android, the command to see log messages in a terminal is:
   // adb logcat PhoneGapLog:V *:S
   // or when running in the web browser:
@@ -217,22 +269,6 @@ Utils = {
       "</a>";
   },
   
-  hit: function(event, ui) {
-    var defaultUrl = "/index";
-    try {
-      if (location.hash)
-        url = "/" + location.hash.replace(/^#/, '').replace(/\?.*?$/, '').replace(".html", '');
-      else 
-        url = defaultUrl;
-      
-      Utils.log("[ANALYTICS](#" + event.currentTarget.id + ") url: " + url);
-      _gaq.push( ['_trackPageview', url] );
-        
-    } catch(err) {
-      Utils.log("[ERROR] While logging analytics: " + err);
-    } 
-  },
-  
   radiusFor: function(radius) {
     return {
       small: 5,
@@ -241,22 +277,3 @@ Utils = {
     }[radius];
   }
 };
-
-
-// approach to recording using Google Analytics with JQM adapted from Jon Gales:
-// http://www.jongales.com/blog/2011/01/10/google-analytics-and-jquery-mobile/
-
-// optimized GA async snippet adapted from:
-// http://mathiasbynens.be/notes/async-analytics-snippet
-var _gaq = [['_setAccount', 'UA-22821126-1']];
-(function(d, t) {
-  var g = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-  g.async = 1;
-  g.src = 'http://www.google-analytics.com/ga.js';
-  s.parentNode.insertBefore(g, s);
-}(document, 'script'));
-
-// approach to recording using Google Analytics with JQM adapted from:
-// http://blog.stickmanventures.com/2011/03/15/basic-google-analytics-with-jquery-mobile-pageshow/
-
