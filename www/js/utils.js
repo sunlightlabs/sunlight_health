@@ -3,26 +3,6 @@ Utils = {
   // internal cache of last loaded URL, to protect against JQM's redundant reloading
   currentUrl: null,
   
-  // will be loaded with the GoogleAnalyticsPlugin object after the deviceready event fires
-  analytics: null,
-  
-  // can keep any missed hits (page loaded before deviceready fired) in a queue to be fired off on the next hit
-  missedHits: [],
-  
-//   onDeviceReady: function() {
-//     Utils.log("device ready!");
-//     
-//     // tell Phonegap's JS that the plugin exists and should be marked in the DOM at 
-//     // windows.plugins.GoogleAnalytics
-//     // On the Android side, this will refer to the class referenced by the plugin named "GoogleAnalytics" in plugins.xml
-//     PhoneGap.addConstructor(function() {
-//       console.log('Adding Google Analytics Plugin');
-//       PhoneGap.addPlugin('GoogleAnalytics', new GoogleAnalyticsPlugin());
-//     });
-//     
-//     Utils.analytics = window.plugins.GoogleAnalytics;
-//   },
-  
   hit: function(event, ui) {
     var defaultUrl = "/index";
     try {
@@ -33,7 +13,7 @@ Utils = {
       
       var urchinUrl = gaTrack("UA-22821126-1", "health.sunlightlabs.com", url);
       Utils.log("[ANALYTICS](#" + event.currentTarget.id + ") url: " + url);
-      Utils.log("GA GIF URL: " + urchinUrl);
+      // Utils.log("GA GIF URL: " + urchinUrl);
       
     } catch(err) {
       Utils.log("[ERROR] While logging analytics: " + err);
