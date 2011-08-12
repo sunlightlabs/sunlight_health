@@ -9,19 +9,19 @@ Utils = {
   // can keep any missed hits (page loaded before deviceready fired) in a queue to be fired off on the next hit
   missedHits: [],
   
-  onDeviceReady: function() {
-    Utils.log("device ready!");
-    
-    // tell Phonegap's JS that the plugin exists and should be marked in the DOM at 
-    // windows.plugins.GoogleAnalytics
-    // On the Android side, this will refer to the class referenced by the plugin named "GoogleAnalytics" in plugins.xml
-    PhoneGap.addConstructor(function() {
-      console.log('Adding Google Analytics Plugin');
-      PhoneGap.addPlugin('GoogleAnalytics', new GoogleAnalyticsPlugin());
-    });
-    
-    Utils.analytics = window.plugins.GoogleAnalytics;
-  },
+//   onDeviceReady: function() {
+//     Utils.log("device ready!");
+//     
+//     // tell Phonegap's JS that the plugin exists and should be marked in the DOM at 
+//     // windows.plugins.GoogleAnalytics
+//     // On the Android side, this will refer to the class referenced by the plugin named "GoogleAnalytics" in plugins.xml
+//     PhoneGap.addConstructor(function() {
+//       console.log('Adding Google Analytics Plugin');
+//       PhoneGap.addPlugin('GoogleAnalytics', new GoogleAnalyticsPlugin());
+//     });
+//     
+//     Utils.analytics = window.plugins.GoogleAnalytics;
+//   },
   
   hit: function(event, ui) {
     var defaultUrl = "/index";
@@ -31,24 +31,9 @@ Utils = {
       else 
         url = defaultUrl;
       
-      var msg = "";
-      
-      if (Utils.analytics) {
-        
-        Utils.analytics.startTrackerWithAccountID("UA-22821126-1");
-        Utils.analytics.trackPageview(url);
-        // doesn't exist, could add it if needed
-        // Utils.analytics.stopTracker();
-        
-        // TODO: report the queue
-        
-        msg += "SENT";
-      } else {
-        Utils.missedHits[Utils.missedHits.length] = url;
-        msg += "QUEUED";
-      }
-      
-      Utils.log("[ANALYTICS](#" + event.currentTarget.id + "){" + msg + "} url: " + url);
+      var urchinUrl = gaTrack("UA-22821126-1", "health.sunlightlabs.com", url);
+      Utils.log("[ANALYTICS](#" + event.currentTarget.id + ") url: " + url);
+      Utils.log("GA GIF URL: " + urchinUrl);
       
     } catch(err) {
       Utils.log("[ERROR] While logging analytics: " + err);
